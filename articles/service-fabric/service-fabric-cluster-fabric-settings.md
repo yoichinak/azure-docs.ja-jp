@@ -215,7 +215,7 @@ ms.lasthandoff: 10/11/2017
 |ServiceDescriptionCacheLimit | int、既定値は 0 | ネーム ストア サービスの LRU サービス記述キャッシュに保持するエントリの最大数 (無制限の場合は 0 に設定します)。 |
 |RepairInterval | 時間 (秒単位)、既定値は 5 | timespan を秒単位で指定します。 機関所有者と名前所有者間での名前付けの不一致の修復が開始される間隔。 |
 |MaxNamingServiceHealthReports | int、既定値は 10 | ネーム ストア サービスが異常として一度に報告する低速操作の最大数。 0 の場合、低速の操作がすべて送信されます。 |
-| MaxMessageSize |int、既定値は 4*1024*1024 |名前付け使用時のクライアント ノード通信の最大メッセージ サイズ。 DOS 攻撃を軽減します。既定値は 4 MB です。 |
+| MaxMessageSize |int、既定値は 4 * 1024 * 1024 |名前付け使用時のクライアント ノード通信の最大メッセージ サイズ。 DOS 攻撃を軽減します。既定値は 4 MB です。 |
 | MaxFileOperationTimeout |秒単位。既定値は 30 |timespan を秒単位で指定します。 ファイル ストア サービス操作で許容される最大タイムアウト。 これよりも長いタイムアウトを指定した要求は拒否されます。 |
 | MaxOperationTimeout |時間 (秒単位)、既定値は 600 |timespan を秒単位で指定します。 クライアント操作で許容される最大タイムアウト。 これよりも長いタイムアウトを指定した要求は拒否されます。 |
 | MaxClientConnections |int、既定値は 1000 |ゲートウェイごとのクライアント接続の最大許容数。 |
@@ -314,7 +314,7 @@ ms.lasthandoff: 10/11/2017
 | MinReplicaSetSize |int、既定値は 0 |FaultAnalysisService の MinReplicaSetSize。 |
 | ReplicaRestartWaitDuration |時間 (秒単位)、既定値は 60 分|timespan を秒単位で指定します。 FaultAnalysisService の ReplicaRestartWaitDuration。 |
 | QuorumLossWaitDuration | 時間 (秒単位)、既定値は MaxValue |timespan を秒単位で指定します。 FaultAnalysisService の QuorumLossWaitDuration。 |
-| StandByReplicaKeepDuration| 時間 (秒単位)、既定値は (60*24*7) 分 |timespan を秒単位で指定します。 FaultAnalysisService の StandByReplicaKeepDuration。 |
+| StandByReplicaKeepDuration| 時間 (秒単位)、既定値は (60 * 24 * 7) 分 |timespan を秒単位で指定します。 FaultAnalysisService の StandByReplicaKeepDuration。 |
 | PlacementConstraints | string、既定値は ""| FaultAnalysisService の PlacementConstraints。 |
 | StoredActionCleanupIntervalInSeconds | int、既定値は 3600 |ストアをクリーンアップする頻度。  終了状態のアクションと、少なくとも CompletedActionKeepDurationInSeconds で指定された期間よりも前に完了したアクションだけが削除されます。 |
 | CompletedActionKeepDurationInSeconds | int、既定値は 604800 | 終了状態のアクションを保持するおおよその期間。  クリーンアップの処理は StoredActionCleanupIntervalInSeconds で指定された間隔でのみ実行されるため、このパラメーターは StoredActionCleanupIntervalInSeconds にも左右されます。 604800 は 7 日間です。 |
@@ -383,7 +383,7 @@ ms.lasthandoff: 10/11/2017
 | MinReplicaSetSize |int、既定値は 0 | UpgradeOrchestrationService の MinReplicaSetSize。
 | ReplicaRestartWaitDuration | 時間 (秒単位)、既定値は 60 分| timespan を秒単位で指定します。 UpgradeOrchestrationService の ReplicaRestartWaitDuration。 |
 | QuorumLossWaitDuration | 時間 (秒単位)、既定値は MaxValue | timespan を秒単位で指定します。 UpgradeOrchestrationService の QuorumLossWaitDuration。 |
-| StandByReplicaKeepDuration | 時間 (秒単位)、既定値は 60*24*7 分 | timespan を秒単位で指定します。 UpgradeOrchestrationService の StandByReplicaKeepDuration。 |
+| StandByReplicaKeepDuration | 時間 (秒単位)、既定値は 60 * 24 * 7 分 | timespan を秒単位で指定します。 UpgradeOrchestrationService の StandByReplicaKeepDuration。 |
 | PlacementConstraints | string、既定値は "" | UpgradeOrchestrationService の PlacementConstraints。 |
 | AutoupgradeEnabled | ブール値、既定値は true | 目標状態ファイルに基づく自動ポーリングとアップグレード アクション。 |
 | UpgradeApprovalRequired | ブール値、既定値は false | コードのアップグレードを続行する前に管理者の承認を必須にするための設定。 |
