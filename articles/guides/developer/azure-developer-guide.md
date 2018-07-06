@@ -14,12 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/18/2017
 ms.author: glenga
-ms.openlocfilehash: e0a04d44edf39c90533c59d67ea2dfce69f092cd
-ms.sourcegitcommit: e221d1a2e0fb245610a6dd886e7e74c362f06467
+ms.openlocfilehash: f4dfc376e49ac26f0c054282994a29d9a7d2b54b
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/07/2018
-ms.locfileid: "33771094"
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37442173"
 ---
 # <a name="get-started-guide-for-azure-developers"></a>Azure 開発者向けファースト ステップ ガイド
 
@@ -80,7 +80,8 @@ VM の場合は細かいレベルで制御できるため、Azure 上で PaaS �
 
 #### <a name="azure-functions-serverless"></a>Azure Functions (サーバーレス)
 
-アプリケーションまたはコードを実行するインフラストラクチャ全体を構築し、管理する心配は不要です。 コードを作成し、イベントやスケジュールに応答して実行させるだけでよいとしたらどうしますか。  [Azure Functions](../../azure-functions/functions-overview.md) は、必要なコードを作成するだけで済む "サーバーレス" スタイルのサービスです。 Functions を使用すると、コードの実行は HTTP 要求、webhook、クラウド サービス イベント、またはスケジュールに応じてトリガーされます。 C\#、F\#、Node.js、Python、PHP など、好きな言語でコードを開発することもできます。 使用量ベースの課金の場合、コードの実行時にのみ課金されます。また、必要に応じて Azure は拡大縮小されます。
+アプリケーションまたはコードを実行するインフラストラクチャ全体を構築し、管理する心配は不要です。 コードを作成し、イベントやスケジュールに応答して実行させるだけでよいとしたらどうしますか。  
+  [Azure Functions](../../azure-functions/functions-overview.md) は、必要なコードを作成するだけで済む "サーバーレス" スタイルのサービスです。 Functions を使用すると、コードの実行は HTTP 要求、webhook、クラウド サービス イベント、またはスケジュールに応じてトリガーされます。 C\#、F\#、Node.js、Python、PHP など、好きな言語でコードを開発することもできます。 使用量ベースの課金の場合、コードの実行時にのみ課金されます。また、必要に応じて Azure は拡大縮小されます。
 
 >**使用する場合**: 他の Azure サービス、Web ベースのイベント、またはスケジュールに応じてトリガーされるコードがある場合に、Azure Functions を使用します。 また、完全なホスト型プロジェクトのオーバーヘッドが必要ない場合、またはコードの実行時にのみ料金を支払いたい場合にも Functions を使用できます。 詳細については、「[Azure Functions の作業開始](../../azure-functions/functions-overview.md)」を参照してください。
 
@@ -111,7 +112,8 @@ Azure では、アプリケーション ホスティングに加え、クラウ�
 
     >**開始**: [Azure Cosmos DB Web アプリをビルドします](../../cosmos-db/create-sql-api-dotnet.md)。 MongoDB 開発者でない場合は、[Azure Cosmos DB を使用した MongoDB Web アプリのビルド](../../cosmos-db/create-mongodb-dotnet.md)に関する記事をご覧ください。
 
--   **Azure Storage**: BLOB、クエリ、ファイルなどの非リレーショナル データに対して、耐久性があり、高可用な記憶域を提供します。 Storage は、VM 向けに記憶域の基盤を提供します。
+-   
+  **Azure Storage**: BLOB、クエリ、ファイルなどの非リレーショナル データに対して、耐久性があり、高可用な記憶域を提供します。 Storage は、VM 向けに記憶域の基盤を提供します。
 
     >**使用する場合**: キーと値のペア (テーブル)、BLOB、ファイル共有、メッセージ (キュー) など、非リレーショナル データを格納するアプリケーションの場合。
 
@@ -205,7 +207,7 @@ Azure を使用する利点の 1 つは、世界中のさまざまなデータ�
 
 可能性は低いのですが、自然災害やインターネット障害などの事象により、データ センター全体がオフラインになる可能性があります。 最大限の可用性を提供するため、重要なビジネス アプリケーションは複数のデータ センターでホストすることがベスト プラクティスです。 複数のリージョンを使用することで、ローカル ユーザーの待機時間が短縮され、アプリケーションの更新時に柔軟性が向上する可能性もあります。
 
-Virtual Machine や App Service など、一部のサービスでは、[Azure Traffic Manager](../../traffic-manager/traffic-manager-overview.md) を使用してリージョン間のフェールオーバーによるマルチリージョン サポートを可能にして、可用性の高いエンタープライズ アプリケーションをサポートできます。 例については、「[Azure の参照アーキテクチャ: 高可用性 Web アプリケーション](../../guidance/guidance-web-apps-multi-region.md)」を参照してください。
+Virtual Machine や App Service など、一部のサービスでは、[Azure Traffic Manager](../../traffic-manager/traffic-manager-overview.md) を使用してリージョン間のフェールオーバーによるマルチリージョン サポートを可能にして、可用性の高いエンタープライズ アプリケーションをサポートできます。 例については、[Azure リファレンス アーキテクチャの「Web アプリケーションを複数のリージョンで実行する」](https://docs.microsoft.com/azure/architecture/reference-architectures/app-service-web-app/multi-region)を参照してください。
 
 >**使用する場合**: フェールオーバーとレプリケーションを利用するエンタープライズおよび高可用性アプリケーションがある場合。
 
@@ -263,13 +265,13 @@ Azure Resource Manager では、関連するリソースを論理的にグルー
 
 Azure サブスクリプションの作成または使用には、Azure アカウントを持っている必要があります。 Azure アカウントは、Azure AD、または Azure AD から信頼されているディレクトリ (職場、学校組織など) の単なる ID です。 このような組織に属していない場合でも、Azure AD から信頼されている Microsoft アカウントを使用して、常にサブスクリプションを作成できます。 オンプレミス Windows Server Active Directory を Azure AD と統合する方法については、「[オンプレミスのディレクトリと Azure Active Directory の統合](../../active-directory/active-directory-aadconnect.md)」を参照してください。
 
-すべての Azure サブスクリプションには、Azure AD インスタンスとの間に信頼関係があります。 つまり、ディレクトリを信頼してユーザー、サービス、デバイスを認証します。 複数のサブスクリプションが同じディレクトリを信頼できますが、1 つのサブスクリプションは 1 つのディレクトリだけを信頼します。 詳細については、「[Azure サブスクリプションを Azure Active Directory に関連付ける方法](../../active-directory/active-directory-how-subscriptions-associated-directory.md)」を参照してください。
+すべての Azure サブスクリプションには、Azure AD インスタンスとの間に信頼関係があります。 つまり、ディレクトリを信頼してユーザー、サービス、デバイスを認証します。 複数のサブスクリプションが同じディレクトリを信頼できますが、1 つのサブスクリプションは 1 つのディレクトリだけを信頼します。 詳細については、「[Azure サブスクリプションを Azure Active Directory に関連付ける方法](../../active-directory/fundamentals/active-directory-how-subscriptions-associated-directory.md)」を参照してください。
 
-Azure AD では、個々の Azure アカウント ID (*ユーザー*とも呼ばれます) を定義できるだけでなく、*グループ*も定義できます。 ロールベースのアクセス制御 (RBAC) を使用して、サブスクリプション内のリソースへのアクセスを管理するには、ユーザー グループを作成することをお勧めします。 グループの作成の詳細については、「[Azure Active Directory でグループを作成し、メンバーを追加する](../../active-directory/active-directory-groups-create-azure-portal.md)」を参照してください。 [PowerShell を使用](../../active-directory/active-directory-accessmanagement-groups-settings-v2-cmdlets.md)してグループの作成と管理を行うこともできます。
+Azure AD では、個々の Azure アカウント ID (*ユーザー*とも呼ばれます) を定義できるだけでなく、*グループ*も定義できます。 ロールベースのアクセス制御 (RBAC) を使用して、サブスクリプション内のリソースへのアクセスを管理するには、ユーザー グループを作成することをお勧めします。 グループの作成の詳細については、「[Azure Active Directory でグループを作成し、メンバーを追加する](../../active-directory/fundamentals/active-directory-groups-create-azure-portal.md)」を参照してください。 [PowerShell を使用](../../active-directory/users-groups-roles/groups-settings-v2-cmdlets.md)してグループの作成と管理を行うこともできます。
 
 ### <a name="manage-your-subscriptions"></a>サブスクリプションを管理する
 
-サブスクリプションは、Azure アカウントにリンクされている Azure サービスの論理ユニットです。 サブスクリプションには、関連付けられている各アカウントに 1 つのロールがあります。 Azure サービスの課金は、サブスクリプションごとに行われます。 使用できるサブスクリプション プランの種類別一覧については、「[Microsoft Azure プランの詳細](https://azure.microsoft.com/support/legal/offer-details/)」を参照してください。
+サブスクリプションは、Azure アカウントにリンクされている Azure サービスの論理ユニットです。 サブスクリプションには、関連付けられている各アカウントに 1 つのロールがあります。 Azure サービスの課金は、サブスクリプションごとに行われます。 使用できるサブスクリプション オファーの種類別一覧については、「[Microsoft Azure オファーの詳細](https://azure.microsoft.com/support/legal/offer-details/)」を参照してください。
 
 #### <a name="administrator-roles"></a>管理者ロール
 

@@ -2,23 +2,23 @@
 title: Azure Kubernetes Service (AKS) の内部ロード バランサーを作成する
 description: Azure Kubernetes Service (AKS) で内部ロード バランサーを使用します。
 services: container-service
-author: neilpeterson
+author: iainfoulds
 manager: jeconnoc
 ms.service: container-service
 ms.topic: article
 ms.date: 3/29/2018
-ms.author: nepeters
+ms.author: iainfou
 ms.custom: mvc
-ms.openlocfilehash: a1a5d6d455086ee34767e92b277936840717bcd6
-ms.sourcegitcommit: d98d99567d0383bb8d7cbe2d767ec15ebf2daeb2
+ms.openlocfilehash: 7606ce574c7ff94caef3ffa89320d682b22d8502
+ms.sourcegitcommit: d7725f1f20c534c102021aa4feaea7fc0d257609
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/10/2018
-ms.locfileid: "33933775"
+ms.lasthandoff: 06/29/2018
+ms.locfileid: "37097922"
 ---
 # <a name="use-an-internal-load-balancer-with-azure-kubernetes-service-aks"></a>Azure Kubernetes Service (AKS) で内部ロード バランサーを使用する
 
-内部負荷分散により、Kubernetes サービスが Kubernetes クラスターと同じ仮想ネットワークで実行されているアプリケーションにアクセスできるようになります。 このドキュメントでは、Azure Kubernetes Service (AKS) で内部ロード バランサーを作成する方法について説明します。
+内部負荷分散により、Kubernetes サービスが Kubernetes クラスターと同じ仮想ネットワークで実行されているアプリケーションにアクセスできるようになります。 このドキュメントでは、Azure Kubernetes Service (AKS) で内部ロード バランサーを作成する方法について説明します。 Azure Load Balancer は、Basic と Standard の 2 種類の SKU で使用できます。 AKS は、基本的な SKU を使用します。
 
 ## <a name="create-internal-load-balancer"></a>内部ロード バランサーを作成する
 
