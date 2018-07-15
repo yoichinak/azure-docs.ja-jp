@@ -87,7 +87,7 @@
       href: /cli/azure/eventgrid
     - name: PowerShell
       href: /powershell/module/azurerm.eventgrid
-    - name: REST ()
+    - name: REST
       href: /rest/api/eventgrid
     - name: Template resources
       items:

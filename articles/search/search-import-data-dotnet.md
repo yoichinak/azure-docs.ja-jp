@@ -20,7 +20,7 @@ ms.locfileid: "31798055"
 > [!div class="op_single_selector"]
 > * [概要](search-what-is-data-import.md)
 > * [.NET](search-import-data-dotnet.md)
-> * [REST ()](search-import-data-rest-api.md)
+> * [REST](search-import-data-rest-api.md)
 > 
 > 
 

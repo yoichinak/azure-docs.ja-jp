@@ -125,7 +125,7 @@
   items:
     - name: Azure CLI
       href: /cli/azure/aks
-    - name: REST ()
+    - name: REST
       href: /rest/api/aks
     - name: PowerShell
       href: '/powershell/module/azurerm.aks#aks'

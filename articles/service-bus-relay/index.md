@@ -149,7 +149,7 @@ ms.locfileid: "30834403"
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>REST ()</h3>
+                        <h3>REST</h3>
                         <p><a href="/rest/api/servicebus/">REST API リファレンスに関するページ</a></p>
                    </div>
                 </div>

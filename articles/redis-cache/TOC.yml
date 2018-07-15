@@ -116,7 +116,7 @@
       href: 'http://redis.io/clients'
     - name: Redis コマンド
       href: 'http://redis.io/commands#'
-    - name: REST ()
+    - name: REST
       href: 'https://docs.microsoft.com/rest/api/redis/'
 - name: リソース
   items:

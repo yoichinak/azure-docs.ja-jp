@@ -240,7 +240,7 @@
       href: 'https://azure.microsoft.com/en-us/resources/samples/?service=hdinsight'
     - name: Azure PowerShell
       href: /powershell/module/azurerm.hdinsight
-    - name: REST ()
+    - name: REST
       href: /rest/api/hdinsight/
     - name: REST (Spark)
       href: /rest/api/hdinsightspark/

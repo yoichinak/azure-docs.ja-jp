@@ -515,7 +515,7 @@
       href: 'https://azure.microsoft.com/develop/nodejs/#azure-sdk'
     - name: Python
       href: 'https://azure.microsoft.com/develop/python/'
-    - name: REST ()
+    - name: REST
       href: /rest/api/compute
 - name: リソース
   items:

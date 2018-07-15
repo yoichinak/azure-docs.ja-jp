@@ -63,7 +63,7 @@
           href: service-bus-python-how-to-use-queues.md
         - name: Ruby
           href: service-bus-ruby-how-to-use-queues.md
-        - name: REST ()
+        - name: REST
           href: /rest/api/servicebus/queues
     - name: トピックとサブスクリプションの使用
       items:
@@ -189,7 +189,7 @@
       href: /java/api/overview/azure/servicebus
     - name: Azure PowerShell
       href: /powershell/module/azurerm.servicebus
-    - name: REST ()
+    - name: REST
       href: /rest/api/servicebus
     - name: 例外
       href: service-bus-messaging-exceptions.md

@@ -35,7 +35,7 @@ Azure Data Lake Store では、認証するために Azure Active Directory を�
 * 空欄は、その認証オプションがサポートされていないことを表します。
 
 
-|右の項目とともに以下の認証オプションを使用                   |.NET         |Java     |PowerShell |CLI 2.0 | Python   |REST ()     |
+|右の項目とともに以下の認証オプションを使用                   |.NET         |Java     |PowerShell |CLI 2.0 | Python   |REST     |
 |:---------------------------------------------|:------------|:--------|:----------|:-------------|:---------|:--------|
 |エンドユーザー (MFA なし**)                        |   ✔ |    ✔    |    ✔      |       ✔      |    **[✔*](data-lake-store-end-user-authenticate-python.md#end-user-authentication-without-multi-factor-authentication)**(非推奨)     |    **[✔*](data-lake-store-end-user-authenticate-rest-api.md)**    |
 |エンドユーザー (MFA あり)                           |    **[✔*](data-lake-store-end-user-authenticate-net-sdk.md)**        |    **[✔*](data-lake-store-end-user-authenticate-java-sdk.md)**     |    ✔      |       **[✔*](data-lake-store-get-started-cli-2.0.md)**      |    **[✔*](data-lake-store-end-user-authenticate-python.md#end-user-authentication-with-multi-factor-authentication)**     |    ✔    |

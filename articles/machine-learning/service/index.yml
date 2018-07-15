@@ -70,5 +70,5 @@ sections:
       html: <p><a href="reference-python-package-overview#amlpcv">Computer Vision</a></p><p><a href="reference-python-package-overview#amlpf">予測</a></p><p><a href="reference-python-package-overview#amlrealtimeai">FPGA アクセラレーション</a></p><p><a href="reference-python-package-overview#amlpta">テキスト分析</a></p>
     - title: 言語
       html: <p><a href="https://azure.microsoft.com/develop/python/">Python</a></p>
-    - title: REST ()
+    - title: REST
       html: <p><a href="model-management-api-reference">モデル管理 REST API</a></p>

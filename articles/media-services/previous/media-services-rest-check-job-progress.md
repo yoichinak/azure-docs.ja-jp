@@ -25,7 +25,7 @@ ms.locfileid: "33785741"
 > [!div class="op_single_selector"]
 > * [ポータル](media-services-portal-check-job-progress.md)
 > * [.NET](media-services-check-job-progress.md)
-> * [REST ()](media-services-rest-check-job-progress.md)
+> * [REST](media-services-rest-check-job-progress.md)
 > 
 > 
 

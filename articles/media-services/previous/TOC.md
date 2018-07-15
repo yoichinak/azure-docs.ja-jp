@@ -20,7 +20,7 @@
 ### [Azure Portal](media-services-portal-vod-get-started.md)
 ### [.NET SDK](media-services-dotnet-get-started.md)
 ### [Java](media-services-java-how-to-use.md)
-### [REST ()](media-services-rest-get-started.md)
+### [REST](media-services-rest-get-started.md)
 ## ライブ ストリーミングの実行
 ### [Azure Portal](media-services-portal-live-passthrough-get-started.md)
 ### [.NET](media-services-dotnet-live-encode-with-onpremises-encoders.md)

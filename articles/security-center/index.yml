@@ -72,5 +72,5 @@ sections:
     style: cards
     className: cardsD
     items:
-    - title: REST ()
+    - title: REST
       html: <p><a href="https://msdn.microsoft.com/library/mt704034(Azure.100).aspx">REST API リファレンスに関するページ</a></p>

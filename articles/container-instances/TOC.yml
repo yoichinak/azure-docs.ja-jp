@@ -83,7 +83,7 @@
   items:
     - name: Azure CLI
       href: /cli/azure/container
-    - name: REST ()
+    - name: REST
       href: /rest/api/container-instances
     - name: PowerShell
       href: '/powershell/module/azurerm.containerinstance#container_instances'

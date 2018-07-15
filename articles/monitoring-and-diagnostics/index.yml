@@ -69,7 +69,7 @@ sections:
     items:
     - title: コマンド ライン
       html: <p><a href="/cli/azure/monitor?view=azure-cli-latest">Azure CLI</a></p><p><a href="/powershell/module/azurerm.insights">Azure PowerShell</a></p>
-    - title: REST ()
+    - title: REST
       html: <p><a href="/rest/api/monitor/">REST</a></p>
     - title: 監視
       html: <p><a href="monitoring-supported-metrics">サポートされるメトリック</a></p><p><a href="monitoring-diagnostic-logs-schema">診断ログのサービス、カテゴリ、スキーマ</a></p><p><a href="monitoring-activity-log-schema">アクティビティ ログのイベント スキーマ</a></p>

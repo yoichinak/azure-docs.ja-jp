@@ -283,7 +283,7 @@
       href: 'https://docs.loganalytics.io/docs/Language-Reference'
     - name: Azure PowerShell
       href: /powershell/module/azurerm.operationalinsights
-    - name: REST ()
+    - name: REST
       href: /rest/api/loganalytics
 - name: リソース
   items:

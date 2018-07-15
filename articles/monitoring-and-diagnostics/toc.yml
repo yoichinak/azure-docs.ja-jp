@@ -177,7 +177,7 @@
       href: /cli/azure/monitor?view=azure-cli-latest
     - name: Azure PowerShell
       href: /powershell/module/azurerm.insights
-    - name: REST ()
+    - name: REST
       href: /rest/api/monitor/
     - name: サポートされるメトリック
       href: monitoring-supported-metrics.md

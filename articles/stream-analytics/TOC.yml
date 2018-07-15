@@ -147,7 +147,7 @@
       href: 'https://msdn.microsoft.com/library/azure/dn834998'
     - name: .NET
       href: /dotnet/api/microsoft.azure.management.streamanalytics
-    - name: REST ()
+    - name: REST
       href: /rest/api/streamanalytics
 - name: リソース
   items:

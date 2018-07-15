@@ -122,5 +122,5 @@ sections:
       html: <p><a href="/powershell/storage">PowerShell</a></p><p><a href="/cli/azure/storage">Azure CLI</a></p>
     - title: 言語
       html: <p><a href="/dotnet/api/">.NET</a></p><p><a href="/java/api/">Java</a></p><p><a href="/javascript/api/overview/azure/">Node.js</a></p><p><a href="/python/api/overview/azure/storage">Python</a></p><p><a href="http://azure.github.io/azure-storage-php/">PHP</a></p><p><a href="http://azure.github.io/azure-storage-ruby">Ruby</a></p><p><a href="http://azure.github.io/azure-storage-cpp">C++</a></p><p><a href="https://github.com/Azure/azure-storage-ios">iOS</a></p><p><a href="http://azure.github.io/azure-storage-android">Android</a></p>
-    - title: REST ()
+    - title: REST
       html: <p><a href="/rest/api/storageservices">BLOB、キュー、テーブル、ファイルの API</a></p><p><a href="/rest/api/storagerp">ストレージ リソース プロバイダー API</a></p><p><a href="/rest/api/storageimportexport">インポート/エクスポート サービス API</a></p>

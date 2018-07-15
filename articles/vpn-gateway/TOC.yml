@@ -203,7 +203,7 @@
       href: '/powershell/module/azurerm.network/?view=azurermps-4.0.0#vpn'
     - name: Azure PowerShell (クラシック)
       href: '/powershell/module/azure/?view=azuresmps-3.7.0#networking'
-    - name: REST ()
+    - name: REST
       href: /rest/api/network/virtualnetworkgateways
     - name: REST (クラシック)
       href: 'https://msdn.microsoft.com/library/jj154113'

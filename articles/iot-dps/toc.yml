@@ -127,7 +127,7 @@
       href: how-to-use-sdk-tools.md
 - name: リファレンス
   items:
-    - name: REST ()
+    - name: REST
       href: /rest/api/iot-dps
 - name: 関連項目
   items:

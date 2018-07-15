@@ -87,5 +87,5 @@ sections:
       html: <p><a href="/powershell/resourcemanager/azurerm.trafficmanager/v2.5.0/azurerm.trafficmanager">PowerShell</a></p><p><a href="/cli/azure/network/traffic-manager">Azure CLI</a></p>
     - title: 言語
       html: <p><a href="/dotnet/api/overview/azure/network">.NET</a></p><p><a href="/java/api/com.microsoft.azure.management.trafficmanager">Java</a></p><p><a href="http://azure.github.io/azure-sdk-for-node/azure-arm-trafficmanager/latest/">Node.js</a></p><p><a href="http://azure-sdk-for-python.readthedocs.io/en/latest/sample_azure-mgmt-trafficmanager.html">Python</a></p>
-    - title: REST ()
+    - title: REST
       html: <p><a href="/rest/api/trafficmanager/">REST API リファレンスに関するページ</a></p>

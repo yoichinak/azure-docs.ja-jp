@@ -73,7 +73,7 @@
   items:
     - name: Azure CLI
       href: /cli/azure/acr
-    - name: REST ()
+    - name: REST
       href: /rest/api/containerregistry
     - name: PowerShell
       href: '/powershell/module/azurerm.containerregistry#container_registry'

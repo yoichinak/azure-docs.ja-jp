@@ -60,7 +60,7 @@ sections:
       href: /azure/data-factory/quickstart-create-data-factory-python
     - image:
         src: /azure/data-factory/media/index/logo_rest.svg
-      text: REST ()
+      text: REST
       href: /azure/data-factory/quickstart-create-data-factory-rest-api
     - image:
         src: /azure/data-factory/media/index/logo_azure_resource_manager.svg
@@ -100,5 +100,5 @@ sections:
       html: <p><a href="/powershell/module/azurerm.datafactoryv2/">Azure PowerShell</a></p>
     - title: 言語
       html: <p><a href="/dotnet/api/microsoft.azure.management.datafactory">.NET</a></p><p><a href="/python/api/overview/azure/datafactory?view=azure-python">Python</a></p>
-    - title: REST ()
+    - title: REST
       html: <p><a href="/rest/api/datafactory">REST API</a></p>

@@ -76,7 +76,7 @@
           href: map-accessibility.md
 - name: リファレンス
   items:
-    - name: REST ()
+    - name: REST
       items:
         - name: Render Service
           href: 'https://docs.microsoft.com/rest/api/maps/render'

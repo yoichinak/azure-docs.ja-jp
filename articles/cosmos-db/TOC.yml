@@ -250,7 +250,7 @@ items:
                 href: sql-api-sdk-bulk-executor-dot-net.md
               - name: BulkExecutor - Java
                 href: sql-api-sdk-bulk-executor-java.md
-              - name: REST ()
+              - name: REST
                 href: /rest/api/cosmos-db/
               - name: REST リソース プロバイダー
                 href: /rest/api/cosmos-db-resource-provider/

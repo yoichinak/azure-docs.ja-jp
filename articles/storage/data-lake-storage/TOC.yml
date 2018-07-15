@@ -54,7 +54,7 @@
       href: 'https://docs.azuredatabricks.net/spark/latest/data-sources/azure/azure-datalake-gen2.html'
 - name: リファレンス
   items:
-    - name: REST ()
+    - name: REST
       href: 'https://docs.microsoft.com/rest/api/storageservices/data-lake-storage-gen2'
 - name: リソース
   items:

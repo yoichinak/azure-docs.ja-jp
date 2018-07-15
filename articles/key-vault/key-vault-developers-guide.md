@@ -73,7 +73,7 @@ AAD の操作の詳細については、[Azure Active Directory とアプリケ�
 
 ### <a name="supported-programming-and-scripting-languages"></a>サポートされるプログラミング言語とスクリプト言語
 
-#### <a name="rest"></a>REST ()
+#### <a name="rest"></a>REST
 
 すべてのキー コンテナー リソースは、インターフェイス、コンテナー、キー、シークレットなどの REST インターフェイスからアクセスできます。 
 
