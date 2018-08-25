@@ -4,24 +4,25 @@ description: Azure Multi-Factor Authentication に関してよく寄せられる
 services: multi-factor-authentication
 ms.service: active-directory
 ms.component: authentication
-ms.topic: article
-ms.date: 06/16/2017
+ms.topic: conceptual
+ms.date: 07/11/2018
 ms.author: joflore
 author: MicrosoftGuyJFlo
 manager: mtillman
-ms.reviewer: richagi
-ms.openlocfilehash: 226400c6da5db589db6ce2f1887c3e96cf9e1f14
-ms.sourcegitcommit: 870d372785ffa8ca46346f4dfe215f245931dae1
+ms.reviewer: michmcla
+ms.openlocfilehash: b6f1185a94f865578d9a6514fb6841f8811b2230
+ms.sourcegitcommit: 30c7f9994cf6fcdfb580616ea8d6d251364c0cd1
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/08/2018
-ms.locfileid: "33869871"
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "42145239"
 ---
 # <a name="frequently-asked-questions-about-azure-multi-factor-authentication"></a>Azure Multi-Factor Authentication についてよく寄せられる質問
 
 この FAQ では、Azure Multi-Factor Authentication と Multi-Factor Authentication サービスの利用について、よく寄せられる質問に回答します。 FAQ の内容は、サービス全般、課金モデル、ユーザー エクスペリエンス、トラブルシューティングに分けてまとめられています。
 
 ## <a name="general"></a>全般
+
 **Q: Azure Multi-Factor Authentication Server ではどのようにユーザー データが処理されますか。**
 
 Multi-Factor Authentication Server では、ユーザーのデータはオンプレミス サーバーのみに格納されます。 永続的なユーザー データはクラウドに格納されません。 ユーザーが 2 段階認証を実行すると、Multi-Factor Authentication Server から Azure Multi-Factor Authentication クラウド サービスにデータが送信され、認証が要求されます。 Multi-Factor Authentication Server と Multi-Factor Authentication クラウド サービス間の通信には、送信方向のポート 443 経由で Secure Sockets Layer (SSL) またはトランスポート層セキュリティ (TLS) が使用されます。
@@ -60,6 +61,7 @@ Multi-Factor Authentication Server では、ユーザーのデータはオンプ
 Microsoft は、一貫した SMS や音声ベース Multi-Factor Authentication のプロンプトが同じ番号で配信されることを保証しません。 ユーザーのために、Microsoft は、ルートを調整して SMS の配信率を向上させる際に任意のタイミングでショート コードを追加または削除する場合があります。 Microsoft は、米国とカナダ以外の国ではショート コードをサポートしていません
 
 ## <a name="billing"></a>課金
+
 課金に関するほとんどの疑問は、「[Multi-Factor Authentication の価格](https://azure.microsoft.com/pricing/details/multi-factor-authentication/)」ページか「[Azure Multi-Factor Authentication の入手方法](concept-mfa-licensing.md)」のドキュメントを参照することで解決します。
 
 **Q: 認証用の電話呼び出しやテキスト メッセージの送信について、自分の組織に料金が請求されることはありますか。**
@@ -118,8 +120,7 @@ MFA プロバイダーの詳細については、「[Azure Multi-Factor Auth プ
 
 すべてのユーザーが複数の認証方法を構成していることが前提となります。 再度サインインを試すようユーザーに伝えますが、その際にサインイン ページで別の認証方法を選択してもらいます。
 
-[エンドユーザー向けトラブルシューティング ガイド](./../../multi-factor-authentication/end-user/multi-factor-authentication-end-user-troubleshoot.md)を参照用としてユーザーに示すこともできます。
-
+[エンドユーザー向けトラブルシューティング ガイド](../user-help/multi-factor-authentication-end-user-troubleshoot.md)を参照用としてユーザーに示すこともできます。
 
 **Q: アカウントに入れないユーザーがいる場合はどうすればよいですか。**
 
@@ -131,7 +132,7 @@ MFA プロバイダーの詳細については、「[Azure Multi-Factor Auth プ
 
 **Q: ユーザーがブラウザー以外のアプリにサインインできない場合はどうすればよいですか。**
 
-組織でまだ従来型クライアントを使用しており、かつ[アプリ パスワードの使用を許可している](howto-mfa-mfasettings.md#app-passwords)場合、ユーザーがこのような従来型のクライアントにユーザー名とパスワードでサインインすることはできません。 代わりに、ユーザーは[アプリ パスワードを設定する](./../../multi-factor-authentication/end-user/multi-factor-authentication-end-user-app-passwords.md)必要があります。 ユーザーはサインイン情報をクリア (削除) してアプリを再起動し、ユーザー名と、通常のパスワードではなく "*アプリ パスワード*" を使用してサインインしなければなりません。
+組織でまだ従来型クライアントを使用しており、かつ[アプリ パスワードの使用を許可している](howto-mfa-mfasettings.md#app-passwords)場合、ユーザーがこのような従来型のクライアントにユーザー名とパスワードでサインインすることはできません。 代わりに、ユーザーは[アプリ パスワードを設定する](../user-help/multi-factor-authentication-end-user-app-passwords.md)必要があります。 ユーザーはサインイン情報をクリア (削除) してアプリを再起動し、ユーザー名と、通常のパスワードではなく "*アプリ パスワード*" を使用してサインインしなければなりません。
 
 組織で従来型クライアントを使用していない場合は、アプリ パスワードの作成をユーザーに許可しないようにしてください。
 
@@ -196,8 +197,8 @@ Windows Server 2012 R2 におけるセキュリティの変更により、Azure 
 - 組織で作成および有効化されている MFA 登録ポリシーが、そのユーザーに適用されている。
 - そのユーザーは事前に MFA への登録を行っているが、選択した認証方法が、その後管理者によって無効化されている。 このため、ユーザーはもう一度 MFA 登録を行い、新しい既定の認証方法を選択する必要があります。
 
-
 ## <a name="errors"></a>Errors
+
 **Q: モバイル アプリ通知を使用して認証を行うときに、"認証しようとしているアカウントはアクティブ化されていません" というエラー メッセージが表示された場合、ユーザーはどうすればよいでしょうか。**
 
 次の手順でモバイル アプリからアカウントを削除した後、アカウントをもう一度追加するようにユーザーに伝えてください。
@@ -214,9 +215,10 @@ Windows Server 2012 R2 におけるセキュリティの変更により、Azure 
 このエラーを回避するには、管理関連の操作用と管理以外の操作用に異なるユーザー アカウントを使用します。 非管理アカウントを使用して Outlook にサインインできるように、後ほど、管理アカウントと非管理アカウントのメールボックスにリンクを作成することができます。 このソリューションの詳細については、「[管理者がユーザーのメールボックスの内容を開いたり表示したりできるようにする](http://help.outlook.com/141/gg709759.aspx?sl=1)」を参照してください。
 
 ## <a name="next-steps"></a>次の手順
+
 このページで質問の答えが見つからない場合は、ページ下部の該当欄にコメントをご記入ください。 または、次の操作でヘルプを取得できます。
 
-* [Microsoft サポート技術情報](https://www.microsoft.com/en-us/Search/result.aspx?form=mssupport&q=phonefactor&form=mssupport)を検索して、一般的な技術上の問題の解決方法を探します。
+* [Microsoft サポート技術情報](https://www.microsoft.com/Search/result.aspx?form=mssupport&q=phonefactor&form=mssupport)を検索して、一般的な技術上の問題の解決方法を探します。
 * このコミュニティで技術的な質問と回答を検索して参照したり、 [Azure Active Directory フォーラム](https://social.msdn.microsoft.com/Forums/azure/newthread?category=windowsazureplatform&forum=WindowsAzureAD&prof=required)で独自の質問を投稿したりできます。
 * 従来の PhoneFactor をご利用中で、パスワードのリセットについてご質問がある場合やサポートを必要とされている場合は、 [パスワード リセット](mailto:phonefactorsupport@microsoft.com) のリンクを使用してサポート ケースを開いてください。
 * [Azure Multi-Factor Authentication Server (PhoneFactor) のサポート](https://support.microsoft.com/oas/default.aspx?prid=14947)を通して、サポートのプロに問い合わせます。 お問い合わせの際は、問題に関する情報をできるだけお知らせいただくと役に立ちます。 エラーが表示されたページ、具体的なエラー コード、具体的な ID、エラーが表示されたユーザーの ID などの情報をご提供ください。

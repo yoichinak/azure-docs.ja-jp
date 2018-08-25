@@ -10,12 +10,12 @@ ms.date: 03/16/2018
 ms.topic: conceptual
 manager: carmonm
 keywords: powershell, runbook, json, azure automation
-ms.openlocfilehash: b0eaa13baa3e787db14e7a6f915018c3a4f280a1
-ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
+ms.openlocfilehash: 1bdeef02621924bbb7af1e676d2b275229761081
+ms.sourcegitcommit: 17fe5fe119bdd82e011f8235283e599931fa671a
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/16/2018
-ms.locfileid: "34193052"
+ms.lasthandoff: 08/11/2018
+ms.locfileid: "42140924"
 ---
 # <a name="pass-a-json-object-to-an-azure-automation-runbook"></a>Azure Automation Runbook に JSON オブジェクトを渡す
 
@@ -23,13 +23,13 @@ Runbook に渡すデータを JSON ファイルに格納すると便利な場合
 たとえば、Runbook に渡すすべてのパラメーターを含む JSON ファイルを作成できます。
 これを行うには、JSON を文字列に変換し、その文字列を PowerShell オブジェクトに変換してからその内容を Runbook に渡します。
 
-この例では、[Start-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603661.aspx) を呼び出して PowerShell Runbook を起動する PowerShell スクリプトを作成し、JSON の内容を Runbook に渡します。
+この例では、[Start-AzureRmAutomationRunbook](https://docs.microsoft.com/powershell/module/azurerm.automation/start-azurermautomationrunbook) を呼び出して PowerShell Runbook を起動する PowerShell スクリプトを作成し、JSON の内容を Runbook に渡します。
 PowerShell Runbook は、Azure VM を開始し、渡された JSON から VM のパラメーターを取得します。
 
 ## <a name="prerequisites"></a>前提条件
 このチュートリアルを完了するには、以下が必要です。
 
-* として機能します。 まだお持ちでない場合は、[MSDN サブスクライバーの特典を有効にする](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)か、<a href="/pricing/free-account/" target="_blank">[無料アカウントにサインアップ](https://azure.microsoft.com/free/)してください。
+* Azure のサブスクリプション。 まだお持ちでない場合は、[MSDN サブスクライバーの特典を有効にする](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)か、<a href="/pricing/free-account/" target="_blank">[無料アカウントにサインアップ](https://azure.microsoft.com/free/)してください。
 * [Automation アカウント](automation-sec-configure-azure-runas-account.md)。Runbook の保存と Azure リソースの認証に使用します。  このアカウントには、仮想マシンを開始および停止するアクセス許可が必要です。
 * Azure 仮想マシン。 マシンを停止して起動するので、運用 VM は使用しないでください。
 * ローカル コンピューターにインストールされている Azure Powershell。 Azure PowerShell の取得方法の詳細については、[Azure PowerShell のインストールと構成の方法](https://docs.microsoft.com/powershell/azure/install-azurerm-ps?view=azurermps-4.1.0)に関するページを参照してください。
@@ -84,6 +84,10 @@ Azure PowerShell を使用して、ローカル コンピューターから Runb
    Connect-AzureRmAccount
    ```
     Azure 資格情報を入力するよう求められます。
+
+   > [!IMPORTANT]
+   > これで、**Connect-AzureRmAccount** のエイリアスは **Add-AzureRMAccount** に設定されました。 ライブラリ項目を検索して **Connect-AzureRMAccount** が表示されない場合は、**Add-AzureRmAccount** を使用するか、Automation アカウントでモジュールを更新できます。
+
 1. JSON ファイルの内容を取得して文字列に変換:
     ```powershell
     $json =  (Get-content -path 'JsonPath\test.json' -Raw) | Out-string

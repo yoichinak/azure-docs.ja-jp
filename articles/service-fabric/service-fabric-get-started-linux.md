@@ -14,12 +14,12 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 2/23/2018
 ms.author: subramar
-ms.openlocfilehash: 2863d4592c2d889ebab3788c7be874114dc5c35c
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: 00164789d7f37277127878911c3f368a56ec7710
+ms.sourcegitcommit: a62cbb539c056fe9fcd5108d0b63487bd149d5c3
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34642973"
+ms.lasthandoff: 08/22/2018
+ms.locfileid: "42616974"
 ---
 # <a name="prepare-your-development-environment-on-linux"></a>Linux で開発環境を準備する
 > [!div class="op_single_selector"]
@@ -80,7 +80,8 @@ Service Fabric ランタイムと共通 SDK の手動インストールの場合
 3. ソース リストに `dotnet` リポジトリを追加します。
 
     ```bash
-    sudo sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
+    wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb
+    sudo dpkg -i packages-microsoft-prod.deb
     ```
 
 4. 新しい Gnu Privacy Guard (GnuPG または GPG) キーを APT キーリングに追加します。
@@ -207,27 +208,20 @@ Service Fabric には、ターミナルから Yeoman テンプレート ジェ�
 
 1. マシンに Node.js と npm をインストールします。
 
-    * Ubuntu
-        ```bash
-        curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash –
-        sudo apt-get install -y nodejs 
-        ```
-
-    * Red Hat Enterprise Linux 7.4 (Service Fabric プレビュー サポート)
-        ```bash
-        sudo yum install nodejs
-        sudo yum install npm
-        ```
+    ```bash
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
+    nvm install node
+    ```
 2. npm からマシンに [Yeoman](http://yeoman.io/) テンプレート ジェネレーターをインストールします。
 
     ```bash
-    sudo npm install -g yo
+    npm install -g yo
     ```
 3. npm から Service Fabric Yeo のコンテナー ジェネレーターとゲスト実行可能ジェネレーターをインストールします。
 
     ```bash
-    sudo npm install -g generator-azuresfcontainer  # for Service Fabric container application
-    sudo npm install -g generator-azuresfguest      # for Service Fabric guest executable application
+    npm install -g generator-azuresfcontainer  # for Service Fabric container application
+    npm install -g generator-azuresfguest      # for Service Fabric guest executable application
     ```
 
 ジェネレーターのインストール後、`yo azuresfguest` または `yo azuresfcontainer` を実行して、ゲスト実行可能ファイルまたはコンテナー サービスを作成します。
@@ -259,7 +253,7 @@ Java を使用して Service Fabric サービスをビルドするには、JDK 1
 さらに、Java 実行可能ファイル用の Service Fabric Yeo ジェネレーターをインストールする必要があります。 [Yeoman がインストールされている](#set-up-yeoman-generators-for-containers-and-guest-executables) ことを確認してから、次のコマンドを実行します。
 
   ```bash
-  sudo npm install -g generator-azuresfjava
+  npm install -g generator-azuresfjava
   ```
  
 ## <a name="install-the-eclipse-plug-in-optional"></a>Eclipse プラグインをインストールする (省略可能)
@@ -309,8 +303,8 @@ Service Fabric SDK を削除するには、次のコマンドを実行します�
 
     ```bash
     sudo apt-get remove servicefabric servicefabicsdkcommon
-    sudo npm uninstall generator-azuresfcontainer
-    sudo npm uninstall generator-azuresfguest
+    npm uninstall -g generator-azuresfcontainer
+    npm uninstall -g generator-azuresfguest
     sudo apt-get install -f
     ```
 
@@ -318,9 +312,9 @@ Service Fabric SDK を削除するには、次のコマンドを実行します�
 * Red Hat Enterprise Linux 7.4 (Service Fabric プレビュー サポート)
 
     ```bash
-    sudo yum remote servicefabric servicefabicsdkcommon
-    sudo npm uninstall generator-azuresfcontainer
-    sudo npm uninstall generator-azuresfguest
+    sudo yum remove servicefabric servicefabicsdkcommon
+    npm uninstall -g generator-azuresfcontainer
+    npm uninstall -g generator-azuresfguest
     ```
 
 ## <a name="next-steps"></a>次の手順

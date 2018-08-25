@@ -3,7 +3,7 @@ title: Azure Stack でサポートされている仮想マシンのサイズ | M
 description: Azure Stack でサポートされている VM のサイズを示します。
 services: azure-stack
 documentationcenter: ''
-author: brenduns
+author: mattbriggs
 manager: femila
 editor: ''
 ms.assetid: ''
@@ -12,14 +12,14 @@ ms.workload: na
 pms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/17/2018
-ms.author: brenduns
-ms.openlocfilehash: b84744a52426123f2f3e7dd4c14419fef8b779cc
-ms.sourcegitcommit: 96089449d17548263691d40e4f1e8f9557561197
+ms.date: 08/15/2018
+ms.author: mabrigg
+ms.openlocfilehash: 74d521f1890f8ff6567802c1a16f4169dbf4a53f
+ms.sourcegitcommit: d2f2356d8fe7845860b6cf6b6545f2a5036a3dd6
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/17/2018
-ms.locfileid: "34258632"
+ms.lasthandoff: 08/16/2018
+ms.locfileid: "41947919"
 ---
 # <a name="virtual-machine-sizes-supported-in-azure-stack"></a>Azure Stack でサポートされている仮想マシンのサイズ
 
@@ -38,7 +38,7 @@ ms.locfileid: "34258632"
 |**A1\Basic_A1**  |1    |1.75 GB  | 40 GB   |300  | 300  |2 / 2x300  |1   |
 |**A2\Basic_A2**  |2    |3.5 GB   | 60 GB   |300  | 300  |4 / 4x300  |1   |
 |**A3\Basic_A3**  |4    |7 GB     | 120 GB  |300  | 300  |8 / 8x300  |1   |
-|**A4\Basic_A4**  |8    |14 GB    | 240 GB  |300  | 300  |6 / 16X300 |1   |
+|**A4\Basic_A4**  |8    |14 GB    | 240 GB  |300  | 300  |16 / 16X300 |1   |
 
 ### <a name="standard-a"></a>Standard A 
 |サイズ     |vCPU     |メモリ (GiB) | 一時ストレージ (GiB)  | OS ディスクの最大スループット (IOPS) | 一時ストレージの最大スループット (IOPS) | データ ディスクの最大スループット (IOPS) | 最大 NIC 数/想定ネットワーク帯域幅 (Mbps) |    
@@ -107,7 +107,7 @@ ms.locfileid: "34258632"
 
 |サイズ     |vCPU     |メモリ (GiB) | 一時ストレージ (GiB)  | OS ディスクの最大スループット (IOPS) | 一時ストレージの最大スループット (IOPS) | データ ディスクの最大スループット (IOPS) | 最大 NIC 数/想定ネットワーク帯域幅 (Mbps) |
 |-----------------|----|----|-----|----|------|------------|---------|
-|**Standard_F1**  |1   |2   |16   |500 |3000  |4 / 4x400   |2/750  |
+|**Standard_F1**  |1   |2   |16   |500 |3000  |4 / 4x500   |2/750  |
 |**Standard_F2**  |2   |4   |32   |500 |6000  |8 / 8x500   |2/1,500 |
 |**Standard_F4**  |4   |8   |64   |500 |12000 |16 / 16x500 |4/3,000 |
 |**Standard_F8**  |8   |16  |128  |500 |24000 |32 / 32x500 |8/6,000 |

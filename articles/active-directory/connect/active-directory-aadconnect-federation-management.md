@@ -4,7 +4,7 @@ description: Azure AD Connect を使用した AD FS の管理と、Azure AD Conn
 keywords: AD FS, ADFS, AD FS 管理, AAD Connect, Connect, サインイン, AD FS カスタマイズ, 信頼の修復, O365, フェデレーション, 証明書利用者
 services: active-directory
 documentationcenter: ''
-author: anandyadavmsft
+author: billmath
 manager: mtillman
 editor: ''
 ms.assetid: 2593b6c6-dc3f-46ef-8e02-a8e2dc4e9fb9
@@ -17,12 +17,12 @@ ms.date: 07/18/2017
 ms.component: hybrid
 ms.author: billmath
 ms.custom: seohack1
-ms.openlocfilehash: 276e53784b30c2196ad7455cf9fd801a103fdc30
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: 4bba72e0761553c81acda7609898c1b032bdf28a
+ms.sourcegitcommit: 7208bfe8878f83d5ec92e54e2f1222ffd41bf931
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34590856"
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39044421"
 ---
 # <a name="manage-and-customize-active-directory-federation-services-by-using-azure-ad-connect"></a>Azure AD Connect を使用した Active Directory フェデレーション サービスの管理とカスタマイズ
 この記事では、Azure Active Directory (Azure AD) Connect を使用して、Active Directory フェデレーション サービス (AD FS) を管理およびカスタマイズする方法について説明します。 また、AD FS ファームの完全な構成のために必要となる可能性のある他の一般的な AD FS タスクについても説明します。
@@ -189,7 +189,7 @@ Azure AD Connect を使用すると、Azure AD とのフェデレーションを
 **サインイン** ページに表示される会社のロゴを変更するには、次の Windows PowerShell コマンドレットと構文を使用します。
 
 > [!NOTE]
-> ロゴのサイズについては、260 x 35、96 dpi、ファイル サイズ 10 KB 以下が推奨されます。
+> ロゴのサイズについては、260 x 35 \@ 96 dpi、ファイル サイズ 10 KB 以下が推奨されます。
 
     Set-AdfsWebTheme -TargetName default -Logo @{path="c:\Contoso\logo.PNG"}
 
@@ -246,31 +246,8 @@ Azure AD Connect では、オブジェクトが Azure AD に同期されると�
 > これらの規則の順序は重要です。
 
 ### <a name="sso-with-a-subdomain-upn"></a>サブドメイン UPN を使用した SSO
-[新しいフェデレーション ドメインの追加](active-directory-aadconnect-federation-management.md#addfeddomain)に関するセクションで説明しているように、Azure AD Connect を使用して、フェデレーション対象の複数のドメインを追加できます。 フェデレーション ルート ドメインには子ドメインも含まれるため、発行者 ID がサブドメインではなく、ルート ドメインに対応するように、ユーザー プリンシパル名 (UPN) 要求を変更する必要があります。
 
-既定で、発行者の ID の要求規則は次のように設定されます。
-
-    c:[Type
-    == “http://schemas.xmlsoap.org/claims/UPN“]
-
-    => issue(Type = “http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid“, Value = regexreplace(c.Value, “.+@(?<domain>.+)“, “http://${domain}/adfs/services/trust/“));
-
-![Default issuer ID claim](media/active-directory-aadconnect-federation-management/issuer_id_default.png)
-
-既定の規則では、単に UPN サフィックスを取得し、発行者 ID 要求でそれを使用します。 たとえば、John は sub.contoso.com のユーザーであり、contoso.com には Azure AD とのフェデレーションが設定されています。 John が Azure AD へのサインイン時にユーザー名として「john@sub.contoso.com」と入力すると、 AD FS の既定の発行者 ID 要求規則によって、次のように処理されます。
-
-    c:[Type
-    == “http://schemas.xmlsoap.org/claims/UPN“]
-
-    => issue(Type = “http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid“, Value = regexreplace(john@sub.contoso.com, “.+@(?<domain>.+)“, “http://${domain}/adfs/services/trust/“));
-
-**要求値：**http://sub.contoso.com/adfs/services/trust/
-
-発行者の要求値にルート ドメインのみが含まれるようにするには、次のように要求規則を変更します。
-
-    c:[Type == “http://schemas.xmlsoap.org/claims/UPN“]
-
-    => issue(Type = “http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid“, Value = regexreplace(c.Value, “^((.*)([.|@]))?(?<domain>[^.]*[.].*)$”, “http://${domain}/adfs/services/trust/“));
+[新しいフェデレーション ドメインの追加](active-directory-aadconnect-federation-management.md#addfeddomain)に関するセクションで説明しているように、Azure AD Connect を使用して、フェデレーション対象の複数のドメインを追加できます。 Azure AD Connect のバージョン 1.1.553.0 および最新版では、発行者 ID に応じた正しい要求規則が自動的に作成されます。 Azure AD Connect のバージョン 1.1.553.0 または最新版を利用できない場合には、Azure AD の証明書利用者信頼の正しい要求規則の生成および設定に [Azure AD RPT Claim Rules](https://aka.ms/aadrptclaimrules) ツールを使用することをお勧めします。
 
 ## <a name="next-steps"></a>次の手順
 [ユーザー サインイン オプション](active-directory-aadconnect-user-signin.md)の詳細を確認します。

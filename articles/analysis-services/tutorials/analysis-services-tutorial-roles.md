@@ -4,15 +4,15 @@ author: minewiskan
 manager: kfile
 ms.service: azure-analysis-services
 ms.topic: tutorial
-ms.date: 05/10/2018
+ms.date: 07/09/2018
 ms.author: owend
 ms.reviewer: owend
-ms.openlocfilehash: 10b2e77a89e2b8d7481559396d102177cf70161c
-ms.sourcegitcommit: 638599eb548e41f341c54e14b29480ab02655db1
+ms.openlocfilehash: 1c1dd5316eead5e91dd77d3e6b21a7a14d39afeb
+ms.sourcegitcommit: aa988666476c05787afc84db94cfa50bc6852520
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/21/2018
-ms.locfileid: "36307369"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37929231"
 ---
 # <a name="tutorial-configure-server-administrator-and-user-roles"></a>チュートリアル: サーバー管理者とユーザーのロールを構成する
 
@@ -124,7 +124,7 @@ SSMS からサーバーに接続するには、まずサーバー名が必要で
     }
     ```
 
-3. **"memberName": \"globalsales@adventureworks.com\"** オブジェクト値を Azure AD のユーザーまたはグループ アカウントに変更します。
+3. `"memberName": "globalsales@adventureworks.com"` オブジェクト値を Azure AD のユーザーまたはグループ アカウントに変更します。
 4. **F5** キーを押してスクリプトを実行します。
 
 ## <a name="verify-your-changes"></a>変更を確認する

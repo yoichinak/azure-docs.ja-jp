@@ -8,12 +8,12 @@ ms.service: iot-accelerators
 services: iot-accelerators
 ms.date: 05/15/2018
 ms.topic: conceptual
-ms.openlocfilehash: ae8751f429cb4b11199bd8da9d8c2e08c0b98b35
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: c453998eea2a747b2cb608482f0ef9c1ee197ee0
+ms.sourcegitcommit: bf522c6af890984e8b7bd7d633208cb88f62a841
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34628285"
+ms.lasthandoff: 07/20/2018
+ms.locfileid: "39185433"
 ---
 # <a name="integrate-sim-data-in-the-remote-monitoring-solution"></a>SIM データをリモート監視ソリューションに統合する
 
@@ -33,9 +33,9 @@ IoT デバイスは、どこからでもデータ ストリームを送信でき
 
 この追加のリモート監視機能は、現在プレビューの段階です。 接続データを Azure リモート監視ソリューションに同期するには、次の手順に従います。
 
-1. [Telefónica のサイト](https://iot.Telefónica.com/contact) で要求を入力し、連絡先データなど、**[Azure Remote Monitoring]\ (Azure リモート監視\)** オプションを選択します。
+1. [Telefónica のサイト](https://iot.telefonica.com/contact) で要求を入力し、連絡先データなど、**[Azure Remote Monitoring]\ (Azure リモート監視\)** オプションを選択します。
 2. Telefónica が、あなたのアカウントをアクティブにします。
-3. あなたがまだ Telefónica のクライアントではなく、このサービス、または他の IoT Connectivity Cloud Ready サービスを利用したい場合は、[Telefónica のサイト](https://iot.Telefónica.com/contact) にアクセスし、オプション **Connectivity** を選択してください。
+3. あなたがまだ Telefónica のクライアントではなく、このサービス、または他の IoT Connectivity Cloud Ready サービスを利用したい場合は、[Telefónica のサイト](https://iot.telefonica.com/) にアクセスし、オプション **Connectivity** を選択してください。
 
 ### <a name="telefnica-sim-setup"></a>Telefónica SIM の設定
 Telefónica SIM & Azure Twin デバイス ID の関連付けは、Telefónica IoT SIM「エイリアス」プロパティに基づいています。 
@@ -67,7 +67,7 @@ Telefónica アカウントが正しく構成され、デバイスが接続さ�
 
 Azure IoT リモート監視に SIM データを統合する方法の概要を確認できたので、ソリューション アクセラレータに推奨される次の手順を以下に示します。
 
-* [Azure IoT リモート監視ソリューションの操作](iot-accelerators-remote-monitoring-explore.md)
+* [Azure IoT リモート監視ソリューションの操作](quickstart-remote-monitoring-deploy.md)
 * [高度な監視の実行](iot-accelerators-remote-monitoring-monitor.md)
 * [デバイスの管理](iot-accelerators-remote-monitoring-manage.md)
 * [デバイスの問題のトラブルシューティング](iot-accelerators-remote-monitoring-maintain.md)

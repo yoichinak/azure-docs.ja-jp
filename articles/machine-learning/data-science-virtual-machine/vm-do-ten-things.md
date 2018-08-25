@@ -15,12 +15,12 @@ ms.devlang: na
 ms.topic: conceptual
 ms.date: 09/04/2017
 ms.author: gokuma
-ms.openlocfilehash: a5f0961a99eac805e82cbc5e5d61c485f8661ba0
-ms.sourcegitcommit: 59914a06e1f337399e4db3c6f3bc15c573079832
+ms.openlocfilehash: ce73d1ef5425ee2fe66655571a6d6bbbff372af5
+ms.sourcegitcommit: 9222063a6a44d4414720560a1265ee935c73f49e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/19/2018
-ms.locfileid: "31595754"
+ms.lasthandoff: 08/03/2018
+ms.locfileid: "39502813"
 ---
 # <a name="ten-things-you-can-do-on-the-windows-data-science-virtual-machine"></a>Windows データ サイエンス仮想マシンでできる 10 のこと
 
@@ -64,9 +64,9 @@ Python に関しては、Python Tools for Visual Studio (PTVS) 拡張機能が�
 
 ![PTVS Setup](./media/vm-do-ten-things/PTVSSetup.png)
 
-Python 環境の作成方法の詳細については、 [PTVS のドキュメント](https://github.com/Microsoft/PTVS/wiki/Selecting-and-Installing-Python-Interpreters#hey-i-already-have-an-interpreter-on-my-machine-but-ptvs-doesnt-seem-to-know-about-it) を参照してください。
+Python 環境の作成方法の詳細については、 [PTVS のドキュメント](http://aka.ms/ptvsdocs) を参照してください。
 
-これで、新しい Python プロジェクトを作成する準備が整いました。 **[ファイル]** -> **[新規作成]** -> **[プロジェクト]** -> **[Python]** の順に移動し、作成している Python アプリケーションの種類を選択します。 現在のプロジェクトの Python 環境を目的のバージョン (Anaconda 2.7 または 3.6) に設定できます。これには、**[Python environment (Python 環境)]** を右クリックして、**[Add/Remove Python Environments (Python 環境の追加/削除)]** を選択し、目的の環境を選択します。 PTVS の操作方法の詳細については、製品の[ドキュメント](https://github.com/Microsoft/PTVS/wiki) ページを参照してください。
+これで、新しい Python プロジェクトを作成する準備が整いました。 **[ファイル]** -> **[新規作成]** -> **[プロジェクト]** -> **[Python]** の順に移動し、作成している Python アプリケーションの種類を選択します。 現在のプロジェクトの Python 環境を目的のバージョン (Anaconda 2.7 または 3.6) に設定できます。これには、**[Python environment (Python 環境)]** を右クリックして、**[Add/Remove Python Environments (Python 環境の追加/削除)]** を選択し、目的の環境を選択します。 PTVS の操作方法の詳細については、製品の[ドキュメント](http://aka.ms/ptvsdocs)を参照してください。
 
 ## <a name="2-using-a-jupyter-notebook-to-explore-and-model-your-data-with-python-or-r"></a>2.Jupyter Notebook から Python または R を使用してデータの探索とモデリングを行う
 Jupyter Notebook は、ブラウザー ベースの "IDE" でデータの探索とモデリングを行うことができる強力な環境です。 Jupyter Notebook では Python 2 と Python 3 のほか R (オープン ソース R と Microsoft R Server の両方に対応) を使用できます。
@@ -251,7 +251,7 @@ Visual Studio から同じクローン操作を行うこともできます。 �
 
 ![Git in Visual Studio](./media/vm-do-ten-things/VSGit.PNG)
 
-Git を使った GitHub リポジトリの操作の詳細については、github.com で公開されているさまざまなリソースをご覧ください。[チート シート](https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf) を参照すると便利です。
+Git を使った GitHub リポジトリの操作の詳細については、github.com で公開されているさまざまなリソースをご覧ください。 [チート シート](https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf) を参照すると便利です。
 
 ## <a name="7-access-various-azure-data-and-analytics-services"></a>7.Azure のさまざまなデータ サービスと分析サービスにアクセスする
 ### <a name="azure-blob"></a>Azure BLOB
@@ -809,7 +809,7 @@ Azure Cosmos DB は、クラウドにおける NoSQL データベースです。
 3. [こちら](http://www.microsoft.com/downloads/details.aspx?FamilyID=cda7703a-2774-4c07-adcc-ad02ddc1a44d) から "Azure Cosmos DB 移行ツール" をダウンロードし、任意のディレクトリに展開します
 4. 移行ツール (Cosmos DB 移行ツールをインストールしたディレクトリの dtui.exe) に次のコマンド パラメーターを指定して、 [パブリック BLOB](https://cahandson.blob.core.windows.net/samples/volcano.json) に格納されている JSON データ (volcano データ) を Cosmos DB にインポートします。 これらのパラメーターでインポート元とインポート先の場所を入力します。
    
-    /s:JsonFile /s.Files:https://cahandson.blob.core.windows.net/samples/volcano.json /t:DocumentDBBulk /t.ConnectionString:AccountEndpoint=https://[DocDBAccountName].documents.azure.com:443/;AccountKey=[[KEY];Database=volcano /t.Collection:volcano1
+    `/s:JsonFile /s.Files:https://cahandson.blob.core.windows.net/samples/volcano.json /t:DocumentDBBulk /t.ConnectionString:AccountEndpoint=https://[DocDBAccountName].documents.azure.com:443/;AccountKey=[[KEY];Database=volcano /t.Collection:volcano1`
 
 データのインポート後、Jupyter にアクセスして、*DocumentDBSample* というタイトルの Notebook を開くことができます。この Notebook には、Azure Cosmos DB にアクセスして基本的なクエリを実行する Python コードが含まれています。 Cosmos DB の詳細については、サービスの[ドキュメント ページ](https://docs.microsoft.com/azure/cosmos-db/)をご覧ください。
 

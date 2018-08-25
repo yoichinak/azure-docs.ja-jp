@@ -3,8 +3,8 @@ title: Azure Functions のタイマー トリガー
 description: Azure Functions でタイマー トリガーを使用する方法について説明します。
 services: functions
 documentationcenter: na
-author: tdykstra
-manager: cfowler
+author: ggailey777
+manager: jeconnoc
 editor: ''
 tags: ''
 keywords: Azure Functions, 関数, イベント処理, 動的コンピューティング, サーバーなしのアーキテクチャ
@@ -14,15 +14,15 @@ ms.devlang: multiple
 ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 02/27/2017
-ms.author: tdykstra
+ms.date: 08/08/2018
+ms.author: glenga
 ms.custom: ''
-ms.openlocfilehash: a4895c0c58d1cdb0430b7418ba24dd85157ecdd3
-ms.sourcegitcommit: 638599eb548e41f341c54e14b29480ab02655db1
+ms.openlocfilehash: 6712fb0865284ccc2b84e3c2fcd49972f541f69b
+ms.sourcegitcommit: d0ea925701e72755d0b62a903d4334a3980f2149
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/21/2018
-ms.locfileid: "36308161"
+ms.lasthandoff: 08/09/2018
+ms.locfileid: "40004217"
 ---
 # <a name="timer-trigger-for-azure-functions"></a>Azure Functions のタイマー トリガー 
 
@@ -205,7 +205,7 @@ public static void Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, TraceWr
 
 ## <a name="cron-expressions"></a>CRON 式 
 
-Azure Functions のタイマー トリガーの CRON 式には、6 つのフィールドが含まれます。 
+Azure Functions では、CRON 式を解釈するのに [NCronTab](https://github.com/atifaziz/NCrontab) ライブラリが使用されます。 CRON 式には、次の 6 つのフィールドが含まれます。
 
 `{second} {minute} {hour} {day} {month} {day-of-week}`
 
@@ -219,7 +219,12 @@ Azure Functions のタイマー トリガーの CRON 式には、6 つのフィ�
 |値のセット (`,` 演算子)|<nobr>"5,8,10 * * * * *"</nobr>|hh:mm:05、hh:mm:08、hh:mm:10。hh:mm は毎時の毎分です (1 分間に 3 回)|
 |間隔値 (`/` 演算子)|<nobr>"0 */5 * * * *"</nobr>|hh:05:00、hh:10:00、hh:15:00、... hh:55:00 まで。hh は毎時です (1 時間に 12 回)|
 
-月または日を指定するには、数値の代わりに 3 文字の省略形を使用できます。 たとえば、1 月には Jan、日曜日には Sun を使用します。
+月や曜日を指定するには、数値、名前、または名前の省略形を使用できます。
+
+* 曜日については、数値は 0 から 6 で指定します (0 は日曜日です)。
+* 名前は英語で指定します。 例: `Monday`, `January`。
+* 名前の大文字と小文字は区別されません。
+* 名前は省略形でも指定できます。 省略形は 3 文字にすることをお勧めします。  例: `Mon`, `Jan`。 
 
 ### <a name="cron-examples"></a>CRON の例
 
@@ -227,13 +232,13 @@ Azure Functions のタイマー トリガーに使用できる CRON 式の例を
 
 |例|トリガーのタイミング  |
 |---------|---------|
-|"0 */5 * * * *"|5 分ごとに 1 回|
-|"0 0 * * * *"|毎正時に 1 回|
-|"0 0 */2 * * *"|2 時間に 1 回|
-|"0 0 9-17 * * *"|午前 9 時から午後 5 時ま、1 時間に 1 回|
-|"0 30 9 * * *"|毎日午前 9 時 30 分|
-|"0 30 9 * * 1-5"|平日の毎日午前 9 時 30 分|
-
+|`"0 */5 * * * *"`|5 分ごとに 1 回|
+|`"0 0 * * * *"`|毎正時に 1 回|
+|`"0 0 */2 * * *"`|2 時間に 1 回|
+|`"0 0 9-17 * * *"`|午前 9 時から午後 5 時ま、1 時間に 1 回|
+|`"0 30 9 * * *"`|毎日午前 9 時 30 分|
+|`"0 30 9 * * 1-5"`|平日の毎日午前 9 時 30 分|
+|`"0 30 9 * Jan Mon"`|1 月の毎週月曜日の午前 9時 30分|
 >[!NOTE]   
 >CRON 式の例はオンラインで見つかりますが、その多くでは `{second}` フィールドが省略されています。 それらのいずれかをコピーして、欠けている `{second}` フィールドを追加します。 通常、そのフィールドにはアスタリスクではなく 0 を設定します。
 
@@ -246,14 +251,16 @@ CRON 式で使用する既定のタイム ゾーンは、協定世界時 (UTC) �
 たとえば、"*東部標準時*" は UTC-05:00 です。 タイマー トリガーが毎日東部標準時の 10:00 AM に発生するように設定するには、UTC タイム ゾーンを考慮した次の CRON 式を使用できます。
 
 ```json
-"schedule": "0 0 15 * * *",
+"schedule": "0 0 15 * * *"
 ``` 
 
 または、Function App のアプリ設定を `WEBSITE_TIME_ZONE` という名前で作成し、その値を "**東部標準時**" に設定します。  そして、次の CRON 式を使います。 
 
 ```json
-"schedule": "0 0 10 * * *",
+"schedule": "0 0 10 * * *"
 ``` 
+
+`WEBSITE_TIME_ZONE` を使用すると、夏時間などの特定のタイムゾーンでの時間変更に対応するように、時刻が調整されます。 
 
 ## <a name="timespan"></a>timespan
 

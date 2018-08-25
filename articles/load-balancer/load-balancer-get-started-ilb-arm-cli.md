@@ -13,14 +13,14 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/27/2017
+ms.date: 06/27/2018
 ms.author: kumud
-ms.openlocfilehash: a4093926ea2ea2bb0e477372a1ceb2dfbf22e8f0
-ms.sourcegitcommit: 95d9a6acf29405a533db943b1688612980374272
+ms.openlocfilehash: bd4dda835279a21509f77814f4d5f9e30e8a42c1
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/23/2018
-ms.locfileid: "36330970"
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39439200"
 ---
 # <a name="create-an-internal-load-balancer-to-load-balance-vms-using-azure-cli-20"></a>Azure CLI 2.0 を使用して VM の負荷を分散する内部ロード バランサーを作成する
 
@@ -108,36 +108,9 @@ CLI をローカルにインストールして使用する場合、このチュ�
 
 いくつかの VM をデプロイしてロード バランサーをテストする前に、サポート用の仮想ネットワーク リソースを作成します。
 
-###  <a name="create-a-network-security-group"></a>ネットワーク セキュリティ グループの作成
-ネットワーク セキュリティ グループを作成して、仮想ネットワークへの受信接続を定義します。
-
-```azurecli-interactive
-  az network nsg create \
-    --resource-group myResourceGroupILB \
-    --name myNetworkSecurityGroup
-```
-
-### <a name="create-a-network-security-group-rule"></a>ネットワーク セキュリティ グループ規則を作成する
-
-ネットワーク セキュリティ グループ規則を作成して、ポート 80 を通じた受信接続を許可します。
-
-```azurecli-interactive
-  az network nsg rule create \
-    --resource-group myResourceGroupILB \
-    --nsg-name myNetworkSecurityGroup \
-    --name myNetworkSecurityGroupRuleHTTP \
-    --protocol tcp \
-    --direction inbound \
-    --source-address-prefix '*' \
-    --source-port-range '*' \
-    --destination-address-prefix '*' \
-    --destination-port-range 80 \
-    --access allow \
-    --priority 300
-```
 ### <a name="create-nics"></a>NIC の作成
 
-[az network nic create](/cli/azure/network/nic#az_network_nic_create) を使用して 2 つのネットワーク インターフェイスを作成し、それらをプライベート IP アドレスとネットワーク セキュリティ グループに関連付けます。 
+[az network nic create](/cli/azure/network/nic#az-network-nic-create) を使用して 2 つのネットワーク インターフェイスを作成し、それらをプライベート IP アドレスに関連付けます。 
 
 ```azurecli-interactive
 for i in `seq 1 2`; do
@@ -146,7 +119,6 @@ for i in `seq 1 2`; do
     --name myNic$i \
     --vnet-name myVnet \
     --subnet mySubnet \
-    --network-security-group myNetworkSecurityGroup \
     --lb-name myLoadBalancer \
     --lb-address-pools myBackEndPool
 done
@@ -158,7 +130,7 @@ done
 
 ### <a name="create-an-availability-set"></a>可用性セットを作成する
 
-[az vm availabilityset create](/cli/azure/network/nic#az_network_availabilityset_create) を使用して、可用性セットを作成します。
+[az vm availabilityset create](/cli/azure/network/nic#az-network-availabilityset-create) を使用して、可用性セットを作成します。
 
  ```azurecli-interactive
   az vm availability-set create \
@@ -212,7 +184,7 @@ runcmd:
   - nodejs index.js
 ``` 
  
-[az vm create](/cli/azure/vm#az_vm_create) で、仮想マシンを作成します。
+[az vm create](/cli/azure/vm#az-vm-create) で、仮想マシンを作成します。
 
  ```azurecli-interactive
 for i in `seq 1 2`; do
@@ -256,7 +228,7 @@ VM がデプロイされるまでに、数分かかる場合があります。
 
 ## <a name="clean-up-resources"></a>リソースのクリーンアップ
 
-必要がなくなったら、[az group delete](/cli/azure/group#az_group_delete) コマンドを使用して、リソース グループ、ロード バランサー、およびすべての関連リソースを削除できます。
+必要がなくなったら、[az group delete](/cli/azure/group#az-group-delete) コマンドを使用して、リソース グループ、ロード バランサー、およびすべての関連リソースを削除できます。
 
 ```azurecli-interactive 
   az group delete --name myResourceGroupILB

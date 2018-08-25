@@ -1,6 +1,6 @@
 ---
 title: Azure Stack に使用量と課金のためのテナントを追加する | Microsoft Docs
-description: クラウド サービス プロバイダーによって管理されている Azure Stack にエンド ユーザーを追加する手順を説明します。
+description: クラウド サービス プロバイダー (CSP) によって管理されている Azure Stack にエンド ユーザーを追加する手順を説明します。
 services: azure-stack
 documentationcenter: ''
 author: mattbriggs
@@ -11,15 +11,15 @@ ms.workload: na
 pms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/08/2018
-ms.author: mabrigg
+ms.date: 07/12/2018
+ms.author: brenduns
 ms.reviewer: alfredo
-ms.openlocfilehash: e982fa2bec3cbc4845ecebb45db76f019e2178ff
-ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
+ms.openlocfilehash: d5f775761def1c06063cd02b4141c5de2a752cce
+ms.sourcegitcommit: e32ea47d9d8158747eaf8fee6ebdd238d3ba01f7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/28/2018
-ms.locfileid: "32157392"
+ms.lasthandoff: 07/17/2018
+ms.locfileid: "39089912"
 ---
 # <a name="add-tenant-for-usage-and-billing-to-azure-stack"></a>Azure Stack に使用量と課金のためのテナントを追加する
 
@@ -27,11 +27,11 @@ ms.locfileid: "32157392"
 
 この記事では、クラウド サービス プロバイダー (CSP) によって管理されている Azure Stack にエンド ユーザーを追加する手順を説明します。 新しいテナントによってリソースが使用されると、Azure Stack から CSP サブスクリプションに使用量がレポートされます。
 
-多くの場合、CSP は Azure Stack デプロイ上で複数の顧客 (テナント) にサービスを提供します。 Azure Stack の登録にテナントを追加すると、各テナントの使用量が報告され、対応する CSP サブスクリプションに課金されます。 この記事の手順を完了しなかった場合、テナントの使用量は、Azure Stack の初期登録で使用したサブスクリプションに課金されます。 使用量の追跡とテナントの管理のために Azure Stack にエンド カスタマーを追加する前に、Azure Stack を CSP として構成する必要があります。 手順とリソースについては、「[Manage usage and billing for Azure Stack as a Cloud Service Provider (クラウド サービス プロバイダーとしての Azure Stack の使用量と課金の管理)](azure-stack-add-manage-billing-as-a-csp.md)」を参照してください。
+多くの場合、CSP は Azure Stack デプロイ上で複数のエンド カスタマー (テナント) にサービスを提供します。 Azure Stack の登録にテナントを追加すると、各テナントの使用量が報告され、対応する CSP サブスクリプションに課金されます。 この記事の手順を完了しなかった場合、テナントの使用量は、Azure Stack の初期登録で使用したサブスクリプションに課金されます。 使用量の追跡とテナントの管理のために Azure Stack にエンド カスタマーを追加する前に、Azure Stack を CSP として構成する必要があります。 手順とリソースについては、「[Manage usage and billing for Azure Stack as a Cloud Service Provider (クラウド サービス プロバイダーとしての Azure Stack の使用量と課金の管理)](azure-stack-add-manage-billing-as-a-csp.md)」を参照してください。
 
 次の図は、新しい顧客が Azure Stack を使用できるように、また、その顧客の使用量の追跡を設定するために、CSP が従う必要がある手順を示しています。 エンド カスタマーを追加すると、Azure Stack 内のリソースも管理できるようになります。 リソースの管理には 2 つのオプションがあります。
 
-1. エンド カスタマーのテナントを管理し、エンド カスタマー用のローカルの Azure Stack サブスクリプションに資格情報を提供できます。  
+1. エンド カスタマーを管理し、エンド カスタマー用のローカルの Azure Stack サブスクリプションに資格情報を提供できます。  
 2. または、エンド カスタマーが自身のサブスクリプションをローカルで管理し、所有者アクセス許可を持つゲストとして CSP を追加できます。  
 
 **エンド カスタマーを追加する手順**
@@ -64,15 +64,16 @@ ms.locfileid: "32157392"
 3. PowerShell セッションで、次のコマンドを実行します。
 
 ```powershell
-    New-AzureRmResource -ResourceId "subscriptions/{registrationSubscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/customerSubscriptions/{customerSubscriptionId}" -ApiVersion 2017-06-01 -Properties
+    New-AzureRmResource -ResourceId "subscriptions/{registrationSubscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/customerSubscriptions/{customerSubscriptionId}" -ApiVersion 2017-06-01 -Properties <PSObject>
 ```
 ### <a name="new-azurermresource-powershell-parameters"></a>PowerShell の New-AzureRmResource パラメーター
-| パラメーター | [説明] |
+| パラメーター | 説明 |
 | --- | --- | 
 |registrationSubscriptionID | Azure Stack の初期登録に使用された Azure サブスクリプション。 |
 | customerSubscriptionID | 登録される顧客の Azure サブスクリプション (Azure Stack ではありません)。 CSP のサービス内で作成される必要があるので、実際にはパートナー センターを介して作成されます。 顧客が複数の Azure Active Directory テナントを持っている場合は、Azure Stack へのログインに使用されるテナントでこのサブスクリプションを作成する必要があります。
 | resourceGroup | 登録が格納されている Azure 内のリソース グループ。 
 | registrationName | Azure Stack の登録名。 Azure にオブジェクトとして格納されています。 | 
+| Properties | リソースのプロパティを指定します。 このパラメーターを使用して、リソースの種類に固有のプロパティの値を指定します。
 
 
 > [!Note]  

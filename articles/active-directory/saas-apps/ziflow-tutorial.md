@@ -13,14 +13,14 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/09/2018
+ms.date: 08/07/2018
 ms.author: jeedes
-ms.openlocfilehash: 5a50c578bd2b8a0479365f1543b9db741080f19f
-ms.sourcegitcommit: 16ddc345abd6e10a7a3714f12780958f60d339b6
+ms.openlocfilehash: 460a52f240f6b3723f93e81a11a8cd1ccc6c30c9
+ms.sourcegitcommit: 4de6a8671c445fae31f760385710f17d504228f8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36228960"
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39626695"
 ---
 # <a name="tutorial-azure-active-directory-integration-with-ziflow"></a>チュートリアル: Azure Active Directory と Ziflow の統合
 
@@ -101,20 +101,20 @@ Ziflow で Azure AD のシングル サインオンを構成してテストす�
     ![シングル サインオン構成のリンク][4]
 
 2. **[シングル サインオン]** ダイアログで、**[モード]** として **[SAML ベースのサインオン]** を選択し、シングル サインオンを有効にします。
- 
+
     ![[シングル サインオン] ダイアログ ボックス](./media/ziflow-tutorial/tutorial_ziflow_samlbase.png)
 
 3. **[Ziflow Domain and URLs (Ziflow ドメインと URL)]** セクションで、次の手順を実行します。
 
     ![[Ziflow Domain and URLs (Ziflow ドメインと URL)] のシングル サインオン情報](./media/ziflow-tutorial/tutorial_ziflow_url.png)
 
-    a. **[サインオン URL]** ボックスに、`https://<subdomain>.ziflow.io/#/login-sso/<Unique ID>` のパターンを使用して URL を入力します。
+    a. **[サインオン URL]** ボックスに、`https://ziflow-production.auth0.com/login/callback?connection=<UniqueID>` のパターンを使用して URL を入力します。
 
-    b. **[識別子]** ボックスに、`urn:auth0:ziflow-production:<Unique ID>` の形式で URL を入力します。
+    b. **[識別子]** ボックスに、`urn:auth0:ziflow-production:<UniqueID>` の形式で URL を入力します。
 
-    > [!NOTE] 
-    > 上記の値は、実際の値ではありません。 識別子とサインオン URL 内の固有の ID を実際の値に置き換えます。実際の値については後で説明します。 サインオン URL 内のサブドメイン値については、[Ziflow サポート チーム](mailto:support@ziflow.com)に問い合わせます。
-    
+    > [!NOTE]
+    > 上記の値は、実際の値ではありません。 識別子とサインオン URL 内の固有の ID を実際の値に置き換えます。実際の値については後で説明します。
+
 4. **[SAML 署名証明書]** セクションで、**[Certificate (Base64) (証明書 (Base64)) ]** をクリックし、コンピューターに証明書ファイルを保存します。
 
     ![証明書のダウンロードのリンク](./media/ziflow-tutorial/tutorial_ziflow_certificate.png) 
@@ -123,12 +123,11 @@ Ziflow で Azure AD のシングル サインオンを構成してテストす�
 
     ![[シングル サインオンの構成] の [保存] ボタン](./media/ziflow-tutorial/tutorial_general_400.png)
 
-6. **[Ziflow Configuration](Ziflow 構成)** セクションで、**[Configure Ziflow](Ziflow の構成)** をクリックして、**[サインオンの構成]** ウィンドウを開きます。 **[クイック リファレンス]** セクションから**サインアウト URL と SAML シングル サインオン サービス URL** をコピーします。
+6. **[Ziflow 構成]** セクションで、**[Ziflow の構成]** をクリックして、**[サインオンの構成]** ウィンドウを開きます。 **[クイック リファレンス]** セクションから**サインアウト URL と SAML シングル サインオン サービス URL** をコピーします。
 
     ![Ziflow の構成](./media/ziflow-tutorial/tutorial_ziflow_configure.png) 
 
 7. 別の Web ブラウザー ウィンドウで、セキュリティ管理者として Ziflow にログインします。
-
 
 8. 右上隅のアバターをクリックして、**[アカウントの管理]** をクリックします。
 
@@ -138,13 +137,13 @@ Ziflow で Azure AD のシングル サインオンを構成してテストす�
 
     ![Ziflow の構成 - サイン](./media/ziflow-tutorial/tutorial_ziflow_signon.png)
 
-10. **[Single sign-on](シングル サインオン)** ページで、次の手順を実行します。
+10. **[シングル サインオン]** ページで、次の手順を実行します。
 
     ![Ziflow の構成 - シングル](./media/ziflow-tutorial/tutorial_ziflow_page.png)
 
     a. **[SAML2.0]** として **[種類]** を選択します。
 
-    b. **[サインイン URL]** ボックスに、Azure Portal からコピーした **SAML シングル サインオン サービス URL** の値を貼り付けます。
+    b. **[サインイン URL]** ボックスに、Azure portal からコピーした **SAML シングル サインオン サービス URL** の値を貼り付けます。
 
     c. Azure Portal からダウンロードした base 64 でエンコードされた証明書を **X509 署名証明書**にアップロードします。
 
@@ -212,7 +211,7 @@ Azure AD ユーザーが Ziflow にログインできるようにするには、
 
     d. Ziflow のロールを選択します。
 
-    e. **[Add 1 user](1 ユーザーの追加)** をクリックします。
+    e. **[1 ユーザーの追加]** をクリックします。
 
     > [!NOTE]
     > Azure Active Directory アカウント所有者が電子メールを受信し、リンクに従ってアカウントを確認すると、そのアカウントがアクティブになります。
@@ -252,7 +251,7 @@ Azure AD ユーザーが Ziflow にログインできるようにするには、
 このセクションでは、アクセス パネルを使用して Azure AD のシングル サインオン構成をテストします。
 
 アクセス パネルで [Ziflow] タイルをクリックすると、Ziflow アプリケーションに自動的にサインオンします。
-アクセス パネルの詳細については、[アクセス パネルの概要](../active-directory-saas-access-panel-introduction.md)に関する記事を参照してください。 
+アクセス パネルの詳細については、[アクセス パネルの概要](../user-help/active-directory-saas-access-panel-introduction.md)に関する記事を参照してください。 
 
 ## <a name="additional-resources"></a>その他のリソース
 

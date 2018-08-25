@@ -4,7 +4,7 @@
 ## [Data Lake Analytics とは](data-lake-analytics-overview.md)
 
 # 作業開始
-## [Azure Portal](data-lake-analytics-get-started-portal.md)
+## [Azure ポータル](data-lake-analytics-get-started-portal.md)
 ## [Visual Studio](data-lake-analytics-data-lake-tools-get-started.md)
 ## [Visual Studio Code](data-lake-analytics-data-lake-tools-for-vscode.md)
 ## [Azure PowerShell](data-lake-analytics-get-started-powershell.md)
@@ -13,7 +13,7 @@
 # 方法
 
 ## Data Lake Analytics の管理
-### [Azure Portal](data-lake-analytics-manage-use-portal.md)
+### [Azure ポータル](data-lake-analytics-manage-use-portal.md)
 ### コマンド ライン
 #### [Azure CLI](data-lake-analytics-manage-use-cli.md)
 #### [Azure PowerShell](data-lake-analytics-manage-use-powershell.md)
@@ -40,12 +40,11 @@
 #### [Cognitive 拡張機能](data-lake-analytics-u-sql-cognitive.md)
 #### [プログラミング ガイド](data-lake-analytics-u-sql-programmability-guide.md)
 
-### U-SQL SDK
-#### [ローカルの実行とデバッグ](data-lake-analytics-data-lake-tools-local-run.md)
-#### [実行とテスト](data-lake-analytics-u-sql-sdk.md) 
-
 ### Visual Studio
 #### [インストール](data-lake-analytics-data-lake-tools-install.md)
+#### [ローカルの実行](data-lake-analytics-data-lake-tools-local-run.md)
+#### [ローカルのデバッグ](data-lake-analytics-data-lake-tools-local-debug.md)
+#### [U-SQL データベースの開発](data-lake-analytics-data-lake-tools-develop-usql-database.md)
 #### [ジョブの参照と表示](data-lake-analytics-data-lake-tools-view-jobs.md)
 #### [カスタム C# コードのデバッグ](data-lake-analytics-debug-u-sql-jobs.md)
 #### [定期的なジョブのトラブルシューティング](data-lake-analytics-data-lake-tools-debug-recurring-job.md)
@@ -59,6 +58,14 @@
 #### [作成](data-lake-analytics-data-lake-tools-for-vscode.md)
 #### [カスタム コード](data-lake-analytics-u-sql-develop-with-python-r-csharp-in-vscode.md)
 #### [ローカルの実行とデバッグ](data-lake-tools-for-vscode-local-run-and-debug.md)
+
+## U-SQL ジョブのスケジュール設定
+### [SSIS を使用してジョブのスケジュールを設定する](data-lake-analytics-schedule-jobs-ssis.md)
+
+## 継続的インテグレーションと継続的配置
+### [概要](data-lake-analytics-cicd-overview.md)
+### [テストの設定](data-lake-analytics-cicd-test.md)
+### [U-SQL SDK](data-lake-analytics-u-sql-sdk.md)
 
 # リファレンス
 ## [Azure PowerShell](/powershell/module/azurerm.datalakeanalytics)

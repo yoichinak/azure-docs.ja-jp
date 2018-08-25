@@ -1,6 +1,6 @@
 ---
-title: Azure クイック スタート - CLI を使用した Key Vault の作成 | Microsoft Docs
-description: CLI を使用して Azure Key Vault を作成する方法を示すクイック スタート
+title: Azure クイック スタート - Azure CLI を使用して Key Vault との間でシークレットの設定と取得を行う | Microsoft Docs
+description: Azure CLI を使用して Azure Key Vault との間でシークレットの設定と取得を行う方法を紹介したクイック スタート
 services: key-vault
 author: barclayn
 manager: mbaldwin
@@ -14,14 +14,14 @@ ms.topic: quickstart
 ms.custom: mvc
 ms.date: 05/10/2018
 ms.author: barclayn
-ms.openlocfilehash: ae8957e5bf87fc190076db87d4eaca0e7a757c5e
-ms.sourcegitcommit: c52123364e2ba086722bc860f2972642115316ef
+ms.openlocfilehash: 958fbd507efeb161b169c01abf32012883017f18
+ms.sourcegitcommit: 744747d828e1ab937b0d6df358127fcf6965f8c8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/11/2018
-ms.locfileid: "34067658"
+ms.lasthandoff: 08/16/2018
+ms.locfileid: "42022345"
 ---
-# <a name="quickstart-create-an-azure-key-vault-using-the-cli"></a>クイック スタート: CLI を使用した Azure Key Vault の作成
+# <a name="quickstart-set-and-retrieve-a-secret-from-azure-key-vault-using-azure-cli"></a>クイック スタート: Azure CLI を使用して Azure Key Vault との間でシークレットの設定と取得を行う
 
 Azure Key Vault は、セキュリティで保護されたシークレット ストアとして機能するクラウド サービスです。 キー、パスワード、証明書、およびその他のシークレットを安全に保管することができます。 Key Vault の詳細については、[概要](key-vault-overview.md)に関するページを参照してください。 Azure CLI は、コマンドまたはスクリプトを使用して Azure リソースを作成および管理するために使用します。 このクイック スタートでは、キー コンテナーを作成します。 この作業を完了したら、シークレットを格納します。
 
@@ -100,4 +100,4 @@ az group delete --name ContosoResourceGroup
 このクイック スタートでは、Key Vault を作成してシークレットを格納しました。 Key Vault の詳細とアプリケーションでの使用方法については、Key Vault と連携する Web アプリのチュートリアルに進んでください。
 
 > [!div class="nextstepaction"]
-> マネージド サービス ID を使用する Web アプリケーションから、Key Vault からのシークレットを読み取る方法を学習するには、「[キー コンテナーからシークレットを読み取るように Azure Web アプリケーションを構成する](tutorial-web-application-keyvault.md)」チュートリアルに進んでください
+> マネージド サービス ID を使用する Web アプリケーションから、Key Vault からのシークレットを読み取る方法を学習するには、「[キー コンテナーからシークレットを読み取るように Azure Web アプリケーションを構成する](quick-create-net.md)」チュートリアルに進んでください

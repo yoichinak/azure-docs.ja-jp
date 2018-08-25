@@ -2,7 +2,7 @@
 title: Durable Functions を WebJobs として実行する方法 - Azure
 description: WebJobs SDK を使用して、Durable Function を WebJobs で実行するようにコーディングし、構成する方法について説明します。
 services: functions
-author: tdykstra
+author: ggailey777
 manager: cfowler
 editor: ''
 tags: ''
@@ -14,12 +14,12 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 04/25/2018
 ms.author: azfuncdf
-ms.openlocfilehash: 3fc84d1492d2855ffa3bb5538226da049a928339
-ms.sourcegitcommit: e221d1a2e0fb245610a6dd886e7e74c362f06467
+ms.openlocfilehash: 94d443505c5c1634c9da00d455e0163b2762d969
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/07/2018
-ms.locfileid: "33766694"
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39426036"
 ---
 # <a name="how-to-run-durable-functions-as-webjobs"></a>Durable Functions を WebJobs として実行する方法
 
@@ -223,7 +223,7 @@ while (true)
   * `Microsoft.Azure.WebJobs.Extensions`
   * `Microsoft.Azure.WebJobs.Logging.ApplicationInsights`
 
-2. `Main` メソッドのコードを変更して、ストレージ接続文字列と Application Insights のインストルメンテーション キーを (.NET Core の構成フレームワークを使用して) *appsettings.json* ファイルから取得するようにします。  次に例を示します。
+1. `Main` メソッドのコードを変更して、ストレージ接続文字列と Application Insights のインストルメンテーション キーを (.NET Core の構成フレームワークを使用して) *appsettings.json* ファイルから取得するようにします。  次に例を示します。
 
    ```cs
    static void Main(string[] args)

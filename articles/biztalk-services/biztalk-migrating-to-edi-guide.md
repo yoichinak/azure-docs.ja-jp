@@ -1,27 +1,23 @@
 ---
-title: 'BizTalk Services への BizTalk Server EDI ソリューションの移行: テクニカル ガイド | Microsoft Docs'
-description: MABS (Microsoft Azure BizTalk Services) への EDI の移行
+title: BizTalk Services への BizTalk Server EDI ソリューションの移行 | Microsoft Docs
+description: Microsoft BizTalk Server EDI ソリューションを Microsoft Azure BizTalk Services (MABS) に移行する方法について学習します
 services: biztalk-services
-documentationcenter: na
-author: MandiOhlinger
-manager: anneta
-editor: ''
-ms.assetid: 61c179fa-3f37-495b-8016-dee7474fd3a6
 ms.service: biztalk-services
-ms.workload: integration
-ms.tgt_pltfrm: na
-ms.devlang: na
+author: jonfancey
+ms.author: jonfan
+manager: jeconnoc
 ms.topic: article
-ms.date: 11/07/2016
-ms.author: mandia
-ms.openlocfilehash: 1b70fc3d199d7f1521acb534dafec8fb3e69500e
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.date: 07/31/2018
+ms.reviewer: jonfan, LADocs
+ms.suite: integration
+ms.openlocfilehash: 4ce65f1b5dd22da031ebf6730b5efad2d04f91a0
+ms.sourcegitcommit: f86e5d5b6cb5157f7bde6f4308a332bfff73ca0f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/11/2017
-ms.locfileid: "22998847"
+ms.lasthandoff: 07/31/2018
+ms.locfileid: "39365589"
 ---
-# <a name="migrating-biztalk-server-edi-solutions-to-biztalk-services-technical-guide"></a>BizTalk Services への BizTalk Server EDI ソリューションの移行: テクニカル ガイド
+# <a name="migrate-biztalk-server-edi-solutions-to-biztalk-services-technical-guide"></a>BizTalk Services への BizTalk Server EDI ソリューションの移行
 
 > [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
 
@@ -34,7 +30,7 @@ ms.locfileid: "22998847"
 ## <a name="introduction"></a>はじめに
 電子データ交換 (EDI) は、企業が電子的にデータを交換する最も一般的な手段の 1 つであり、企業間 (B2B) トランザクションとも呼ばれます。 BizTalk Server は、最初のリリース以降 10 年以上にわたって EDI をサポートしてきました。 BizTalk Services により、マイクロソフトは Microsoft Azure Platform で引き続き EDI ソリューションをサポートします。 B2B トランザクションはほとんどが組織の外部で行われるため、クラウド プラットフォームで実装されていた場合の方が実装が簡単です。 Microsoft Azure は、BizTalk Services を通じてこの機能を提供します。
 
-一部の顧客は BizTalk Services を新しい EDI ソリューションに関して「未開発」のプラットフォームと見ていますが、多くの顧客は Azure に移行する必要のある BizTalk Server の EDI ソリューションを現在使用しています。 BizTalk Services EDI は BizTalk Server EDI のアーキテクチャと同じ主要エンティティを基にして構築されているため (取引先、エンティティ、アグリーメント)、BizTalk Server EDI のアーティファクトを BizTalk Services に移行できます。
+一部の顧客は BizTalk Services を新しい EDI ソリューションに関して "未開発" のプラットフォームと見ていますが、多くの顧客は Azure に移行する必要のある BizTalk Server の EDI ソリューションを現在使用しています。 BizTalk Services EDI は BizTalk Server EDI のアーキテクチャと同じ主要エンティティを基にして構築されているため (取引先、エンティティ、アグリーメント)、BizTalk Server EDI のアーティファクトを BizTalk Services に移行できます。
 
 このドキュメントでは、BizTalk Services への BizTalk Server EDI アーティファクトの移行に関連するいくつかの相違点について説明します。 このドキュメントは、BizTalk Server EDI の処理および取引先アグリーメントに関する実用的な知識を前提とします。 BizTalk Server EDI の詳細については、「 [BizTalk Server を使用した取引先管理](https://msdn.microsoft.com/library/bb259970.aspx)」をご覧ください。
 
@@ -76,7 +72,7 @@ BizTalk Server の EDI では、パイプラインはメッセージ処理エン
 
 取引先アグリーメントがメッセージを受信する前、またはアグリーメントがメッセージを処理して Service Bus エンドポイントにルーティングした後に、カスタム コードを含むパブリッシュ/サブスクライブ フローおよび Service Bus のメッセージング キューとトピックの使用を、挿入できます。
 
-メッセージ フローのパターンについては、このトピックの「 **シナリオ/メッセージ フロー** 」を参照してください。
+メッセージ フローのパターンについては、この記事の「**シナリオ/メッセージ フロー**」を参照してください。
 
 ## <a name="agreements"></a>アグリーメント
 EDI 処理に使用される BizTalk Server 2010 の取引先アグリーメントに慣れている場合は、BizTalk Services の取引先アグリーメントもよく似ています。 アグリーメントの設定のほとんどは同じであり、同じ用語を使用します。 場合によっては、アグリーメントの設定は BizTalk Server の場合よりはるかに簡単です。 Microsoft Azure BizTalk Services は、X12、EDIFACT、AS2 のトランスポートをサポートします。
@@ -104,7 +100,7 @@ Microsoft Azure BizTalk Services では、BizTalk Server マップを BizTalk Se
 ## <a name="orchestrations"></a>オーケストレーション
 BizTalk Server のオーケストレーション処理を Microsoft Azure に移行する必要がある場合は、Microsoft Azure は BizTalk Server のオーケストレーションの実行をサポートしていないため、オーケストレーションを書き直す必要があります。  オーケストレーションの機能は、Windows Workflow Foundation 4.0 (WF4) サービスで書き直すことができます。  現時点では BizTalk Server オーケストレーションから WF4 への移行がないため、これは完全な書き直しになります。 Windows Workflow に関するリソースを次に示します。
 
-* "[*WCF ワークフロー サービスを Service Bus のキューおよびトピックに統合する方法*](https://msdn.microsoft.com/library/azure/hh709041.aspx)" (Paolo Salvatori)。 
+* "[*WCF ワークフロー サービスを Service Bus のキューおよびトピックに統合する方法*](https://blogs.msdn.microsoft.com/paolos/2013/04/09/how-to-integrate-a-wcf-workflow-service-with-service-bus-queues-and-topics/)" (Paolo Salvatori)。 
 * ["*Windows Workflow Foundation と Azure でのアプリの構築*" セッション](http://go.microsoft.com/fwlink/p/?LinkId=237314) (Build 2011 カンファレンス)。
 * [*Windows Workflow Foundation デベロッパー センター*](http://go.microsoft.com/fwlink/p/?LinkId=237315) (MSDN)。
 * "[*Windows Workflow Foundation 4 (WF4) のドキュメント*](https://msdn.microsoft.com/library/dd489441.aspx)" (MSDN)。
@@ -118,10 +114,7 @@ BizTalk Server の EDI 処理には、「フォールバック アグリーメ�
 ### <a name="routing-to-multiple-destinations"></a>複数の送信先へのルーティング
 現状の BizTalk Services ブリッジでは、パブリッシュ - サブスクライブ モデルを使用した複数の送信先へのメッセージのルーティングはサポートされていません。 代わりに、BizTalk Services ブリッジから Service Bus トピックにメッセージをルーティングできます。Service Bus トピックは、複数のサブスクリプションを使用して複数のエンドポイントでメッセージを受信できます。
 
-## <a name="conclusion"></a>まとめ
-Microsoft Azure BizTalk Services は定期的なマイルストーンで更新されて、新しい機能を追加されます。 更新のたびに、BizTalk Services とその他の Azure テクノロジを使用してエンド ツー エンドのソリューションの作成を容易にする機能のサポートが増えるはずです。
-
 ## <a name="see-also"></a>関連項目
-[Azure 対応のエンタープライズ アプリケーションの開発](https://msdn.microsoft.com/library/azure/hh674490.aspx)
+[Azure の LOB ソリューション](https://azure.microsoft.com/solutions/lob-applications)
 
 [EDImessageflow]: ./media/biztalk-migrating-to-edi-guide/IC719455.png

@@ -2,24 +2,18 @@
 title: Azure Monitor の Azure Storage メトリック | Microsoft Docs
 description: Azure Monitor から提供される新しいメトリックについて説明します。
 services: storage
-documentationcenter: na
 author: fhryo-msft
-manager: cbrooks
-editor: fhryo-msft
-ms.assetid: ''
 ms.service: storage
-ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: storage
 ms.date: 09/05/2017
 ms.author: fryu
-ms.openlocfilehash: 05021d5ab8d33e36bff16ce7d2ebacd3db72639a
-ms.sourcegitcommit: 150a40d8ba2beaf9e22b6feff414f8298a8ef868
+ms.component: common
+ms.openlocfilehash: 849253dd4a2e66acc6a509a0515a22309c90e081
+ms.sourcegitcommit: 1af4bceb45a0b4edcdb1079fc279f9f2f448140b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/27/2018
-ms.locfileid: "37034744"
+ms.lasthandoff: 08/09/2018
+ms.locfileid: "42142346"
 ---
 # <a name="azure-storage-metrics-in-azure-monitor"></a>Azure Monitor の Azure Storage メトリック
 
@@ -31,7 +25,7 @@ Azure Monitor には、さまざまな Azure サービスで監視を実施す�
 
 Azure Monitor では、複数の方法でメトリックにアクセスできます。 たとえば、[Azure Portal](https://portal.azure.com)、Azure Monitor API (REST および .Net) のほか、Operation Management Suite や Event Hubs などの分析ソリューションからアクセスできます。 詳細については、[Azure Monitor のメトリック](../../monitoring-and-diagnostics/monitoring-overview-metrics.md)に関するページをご覧ください。
 
-メトリックは既定で有効になっており、過去 30 日間のデータにアクセスできます。 データを長期にわたって保持する必要がある場合は、メトリック データを Azure ストレージ アカウントにアーカイブできます。 これは、Azure Monitor の[診断設定](../../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md#resource-diagnostic-settings)で構成されます。
+メトリックは既定で有効になっており、過去 30 日間のデータにアクセスできます。 データを長期にわたって保持する必要がある場合は、メトリック データを Azure ストレージ アカウントにアーカイブできます。 これは、Azure Monitor の[診断設定](../../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md#diagnostic-settings)で構成されます。
 
 ### <a name="access-metrics-in-the-azure-portal"></a>Azure Portal でメトリックにアクセスする
 
@@ -338,14 +332,14 @@ Azure Storage は、Azure Monitor で次の容量メトリックを提供しま�
 
 | メトリックの名前 | 説明 |
 | ------------------- | ----------------- |
-| UsedCapacity | ストレージ アカウントによって使用されているストレージの量。 Standard ストレージ アカウントについては、Blob、Table、File、および Queue で使用される容量の合計です。 Premium ストレージ アカウントと BLOB ストレージ アカウントについては、BlobCapacity と同じです。 <br/><br/> 単位: バイト <br/> 集計の種類: 平均 <br/> 値の例: 1024 |
+| UsedCapacity | ストレージ アカウントによって使用されているストレージの量。 Standard ストレージ アカウントについては、Blob、Table、File、および Queue で使用される容量の合計です。 Premium ストレージ アカウントと BLOB ストレージ アカウントについては、BlobCapacity と同じです。 <br/><br/> 単位: バイト <br/> 集計の種類: 合計 <br/> 値の例: 1024 |
 
 ### <a name="blob-storage"></a>BLOB ストレージ
 
 | メトリックの名前 | 説明 |
 | ------------------- | ----------------- |
-| BlobCapacity | ストレージ アカウントで使用されている Blob Storage の合計。 <br/><br/> 単位: バイト <br/> 集計の種類: 平均 <br/> 値の例: 1024 <br/> ディメンション: BlobType ([定義](#metrics-dimensions)) |
-| BlobCount    | ストレージ アカウントに格納されている BLOB オブジェクトの数。 <br/><br/> 単位: カウント <br/> 集計の種類: 平均 <br/> 値の例: 1024 <br/> ディメンション: BlobType ([定義](#metrics-dimensions)) |
+| BlobCapacity | ストレージ アカウントで使用されている Blob Storage の合計。 <br/><br/> 単位: バイト <br/> 集計の種類: 合計 <br/> 値の例: 1024 <br/> ディメンション: BlobType ([定義](#metrics-dimensions)) |
+| BlobCount    | ストレージ アカウントに格納されている BLOB オブジェクトの数。 <br/><br/> 単位: カウント <br/> 集計の種類: 合計 <br/> 値の例: 1024 <br/> ディメンション: BlobType ([定義](#metrics-dimensions)) |
 | ContainerCount    | ストレージ アカウントのコンテナーの数。 <br/><br/> 単位: カウント <br/> 集計の種類: 平均 <br/> 値の例: 1024 |
 
 ### <a name="table-storage"></a>テーブル ストレージ
@@ -380,12 +374,12 @@ Azure Storage は、Azure Monitor で次のトランザクション メトリッ
 
 | メトリックの名前 | 説明 |
 | ------------------- | ----------------- |
-| トランザクション | ストレージ サービスまたは指定された API 操作に対して行われた要求の数。 この数には、成功した要求と失敗した要求およびエラーが発生した要求が含まれます。 <br/><br/> 単位: カウント <br/> 集計の種類: 合計 <br/> 適用可能なディメンション: ResponseType、GeoType、ApiName ([定義](#metrics-dimensions))<br/> 値の例: 1024 |
-| イングレス | イングレス データの量。 この値には、外部クライアントから Azure Storage へのイングレスおよび Azure 内でのイングレスが含まれます。 <br/><br/> 単位: バイト <br/> 集計の種類: 合計 <br/> 適用可能なディメンション: GeoType、ApiName ([定義](#metrics-dimensions)) <br/> 値の例: 1024 |
-| エグレス | エグレス データの量。 この値には、外部クライアントから Azure Storage へのエグレスおよび Azure 内でのエグレスが含まれます。 したがって、この値には、課金対象のエグレスが反映されません。 <br/><br/> 単位: バイト <br/> 集計の種類: 合計 <br/> 適用可能なディメンション: GeoType、ApiName ([定義](#metrics-dimensions)) <br/> 値の例: 1024 |
-| SuccessServerLatency | Azure Storage による成功した要求の平均処理時間。 この値には、SuccessE2ELatency で指定されているネットワーク待機時間は含まれません。 <br/><br/> 単位: ミリ秒 <br/> 集計の種類: 平均 <br/> 適用可能なディメンション: GeoType、ApiName ([定義](#metrics-dimensions)) <br/> 値の例: 1024 |
-| SuccessE2ELatency | ストレージ サービスまたは指定された API 操作に対して行われた成功した要求の平均エンド ツー エンド待機時間。 この値には、要求の読み取り、応答の送信、および応答の受信確認の受信のために Azure Storage 内で必要な処理時間が含まれます。 <br/><br/> 単位: ミリ秒 <br/> 集計の種類: 平均 <br/> 適用可能なディメンション: GeoType、ApiName ([定義](#metrics-dimensions)) <br/> 値の例: 1024 |
-| 可用性 | ストレージ サービスまたは指定された API 操作の可用性の割合。 可用性は、合計課金対象要求数の値を取得し、それを該当する要求の数 (予期しないエラーになった要求を含む) で割ることによって、計算されます。 予期しないエラーすべてが、ストレージ サービスまたは指定された API 操作の可用性の低下をもたらします。 <br/><br/> 単位: パーセント <br/> 集計の種類: 平均 <br/> 適用可能なディメンション: GeoType、ApiName ([定義](#metrics-dimensions)) <br/> 値の例: 99.99 |
+| トランザクション | ストレージ サービスまたは指定された API 操作に対して行われた要求の数。 この数には、成功した要求と失敗した要求およびエラーが発生した要求が含まれます。 <br/><br/> 単位: カウント <br/> 集計の種類: 合計 <br/> 適用可能なディメンション: ResponseType、GeoType、ApiName、Authentication ([定義](#metrics-dimensions))<br/> 値の例: 1024 |
+| イングレス | イングレス データの量。 この値には、外部クライアントから Azure Storage へのイングレスおよび Azure 内でのイングレスが含まれます。 <br/><br/> 単位: バイト <br/> 集計の種類: 合計 <br/> 適用可能なディメンション: GeoType、ApiName、Authentication ([定義](#metrics-dimensions)) <br/> 値の例: 1024 |
+| エグレス | エグレス データの量。 この値には、外部クライアントから Azure Storage へのエグレスおよび Azure 内でのエグレスが含まれます。 したがって、この値には、課金対象のエグレスが反映されません。 <br/><br/> 単位: バイト <br/> 集計の種類: 合計 <br/> 適用可能なディメンション: GeoType、ApiName、Authentication ([定義](#metrics-dimensions)) <br/> 値の例: 1024 |
+| SuccessServerLatency | Azure Storage による成功した要求の平均処理時間。 この値には、SuccessE2ELatency で指定されているネットワーク待機時間は含まれません。 <br/><br/> 単位: ミリ秒 <br/> 集計の種類: 平均 <br/> 適用可能なディメンション: GeoType、ApiName、Authentication ([定義](#metrics-dimensions)) <br/> 値の例: 1024 |
+| SuccessE2ELatency | ストレージ サービスまたは指定された API 操作に対して行われた成功した要求の平均エンド ツー エンド待機時間。 この値には、要求の読み取り、応答の送信、および応答の受信確認の受信のために Azure Storage 内で必要な処理時間が含まれます。 <br/><br/> 単位: ミリ秒 <br/> 集計の種類: 平均 <br/> 適用可能なディメンション: GeoType、ApiName、Authentication ([定義](#metrics-dimensions)) <br/> 値の例: 1024 |
+| 可用性 | ストレージ サービスまたは指定された API 操作の可用性の割合。 可用性は、合計課金対象要求数の値を取得し、それを該当する要求の数 (予期しないエラーになった要求を含む) で割ることによって、計算されます。 予期しないエラーすべてが、ストレージ サービスまたは指定された API 操作の可用性の低下をもたらします。 <br/><br/> 単位: パーセント <br/> 集計の種類: 平均 <br/> 適用可能なディメンション: GeoType、ApiName、Authentication ([定義](#metrics-dimensions)) <br/> 値の例: 99.99 |
 
 ## <a name="metrics-dimensions"></a>メトリックのディメンション
 
@@ -397,6 +391,7 @@ Azure Storage では、Azure Monitor の次のメトリック ディメンショ
 | ResponseType | トランザクション応答の種類。 次の値をご利用いただけます。 <br/><br/> <li>ServerOtherError: 記述されていない、その他すべてのサーバー側エラー </li> <li> ServerBusyError: HTTP 503 ステータス コードを返した認証済み要求  </li> <li> ServerTimeoutError: HTTP 500 ステータス コードを返した、タイムアウトした認証済み要求。 タイムアウトは、サーバー エラーが原因で発生しました。 </li> <li> AuthorizationError: データの不正アクセスまたは承認エラーが原因で失敗した認証済み要求。 </li> <li> NetworkError: ネットワーク エラーが原因で失敗した認証済み要求。 クライアントがタイムアウト期限が切れる前に途中で接続を終了したときによく発生します。 </li> <li>    ClientThrottlingError: クライアント側の調整エラー。 </li> <li> ClientTimeoutError: HTTP 500 ステータス コードを返した、タイムアウトした認証済み要求。 クライアントのネットワーク タイムアウトまたは要求タイムアウトが、ストレージ サービスで予期される値よりも低く設定されている場合、これは予期されるタイムアウトです。 それ以外の場合は、ServerTimeoutError としてレポートされます。 </li> <li> ClientOtherError: 記述されていない、その他すべてのクライアント側エラー。 </li> <li> Success: 成功した要求|
 | GeoType | プライマリ クラスターまたはセカンダリ クラスターからのトランザクション。 使用可能な値は Primary と Secondary です。 セカンダリ テナントからオブジェクトを読み取るときに、読み取りアクセス geo 冗長ストレージ (RA-GRS) に適用されます。 |
 | ApiName | 操作の名前。 例:  <br/> <li>CreateContainer</li> <li>DeleteBlob</li> <li>GetBlob</li> すべての操作名については、こちらの[ドキュメント](/rest/api/storageservices/storage-analytics-logged-operations-and-status-messages#logged-operations.md)を参照してください。 |
+| Authentication | トランザクションで使用される認証の種類。 次の値をご利用いただけます。 <br/> <li>AccountKey: トランザクションは、ストレージ アカウント キーを使って認証されます。</li> <li>SAS: トランザクションは、Shared Access Signature を使って認証されます。</li> <li>OAuth: トランザクションは、OAuth アクセス トークンを使って認証されます。</li> <li>Anonymous: トランザクションは匿名で要求されます。 プリフライト要求は含まれません。</li> <li>AnonymousPreflight: トランザクションは、プリフライト要求です。</li> |
 
 メトリック サポート ディメンションの場合、対応するメトリック値を表示するには、ディメンション値を指定する必要があります。 たとえば、成功した応答の **Transaction** 値を確認する場合は、**ResponseType** ディメンション を **Success** でフィルター処理する必要があります。 また、ブロック BLOB の **BlobCount** 値を確認する場合は、**BlobType** ディメンションを **BlockBlob** でフィルター処理する必要があります。
 

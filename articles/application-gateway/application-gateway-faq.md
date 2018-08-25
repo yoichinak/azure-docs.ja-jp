@@ -7,14 +7,14 @@ manager: jpconnock
 ms.service: application-gateway
 ms.topic: article
 ms.workload: infrastructure-services
-ms.date: 6/20/2018
+ms.date: 8/10/2018
 ms.author: victorh
-ms.openlocfilehash: 989ecf209dc5093b5e4c73f01f9e382fc1ad21e8
-ms.sourcegitcommit: 1438b7549c2d9bc2ace6a0a3e460ad4206bad423
+ms.openlocfilehash: 858427bfd2a9b4c40ddf7054e09d98bcf5c1a992
+ms.sourcegitcommit: 387d7edd387a478db181ca639db8a8e43d0d75f7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/20/2018
-ms.locfileid: "36295530"
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "40038684"
 ---
 # <a name="frequently-asked-questions-for-application-gateway"></a>Application Gateway に関してよく寄せられる質問
 
@@ -93,6 +93,8 @@ Application Gateway は、インスタンスごとに 1 つのプライベート
 
 はい。Application Gateway は、バックエンドに転送される要求に x-forwarded-for、x-forwarded-proto、および x-forwarded-port ヘッダーを挿入します。 x-forwarded-for ヘッダーの形式は、"IP:ポート" のコンマ区切りリストです。 x-forwarded-proto の有効な値は http または https です。 x-forwarded-port は、要求が Application Gateway に到達するポートを指定します。
 
+Application Gateway は、要求が到達した元の Host ヘッダーを含む X-Original-Host ヘッダーも挿入します。 このヘッダーは、トラフィックがバックエンドにルーティングされる前に受信ホスト ヘッダーが変更される、Azure Web サイト統合などのシナリオで役立ちます。
+
 **Q.Application Gateway のデプロイにはどのくらい時間がかかりますか?更新中にも Application Gateway は動作しますか?**
 
 新しい Application Gateway のデプロイには、プロビジョニングに最大 20 分かかります。 インスタンス サイズ/数の変更は中断を伴わず、ゲートウェイはこの時間にはアクティブなままです。
@@ -120,6 +122,12 @@ Application Gateway は IP 接続がある限り、仮想ネットワークの�
 * 送信インターネット接続はブロックできません。
 
 * AzureLoadBalancer タグからのトラフィックを許可する必要があります。
+
+**Q.ユーザー定義ルートは Application Gateway サブネットでサポートされますか?**
+
+ユーザー定義ルート (UDR) は、エンドツーエンドの要求/応答の通信を変えないかぎり、Application Gateway サブネットでサポートされます。
+
+たとえば、パケットの検査のためにファイアウォール アプリケーションを指す Application Gateway サブネットに UDR をセットアップできますが、パケットが意図した宛先の後検査にリーチできることを確認する必要があります。 これに失敗すると、不適切な正常性プローブやトラフィック ルーティング動作が発生する場合があります。 これには仮想ネットワークの ExpressRoute や VPN Gateway によってプロパゲートされる学習済みのルートまたは既定の 0.0.0.0/0 ルートが含まれます。
 
 **Q.Application Gateway にはどのような制限がありますか?これらの制限値を引き上げることはできますか?**
 

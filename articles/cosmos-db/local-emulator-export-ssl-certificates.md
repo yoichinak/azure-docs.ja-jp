@@ -3,21 +3,20 @@ title: Azure Cosmos DB Emulator 証明書のエクスポート | Microsoft Docs
 description: Windows 証明書ストアを使用しない言語とランタイムで開発を行う場合、SSL 証明書をエクスポートして管理する必要があります。 この記事では詳しい手順について説明します。
 services: cosmos-db
 keywords: Azure Cosmos DB Emulator
-author: voellm
+author: David-Noble-at-work
 manager: kfile
 editor: ''
 ms.service: cosmos-db
 ms.devlang: na
 ms.topic: tutorial
 ms.date: 06/06/2017
-ms.author: tvoellm
-ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 5fce6553ce7407f892ed1de1f71bc812798f91c0
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.author: danoble
+ms.openlocfilehash: 45a909b910fe45d87833b0f3c6ba652503a1d212
+ms.sourcegitcommit: 387d7edd387a478db181ca639db8a8e43d0d75f7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34611808"
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "41921013"
 ---
 # <a name="export-the-azure-cosmos-db-emulator-certificates-for-use-with-java-python-and-nodejs"></a>Java、Python、および Node.js で使用する Azure Cosmos DB Emulator 証明書のエクスポート
 
@@ -99,7 +98,7 @@ X.509 証明書を既定の Java 証明書ストアにインポートする場�
 > * SSL 証明書のエクスポート
 > * Java、Python、および Node.js の証明書を使用する方法の学習
 
-これで、Azure Cosmos DB 入力バインディングを使用して Azure Functions HTTP トリガーを作成するためのチュートリアルに進むことができるようになりました。
+これで、概念セクションに進み、Azure Cosmos DB の詳細について学習できるようになりました。 
 
 > [!div class="nextstepaction"]
-> [Azure Cosmos DB からの入力を使用して Azure 関数を作成する](tutorial-functions-http-trigger.md) 
+>[Azure Cosmos DB の調整可能なデータの一貫性レベル](../cosmos-db/consistency-levels.md)

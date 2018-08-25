@@ -11,12 +11,13 @@ ms.author: grhuynh
 ms.service: microsoft-genomics
 ms.workload: genomics
 ms.topic: article
-ms.date: 04/13/2018
-ms.openlocfilehash: 18761c02cc423affe7b1050700e560b1f0b0594d
-ms.sourcegitcommit: 1362e3d6961bdeaebed7fb342c7b0b34f6f6417a
+ms.date: 07/18/2018
+ms.openlocfilehash: 9bd1690003fd37b6c2edd0f0421cf8d0e74f8cb5
+ms.sourcegitcommit: 727a0d5b3301fe20f20b7de698e5225633191b06
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/18/2018
+ms.lasthandoff: 07/19/2018
+ms.locfileid: "39144178"
 ---
 # <a name="troubleshooting-guide"></a>トラブルシューティング ガイド
 この概要では、Microsoft Genomics サービスを使用する際の一般的な問題に対応するための戦略について説明します。 一般的な FAQ については、「[よく寄せられる質問](frequently-asked-questions-genomics.md)」を参照してください。 
@@ -64,7 +65,7 @@ Fastq ファイルは、サンプル識別子の末尾の /1 または /2 のみ
 
 
 ### <a name="error-uploading-bam-file-output-blob-already-exists-and-the-overwrite-option-was-set-to-false"></a>.bam ファイルのアップロード中にエラーが発生した。 出力 BLOB が既に存在し、上書きオプションが False に設定されていた。
-エラー メッセージ `Error uploading .bam file. Output blob already exists and the overwrite option was set to False`が表示される場合、出力フォルダーには既に同じ名前の出力ファイルがあります。  既存の出力ファイルを削除するか、構成ファイルの上書きオプションをオンにします。 次に、ワークフローを再送信します。
+エラー メッセージ `Error uploading .bam file. Output blob already exists and the overwrite option was set to False` が表示される場合、出力フォルダーには既に同じ名前の出力ファイルがあります。  既存の出力ファイルを削除するか、構成ファイルの上書きオプションをオンにします。 次に、ワークフローを再送信します。
 
 ### <a name="when-to-contact-microsoft-genomics-support"></a>Microsoft Genomics サポートに問い合わせる場合
 次のエラー メッセージが表示される場合、内部エラーが発生したことを示します。 
@@ -72,9 +73,7 @@ Fastq ファイルは、サンプル識別子の末尾の /1 または /2 のみ
 * `Error locating input files on worker machine`
 * `Process management failure`
 
-ワークフローの再送信を試してください。 ジョブのエラーが解決しない場合や、その他の質問がある場合は、Azure Portal の Microsoft Genomics サポートに問い合わせてください。
-
-![Azure Portal でサポートに問い合わせる](./media/troubleshooting-guide/genomics-contact-support.png "Azure Portal でサポートに問い合わせる")
+ワークフローの再送信を試してください。 ジョブのエラーが解決しない場合や、その他の質問がある場合は、Azure Portal の Microsoft Genomics サポートに問い合わせてください。 サポート要求を送信する方法の詳細については、[こちら](file-support-ticket-genomics.md)を参照してください。
 
 ## <a name="next-steps"></a>次の手順
 この記事では、Microsoft Genomics サービスに関する一般的な問題のトラブルシューティングと解決方法を学びました。 詳細情報とその他の一般的な FAQ については、「[よく寄せられる質問](frequently-asked-questions-genomics.md)」を参照してください。 

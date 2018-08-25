@@ -1,25 +1,19 @@
 ---
 title: Azure IoT Hub の MQTT サポートについて | Microsoft Docs
 description: 開発者ガイド - MQTT プロトコルを使用して IoT Hub デバイスに接続されているエンドポイントに接続するデバイスのサポート。 Azure IoT デバイス SDK での組み込み MQTT サポートについての情報も含まれます。
-services: iot-hub
-documentationcenter: .net
 author: fsautomata
-manager: timlt
-editor: ''
-ms.assetid: 1d71c27c-b466-4a40-b95b-d6550cf85144
+manager: ''
 ms.service: iot-hub
-ms.devlang: multiple
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
+services: iot-hub
+ms.topic: conceptual
 ms.date: 03/05/2018
 ms.author: elioda
-ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: b058f716c2435b70244c9293b1c5d897ec215f7f
-ms.sourcegitcommit: 1362e3d6961bdeaebed7fb342c7b0b34f6f6417a
+ms.openlocfilehash: 19a129ec4646f13f1bd095dffd423f3b90bb32a7
+ms.sourcegitcommit: 30fd606162804fe8ceaccbca057a6d3f8c4dd56d
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/18/2018
+ms.lasthandoff: 07/30/2018
+ms.locfileid: "39345462"
 ---
 # <a name="communicate-with-your-iot-hub-using-the-mqtt-protocol"></a>MQTT プロトコルを使用した IoT Hub との通信
 
@@ -47,7 +41,7 @@ MQTT プロトコルをサポートする[デバイス SDK][lnk-device-sdks] は
 
 次の表では、サポートされている各言語のコード サンプルへのリンクを提供すると共に、MQTT プロトコルを使用して IoT Hub への接続を確立するために使用するパラメーターを示します。
 
-| 言語 | プロトコル パラメーター |
+| Language | プロトコル パラメーター |
 | --- | --- |
 | [Node.js][lnk-sample-node] |azure-iot-device-mqtt |
 | [Java][lnk-sample-java] |IotHubClientProtocol.MQTT |
@@ -85,11 +79,20 @@ MQTT プロトコルをサポートする[デバイス SDK][lnk-device-sdks] は
 
   SAS トークンの生成方法の詳細については、[IoT Hub のセキュリティ トークンの使用][lnk-sas-tokens]に関するページのデバイス セクションを参照してください。
 
-  テストするときは、[デバイス エクスプローラー][lnk-device-explorer] ツールを使用して SAS トークンをすばやく生成し、それをコピーして独自のコードに貼り付けることもできます。
+  テストするときは、複数のプラットフォームに対応する [Visual Studio Code 用 Azure IoT Toolkit 拡張機能](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-toolkit)か、[デバイス エクスプローラー][lnk-device-explorer] ツールを使用して、SAS トークンをすばやく生成し、それをコピーして独自のコードに貼り付けることもできます。
+
+Azure IoT Toolkit の場合:
+
+  1. Visual Studio Code の左下隅にある **[Azure IoT ハブ デバイス]** タブを展開します。
+  2. デバイスを右クリックし、**[Generate SAS Token for Device]\(デバイスの SAS トークンの生成\)** を選択します。
+  3. **[期限]** を設定し、Enter キーを押します。
+  4. SAS トークンが作成され、クリップボードにコピーされます。
+
+デバイス エクスプローラーの場合:
 
   1. **デバイス エクスプローラー**で **[管理]** タブに移動します。
   2. **[SAS トークン]** (右上) をクリックします。
-  3. **[SASTokenForm]** の **[DeviceID]** ドロップダウンでデバイスを選択します。 **[TTL]**を設定します。
+  3. **[SASTokenForm]** の **[DeviceID]** ドロップダウンでデバイスを選択します。 **[TTL]** を設定します。
   4. **[生成]** をクリックしてトークンを作成します。
 
      生成される SAS トークンは、次のような構成になります。
@@ -213,7 +216,7 @@ IoT Hub は、**トピック名** `devices/{device_id}/messages/devicebound/` �
 
 使用できる状態コードは次のとおりです。
 
-|状態 | [説明] |
+|Status | 説明 |
 | ----- | ----------- |
 | 200 | 成功 |
 | 429 | 要求が多すぎます (スロットル)。[IoT Hub スロットル][lnk-quotas]に関するページを参照してください。 |
@@ -242,7 +245,7 @@ IoT Hub のデバイス ツインで報告されるプロパティをデバイ�
 
 使用できる状態コードは次のとおりです。
 
-|状態 | [説明] |
+|Status | 説明 |
 | ----- | ----------- |
 | 200 | 成功 |
 | 400 | 正しくない要求。 無効な形式の JSON |

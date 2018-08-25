@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.service: azure-policy
 manager: carmonm
 ms.custom: mvc
-ms.openlocfilehash: 23bbbe9cf86268f93ae1f8fcec9303efa8a673de
-ms.sourcegitcommit: 6116082991b98c8ee7a3ab0927cf588c3972eeaa
+ms.openlocfilehash: 17ad631e2441e4b8d6314557c17be143fd2f3de0
+ms.sourcegitcommit: 156364c3363f651509a17d1d61cf8480aaf72d1a
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/05/2018
-ms.locfileid: "34796718"
+ms.lasthandoff: 07/25/2018
+ms.locfileid: "39248728"
 ---
 # <a name="understanding-policy-effects"></a>Policy の効果について
 
@@ -26,7 +26,7 @@ Azure Policy の各ポリシー定義には効果が 1 つ指定されており�
 - Audit
 - AuditIfNotExists
 - 拒否
-- DeployIfNotExists
+- DeployIfNotExists (**ビルトイン** ポリシーでのみ使用可能)
 
 ## <a name="order-of-evaluation"></a>評価の順序
 
@@ -90,7 +90,7 @@ Append 効果には必須の **details** 配列が 1 つだけあります。 **
 "then": {
     "effect": "append",
     "details": [{
-        "field": "Microsoft.Storage/storageAccounts/networkAcls.ipRules[*]",
+        "field": "Microsoft.Storage/storageAccounts/networkAcls.ipRules",
         "value": [{
             "action": "Allow",
             "value": "134.5.0.0/21"
@@ -125,7 +125,7 @@ Deny 効果には、ポリシー定義の **then** 条件で使用するため�
 
 ## <a name="audit"></a>Audit
 
-非準拠のリソースが評価された場合、Audit 効果を使用して監査ログに警告イベントが作成されますが、要求は停止されません。
+非準拠のリソースが評価された場合、Audit 効果を使用してアクティビティ ログに警告イベントが作成されますが、要求は停止されません。
 
 ### <a name="audit-evaluation"></a>Audit の評価
 
@@ -213,6 +213,9 @@ AuditIfNotExists 効果の **details** プロパティは、照合する関連�
 ## <a name="deployifnotexists"></a>DeployIfNotExists
 
 AuditIfNotExists と同様に、DeployIfNotExists は条件が満たされたときにテンプレートのデプロイを実行します。
+
+> [!WARNING]
+> DeployIfNotExists は、**ビルトイン** ポリシーでのみ使用できます。
 
 ### <a name="deployifnotexists-evaluation"></a>DeployIfNotExists の評価
 
@@ -304,7 +307,7 @@ DeployIfNotExists 効果の **details** プロパティは、照合する関連�
 
 ## <a name="layering-policies"></a>階層化ポリシー
 
-リソースは複数の割り当ての影響を受ける可能性があります。 これらの割り当ては、同じスコープ (特定のリソース、リソース グループ、サブスクリプション、または管理グループ) である場合も異なるスコープである場合もあります。 これらの各割り当てにもさまざまな効果が定義されている可能性があります。 しかしながら、(直接、またはイニシアチブの一環として割り当てられている) 各ポリシーの条件および効果は個別に評価されます。 たとえば、ポリシー 1 には Deny 効果でサブスクリプション A の場所が 'westus' に作成されるのを制限する条件があり、Audit 効果で (サブスクリプション A 内にある) リソース グループ B のリソースが 'eastus' に作成されるのを制限するポリシー 2 が両方割り当てられている場合、結果は次のようになります。
+リソースは複数の割り当ての影響を受ける可能性があります。 これらの割り当ては、同じスコープ (特定のリソース、リソース グループ、サブスクリプション、または管理グループ) である場合も異なるスコープである場合もあります。 これらの各割り当てにもさまざまな効果が定義されている可能性があります。 しかしながら、(直接、またはイニシアチブの一環として割り当てられている) 各ポリシーの条件および効果は個別に評価されます。 たとえば、Deny 効果でサブスクリプション A のリソースの場所が "westus" にのみ作成されるよう制限する条件が設定されたポリシー 1 と、Audit 効果で (サブスクリプション A 内にある) リソース グループ B のリソースの場所が "eastus" のみに作成されるよう制限する条件が設定されたポリシー 2 の両方が割り当てられている場合、結果は次のようになります。
 
 - 'eastus' 内のリソース グループ B の既存のリソースは、ポリシー 2 に準拠しますが、ポリシー 1 に対しては非準拠とマークされます。
 - 'eastus' 内にないリソース グループ B の既存のリソースは、ポリシー 2 に対して非準拠とマークされ、'westus' でない場合はポリシー 1 にも非準拠とマークされます。

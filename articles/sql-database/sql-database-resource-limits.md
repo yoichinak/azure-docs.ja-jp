@@ -7,14 +7,14 @@ manager: craigg
 ms.service: sql-database
 ms.custom: DBs & servers
 ms.topic: conceptual
-ms.date: 06/20/2018
+ms.date: 08/01/2018
 ms.author: carlrab
-ms.openlocfilehash: 6806b0c5b5e5ac5e1189f628786f0c8f9b223395
-ms.sourcegitcommit: 6eb14a2c7ffb1afa4d502f5162f7283d4aceb9e2
+ms.openlocfilehash: 6f6fa1ebc086530f138d32ee5a9c799b5bfbbdeb
+ms.sourcegitcommit: 96f498de91984321614f09d796ca88887c4bd2fb
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/25/2018
-ms.locfileid: "36750953"
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39412112"
 ---
 # <a name="overview-azure-sql-database-resource-limits"></a>Azure SQL Database のリソース制限の概要 
 
@@ -27,10 +27,13 @@ ms.locfileid: "36750953"
 | サーバーあたりのデータベース数 | 5000 |
 | 任意のリージョンにおけるサブスクリプションあたりの既定のサーバー数 | 20 |
 | 任意のリージョンにおけるサブスクリプションあたりの最大サーバー数 | 200 |
+| サーバーあたりの DTU/eDTU クォータ | 54,000 |
+| サーバーあたりの仮想コア クォータ | 540 |
+| サーバーあたりの最大プール | DTU または仮想コアの数によって制限される |
 |||
 
 > [!NOTE]
-> 既定量よりも多いサーバー クォータを取得する場合は、Azure Portal で、目的のサブスクリプションに対して、発行の種類を “Quota” として新しいサポート要求を送信できます。
+> 既定量よりも多い DTU/eDTU クオータ、仮想コア クラスター、またはサーバーを取得する場合は、Azure portal で、目的のサブスクリプションに対して、発行の種類を [クオータ] として新しいサポート要求を送信できます。 サーバーあたりの DTU/eDTU クオータとデータベース制限には、サーバーあたりのエラスティック プールの数が含まれます。 
 
 > [!IMPORTANT]
 > データベースの数がサーバーあたりの制限に近づくと、次の状況が発生します。
@@ -55,6 +58,7 @@ ms.locfileid: "36750953"
 
 - データベースまたはエラスティック プールの最大サイズを増やすか、より多くの記憶域を追加します。 [シングルトンのリソースの拡大縮小に関する記事](sql-database-single-database-scale.md)と、[エラスティック プールのリソースの拡大縮小に関する記事](sql-database-elastic-pool-scale.md)を参照してください。
 - データベースがエラスティック プール内にある場合は、もう 1 つの方法として、データベースをプールの外に移動し、ストレージ領域が他のデータベースと共有されないようにすることもできます。
+- 未使用領域を再利用できるようにデータベースを縮小します。 詳細については、「[Manage file space in Azure SQL Database](sql-database-file-space-management.md)」(Azure SQL Database でファイル領域を管理する) を参照してください。
 
 ### <a name="sessions-and-workers-requests"></a>セッションとワーカー (要求) 
 
@@ -62,10 +66,6 @@ ms.locfileid: "36750953"
 
 セッションまたはワーカーの使用率が高い場合は、次のような軽減オプションがあります。
 - データベースまたはエラスティック プールのサービス レベルまたはパフォーマンス レベルを高くします。 [シングルトンのリソースの拡大縮小に関する記事](sql-database-single-database-scale.md)と、[エラスティック プールのリソースの拡大縮小に関する記事](sql-database-elastic-pool-scale.md)を参照してください。
-- ワーカー使用率上昇の原因がコンピューティング リソースの競合である場合は、クエリを最適化して各クエリのリソース使用率を下げます。 詳しくは、「[クエリの調整とヒント](sql-database-performance-guidance.md#query-tuning-and-hinting)」をご覧ください。
-
-セッションまたはワーカーの使用率が高い場合は、次のような軽減オプションがあります。
-- データベースのサービス レベルまたはパフォーマンス レベルを高くします。 [シングルトンのリソースの拡大縮小に関する記事](sql-database-single-database-scale.md)と、[エラスティック プールのリソースの拡大縮小に関する記事](sql-database-elastic-pool-scale.md)を参照してください。
 - ワーカー使用率上昇の原因がコンピューティング リソースの競合である場合は、クエリを最適化して各クエリのリソース使用率を下げます。 詳しくは、「[クエリの調整とヒント](sql-database-performance-guidance.md#query-tuning-and-hinting)」をご覧ください。
 
 ## <a name="next-steps"></a>次の手順

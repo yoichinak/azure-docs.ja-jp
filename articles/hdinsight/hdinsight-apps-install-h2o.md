@@ -1,25 +1,20 @@
 ---
-title: 発行済みアプリケーションのインストール - H2O Sparkling Water - Azure HDInsight | Microsoft Docs
+title: 発行済みアプリケーションのインストール - H2O Sparkling Water - Azure HDInsight
 description: H2O Sparkling Water サードパーティ Hadoop アプリケーションをインストールして使用します。
 services: hdinsight
-documentationcenter: ''
 author: ashishthaps
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: ''
+editor: jasonwhowell
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 01/10/2018
 ms.author: ashish
-ms.openlocfilehash: 9a03588b3327c3ab231f5c2cae17488f4d63bde7
-ms.sourcegitcommit: 9cdd83256b82e664bd36991d78f87ea1e56827cd
+ms.openlocfilehash: e1e43bc06b30959bc5e7e692d88bd0d053a03ad4
+ms.sourcegitcommit: 1f0587f29dc1e5aef1502f4f15d5a2079d7683e9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31402109"
+ms.lasthandoff: 08/07/2018
+ms.locfileid: "39593555"
 ---
 # <a name="install-published-application---h2o-sparkling-water"></a>発行済みアプリケーションのインストール - H2O Sparkling Water
 
@@ -38,7 +33,7 @@ H2O Sparkling Water の提供内容:
 
 ### <a name="resource-links"></a>リソース リンク
 
-* [H2O.ai エンジニアリング ロードマップ](https://jira.h2o.ai/)
+* [H2O.ai エンジニアリング ロードマップ](http://jira.h2o.ai/)
 * [H2O.ai ホーム](http://www.h2o.ai/)
 * [H2O.ai ドキュメント](http://docs.h2o.ai/)
 * [H2O.ai サポート](https://support.h2o.ai/)

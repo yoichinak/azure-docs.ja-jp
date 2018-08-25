@@ -12,14 +12,14 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/28/2018
+ms.date: 07/09/2018
 ms.author: ganesr
-ms.openlocfilehash: 9542eedecaf8dc6d689bf6192f74eee15287ae99
-ms.sourcegitcommit: 1438b7549c2d9bc2ace6a0a3e460ad4206bad423
+ms.openlocfilehash: 7fd2dd870338dc6778d192658143d14d9d9895cc
+ms.sourcegitcommit: 0b05bdeb22a06c91823bd1933ac65b2e0c2d6553
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/20/2018
-ms.locfileid: "36295428"
+ms.lasthandoff: 07/17/2018
+ms.locfileid: "39072148"
 ---
 # <a name="expressroute-routing-requirements"></a>ExpressRoute のルーティングの要件
 ExpressRoute を使用して Microsoft クラウド サービスに接続するには、ルーティングをセットアップして管理する必要があります。 一部の接続プロバイダーでは、ルーティングのセットアップと管理が管理されたサービスとして提供されています。 このサービスが提供されているかどうか、接続プロバイダーに問い合わせてください。 提供されていない場合は、次の要件に従う必要があります。
@@ -117,7 +117,7 @@ Microsoft ピアリングではプライベート AS 番号を使用できます
 > 
 
 ## <a name="dynamic-route-exchange"></a>動的なルート交換
-ルーティングの交換は eBGP プロトコル上で実行されます。 MSEE とルーターとの間に EBGP セッションが確立されます。 BGP セッションの認証は必須ではありません。 必要な場合は、MD5 ハッシュを構成することができます。 BGP セッションの構成については、[ルーティングの構成](expressroute-howto-routing-classic.md)に関する記事および[回線のプロビジョニング ワークフローと回線の状態](expressroute-workflows.md)に関する記事をご覧ください。
+ルーティングの交換は eBGP プロトコル上で実行されます。 MSEE とルーターとの間に EBGP セッションが確立されます。 BGP セッションの認証は必須ではありません。 必要な場合は、MD5 ハッシュを構成することができます。 BGP セッションの構成については、[ルーティングの構成](how-to-routefilter-portal.md)に関する記事および[回線のプロビジョニング ワークフローと回線の状態](expressroute-workflows.md)に関する記事をご覧ください。
 
 ## <a name="autonomous-system-numbers"></a>自律システム番号
 Microsoft は、Azure パブリック、Azure プライベート、および Microsoft ピアリングのために AS 12076 を使用します。 ASN 65515 ～ 65520 は、内部使用のために予約されています。 16 ビットと 32 ビットの両方の AS 番号がサポートされています。
@@ -221,7 +221,7 @@ Microsoft からアドバタイズされるすべてのルートには、適切�
 > 
 > 
 
-### <a name="bgp-community-support-in-national-clouds-preview"></a>National Clouds (プレビュー) の BGP コミュニティのサポート
+### <a name="bgp-community-support-in-national-clouds"></a>National Clouds の BGP コミュニティのサポート
 
 | **National Clouds Azure リージョン**| **BGP コミュニティ値** |
 | --- | --- |

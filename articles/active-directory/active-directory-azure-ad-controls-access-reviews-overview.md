@@ -3,23 +3,24 @@ title: Azure AD アクセス レビュー | Microsoft Docs
 description: Azure Active Directory のアクセス レビューを使用して、組織のガバナンス、リスク管理、コンプライアンスの取り組みを満たすように、グループ メンバーシップとアプリケーションのアクセスを制御することができます。
 services: active-directory
 documentationcenter: ''
-author: markwahl-msft
+author: rolyon
 manager: mtillman
-editor: ''
+editor: markwahl-msft
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: get-started-article
-ms.component: compliance-reports
+ms.topic: conceptual
+ms.component: compliance
 ms.date: 05/02/2018
 ms.author: rolyon
-ms.openlocfilehash: 31f3ce4ae7915ef463a557a9be60c651acdbabe6
-ms.sourcegitcommit: 4e36ef0edff463c1edc51bce7832e75760248f82
+ms.reviewer: mwahl
+ms.openlocfilehash: 5cff051c30074eaf1bbcc44f20783bc63cd0ec04
+ms.sourcegitcommit: 35ceadc616f09dd3c88377a7f6f4d068e23cceec
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/08/2018
-ms.locfileid: "35233273"
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39620547"
 ---
 # <a name="azure-ad-access-reviews"></a>Azure AD アクセス レビュー
 
@@ -42,4 +43,4 @@ ms.locfileid: "35233273"
 - [Azure AD のアクセス レビューでゲスト アクセスを管理する](active-directory-azure-ad-controls-manage-guest-access-with-access-reviews.md)
 - [Azure AD アクセス レビューに使用するプログラムとコントロールを管理する](active-directory-azure-ad-controls-manage-programs-controls.md)
 - [グループのメンバーまたはアプリケーションへのアクセスのアクセス レビューを作成する](active-directory-azure-ad-controls-create-access-review.md)
-- [Azure AD 管理者ロールに含まれるユーザーのアクセス レビューを作成する](active-directory-privileged-identity-management-how-to-start-security-review.md)
+- [Azure AD 管理者ロールに含まれるユーザーのアクセス レビューを作成する](privileged-identity-management/pim-how-to-start-security-review.md)

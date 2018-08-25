@@ -8,22 +8,22 @@ ms.service: container-instances
 ms.topic: article
 ms.date: 06/08/2018
 ms.author: juluk
-ms.openlocfilehash: 76ca4db28d99702532ae656a19f0d54b479a13fe
-ms.sourcegitcommit: 50f82f7682447245bebb229494591eb822a62038
+ms.openlocfilehash: 1582f0d7ec688bc72cc9d1aa6ae0ddb0a6ad3a17
+ms.sourcegitcommit: 248c2a76b0ab8c3b883326422e33c61bd2735c6c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/08/2018
-ms.locfileid: "35248973"
+ms.lasthandoff: 07/23/2018
+ms.locfileid: "39213073"
 ---
 # <a name="configure-liveness-probes"></a>liveness probe の構成
 
-コンテナー化されたアプリケーションは、実行に時間がかかり、分断状態になり、コンテナーを再起動して修復する必要が生じる場合があります。 Azure Container Instances では、構成を含む liveness probe がサポートされていて、重要な機能が動作しなくなった場合にお使いのコンテナーを再起動できます。 
+コンテナー化されたアプリケーションは、実行に時間がかかり、分断状態になり、コンテナーを再起動して修復する必要が生じる場合があります。 Azure Container Instances では、構成を含む liveness probe がサポートされていて、重要な機能が動作しなくなった場合にお使いのコンテナーを再起動できます。
 
 この記事では、liveness probe を含むコンテナー グループをデプロイする方法について説明し、シミュレーションした異常なコンテナーの自動再起動方法を示します。
 
 ## <a name="yaml-deployment"></a>YAML のデプロイ
 
-次のコードを使用して `liveness-probe.yaml` ファイルを作成します。 このファイルは、最終的に異常状態になる NGNIX コンテナーから構成されるコンテナー グループを定義します。 
+次のコードを使用して `liveness-probe.yaml` ファイルを作成します。 このファイルは、最終的に異常状態になる NGNIX コンテナーから構成されるコンテナー グループを定義します。
 
 ```yaml
 apiVersion: 2018-06-01
@@ -45,12 +45,12 @@ properties:
           memoryInGB: 1.5
       livenessProbe:
         exec:
-            command: 
+            command:
                 - "cat"
                 - "/tmp/healthy"
         periodSeconds: 5
   osType: Linux
-  restartPolicy: Never
+  restartPolicy: Always
 tags: null
 type: Microsoft.ContainerInstance/containerGroups
 ```
@@ -81,9 +81,9 @@ az container create --resource-group myResourceGroup --name livenesstest -f live
 
 最初の 30 秒以内には、start コマンドによって作成された `healthy` ファイルが存在します。 liveness コマンドが `healthy` ファイルの存在を検査するとき、状態コードがゼロを返し、成功を通知するため、再起動は行われません。
 
-30 秒後、`cat /tmp/healthy` で異常が発生し始め、異常状態および強制終了イベントが発生します。 
+30 秒後、`cat /tmp/healthy` で異常が発生し始め、異常状態および強制終了イベントが発生します。
 
-これらのイベントは、Azure Portal または Azure CLI 2.0 から表示できます。
+これらのイベントは、Azure Portal または Azure CLI から表示できます。
 
 ![Portal の異常なイベント][portal-unhealthy]
 

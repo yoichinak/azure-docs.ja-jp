@@ -10,17 +10,17 @@ ms.component: app-mgmt
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 10/11/2017
 ms.author: barbkess
 ms.reviewer: harshja
 ms.custom: it-pro
-ms.openlocfilehash: 37b5e5d05559088d7f5aac796f452f2ed83447fc
-ms.sourcegitcommit: 6f6d073930203ec977f5c283358a19a2f39872af
+ms.openlocfilehash: aae73816b883fe782eff27c56174c71f14c253c4
+ms.sourcegitcommit: 615403e8c5045ff6629c0433ef19e8e127fe58ac
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35294633"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39577188"
 ---
 # <a name="header-based-authentication-for-single-sign-on-with-application-proxy-and-pingaccess"></a>アプリケーション プロキシと PingAccess を使用したシングル サインオン用のヘッダーベースの認証
 
@@ -38,7 +38,7 @@ PingAccess for Azure Active Directory は、認証用のヘッダーを使用す
 
 このシナリオは Azure Active Directory と PingAccess の連携によって実現されるため、その両方のサービスのライセンスが必要となります。 ただし、Azure Active Directory Premium サブスクリプションには、最大 20 のアプリケーションをカバーする基本的な PingAccess ライセンスが含まれています。 20 を超えるヘッダー ベースのアプリケーションを公開する必要がある場合は、PingAccess から追加のライセンスを購入できます。 
 
-詳細については、「 [Azure Active Directory のエディション](../active-directory-whatis.md)」をご覧ください。
+詳細については、「 [Azure Active Directory のエディション](../fundamentals/active-directory-whatis.md)」をご覧ください。
 
 ## <a name="publish-your-application-in-azure"></a>アプリケーションを Azure に発行する
 
@@ -140,7 +140,7 @@ Azure ポータルで実行する必要がある操作は 2 つあります。 �
 
 ### <a name="optional---update-graphapi-to-send-custom-fields"></a>省略可能 - GraphAPI を更新してカスタム フィールドを送信する
 
-Azure AD が認証のために送信するセキュリティ トークンの一覧については、「[Azure AD のトークン リファレンス](./../develop/active-directory-token-and-claims.md)」を参照してください。 他のトークンを送信するカスタム クレームが必要な場合は、Graph エクスプローラー、または Azure Portal 内のアプリケーションのマニフェストを使用して、アプリのフィールド *acceptMappedClaims* を **True** に設定します。    
+Azure AD が認証のために送信するセキュリティ トークンの一覧については、「[Azure AD のトークン リファレンス](../develop/v1-id-and-access-tokens.md)」を参照してください。 他のトークンを送信するカスタム クレームが必要な場合は、Graph エクスプローラー、または Azure Portal 内のアプリケーションのマニフェストを使用して、アプリのフィールド *acceptMappedClaims* を **True** に設定します。    
 
 次の例では、Graph Explorer を使用しています。
 

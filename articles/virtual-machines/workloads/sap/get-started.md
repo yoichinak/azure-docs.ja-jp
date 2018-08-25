@@ -14,15 +14,15 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
-ms.date: 04/24/2018
+ms.date: 07/27/2018
 ms.author: rclaus
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 7f0705f2fb14bc44a7738f38bc3ef53a6359dfb4
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: 81b510c2dc5d65af5e8a7f2b6b78f45f3bdced68
+ms.sourcegitcommit: 30fd606162804fe8ceaccbca057a6d3f8c4dd56d
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34657773"
+ms.lasthandoff: 07/30/2018
+ms.locfileid: "39344353"
 ---
 # <a name="using-azure-for-hosting-and-running-sap-workload-scenarios"></a>Azure を使用して SAP ワークロードをホストして実行するシナリオ
 [767598]:https://launchpad.support.sap.com/#/notes/767598
@@ -305,6 +305,13 @@ Azure for SAP HANA の独自性は、その製品の独自性にあります。�
 
 Azure で SAP ワークロードをホストするシナリオでは、さまざまな SAP コンポーネントと SAP SaaS または PaaS 製品に対する Activity Directory を使用した ID 統合要件とシングル サインオンを構成できます。 Azure Active Directory (AAD) と SAP のエンティティを使用したこのような統合とシングル サインオンのシナリオについては、「AAD SAP ID 統合およびシングル サインオン」セクションに一覧と説明があります。
 
+## <a name="latest-changes"></a>最新の変更
+
+Azure VM M128 上の SAP HANA スケールアウト関連のドキュメントには、次の内容が追加されました。
+
+- [Azure における SAP HANA インフラストラクチャの構成と運用](https://docs.microsoft.com/azure/virtual-machines/workloads/sap/hana-vm-operations)
+- [1 つの Azure リージョン内での SAP HANA の可用性](https://docs.microsoft.com/azure/virtual-machines/workloads/sap/sap-hana-availability-one-region)
+
 
 ## <a name="sap-hana-on-sap-hana-on-azure-large-instances"></a>SAP HANA on Azure (L インスタンス) の SAP HANA
 
@@ -338,7 +345,7 @@ Azure で SAP ワークロードをホストするシナリオでは、さまざ
 ### <a name="high-availability-and-disaster-recovery-of-sap-hana-on-azure-large-instances"></a>SAP HANA on Azure (L インスタンス) の高可用性とディザスター リカバリー | Microsoft Docs
 タイトル: SAP HANA on Azure (L インスタンス) の高可用性と障害復旧
 
-概要: 高可用性 (HA) とディザスター リカバリー (DR) は、ミッション クリティカルな SAP HANA on Azure (L インスタンス) サーバーを実行する場合の重要な要素です。 正しい HA/DR 戦略を適切に構築、実装するには、SAP、システム インテグレーター、Microsoft と協力することが重要です。 環境に固有の目標復旧時点 (RPO) と目標復旧時間 (RTO) のような重要な考慮事項を検討する必要があります。  このドキュメントでは、お客様に必要なレベルの HA と DR を実現するためのオプションについて説明します。
+概要: 高可用性 (HA) とディザスター リカバリー (DR) は、ミッション クリティカルな SAP HANA on Azure (L インスタンス) サーバーを実行する場合の重要な要素です。 正しい HA/DR 戦略を適切に設計および実装するには、SAP、システム インテグレーター、Microsoft と協力することが重要です。 環境に固有の目標復旧時点 (RPO) と目標復旧時間 (RTO) のような重要な考慮事項を検討する必要があります。  このドキュメントでは、お客様に必要なレベルの HA と DR を実現するためのオプションについて説明します。
 
 更新日: 2017 年 10 月
 
@@ -480,7 +487,7 @@ Azure で SAP ワークロードをホストするシナリオでは、さまざ
 ### <a name="using-azure-site-recovery-for-sap-workload"></a>SAP ワークロード用の Azure Site Recovery
 タイトル: SAP NetWeaver: Azure Site Recovery を使用したディザスター リカバリー ソリューションの構築
 
-概要: このドキュメントでは、ディザスター リカバリー シナリオを処理することを目的として Azure Site Recovery サービスを使用する方法を説明しています。 Azure Site Recovery Services を使用した オンプレミス SAP ランドスケープのディザスター リカバリーの場所として Azure を使用する事例が説明されています。 このドキュメントで説明されている別のシナリオは Azure-to-Azure (A2A) ディザスター リカバリー事例であり、それを Azure Site Recovery で管理する方法も説明されています。  
+概要: このドキュメントでは、ディザスター リカバリー シナリオを処理することを目的として Azure Site Recovery サービスを使用する方法を説明しています。 Azure Site Recovery Services を使用したオンプレミス SAP ランドスケープのディザスター リカバリーの場所として Azure を使用する事例が説明されています。 このドキュメントで説明されている別のシナリオは Azure-to-Azure (A2A) ディザスター リカバリー事例であり、それを Azure Site Recovery で管理する方法も説明されています。  
 
 更新日: 2017 年 8 月
 

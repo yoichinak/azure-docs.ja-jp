@@ -7,14 +7,14 @@ ms.reviewer: veyalla
 ms.service: iot-edge
 services: iot-edge
 ms.topic: conceptual
-ms.date: 06/27/2018
+ms.date: 08/06/2018
 ms.author: kgremban
-ms.openlocfilehash: 0ab70de83c36ec3048d9bbf74e5a315026f02b85
-ms.sourcegitcommit: 150a40d8ba2beaf9e22b6feff414f8298a8ef868
+ms.openlocfilehash: 39e0de6b378ed61ab375c6468b58c8c4a87b5fb9
+ms.sourcegitcommit: 615403e8c5045ff6629c0433ef19e8e127fe58ac
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/27/2018
-ms.locfileid: "37035706"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39575966"
 ---
 # <a name="install-azure-iot-edge-runtime-on-windows-to-use-with-windows-containers"></a>Windows に Azure IoT Edge をインストールして Windows コンテナーと共に使用する
 
@@ -36,127 +36,49 @@ Windows コンテナーを使用する Azure IoT Edge は、以下と共に使�
 
 Azure IoT Edge は、[OCI と互換性のある][lnk-oci]コンテナー ランタイム (Docker など) に依存します。 [Docker for Windows][lnk-docker-for-windows] は、開発とテストに使用できます。 
 
-**Docker for Windows が [Windows コンテナーを使用するように構成されていることをご確認ください][lnk-docker-config]**
+[Windows コンテナーを使用するように][lnk-docker-config] Docker for Windows を構成してください。
 
 ## <a name="install-the-azure-iot-edge-security-daemon"></a>Azure IoT Edge セキュリティ デーモンのインストール
 
 >[!NOTE]
 >Azure IoT Edge ソフトウェア パッケージには、(LICENSE ディレクトリ内の) パッケージ内にあるライセンス条項が適用されます。 パッケージを使用する前に、ライセンス条項をお読みください。 インストールし、パッケージを使用すると、これらの条項に同意したものと見なされます。 ライセンス条項に同意しない場合は、パッケージを使用しないでください。
 
-### <a name="download-the-edge-daemon-package-and-install"></a>Edge デーモン パッケージのダウンロードおよびインストール
+IoT Hub によって提供されるデバイス接続文字列を使用して、1 つの IoT Edge デバイスを手動でプロビジョニングすることもできますし、 Device Provisioning Service を使用して、複数のデバイスを自動的にプロビジョニングすることもできます。これは、プロビジョニングするデバイスが多数ある場合に便利です。 目的にプロビジョニング方法に応じて、適切なインストール スクリプトを選択してください。 
 
-管理者用 PowerShell ウィンドウで、次のコマンドを実行します。
+### <a name="install-and-manually-provision"></a>インストールして手動でプロビジョニングする
 
-```powershell
-Invoke-WebRequest https://aka.ms/iotedged-windows-latest -o .\iotedged-windows.zip
-Expand-Archive .\iotedged-windows.zip C:\ProgramData\iotedge -f
-Move-Item c:\ProgramData\iotedge\iotedged-windows\* C:\ProgramData\iotedge\ -Force
-rmdir C:\ProgramData\iotedge\iotedged-windows
-$env:Path += ";C:\ProgramData\iotedge"
-SETX /M PATH "$env:Path"
-```
+1. 「[新しい Azure IoT Edge デバイスを登録する][lnk-dcs]」の手順に従って、デバイスを登録し、デバイス接続文字列を取得します。 
 
-以下の方法を使用して vcruntime をインストールします (IoT Core Edge デバイスでは次の手順をスキップできます)。
+2. IoT Edge デバイスで、PowerShell を管理者として実行します。 
 
-```powershell
-Invoke-WebRequest -useb https://download.microsoft.com/download/0/6/4/064F84EA-D1DB-4EAA-9A5C-CC2F0FF6A638/vc_redist.x64.exe -o vc_redist.exe
-.\vc_redist.exe /quiet /norestart
- ```
+3. IoT Edge ランタイムをダウンロードしてインストールします。 
 
-**iotedge** サービスを作成して開始します。
+   ```powershell
+   . {Invoke-WebRequest -useb aka.ms/iotedge-win} | Invoke-Expression; `
+   Install-SecurityDaemon -Manual -ContainerOs Windows
+   ```
 
-```powershell
-New-Service -Name "iotedge" -BinaryPathName "C:\ProgramData\iotedge\iotedged.exe -c C:\ProgramData\iotedge\config.yaml"
-Start-Service iotedge
-```
+4. **DeviceConnectionString** の入力を求められたら、IoT Hub から取得した接続文字列を入力します。 接続文字列の前後に引用符は含めないでください。 
 
-サービスによって使用されるポートのファイアウォールの例外を追加します。
+### <a name="install-and-automatically-provision"></a>インストールして自動的にプロビジョニングする
 
-```powershell
-New-NetFirewallRule -DisplayName "iotedged allow inbound 15580,15581" -Direction Inbound -Action Allow -Protocol TCP -LocalPort 15580-15581 -Program "C:\programdata\iotedge\iotedged.exe" -InterfaceType Any
-```
+1. 「[Windows 上のシミュレートされた TPM Edge デバイスの作成とプロビジョニング][lnk-dps]」の手順に従って、Device Provisioning Service を設定し、その**スコープ ID** を取得して、TPM デバイスをシミュレートし、その**登録 ID** を取得した後、個別の登録を作成します。 デバイスが IoT Hub に登録されたら、インストールを続行します。  
 
-次の内容の **iotedge.reg** ファイルを作成し、ダブルクリックするか `reg import iotedge.reg` コマンドを使用して Windows レジストリにインポートします。
+   >[!TIP]
+   >インストールとテストを行っている間は、TPM シミュレーターを実行しているウィンドウを開いたままにしてください。 
 
-```
-Windows Registry Editor Version 5.00
+2. IoT Edge デバイスで、PowerShell を管理者として実行します。 
 
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\Application\iotedged]
-"CustomSource"=dword:00000001
-"EventMessageFile"="C:\\ProgramData\\iotedge\\iotedged.exe"
-"TypesSupported"=dword:00000007
-```
+3. IoT Edge ランタイムをダウンロードしてインストールします。 
 
-## <a name="configure-the-azure-iot-edge-security-daemon"></a>Azure IoT Edge セキュリティ デーモンの構成
+   ```powershell
+   . {Invoke-WebRequest -useb aka.ms/iotedge-win} | Invoke-Expression; `
+   Install-SecurityDaemon -Dps -ContainerOs Windows
+   ```
 
-`C:\ProgramData\iotedge\config.yaml` にある構成ファイルを使用して、デーモンを構成できます。エッジ デバイスは、<!--[automatically via Device Provisioning Service][lnk-dps] or-->[デバイス接続文字列][lnk-dcs]を使用して手動で構成できます。
+4. メッセージが表示されたら、プロビジョニング サービスとデバイスの **ScopeID** と **RegistrationID** を入力します。 
 
-手動で構成する場合は、デバイス接続文字列を **config.yaml** の **provisioning:** セクションに入力します
-
-```yaml
-provisioning:
-  source: "manual"
-  device_connection_string: "<ADD DEVICE CONNECTION STRING HERE>"
-```
-
-PowerShell で `hostname` コマンドを使用してエッジ デバイスの名前を取得し、構成 yaml で **hostname:** の値として設定します。 例: 
-
-```yaml
-  ###############################################################################
-  # Edge device hostname
-  ###############################################################################
-  #
-  # Configures the environment variable 'IOTEDGE_GATEWAYHOSTNAME' injected into
-  # modules.
-  #
-  ###############################################################################
-
-  hostname: "edgedevice-1"
-```
-
-次に、構成の **connect:** セクションで、**workload_uri** と **management_uri** の IP アドレスとポートを指定する必要があります。
-
-IP アドレスについては、次の例に示すように PowerShell ウィンドウに `ipconfig` と入力し、**vEthernet (nat)**' インターフェイスの IP アドレスを選択します (ご使用のシステム上の IP アドレスは異なる場合があります)。  
-
-![nat][img-nat]
-
-```yaml
-connect:
-  management_uri: "http://172.29.240.1:15580"
-  workload_uri: "http://172.29.240.1:15581"
-```
-
-構成の **listen** セクションに同じアドレスを入力します。 例: 
-
-```yaml
-listen:
-  management_uri: "http://172.29.240.1:15580"
-  workload_uri: "http://172.29.240.1:15581"
-```
-
-PowerShell ウィンドウで、環境変数 **IOTEDGE_HOST** を **management_uri** アドレスで作成します。次に例を示します。
-
-```powershell
-[Environment]::SetEnvironmentVariable("IOTEDGE_HOST", "http://172.29.240.1:15580")
-```
-
-最後に、**moby_runtime:** の下の **network:** 設定のコメントが解除され、**nat** に設定されていることを確認します。
-
-```yaml
-moby_runtime:
-  docker_uri: "npipe://./pipe/docker_engine"
-  network: "nat"
-```
-
-構成ファイルを保存し、サービスを再起動します。
-
-```powershell
-Stop-Service iotedge -NoWait
-sleep 5
-Start-Service iotedge
-```
-
-## <a name="verify-successful-installation"></a>インストールの成功の確認
+## <a name="verify-successful-installation"></a>インストールの成功を確認する
 
 以下によって IoT Edge サービスの状態を確認できます。 
 
@@ -174,7 +96,8 @@ Get-WinEvent -ea SilentlyContinue `
   -FilterHashtable @{ProviderName= "iotedged";
     LogName = "application"; StartTime = [datetime]::Now.AddMinutes(-5)} |
   select TimeCreated, Message |
-  sort-object @{Expression="TimeCreated";Descending=$false}
+  sort-object @{Expression="TimeCreated";Descending=$false} |
+  format-table -autosize -wrap
 ```
 
 また、以下を使用して、実行中のモジュールを一覧表示します。
@@ -185,7 +108,9 @@ iotedge list
 
 ## <a name="next-steps"></a>次の手順
 
-Edge ランタイムの正常なインストールに問題がある場合は、[トラブルシューティング][lnk-trouble]のページをご確認ください。
+ランタイムがインストールされた IoT Edge デバイスがプロビジョニングされたら、次は [IoT Edge モジュールをデプロイ][lnk-modules]できます。
+
+Edge ランタイムを正常にインストールできない場合は、[トラブルシューティング][lnk-trouble]のページを調べてください。
 
 
 <!-- Images -->
@@ -193,11 +118,11 @@ Edge ランタイムの正常なインストールに問題がある場合は、
 
 <!-- Links -->
 [lnk-docker-config]: https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers
-[lnk-dcs]: ../iot-hub/quickstart-send-telemetry-dotnet.md#register-a-device
-[lnk-dps]: how-to-simulate-dps-tpm.md
+[lnk-dcs]: how-to-register-device-portal.md
+[lnk-dps]: how-to-auto-provision-simulated-device-windows.md
 [lnk-oci]: https://www.opencontainers.org/
 [lnk-moby]: https://mobyproject.org/
 [lnk-trouble]: troubleshoot.md
 [lnk-docker-for-windows]: https://www.docker.com/docker-windows
 [lnk-iot-core]: how-to-install-iot-core.md
-
+[lnk-modules]: how-to-deploy-modules-portal.md

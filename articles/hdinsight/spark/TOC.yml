@@ -27,9 +27,9 @@
       href: apache-spark-use-bi-tools.md
     - name: ストリーミング ジョブの実行
       href: apache-spark-eventhub-streaming.md
-    - name: Machine Learning アプリケーションの作成
+    - name: 機械学習アプリの作成
       href: apache-spark-ipython-notebook-machine-learning.md
-    - name: IntelliJ を使用した Spark アプリケーションの作成
+    - name: IntelliJ での Spark アプリの作成
       href: apache-spark-create-standalone-application.md
 - name: 方法
   items:
@@ -61,7 +61,7 @@
     - name: HDInsight ツールの使用
       items:
         - name: Tools for Visual Studio
-          href: ../hdinsight-hadoop-visual-studio-tools-get-started.md
+          href: ../hadoop/apache-hadoop-visual-studio-tools-get-started.md
           maintainContext: true
         - name: Tools for VSCode
           href: ../hdinsight-for-vscode.md
@@ -209,6 +209,8 @@
       items:
         - name: クラスター リソースの管理
           href: apache-spark-resource-manager.md
+        - name: 拡張履歴サーバーを使用して Spark アプリケーションを管理する
+          href: apache-azure-spark-history-server.md
         - name: Spark の設定を構成する
           href: apache-spark-settings.md
         - name: Spark ジョブの最適化
@@ -317,6 +319,8 @@
       items:
         - name: Spark ジョブのデバッグ
           href: apache-spark-job-debugging.md
+        - name: ジョブ グラフによる Spark ジョブのデバッグ
+          href: apache-azure-spark-history-server.md
         - name: IntelliJ を使用した Spark ジョブのデバッグ
           href: apache-spark-intellij-tool-debug-remotely-through-ssh.md
         - name: 処理速度が遅いか失敗した HDInsight クラスターのトラブルシューティング

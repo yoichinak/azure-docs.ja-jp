@@ -2,18 +2,18 @@
 title: Azure Import/Export を使用した Azure Blob へのデータの転送 | Microsoft Docs
 description: Azure portal でインポート ジョブとエクスポート ジョブを作成し、Azure BLOB との間でデータを転送する方法について説明します。
 author: alkohli
-manager: jeconnoc
 services: storage
 ms.service: storage
 ms.topic: article
-ms.date: 05/17/2018
+ms.date: 07/17/2018
 ms.author: alkohli
-ms.openlocfilehash: fe9292459134972b44037a58235cdd817030a956
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.component: common
+ms.openlocfilehash: 2484d01c268757ef612ba7b397b80b8ea4c4e76a
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34660311"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39528141"
 ---
 # <a name="use-the-azure-importexport-service-to-import-data-to-azure-blob-storage"></a>Azure Import/Export サービスを使用して Azure Blob Storage にデータをインポートする
 
@@ -24,12 +24,20 @@ ms.locfileid: "34660311"
 Azure Blob Storage にデータを転送するインポート ジョブを作成する前に、このサービスの次の前提条件の一覧を慎重に確認してください。 前提条件は、以下のとおりです。
 
 - Import/Export サービスに使用できるアクティブな Azure サブスクリプションがある。
-- ストレージ コンテナーがある Azure ストレージ アカウントを少なくとも 1 つは持っている。 [Import/Export サービスでサポートしているストレージ アカウントとストレージの種類](storage-import-export-requirements.md)の一覧を参照してください。 新しいストレージ アカウントの作成については、「 [ストレージ アカウントの作成方法](storage-create-storage-account.md#create-a-storage-account)」を参照してください。 ストレージ コンテナーについては、[ストレージ コンテナーの作成](../blobs/storage-quickstart-blobs-portal.md#create-a-container)に関するセクションを参照してください。
+- ストレージ コンテナーがある Azure ストレージ アカウントを少なくとも 1 つは持っている。 [Import/Export サービスでサポートしているストレージ アカウントとストレージの種類](storage-import-export-requirements.md)の一覧を参照してください。 
+    - 新しいストレージ アカウントの作成については、「 [ストレージ アカウントの作成方法](storage-create-storage-account.md#create-a-storage-account)」を参照してください。 
+    - ストレージ コンテナーについては、[ストレージ コンテナーの作成](../blobs/storage-quickstart-blobs-portal.md#create-a-container)に関するセクションを参照してください。
 - 十分な数の[サポートされている種類](storage-import-export-requirements.md#supported-disks)のディスクがある。 
 - [サポートされている OS バージョン](storage-import-export-requirements.md#supported-operating-systems)を実行している Windows システムがある。 
 - Windows システムで BitLocker を有効にする。 [BitLocker を有効にする方法](http://thesolving.com/storage/how-to-enable-bitlocker-on-windows-server-2012-r2/)に関するページを参照してください。
 - Windows システムに [WAImportExport バージョン 1 をダウンロード](https://www.microsoft.com/en-us/download/details.aspx?id=42659)します。 既定のフォルダー `waimportexportv1` に解凍します。 たとえば、「`C:\WaImportExportV1`」のように入力します。
-
+- FedEx または DHL のアカウントを用意します。  
+    - アカウントは、有効で、残高があり、差出人住所の機能を持っている必要があります。
+    - エクスポート ジョブの追跡番号を生成します。
+    - すべてのジョブに個別の追跡番号が必要です。 同じ追跡番号を持つ複数のジョブはサポートされていません。
+    - 運送業者アカウントがいない場合、次に移動します。
+        - [FedEX アカウントを作成するか](https://www.fedex.com/en-us/create-account.html)、または 
+        - [DHL アカウントを作成します](http://www.dhl-usa.com/en/express/shipping/open_account.html)。
 
 ## <a name="step-1-prepare-the-drives"></a>手順 1: ドライブを準備する
 
@@ -107,16 +115,19 @@ Azure Blob Storage にデータを転送するインポート ジョブを作成
 
     - ドロップダウン リストから運送業者を選択します。
     - その運送業者で作成した有効な運送業者アカウント番号を入力します。 Microsoft は、インポート ジョブの完了後、このアカウントを使ってドライブを返送します。 アカウント番号をお持ちでない場合は、[FedEx](http://www.fedex.com/us/oadr/) または [DHL](http://www.dhl.com/) の運送業者アカウントを作成してください。
-    - 完全かつ有効な連絡先の名前、電話番号、電子メール、番地、市区町村、郵便番号、都道府県、国/地域を指定します。
+    - 完全かつ有効な連絡先の名前、電話番号、電子メール、番地、市区町村、郵便番号、都道府県、国/地域を指定します。 
+        
+        > [!TIP] 
+        > 1 人のユーザーの電子メール アドレスを指定する代わりに、グループ メール アドレスを提供します。 これにより、管理者が離れる場合でも、通知を受信します。
 
-    ![インポート ジョブを作成する - 手順 3](./media/storage-import-export-data-to-blobs/import-to-blob5.png)
+    ![インポート ジョブの作成 - ステップ 3](./media/storage-import-export-data-to-blobs/import-to-blob5.png)
    
 5. **[概要]** で次の操作を実行します。
 
     - 概要に表示されているジョブ情報を確認します。 ジョブ名と、Azure にディスクを送付するために使用する Azure データセンターの送付先住所をメモします。 この情報は、後で配送先住所ラベルに使用します。
     - **[OK]** をクリックしてインポート ジョブを作成します。
 
-    ![インポート ジョブを作成する - 手順 4](./media/storage-import-export-data-to-blobs/import-to-blob4.png)
+    ![インポート ジョブを作成する - 手順 4](./media/storage-import-export-data-to-blobs/import-to-blob6.png)
 
 ## <a name="step-3-ship-the-drives"></a>手順 3: ドライブを送付する 
 
@@ -127,6 +138,9 @@ Azure Blob Storage にデータを転送するインポート ジョブを作成
 
 [!INCLUDE [storage-import-export-update-job-tracking](../../../includes/storage-import-export-update-job-tracking.md)]
 
+## <a name="step-5-verify-data-upload-to-azure"></a>手順 5: Azure へのデータのアップロードを確認する
+
+完了するまでジョブを監視します。 ジョブが完了したら、データが Azure にアップロードされたことを確認します。 アップロードが成功したことを確認した後にのみ、オンプレミスのデータを削除します。
 
 ## <a name="next-steps"></a>次の手順
 

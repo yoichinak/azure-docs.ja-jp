@@ -14,11 +14,12 @@ ms.topic: tutorial
 ms.date: 04/17/2018
 ms.author: cephalin
 ms.custom: mvc
-ms.openlocfilehash: 1b51638754287d3359eaea7bd5da3f71bf15cc89
-ms.sourcegitcommit: fa493b66552af11260db48d89e3ddfcdcb5e3152
+ms.openlocfilehash: 173588c0200666c52f3ac0a5d2e70d667cfe3294
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/23/2018
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39445563"
 ---
 # <a name="tutorial-secure-sql-database-connection-with-managed-service-identity"></a>チュートリアル: マネージド サービス ID による SQL Database 接続のセキュリティ保護
 
@@ -32,6 +33,9 @@ ms.lasthandoff: 04/23/2018
 > * Azure Active Directory 認証を使用して SQL Database で認証するようにアプリケーション コードを構成する
 > * SQL Database 内でサービス ID に最小限の特権を付与する
 
+> [!NOTE]
+> Azure Active Directory 認証は、オンプレミスの Active Directory (AD DS) の[統合 Windows 認証](/previous-versions/windows/it-pro/windows-server-2003/cc758557(v=ws.10))とは_異なります_。 AD DS と Azure Active Directory はまったく異なる認証プロトコルを使用しています。 詳細については、「[The difference between Windows Server AD DS and Azure AD](../active-directory/fundamentals/understand-azure-identity-solutions.md#the-difference-between-windows-server-ad-ds-and-azure-ad)」(Windows Server AD DS と Azure AD の違い) を参照してください。
+
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
 ## <a name="prerequisites"></a>前提条件
@@ -44,7 +48,7 @@ ms.lasthandoff: 04/23/2018
 
 ## <a name="enable-managed-service-identity"></a>マネージド サービス ID を有効にする
 
-Azure アプリのサービス ID を有効にするには、Cloud Shell で [az webapp identity assign](/cli/azure/webapp/identity?view=azure-cli-latest#az_webapp_identity_assign) コマンドを使用します。 次のコマンドで、*\<app name>* を置き換えます。
+Azure アプリのサービス ID を有効にするには、Cloud Shell で [az webapp identity assign](/cli/azure/webapp/identity?view=azure-cli-latest#az-webapp-identity-assign) コマンドを使用します。 次のコマンドで、*\<app name>* を置き換えます。
 
 ```azurecli-interactive
 az webapp identity assign --resource-group myResourceGroup --name <app name>
@@ -64,12 +68,12 @@ Azure Active Directory に ID が作成された後の出力の例を次に示�
 次の手順では、`principalId` の値を使用します。 Azure Active Directory 内の新しい ID の詳細を表示するには、`principalId` の値を指定して次のオプション コマンドを実行します。
 
 ```azurecli-interactive
-az ad sp show --id <principalid>`
+az ad sp show --id <principalid>
 ```
 
 ## <a name="grant-database-access-to-identity"></a>データベースへのアクセスを ID に許可する
 
-次に、Cloud Shell 内で [`az sql server ad-admin create`](/cli/azure/sql/server/ad-admin?view=azure-cli-latest#az_sql_server_ad-admin_create) コマンドを使用して、データベースへのアクセスをアプリのサービス ID に許可します。 次のコマンドで、*\<server_name>* と <principalid_from_last_step> を置き換えます。 *\<admin_user>* には管理者名を入力します。
+次に、Cloud Shell 内で [`az sql server ad-admin create`](/cli/azure/sql/server/ad-admin?view=azure-cli-latest#az-sql-server-ad-admin_create) コマンドを使用して、データベースへのアクセスをアプリのサービス ID に許可します。 次のコマンドで、*\<server_name>* と <principalid_from_last_step> を置き換えます。 *\<admin_user>* には管理者名を入力します。
 
 ```azurecli-interactive
 az sql server ad-admin create --resource-group myResourceGroup --server-name <server_name> --display-name <admin_user> --object-id <principalid_from_last_step>
@@ -79,7 +83,7 @@ az sql server ad-admin create --resource-group myResourceGroup --server-name <se
 
 ## <a name="modify-connection-string"></a>接続文字列を変更する
 
-Cloud Shell 内で [`az webapp config appsettings set`](/cli/azure/webapp/config/appsettings?view=azure-cli-latest#az_webapp_config_appsettings_set) コマンドを使用して、以前にアプリに設定した接続を変更します。 次のコマンドで、*\<app name>* をアプリ名に置き換え、*\<server_name>* と *\<db_name>* を SQL Database の対応する情報に置き換えます。
+Cloud Shell 内で [`az webapp config appsettings set`](/cli/azure/webapp/config/appsettings?view=azure-cli-latest#az-webapp-config-appsettings-set) コマンドを使用して、以前にアプリに設定した接続を変更します。 次のコマンドで、*\<app name>* をアプリ名に置き換え、*\<server_name>* と *\<db_name>* を SQL Database の対応する情報に置き換えます。
 
 ```azurecli-interactive
 az webapp config connection-string set --resource-group myResourceGroup --name <app name> --settings MyDbConnection='Server=tcp:<server_name>.database.windows.net,1433;Database=<db_name>;' --connection-string-type SQLAzure
@@ -156,7 +160,7 @@ Cloud Shell 内で、アプリのマネージド サービス ID を、次のス
 ```azurecli-interactive
 groupid=$(az ad group create --display-name myAzureSQLDBAccessGroup --mail-nickname myAzureSQLDBAccessGroup --query objectId --output tsv)
 msiobjectid=$(az webapp identity show --resource-group <group_name> --name <app_name> --query principalId --output tsv)
-az ad group member add --group $groupid --member-id $msiid
+az ad group member add --group $groupid --member-id $msiobjectid
 az ad group member list -g $groupid
 ```
 

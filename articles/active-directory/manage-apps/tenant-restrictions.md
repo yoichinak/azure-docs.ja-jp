@@ -11,16 +11,16 @@ ms.component: app-mgmt
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 05/15/2018
 ms.author: barbkess
 ms.reviewer: richagi
-ms.openlocfilehash: dd86ad6b9a60c8a44dd73b31d908838d9c213fd1
-ms.sourcegitcommit: 6f6d073930203ec977f5c283358a19a2f39872af
+ms.openlocfilehash: 4a5cb7d15627ac3e48b72567ec3740377b2a0264
+ms.sourcegitcommit: f86e5d5b6cb5157f7bde6f4308a332bfff73ca0f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35302604"
+ms.lasthandoff: 07/31/2018
+ms.locfileid: "39365672"
 ---
 # <a name="use-tenant-restrictions-to-manage-access-to-saas-cloud-applications"></a>テナント制限を使用して SaaS クラウド アプリケーションへのアクセスを管理する
 
@@ -97,7 +97,7 @@ login.microsoftonline.com、login.microsoft.com、login.windows.net へのすべ
 
 企業プロキシ インフラストラクチャでテナント制限の構成が完了すると、管理者は Azure Portal でテナント制限レポートに直接アクセスできます。 レポートを表示するには、Azure Active Directory の [概要] ページに移動し、[その他の機能] を確認します。
 
-Restricted-Access-Context テナントとして指定されたテナントの管理者は、このレポートを使用して、テナント制限ポリシーによってブロックされたすべてのサインイン (使用された ID やターゲット ディレクトリ ID など) を確認できます。
+Restricted-Access-Context テナントとして指定されたテナントの管理者は、このレポートを使用して、テナント制限ポリシーによってブロックされたサインイン (使用された ID やターゲット ディレクトリ ID など) を確認できます。 制限を設定するテナントがサインインのユーザー テナントまたはリソース テナントのいずれかである場合は、サインインが含まれます。
 
 ![Azure Portal を使用した制限されたサインイン試行の表示](./media/tenant-restrictions/portal-report.png)
 
@@ -116,7 +116,7 @@ Azure Portal の他のレポートと同様に、フィルターを使用して�
 
 最新の認証をサポートする Outlook クライアントと Skype for Business クライアントでは、最新の認証が有効になっていないテナントに対して従来のプロトコルを引き続き使用できる可能性があるため、テナント制限を実質的に迂回します。 認証時に login.microsoftonline.com、login.microsoft.com、または login.windows.net に接続する場合、従来のプロトコルを使用するアプリケーションは、テナントの制限によってブロックされる可能性があります。
 
-Windows 上の Outlook の場合、エンド ユーザーが未承認の電子メール アカウントをプロファイルに追加できないようにする制限を実装することもできます。 例については、[既定以外の Exchange アカウントを追加できないようにする](http://gpsearch.azurewebsites.net/default.aspx?ref=1)グループ ポリシー設定に関するページをご覧ください。 Windows 以外のプラットフォーム上の Outlook と、すべてのプラットフォーム上の Skype for Business では、現在、テナントの制限が完全にはサポートされていません。
+Windows 上の Outlook の場合、エンド ユーザーが未承認の電子メール アカウントをプロファイルに追加できないようにする制限を実装することもできます。 例については、[既定以外の Exchange アカウントを追加できないようにする](http://gpsearch.azurewebsites.net/default.aspx?ref=1)グループ ポリシー設定に関するページをご覧ください。
 
 ## <a name="testing"></a>テスト
 

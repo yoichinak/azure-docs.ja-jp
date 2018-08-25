@@ -3,18 +3,17 @@ title: Azure Storage のライフサイクルの管理
 description: 古いデータをホットからクールおよびアーカイブ層へ移行するためのライフサイクル ポリシー ルールの作成方法について学習します。
 services: storage
 author: yzheng-msft
-manager: jwillis
 ms.service: storage
-ms.workload: storage
 ms.topic: article
 ms.date: 04/30/2018
 ms.author: yzheng
-ms.openlocfilehash: bd36cfd0cd03592396a2aa9a977124880f47ec90
-ms.sourcegitcommit: 50f82f7682447245bebb229494591eb822a62038
+ms.component: common
+ms.openlocfilehash: a3208152ddf198d00c0a158e466c9d024c17b4d6
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/08/2018
-ms.locfileid: "35248471"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39528445"
 ---
 # <a name="managing-the-azure-blob-storage-lifecycle-preview"></a>Azure Blob Storage のライフサイクルの管理 (プレビュー)
 
@@ -59,18 +58,18 @@ Get-AzureRmProviderFeature -FeatureName DLM -ProviderNamespace Microsoft.Storage
 
 要求を送信するには: 
 ```cli
-az feature register –-namespace Microsoft.Storage –-name DLM
+az feature register --namespace Microsoft.Storage --name DLM
 ```
 登録承認状態は、次のコマンドで確認できます。
 ```cli
--az feature show –-namespace Microsoft.Storage –-name DLM
+az feature show --namespace Microsoft.Storage --name DLM
 ```
 機能が承認され、正しく登録されている場合は、「登録済み」状態と表示されます。 
 
 
 ## <a name="add-or-remove-policies"></a>ポリシーの追加または削除 
 
-ポリシーを追加、編集、または削除するには、Azure portal、[PowerShell](https://www.powershellgallery.com/packages/AzureRM.Storage/5.0.3-preview)、REST API、または [.NET](https://www.nuget.org/packages/Microsoft.Azure.Management.Storage/8.0.0-preview)、[Python](https://pypi.org/project/azure-mgmt-storage/2.0.0rc3/)、[Node.js]( https://www.npmjs.com/package/azure-arm-storage/v/5.0.0)、[Ruby]( https://rubygems.org/gems/azure_mgmt_storage/versions/0.16.2) の言語のクライアント ツールを使用することができます。 
+ポリシーを追加、編集、または削除するには、Azure portal、[PowerShell](https://www.powershellgallery.com/packages/AzureRM.Storage/5.0.3-preview)、[REST API](https://docs.microsoft.com/en-us/rest/api/storagerp/storageaccounts/createorupdatemanagementpolicies)、または [.NET](https://www.nuget.org/packages/Microsoft.Azure.Management.Storage/8.0.0-preview)、[Python](https://pypi.org/project/azure-mgmt-storage/2.0.0rc3/)、[Node.js]( https://www.npmjs.com/package/azure-arm-storage/v/5.0.0)、[Ruby]( https://rubygems.org/gems/azure_mgmt_storage/versions/0.16.2) の言語のクライアント ツールを使用することができます。 
 
 ### <a name="azure-portal"></a>Azure ポータル
 
@@ -128,12 +127,12 @@ Get-AzureRmStorageAccountManagementPolicy -ResourceGroupName [resourceGroupName]
 | パラメーター名 | パラメーターのタイプ | メモ |
 |----------------|----------------|-------|
 | Name           | String | ルール名には、英数字の任意の組み合わせを含めることができます。 ルール名は大文字と小文字が区別されます。 名前は、ポリシー内で一意にする必要があります。 |
-| 型           | 列挙型の値 | プレビューで有効な値は `Lifecycle` です |
+| type           | 列挙型の値 | プレビューで有効な値は `Lifecycle` です |
 | 定義     | ライフサイクル ルールを定義するオブジェクト | 各定義は、フィルター セットとアクション セットで構成されます。 |
 
 ## <a name="rules"></a>ルール
 
-各ルール定義には、フィルター セットとアクション セットが含まれます。 次のサンプル ルールでは、プレフィックスが `foo` の基本ブロック BLOB の層を変更します。 ポリシーでは、次のようにルールが定義されています。
+各ルール定義には、フィルター セットとアクション セットが含まれます。 次のサンプル ルールでは、プレフィックスが `container1/foo` の基本ブロック BLOB の層を変更します。 ポリシーでは、次のようにルールが定義されています。
 
 - BLOB を最後に変更されたときから 30 日後にクール ストレージに階層化する
 - BLOB を最後に変更されたときから 90 日後にアーカイブ ストレージに階層化する
@@ -150,7 +149,7 @@ Get-AzureRmStorageAccountManagementPolicy -ResourceGroupName [resourceGroupName]
       "definition": {
         "filters": {
           "blobTypes": [ "blockBlob" ],
-          "prefixMatch": [ "foo" ]
+          "prefixMatch": [ "container1/foo" ]
         },
         "actions": {
           "baseBlob": {
@@ -178,7 +177,7 @@ Get-AzureRmStorageAccountManagementPolicy -ResourceGroupName [resourceGroupName]
 | フィルター名 | フィルターの種類 | メモ | 必須 |
 |-------------|-------------|-------|-------------|
 | blobTypes   | 定義済みの列挙型の値の配列。 | プレビュー リリースでは、`blockBlob` のみがサポートされています。 | [はい] |
-| prefixMatch | プレフィックスを照合する文字列の配列。 | 定義されていない場合、このルールはアカウント内のすべての BLOB に適用されます。 | いいえ  |
+| prefixMatch | プレフィックスを照合する文字列の配列。 プレフィックス文字列はコンテナー名で始まる必要があります。 たとえば、"https://myaccount.blob.core.windows.net/mycontainer/mydir/.." 以下のすべての BLOB がルールに一致する必要がある場合、プレフィックスは "mycontainer/mydir" です。 | 定義されていない場合、このルールはアカウント内のすべての BLOB に適用されます。 | いいえ  |
 
 ### <a name="rule-actions"></a>ルールのアクション
 
@@ -207,7 +206,7 @@ Get-AzureRmStorageAccountManagementPolicy -ResourceGroupName [resourceGroupName]
 
 ### <a name="move-aging-data-to-a-cooler-tier"></a>古いデータをよりクールな層に移動する
 
-次の例は、プレフィックス `foo` または `bar` が付いたブロック BLOB を移行する方法を示しています。 このポリシーでは、30 日以上変更されていない BLOB をクール ストレージに移行し、90 日間変更されていない BLOB をアーカイブ層に移行します。
+次の例は、プレフィックス `container1/foo` または `container2/bar` が付いたブロック BLOB を移行する方法を示しています。 このポリシーでは、30 日以上変更されていない BLOB をクール ストレージに移行し、90 日間変更されていない BLOB をアーカイブ層に移行します。
 
 ```json
 {
@@ -220,7 +219,7 @@ Get-AzureRmStorageAccountManagementPolicy -ResourceGroupName [resourceGroupName]
         {
           "filters": {
             "blobTypes": [ "blockBlob" ],
-            "prefixMatch": [ "foo", "bar" ]
+            "prefixMatch": [ "container1/foo", "container2/bar" ]
           },
           "actions": {
             "baseBlob": {
@@ -236,7 +235,7 @@ Get-AzureRmStorageAccountManagementPolicy -ResourceGroupName [resourceGroupName]
 
 ### <a name="archive-data-at-ingest"></a>取り込み時にデータをアーカイブする 
 
-また、クラウド内でアイドル状態のままとなり、格納されてからはほとんどアクセスされないデータもあります。 このようなデータは、取り込んだ後即座にアーカイブするのが最善です。 次のライフサイクル ポリシーは、取り込み時にデータをアーカイブするように構成されています。 この例では、プレフィックスが `archive` のストレージ アカウント内のブロック BLOB を即座にアーカイブ層に移行します。 即時の移行は、最終変更時刻後の 0 日後に BLOB に作用することによって実現されます。
+また、クラウド内でアイドル状態のままとなり、格納されてからはほとんどアクセスされないデータもあります。 このようなデータは、取り込んだ後即座にアーカイブするのが最善です。 次のライフサイクル ポリシーは、取り込み時にデータをアーカイブするように構成されています。 この例では、コンテナー `archivecontainer` 内のストレージ アカウントのブロック BLOB を即座にアーカイブ層に移行します。 即時の移行は、最終変更時刻後の 0 日後に BLOB に作用することによって実現されます。
 
 ```json
 {
@@ -249,7 +248,7 @@ Get-AzureRmStorageAccountManagementPolicy -ResourceGroupName [resourceGroupName]
         {
           "filters": {
             "blobTypes": [ "blockBlob" ],
-            "prefixMatch": [ "archive" ]
+            "prefixMatch": [ "archivecontainer" ]
           },
           "actions": {
             "baseBlob": { 
@@ -265,7 +264,7 @@ Get-AzureRmStorageAccountManagementPolicy -ResourceGroupName [resourceGroupName]
 
 ### <a name="expire-data-based-on-age"></a>古さに基づいてデータを期限切れにする
 
-データの中には、コストの削減や政府の規制への準拠のために作成後数日または数か月後に失効することが想定されているものがあります。 データを古さに基づいて削除することで有効期限日を設定するように、ライフサイクル管理ポリシーを設定できます。 次の例は、365 日より古い (プレフィックスが指定されていない) のすべてのブロック BLOB を削除するポリシーを示しています。
+データの中には、コストの削減や政府の規制への準拠のために作成後数日または数か月後に失効することが想定されているものがあります。 データを古さに基づいて削除することでデータを期限切れに設定するように、ライフサイクル管理ポリシーを設定できます。 次の例は、365 日より古い (プレフィックスが指定されていない) のすべてのブロック BLOB を削除するポリシーを示しています。
 
 ```json
 {
@@ -292,7 +291,7 @@ Get-AzureRmStorageAccountManagementPolicy -ResourceGroupName [resourceGroupName]
 
 ### <a name="delete-old-snapshots"></a>古いスナップショットを削除する
 
-保存期間中に定期的に変更およびアクセスされるデータの場合、データの古いバージョンを追跡するためにスナップショットが使用されることがよくあります。 スナップショットの古さに基づいて古いスナップショットを削除するポリシーを作成できます。 スナップショットの古さは、スナップショットの作成時刻を評価することによって決定されます。 このポリシー ルールでは、スナップショットの作成時点から 90 日以上前の、プレフィックス `activeData` を持つブロック BLOB のスナップショットを削除します。
+保存期間中に定期的に変更およびアクセスされるデータの場合、データの古いバージョンを追跡するためにスナップショットが使用されることがよくあります。 スナップショットの古さに基づいて古いスナップショットを削除するポリシーを作成できます。 スナップショットの古さは、スナップショットの作成時刻を評価することによって決定されます。 このポリシー ルールでは、スナップショットの作成時点から 90 日以上前の、コンテナー `activedata` 内のブロック BLOB のスナップショットを削除します。
 
 ```json
 {
@@ -305,7 +304,7 @@ Get-AzureRmStorageAccountManagementPolicy -ResourceGroupName [resourceGroupName]
         {
           "filters": {
             "blobTypes": [ "blockBlob" ],
-            "prefixMatch": [ "activeData" ]
+            "prefixMatch": [ "activedata" ]
           },
           "actions": {            
             "snapshot": {

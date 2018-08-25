@@ -8,14 +8,14 @@ ms.date: 02/15/2018
 ms.topic: conceptual
 ms.service: iot-edge
 services: iot-edge
-ms.openlocfilehash: 60c2c17d7a5cca66a6323f43e1ab2662afff54ee
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: 9064e0da6dde6c4b30235adf771f06a4f25d709a
+ms.sourcegitcommit: 17fe5fe119bdd82e011f8235283e599931fa671a
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34630838"
+ms.lasthandoff: 08/11/2018
+ms.locfileid: "42140111"
 ---
-# <a name="understand-azure-iot-edge-modules---preview"></a>Azure IoT Edge モジュールについて - プレビュー
+# <a name="understand-azure-iot-edge-modules"></a>Azure IoT Edge モジュールについて
 
 Azure IoT Edge では、ビジネス ロジックを*モジュール*形式でエッジに展開および管理できます。 Azure IoT Edge モジュールは、IoT Edge によって管理される計算の最小単位であり、Azure Stream Analytics などの Azure サービスまたは独自ソリューション固有のコードを含めることができます。 モジュールを開発、展開、および管理する方法を理解するには、モジュールを構成する次の 4 つの概念を考えると理解が深まります。
 
@@ -33,7 +33,11 @@ IoT Edge モジュール イメージには、IoT Edge ランタイムの管理�
 
 ![クラウド内のモジュール イメージ - デバイス上のモジュール インスタンス][1]
 
-実装では、モジュール イメージはリポジトリ内のコンテナー イメージとして存在し、モジュール インスタンスはデバイス上のコンテナーです。 Azure IoT Edge のユース ケースが増えると、新しい種類のモジュール イメージとインスタンスが作成されます。 たとえば、リソースの制約があるデバイスはコンテナーを実行できないため、ダイナミック リンク ライブラリとして存在するモジュール イメージと実行可能ファイルであるインスタンスが必要になることがあります。 
+実装では、モジュール イメージはリポジトリ内のコンテナー イメージとして存在し、モジュール インスタンスはデバイス上のコンテナーです。 
+
+<!--
+As use cases for Azure IoT Edge grow, new types of module images and instances will be created. For example, resource constrained devices cannot run containers so may require module images that exist as dynamic link libraries and instances that are executables. 
+-->
 
 ## <a name="module-identities"></a>モジュール ID
 
@@ -51,15 +55,26 @@ IoT Edge モジュール イメージには、IoT Edge ランタイムの管理�
 モジュール ツインは、モジュールの情報と構成プロパティを格納する JSON ドキュメントです。 この概念は、IoT Hub の[デバイス ツイン][lnk-device-twin]の概念に似ています。 モジュール ツインの構造は、デバイス ツインとまったく同じです。 両方の種類のツインと対話するために使用する API も同じです。 2 つの唯一の違いは、クライアント SDK をインスタンス化するために使用する ID です。 
 
 ```csharp
-// Create a DeviceClient object. This DeviceClient will act on behalf of a 
+// Create a ModuleClient object. This ModuleClient will act on behalf of a 
 // module since it is created with a module’s connection string instead 
 // of a device connection string. 
-DeviceClient client = new DeviceClient.CreateFromConnectionString(moduleConnectionString, settings); 
+ModuleClient client = new ModuleClient.CreateFromEnvironmentAsync(settings); 
 await client.OpenAsync(); 
  
-// Get the model twin 
+// Get the module twin 
 Twin twin = await client.GetTwinAsync(); 
 ```
+
+## <a name="offline-capabilities"></a>オフライン機能
+
+Azure IoT Edge は、IoT Edge デバイス上でのオフライン操作をサポートしています。 現在、これらの機能は限定されており、追加シナリオの開発が進行中です。 
+
+IoT Edge モジュールは、次の要件を満たしている場合、既定の時間よりも長くオフライン状態を継続できます。 
+
+* **メッセージ Time to Live (TTL) が有効期限切れになっていない**。 メッセージ TTL の既定値は 2 時間ですが、IoT Edge ハブのストア アンド フォワード構成で増減することができます。 
+* **オフライン時にモジュールを IoT Edge ハブに対して再認証する必要がない**。 モジュールは、IoT ハブとのアクティブな接続がある Edge ハブに対してのみ認証できます。 何らかの理由で再起動された場合には、モジュールを再認証する必要があります。 SAS トークンの有効期限が切れた後でも、モジュールから Edge ハブにメッセージを送信することはできます。 接続が再開されると、Edge ハブはモジュールからの新しいトークンを要求し、それを IoT ハブに対して検証します。 成功した場合、Edge ハブは保存されているモジュール メッセージを転送します (モジュールのトークンが期限切れになっている間に送信されたメッセージであっても)。 
+* **オフライン時にメッセージを送信したモジュールが、接続の再開時にまだ機能している**。 Edge ハブでは、IoT ハブに再接続する際、モジュール メッセージを転送する前に、新しいモジュール トークンを検証する必要があります (以前のトークンの有効期限が切れている場合)。 モジュールが新しいトークンを提供できない場合、Edge ハブはモジュールの保存済みメッセージに対してアクションを実行することができません。 
+* **Edge ハブに、メッセージを保存できるだけのディスク容量がある**。 既定では、メッセージは Edge ハブ コンテナーのファイルシステムに保存されます。 なお、メッセージを保存するためのマウント済みボリュームを指定する構成オプションもあります。 いずれの場合も、IoT ハブへの遅延配信を行うには、メッセージを保存できるだけの容量が必要になります。  
 
 ## <a name="next-steps"></a>次の手順
  - [Understand the Azure IoT Edge runtime and its architecture (Azure IoT Edge ランタイムとそのアーキテクチャについて)][lnk-runtime]

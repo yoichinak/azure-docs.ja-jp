@@ -7,14 +7,14 @@ manager: garavd
 ms.service: site-recovery
 ms.workload: storage-backup-recovery
 ms.topic: article
-ms.date: 02/14/2018
+ms.date: 07/06/2018
 ms.author: nisoneji
-ms.openlocfilehash: 17ff3ece76f854cd539172019f8d154742873bb4
-ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
+ms.openlocfilehash: 9981db7e2994b9a4f20f99f4997a89b0368d343c
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/28/2018
-ms.locfileid: "32187309"
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39423676"
 ---
 # <a name="site-recovery-deployment-planner-for-hyper-v-to-azure"></a>Hyper-V から Azure 用の Site Recovery Deployment Planner
 
@@ -84,7 +84,7 @@ Azure Site Recovery Deployment Planner の実行中のインスタンスごと�
 ## <a name="prerequisites"></a>前提条件
 このツールを Hyper-V で使用する場合、VM リストの取得、プロファイル、レポート生成という 3 つの主要なフェーズがあります。 さらに第 4 の選択肢として、スループットの計算のみを行うこともできます。 次の表には、各フェーズの実行に必要なサーバーの要件を示しています。
 
-| サーバーの要件 | [説明] |
+| サーバーの要件 | 説明 |
 |---|---|
 |VM リストの取得、プロファイル、スループット測定 |<ul><li>オペレーティング システム: Microsoft Windows Server 2016 または Microsoft Windows Server 2012 R2 </li><li>マシン構成: 8 vCPU、16 GB RAM、300 GB HDD</li><li>[Microsoft .NET Framework 4.5](https://aka.ms/dotnet-framework-45)</li><li>[Visual Studio 2012 の Microsoft Visual C++ 再頒布可能パッケージ](https://aka.ms/vcplusplus-redistributable)</li><li>このサーバーから Azure へのインターネット アクセス</li><li>Azure ストレージ アカウント</li><li>サーバー上の管理者アクセス権</li><li>100 GB 以上の空きディスク領域 (平均 3 台のディスクがある仮想マシン 1,000 台をそれぞれ 30 日間プロファイリングすることを想定)</li><li>Azure Site Recovery Deployment Planner ツールが実行される VM は、すべての Hyper-V サーバーの TrustedHosts リストに追加する必要があります。</li><li>プロファイル対象の Hyper-V サーバーの VM はすべて、ツールが実行されるクライアント VM の TrustedHosts リストに追加する必要があります。 [TrustedHosts リストへのサーバーの追加について詳細を確認してください](#steps-to-add-servers-into-trustedhosts-list)。 </li><li> このツールは、クライアントで PowerShell またはコマンドライン コンソールを使用して、管理特権で実行する必要があります</ul></ul>|
 | レポートの生成 | Microsoft Excel 2013 以降がインストールされた Windows PC または Windows Server |
@@ -94,13 +94,13 @@ Azure Site Recovery Deployment Planner の実行中のインスタンスごと�
 ## <a name="steps-to-add-servers-into-trustedhosts-list"></a>TrustedHosts リストにサーバーを追加する手順
 1.  ツールがデプロイされる VM は、プロファイル対象のすべてのホストが含まれた TrustedHosts リストを備えている必要があります。 クライアントを Trustedhosts リストに追加するには、VM で 管理特権の PowerShell を使って次のコマンドを実行します。 VM には、Windows Server 2012 R2 または Windows Server 2016 を使用できます。 
 
-            set-item wsman:\localhost\Client\TrustedHosts -value <ComputerName>[,<ComputerName>]
+            set-item wsman:\localhost\Client\TrustedHosts -value '<ComputerName>[,<ComputerName>]' -Concatenate
 
-2.  プロファイルが必要な各 Hyper-V ホストには、以下が必要です。
+1.  プロファイルが必要な各 Hyper-V ホストには、以下が必要です。
 
     a. TrustedHosts リストに対する、ツールの実行先となる VM の追加。 Hyper-V ホストで管理特権の PowerShell セッションを使って次のコマンドを実行します。
 
-            set-item wsman:\localhost\Client\TrustedHosts -value <ComputerName>[,<ComputerName>]
+            set-item wsman:\localhost\Client\TrustedHosts -value '<ComputerName>[,<ComputerName>]' -Concatenate
 
     b. PowerShell リモート処理の有効化。
 
@@ -111,10 +111,10 @@ Azure Site Recovery Deployment Planner の実行中のインスタンスごと�
 1.  最新バージョンの [Azure Site Recovery Deployment Planner](https://aka.ms/asr-deployment-planner) をダウンロードします。
 ツールは .zip フォルダーにパッケージされています。 同じツールで、VMware から Azure へのディザスター リカバリー シナリオと Hyper-V から Azure へのディザスター リカバリー シナリオの両方に対応できます。 このツールは、Hyper-V からセカンダリ サイトへのディザスター リカバリー シナリオにも使用できます。ただし、レポートの Azure インフラストラクチャ推奨事項は無視してください。
 
-2.  ツールの実行場所となる Windows Server に .zip フォルダーをコピーします。 ツールは、Windows Server 2012 R2 または Windows Server 2016 で実行できます。 プロファイル対象の VM が保持された Hyper-V クラスターまたは Hyper-V ホストに接続するために、サーバーにはネットワーク アクセスが必要です。 ツールの実行場所となる VM のハードウェア構成は、保護したい Hyper-V サーバーと同じにすることをお勧めします。 そのような構成によって、Azure Site Recovery がレプリケーションを実行している間の実際のスループットを正確に反映したレポートを得ることができます。 スループットの計算は、サーバーで利用できるネットワーク帯域幅とそのサーバーのハードウェア構成 (CPU、記憶域など) に左右されます。 このスループットは、ツールが実行されているサーバーから Azure の間で計算されます。 サーバーのハードウェア構成が Hyper-V サーバーと異なる場合、ツールによって報告される達成スループットは不正確になります。
+1.  ツールの実行場所となる Windows Server に .zip フォルダーをコピーします。 ツールは、Windows Server 2012 R2 または Windows Server 2016 で実行できます。 プロファイル対象の VM が保持された Hyper-V クラスターまたは Hyper-V ホストに接続するために、サーバーにはネットワーク アクセスが必要です。 ツールの実行場所となる VM のハードウェア構成は、保護したい Hyper-V サーバーと同じにすることをお勧めします。 そのような構成によって、Azure Site Recovery がレプリケーションを実行している間の実際のスループットを正確に反映したレポートを得ることができます。 スループットの計算は、サーバーで利用できるネットワーク帯域幅とそのサーバーのハードウェア構成 (CPU、記憶域など) に左右されます。 このスループットは、ツールが実行されているサーバーから Azure の間で計算されます。 サーバーのハードウェア構成が Hyper-V サーバーと異なる場合、ツールによって報告される達成スループットは不正確になります。
 推奨される VM 構成は、8 vCPU、16 GB RAM、300 GB HDD です。
 
-3.  zip フォルダーを展開します。
+1.  zip フォルダーを展開します。
 このフォルダーには、複数のファイルとサブフォルダーが格納されています。 実行可能ファイルは、親フォルダーにある ASRDeploymentPlanner.exe です。
 
 例: .zip ファイルを E:\ ドライブにコピーして展開します。 E:\ASR Deployment Planner_v2.2.zip

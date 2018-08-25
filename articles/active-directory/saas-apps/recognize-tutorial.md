@@ -14,12 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: jeedes
-ms.openlocfilehash: c33b066aa1ba627166021a648a548b9b39d54630
-ms.sourcegitcommit: 16ddc345abd6e10a7a3714f12780958f60d339b6
+ms.openlocfilehash: b2d5acfcb722845d7f346668597c073319f273f0
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36219059"
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39448786"
 ---
 # <a name="tutorial-azure-active-directory-integration-with-recognize"></a>チュートリアル: Azure Active Directory と Recognize の統合
 
@@ -52,7 +52,7 @@ Azure AD と Recognize の統合を構成するには、次のものが必要で
 このチュートリアルでは、テスト環境で Azure AD のシングル サインオンをテストします。 このチュートリアルで説明するシナリオは、主に次の 2 つの要素で構成されています。
 
 1. ギャラリーからの Recognize の追加
-2. Azure AD シングル サインオンの構成とテスト
+1. Azure AD シングル サインオンの構成とテスト
 
 ## <a name="adding-recognize-from-the-gallery"></a>ギャラリーからの Recognize の追加
 Azure AD への Recognize の統合を構成するには、ギャラリーから管理対象 SaaS アプリの一覧に Recognize を追加する必要があります。
@@ -63,19 +63,19 @@ Azure AD への Recognize の統合を構成するには、ギャラリーから
 
     ![Active Directory][1]
 
-2. **[エンタープライズ アプリケーション]** に移動します。 次に、**[すべてのアプリケーション]** に移動します。
+1. **[エンタープライズ アプリケーション]** に移動します。 次に、**[すべてのアプリケーション]** に移動します。
 
     ![[アプリケーション]][2]
     
-3. 新しいアプリケーションを追加するには、ダイアログの上部にある **[新しいアプリケーション]** をクリックします。
+1. 新しいアプリケーションを追加するには、ダイアログの上部にある **[新しいアプリケーション]** をクリックします。
 
     ![[アプリケーション]][3]
 
-4. 検索ボックスに、「**Recognize**」と入力します。
+1. 検索ボックスに、「**Recognize**」と入力します。
 
     ![Azure AD のテスト ユーザーの作成](./media/recognize-tutorial/tutorial_recognize_search.png)
 
-5. 結果ウィンドウで **[Recognize]** を選択し、**[追加]** をクリックして、アプリケーションを追加します。
+1. 結果ウィンドウで **[Recognize]** を選択し、**[追加]** をクリックして、アプリケーションを追加します。
 
     ![Azure AD のテスト ユーザーの作成](./media/recognize-tutorial/tutorial_recognize_addfromgallery.png)
 
@@ -89,10 +89,10 @@ Recognize で、Azure AD の **[ユーザー名]** の値を **[Username]** の�
 Recognize で Azure AD のシングル サインオンを構成してテストするには、次の構成要素を完了する必要があります。
 
 1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - ユーザーがこの機能を使用できるようにします。
-2. **[Azure AD のテスト ユーザーの作成](#creating-an-azure-ad-test-user)** - Britta Simon で Azure AD のシングル サインオンをテストします。
-3. **[Recognize テスト ユーザーの作成](#creating-a-recognize-test-user)** - Recognize で Britta Simon に対応するユーザーを作成し、Azure AD の Britta Simon にリンクさせます。
-4. **[Azure AD テスト ユーザーの割り当て](#assigning-the-azure-ad-test-user)** - Britta Simon が Azure AD のシングル サインオンを使用できるようにします。
-5. **[シングル サインオンのテスト](#testing-single-sign-on)** - 構成が機能するかどうかを確認します。
+1. **[Azure AD のテスト ユーザーの作成](#creating-an-azure-ad-test-user)** - Britta Simon で Azure AD のシングル サインオンをテストします。
+1. **[Recognize テスト ユーザーの作成](#creating-a-recognize-test-user)** - Recognize で Britta Simon に対応するユーザーを作成し、Azure AD の Britta Simon にリンクさせます。
+1. **[Azure AD テスト ユーザーの割り当て](#assigning-the-azure-ad-test-user)** - Britta Simon が Azure AD のシングル サインオンを使用できるようにします。
+1. **[シングル サインオンのテスト](#testing-single-sign-on)** - 構成が機能するかどうかを確認します。
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Azure AD シングル サインオンの構成
 
@@ -102,46 +102,46 @@ Recognize で Azure AD のシングル サインオンを構成してテスト�
 
 1. Azure Portal の **Recognize** アプリケーション統合ページで、**[シングル サインオン]** をクリックします。
 
-    ![[Configure Single Sign-On]][4]
+    ![Configure single sign-on][4]
 
-2. **[シングル サインオン]** ダイアログで、**[モード]** として **[SAML ベースのサインオン]** を選択し、シングル サインオンを有効にします。
+1. **[シングル サインオン]** ダイアログで、**[モード]** として **[SAML ベースのサインオン]** を選択し、シングル サインオンを有効にします。
  
-    ![[Configure Single Sign-On]](./media/recognize-tutorial/tutorial_recognize_samlbase.png)
+    ![Configure single sign-on](./media/recognize-tutorial/tutorial_recognize_samlbase.png)
 
-3. **[Recognize のドメインと URL]** セクションで、次の手順を実行します。
+1. **[Recognize のドメインと URL]** セクションで、次の手順を実行します。
 
-    ![[Configure Single Sign-On]](./media/recognize-tutorial/tutorial_recognize_url.png)
+    ![Configure single sign-on](./media/recognize-tutorial/tutorial_recognize_url.png)
 
     a. **[サインオン URL]** ボックスに、`https://recognizeapp.com/<your-domain>/saml/sso` のパターンを使用して URL を入力します。
 
     b. **[識別子]** ボックスに、`https://recognizeapp.com/<your-domain>` の形式で URL を入力します。
 
     > [!NOTE] 
-    > これらは実際の値ではありません。 実際のサインオン URL と識別子でこれらの値を更新してください。 サインオンの URL については、[Recognize クライアント サポート チーム](mailto:support@recognizeapp.com)に問い合わせてください。また、このチュートリアルで後述する [SSO Settings]\(SSO 設定\) セクションのサービス プロバイダー メタデータ URL を開いて識別子の値を取得できます。 が必要です。 
+    > これらは実際の値ではありません。 実際のサインオン URL と識別子でこれらの値を更新してください。 サインオンの URL については、[Recognize クライアント サポート チーム](mailto:support@recognizeapp.com)に問い合わせてください。また、このチュートリアルで後述する [SSO Settings]\(SSO 設定\) セクションのサービス プロバイダー メタデータ URL を開いて識別子の値を取得できます。 . 
  
-4. **[SAML 署名証明書]** セクションで、**[Certificate (Base64) (証明書 (Base64)) ]** をクリックし、コンピューターに証明書ファイルを保存します。
+1. **[SAML 署名証明書]** セクションで、**[Certificate (Base64) (証明書 (Base64)) ]** をクリックし、コンピューターに証明書ファイルを保存します。
 
-    ![[Configure Single Sign-On]](./media/recognize-tutorial/tutorial_recognize_certificate.png) 
+    ![Configure single sign-on](./media/recognize-tutorial/tutorial_recognize_certificate.png) 
 
-5. **[保存]** ボタンをクリックします。
+1. **[保存]** ボタンをクリックします。
 
-    ![[Configure Single Sign-On]](./media/recognize-tutorial/tutorial_general_400.png)
+    ![Configure single sign-on](./media/recognize-tutorial/tutorial_general_400.png)
 
-6. **[Recognize 構成]** セクションで、**[Recognize の構成]** をクリックして、**[サインオンの構成]** ウィンドウを開きます。 **[クイック リファレンス]** セクションから、**サインアウト URL、SAML エンティティ ID、SAML シングル サインオン サービス URL** をコピーします。
+1. **[Recognize 構成]** セクションで、**[Recognize の構成]** をクリックして、**[サインオンの構成]** ウィンドウを開きます。 **[クイック リファレンス]** セクションから、**サインアウト URL、SAML エンティティ ID、SAML シングル サインオン サービス URL** をコピーします。
 
-    ![[Configure Single Sign-On]](./media/recognize-tutorial/tutorial_recognize_configure.png) 
+    ![Configure single sign-on](./media/recognize-tutorial/tutorial_recognize_configure.png) 
 
-7. 別の Web ブラウザーのウィンドウで、管理者として Recognize テナントにサインオンします。
+1. 別の Web ブラウザーのウィンドウで、管理者として Recognize テナントにサインオンします。
 
-8. 右上にある **[Menu (メニュー)]** をクリックします。 **[Company Admin (会社の管理者)]** に移動します。
+1. 右上にある **[Menu (メニュー)]** をクリックします。 **[Company Admin (会社の管理者)]** に移動します。
    
     ![アプリ側でのシングル サインオンの構成](./media/recognize-tutorial/tutorial_recognize_000.png)
 
-9. 左側のナビゲーション ウィンドウで、 **[Settings (設定)]** をクリックします。
+1. 左側のナビゲーション ウィンドウで、 **[Settings (設定)]** をクリックします。
    
     ![アプリ側でのシングル サインオンの構成](./media/recognize-tutorial/tutorial_recognize_001.png)
 
-10. **[SSO Settings (SSO 設定)]** セクションで、次の手順に従います。
+1. **[SSO Settings (SSO 設定)]** セクションで、次の手順に従います。
    
     ![アプリ側でのシングル サインオンの構成](./media/recognize-tutorial/tutorial_recognize_002.png)
     
@@ -157,11 +157,11 @@ Recognize で Azure AD のシングル サインオンを構成してテスト�
     
     f. **[Save settings (設定の保存)]** ボタンをクリックします。 
 
-11. **[SSO Settings (SSO 設定)]** セクションに、**Service Provider Metadata url** の URL をコピーします。
+1. **[SSO Settings (SSO 設定)]** セクションに、**Service Provider Metadata url** の URL をコピーします。
    
     ![アプリ側でのシングル サインオンの構成](./media/recognize-tutorial/tutorial_recognize_003.png)
 
-12. 空白のブラウザーで**メタデータ URL リンク**を開き、メタデータ ドキュメントをダウンロードします。 次に、ファイルから EntityDescriptor 値 (entityID) をコピーし、Azure Portal の **[Recognize のドメインと URL]** セクションの **[識別子]** ボックスに貼り付けます。
+1. 空白のブラウザーで**メタデータ URL リンク**を開き、メタデータ ドキュメントをダウンロードします。 次に、ファイルから EntityDescriptor 値 (entityID) をコピーし、Azure Portal の **[Recognize のドメインと URL]** セクションの **[識別子]** ボックスに貼り付けます。
     
     ![アプリ側でのシングル サインオンの構成](./media/recognize-tutorial/tutorial_recognize_004.png)
 
@@ -180,15 +180,15 @@ Recognize で Azure AD のシングル サインオンを構成してテスト�
 
     ![Azure AD のテスト ユーザーの作成](./media/recognize-tutorial/create_aaduser_01.png) 
 
-2. **[ユーザーとグループ]** に移動し、**[すべてのユーザー]** をクリックして、ユーザーの一覧を表示します。
+1. **[ユーザーとグループ]** に移動し、**[すべてのユーザー]** をクリックして、ユーザーの一覧を表示します。
     
     ![Azure AD のテスト ユーザーの作成](./media/recognize-tutorial/create_aaduser_02.png) 
 
-3. ダイアログの上部にある **[追加]** をクリックして、**[ユーザー]** ダイアログを開きます。
+1. ダイアログの上部にある **[追加]** をクリックして、**[ユーザー]** ダイアログを開きます。
  
     ![Azure AD のテスト ユーザーの作成](./media/recognize-tutorial/create_aaduser_03.png) 
 
-4. **[ユーザー]** ダイアログ ページで、次の手順を実行します。
+1. **[ユーザー]** ダイアログ ページで、次の手順を実行します。
  
     ![Azure AD のテスト ユーザーの作成](./media/recognize-tutorial/create_aaduser_04.png) 
 
@@ -210,11 +210,11 @@ Azure AD ユーザーが Recognize にログインできるようにするには
 
 1. Recognize 企業サイトに管理者としてログインします。
 
-2. 右上にある **[Menu (メニュー)]** をクリックします。 **[Company Admin (会社の管理者)]** に移動します。
+1. 右上にある **[Menu (メニュー)]** をクリックします。 **[Company Admin (会社の管理者)]** に移動します。
 
-3. 左側のナビゲーション ウィンドウで、 **[Settings (設定)]** をクリックします。
+1. 左側のナビゲーション ウィンドウで、 **[Settings (設定)]** をクリックします。
 
-4. **[User Sync (ユーザー同期)]** セクションで、次の手順に従います。
+1. **[User Sync (ユーザー同期)]** セクションで、次の手順に従います。
    
    ![New User](./media/recognize-tutorial/tutorial_recognize_005.png "New User")
    
@@ -236,29 +236,29 @@ Azure AD ユーザーが Recognize にログインできるようにするには
 
     ![ユーザーの割り当て][201] 
 
-2. アプリケーションの一覧で **[Recognize]** を選択します。
+1. アプリケーションの一覧で **[Recognize]** を選択します。
 
-    ![[Configure Single Sign-On]](./media/recognize-tutorial/tutorial_recognize_app.png) 
+    ![Configure single sign-on](./media/recognize-tutorial/tutorial_recognize_app.png) 
 
-3. 左側のメニューで **[ユーザーとグループ]** をクリックします。
+1. 左側のメニューで **[ユーザーとグループ]** をクリックします。
 
     ![ユーザーの割り当て][202] 
 
-4. **[追加]** ボタンをクリックします。 次に、**[割り当ての追加]** ダイアログで **[ユーザーとグループ]** を選択します。
+1. **[追加]** ボタンをクリックします。 次に、**[割り当ての追加]** ダイアログで **[ユーザーとグループ]** を選択します。
 
     ![ユーザーの割り当て][203]
 
-5. **[ユーザーとグループ]** ダイアログで、ユーザーの一覧から **[Britta Simon]** を選択します。
+1. **[ユーザーとグループ]** ダイアログで、ユーザーの一覧から **[Britta Simon]** を選択します。
 
-6. **[ユーザーとグループ]** ダイアログで **[選択]** をクリックします。
+1. **[ユーザーとグループ]** ダイアログで **[選択]** をクリックします。
 
-7. **[割り当ての追加]** ダイアログで **[割り当て]** ボタンをクリックします。
+1. **[割り当ての追加]** ダイアログで **[割り当て]** ボタンをクリックします。
     
 ### <a name="testing-single-sign-on"></a>シングル サインオンのテスト
 
 このセクションの目的は、アクセス パネルを使用して Azure AD のシングル サインオン構成をテストすることです。
 
-アクセス パネルで [Recognize] タイルをクリックすると、自動的に Recognize アプリケーションにサインオンします。 アクセス パネルの詳細については、[アクセス パネルの概要](../active-directory-saas-access-panel-introduction.md)に関する記事を参照してください。
+アクセス パネルで [Recognize] タイルをクリックすると、自動的に Recognize アプリケーションにサインオンします。 アクセス パネルの詳細については、[アクセス パネルの概要](../user-help/active-directory-saas-access-panel-introduction.md)に関する記事を参照してください。
 
 ## <a name="additional-resources"></a>その他のリソース
 

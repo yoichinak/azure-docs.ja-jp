@@ -7,16 +7,17 @@ manager: douge
 assetId: 658dc064-4a4e-414b-ae5a-a977a34c930d
 ms.prod: visual-studio-dev15
 ms.technology: vs-azure
-ms.workload: azure
+ms.custom: vs-azure
+ms.workload: azure-vs
 ms.topic: conceptual
 ms.date: 8/24/2017
 ms.author: ghogen
-ms.openlocfilehash: c9828504ab40a1e62c107f218fda024be6330c23
-ms.sourcegitcommit: f06925d15cfe1b3872c22497577ea745ca9a4881
+ms.openlocfilehash: 74f5508586d073bcccc54894cce6fcde1b83fe18
+ms.sourcegitcommit: 30c7f9994cf6fcdfb580616ea8d6d251364c0cd1
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/27/2018
-ms.locfileid: "37061745"
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "42143113"
 ---
 # <a name="browse-and-manage-storage-resources-by-using-server-explorer"></a>サーバー エクスプローラーを使用したストレージ リソースの参照と管理
 
@@ -219,7 +220,7 @@ Azure Table Storage は、大量の構造化データを格納します。 こ�
 1. クエリの作成を終えたら、ダイアログ ボックスを閉じます。 クエリの結果であるテキスト形式が WCF Data Services フィルターとしてテキスト ボックスに表示されます。
 1. クエリを実行するには、緑の三角形のアイコンをクリックします。
 
-また、フィルター テキスト ボックスに WCF Data Services フィルター文字列を直接入力することで、テーブル デザイナーに表示されるエンティティ データをフィルター処理することもできます。 この種の文字列は、SQL の WHERE 句に似ていますが、サーバーには HTTP 要求として送信されます。 フィルター文字列を作成する方法の詳細については、「 [テーブル デザイナー用のフィルター文字列の作成](https://msdn.microsoft.com/library/azure/ff683669.aspx)」を参照してください。
+また、フィルター テキスト ボックスに WCF Data Services フィルター文字列を直接入力することで、テーブル デザイナーに表示されるエンティティ データをフィルター処理することもできます。 この種の文字列は、SQL の WHERE 句に似ていますが、サーバーには HTTP 要求として送信されます。 フィルター文字列を作成する方法の詳細については、「[テーブル デザイナー用のフィルター文字列の作成](https://docs.microsoft.com/azure/vs-azure-tools-table-designer-construct-filter-strings)」を参照してください。
 
 有効なフィルター文字列の例を次の図に示します。
 
@@ -264,7 +265,7 @@ Azure Table Storage は、大量の構造化データを格納します。 こ�
 
    ![Azure のストレージ アカウントの作成](./media/vs-azure-tools-storage-resources-server-explorer-browse-manage/IC744166.png)
 
-1. **[作成]** を選択します。
+1. **作成**を選択します。
 
 新しいストレージ アカウントがソリューション エクスプローラーの **[Storage]** ボックスの一覧に表示されます。
 

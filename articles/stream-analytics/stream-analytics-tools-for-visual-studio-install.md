@@ -9,17 +9,17 @@ ms.reviewer: jasonh
 ms.service: stream-analytics
 ms.topic: conceptual
 ms.date: 05/22/2018
-ms.openlocfilehash: 94ed603990859d12f709e4a6121e3736221cf10a
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: ba00d859dcfa968dcff7b321d571d61aea98463f
+ms.sourcegitcommit: 8ebcecb837bbfb989728e4667d74e42f7a3a9352
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34651180"
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "40246832"
 ---
 # <a name="install-azure-stream-analytics-tools-for-visual-studio"></a>Visual Studio の Azure Stream Analytics ツールのインストール
 Azure Stream Analytics ツールでは、Visual Studio 2017、2015、2013 がサポートされます。 この記事では、ツールのインストールとアンインストールの方法を説明します。
 
-ツールの使用について詳しくは、[Visual Studio の Azure Stream Analytics ツール](https://docs.microsoft.com/azure/stream-analytics/stream-analytics-tools-for-visual-studio)に関する記事をご覧ください。
+ツールの使用について詳しくは、[Visual Studio の Azure Stream Analytics ツール](stream-analytics-quick-create-vs.md)に関する記事をご覧ください。
 
 ## <a name="install"></a>Install
 ### <a name="visual-studio-2017"></a>Visual Studio 2017
@@ -38,7 +38,7 @@ Azure Stream Analytics ツールでは、Visual Studio 2017、2015、2013 がサ
 ### <a name="visual-studio-2013-2015"></a>Visual Studio 2013、2015
 * Visual Studio 2015 または Visual Studio 2013 Update 4 をインストールします。 Enterprise (Ultimate/Premium)、Professional、Community の各エディションがサポートされています。 Express エディションはサポートされていません。 
 * [Web Platform Installer](http://www.microsoft.com/web/downloads/platform.aspx) を使用して、Microsoft Azure SDK for .NET バージョン 2.7.1 以上をインストールします。
-* [Visual Studio の Azure Stream Analytics ツール](http://aka.ms/asatoolsvs)をインストールします。
+* [Visual Studio の Azure Stream Analytics ツール](https://www.microsoft.com/en-us/download/details.aspx?id=49504)をインストールします。
 
 ## <a name="update"></a>アップデート
 

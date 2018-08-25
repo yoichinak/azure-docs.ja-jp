@@ -10,17 +10,17 @@ ms.component: app-mgmt
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 01/31/2018
 ms.author: barbkess
 ms.reviewer: harshja
 ms.custom: it-pro
-ms.openlocfilehash: 5c231ce09add63c6e46dee0c76bbe64c438ff820
-ms.sourcegitcommit: e14229bb94d61172046335972cfb1a708c8a97a5
+ms.openlocfilehash: 85a7b133655a3b1e4ca60c28e695e3057b293fdc
+ms.sourcegitcommit: 9222063a6a44d4414720560a1265ee935c73f49e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/14/2018
-ms.locfileid: "34161545"
+ms.lasthandoff: 08/03/2018
+ms.locfileid: "39504517"
 ---
 # <a name="how-to-enable-native-client-apps-to-interact-with-proxy-applications"></a>プロキシ アプリケーションからネイティブ クライアント アプリケーションを操作する方法
 
@@ -30,7 +30,7 @@ Azure Active Directory アプリケーション プロキシを使用すると�
 
 ![エンド ユーザー、Azure Active Directory、および発行済みアプリケーション間の関係](./media/application-proxy-configure-native-client-application/richclientflow.png)
 
-認証を行い、多数のクライアント環境をサポートする Azure AD Authentication Library を使用して、ネイティブ アプリケーションを発行します。 アプリケーション プロキシは、 [ネイティブ アプリケーションから Web API のシナリオ](../develop/active-directory-authentication-scenarios.md#native-application-to-web-api)に適しています。 
+認証を行い、多数のクライアント環境をサポートする Azure AD Authentication Library を使用して、ネイティブ アプリケーションを発行します。 アプリケーション プロキシは、 [ネイティブ アプリケーションから Web API のシナリオ](../develop/authentication-scenarios.md#native-application-to-web-api)に適しています。 
 
 この記事では、アプリケーション プロキシと Azure AD Authentication Library を使用してネイティブ アプリケーションを発行するための 4 つの手順を説明します。 
 
@@ -46,9 +46,9 @@ Azure Active Directory アプリケーション プロキシを使用すると�
 4. アプリケーションの名前を指定し、アプリケーションの種類として **[ネイティブ]** を選択し、アプリケーションのリダイレクト URI を指定します。 
 
    ![新しいアプリ登録の作成](./media/application-proxy-configure-native-client-application/create.png)
-5. **[作成]** を選択します。
+5. **作成**を選択します。
 
-新しいアプリ登録の作成について詳しくは、「[Azure Active Directory とアプリケーションの統合](./../develop/active-directory-integrating-applications.md)」をご覧ください。
+新しいアプリ登録の作成について詳しくは、「[Azure Active Directory とアプリケーションの統合](../develop/quickstart-v1-integrate-apps-with-azure-ad.md)」をご覧ください。
 
 
 ## <a name="step-3-grant-access-to-other-applications"></a>手順 3: 他のアプリケーションに対するアクセスの許可
@@ -96,6 +96,6 @@ HttpResponseMessage response = await httpClient.GetAsync("< Proxy App API Url >"
 
 ## <a name="next-steps"></a>次の手順
 
-ネイティブ アプリケーション フローの詳細については、「[ネイティブ アプリケーション対 Web API](../develop/active-directory-authentication-scenarios.md#native-application-to-web-api)」をご覧ください。
+ネイティブ アプリケーション フローの詳細については、「[ネイティブ アプリケーション対 Web API](../develop/authentication-scenarios.md#native-application-to-web-api)」をご覧ください。
 
 [アプリケーション プロキシのシングル サインオン](application-proxy-single-sign-on.md)の設定に関する記事を参照します。

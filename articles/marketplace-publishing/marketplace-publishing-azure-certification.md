@@ -3,8 +3,8 @@ title: Microsoft Azure 認定プログラムを介した事前承認 | Microsoft
 description: Microsoft Azure 認定パートナー プログラムと、Azure Marketplace で仮想マシン イメージ、ソリューション テンプレート、開発者向けサービス、またはデータ サービスを販売する方法について紹介します
 services: marketplace-publishing
 documentationcenter: na
-author: msmbaldwin
-manager: mbaldwin
+author: HannibalSII
+manager: hascipio
 editor: ''
 tags: ''
 ms.assetid: 7e9ebf17-07a1-4796-921f-d1d62046892d
@@ -14,13 +14,13 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/05/2016
-ms.author: mbaldwin
-ms.openlocfilehash: 6db5c8dc6aba4246b3672cf7931a266b26ad11db
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.author: hascipio
+ms.openlocfilehash: aadc695b1f07d04f1fcc7f2f2e3ff90fb7f54849
+ms.sourcegitcommit: d16b7d22dddef6da8b6cfdf412b1a668ab436c1f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/16/2018
-ms.locfileid: "29939010"
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39714006"
 ---
 # <a name="get-pre-approved-via-the-microsoft-azure-certified-program"></a>Microsoft Azure 認定プログラムを介した事前承認
 この記事では、ご自身のソリューションを Azure Marketplace に発行して、マーケティング メリットを得られるように、Microsoft Azure 認定を受ける方法について説明します。 Microsoft Azure 認定プログラムとその利点の詳細については、[http://azure.com/certified](http://azure.com/certified) をご覧ください。
@@ -41,4 +41,5 @@ ms.locfileid: "29939010"
 Microsoft Azure 認定プログラムから事前承認を受けたら、[Microsoft 販売者としての Microsoft アカウント登録](marketplace-publishing-accounts-creation-registration.md)に関するページにに進むことができます。
 
 ## <a name="see-also"></a>関連項目
-* [Microsoft Azure Marketplace へのプランの発行方法](marketplace-publishing-getting-started.md)
+* 
+  [概要: Azure Marketplace へのプランの発行方法](marketplace-publishing-getting-started.md)

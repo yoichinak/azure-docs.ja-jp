@@ -2,34 +2,26 @@
 title: Azure Storage クライアントのセキュリティで保護された TLS の有効化 | Microsoft Docs
 description: Azure Storage のクライアントで TLS 1.2 を有効にする方法について説明します。
 services: storage
-documentationcenter: na
 author: fhryo-msft
-manager: cbrooks
-editor: fhryo-msft
-ms.assetid: ''
 ms.service: storage
-ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: storage
 ms.date: 06/25/2018
 ms.author: fryu
-ms.openlocfilehash: 5c21df2b3bdeee6ac7c3956fe1cafa4f947dd6dd
-ms.sourcegitcommit: 150a40d8ba2beaf9e22b6feff414f8298a8ef868
+ms.component: common
+ms.openlocfilehash: 47cc38226799c5fd3afa2e13e7731a7683b736ba
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/27/2018
-ms.locfileid: "37034867"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39527519"
 ---
 # <a name="enable-secure-tls-for-azure-storage-client"></a>Azure Storage クライアントのセキュリティで保護された TLS の有効化
 
-最新のコンプライアンスとセキュリティの要件に基づいて Azure Storage の使用時にサービスを監査する必要がある場合は、SSL 1.0、2.0、3.0、および TLS 1.0 がコンプライアンスに準拠していない通信プロトコルとして認識されます。
-
-SSL 1.0、2.0、および 3.0 は脆弱性があることが確認されています。 これらは RFC で禁止されています。 TLS 1.0 は、安全でないブロック暗号 (DES CBC と RC2 CBC) およびストリーム暗号 (RC4) を使用する際にセキュリティが確保されません。 PCI 協議会も新しいバージョンの TLS への移行を推奨しています。 詳しくは、[トランスポート層セキュリティ (TLS)](https://en.wikipedia.org/wiki/Transport_Layer_Security#SSL_1.0.2C_2.0_and_3.0) に関する記事をご覧ください。
+TLS (トランスポート層セキュリティ) と SSL (Secure Sockets Layer) は、コンピューター ネットワーク上の通信にセキュリティを確保する暗号プロトコルです。 SSL 1.0、2.0、および 3.0 は脆弱性があることが確認されています。 これらは RFC で禁止されています。 TLS 1.0 は、安全でないブロック暗号 (DES CBC と RC2 CBC) およびストリーム暗号 (RC4) を使用する際にセキュリティが確保されません。 PCI 協議会も新しいバージョンの TLS への移行を推奨しています。 詳しくは、[トランスポート層セキュリティ (TLS)](https://en.wikipedia.org/wiki/Transport_Layer_Security#SSL_1.0.2C_2.0_and_3.0) に関する記事をご覧ください。
 
 Azure Storage では 2015 年以降 SSL 3.0 の使用を停止しており、パブリック HTTPs エンドポイントでは TLS 1.2 を使用しています。ただし、下位互換性を確保するために TLS 1.0 と TLS 1.1 は引き続きサポートされています。
 
-Azure Storage に対するセキュリティで保護され、コンプライアンスに準拠した接続を確保するには、クライアント側で TLS 1.2 を有効にしてから Azure Storage サービスを操作する要求を送信する必要があります。
+Azure Storage に対するセキュリティで保護され、コンプライアンスに準拠した接続を確保するには、クライアント側で TLS 1.2 以降のバージョンを有効にしてから Azure Storage サービスを操作する要求を送信する必要があります。
 
 ## <a name="enable-tls-12-in-net-client"></a>.NET クライアントでの TLS 1.2 の有効化
 
@@ -86,3 +78,5 @@ Fiddler を使用すると、TLS 1.2 が実際に使用されるかどうかを�
 ## <a name="see-also"></a>関連項目
 
 * [トランスポート層セキュリティ (TLS)](https://en.wikipedia.org/wiki/Transport_Layer_Security#SSL_1.0.2C_2.0_and_3.0)
+* [TLS での PCI 準拠](https://blog.pcisecuritystandards.org/migrating-from-ssl-and-early-tls)
+* [Java クライアントで TLS を有効にする](https://www.java.com/en/configure_crypto.html)

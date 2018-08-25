@@ -3,8 +3,8 @@ title: Azure Functions でサポートされている言語
 description: どの言語がサポートされているか (GA) と、どの言語が試験段階またはプレビューの段階であるかを説明します。
 services: functions
 documentationcenter: na
-author: tdykstra
-manager: cfowler
+author: ggailey777
+manager: jeconnoc
 editor: ''
 tags: ''
 ms.service: functions
@@ -12,14 +12,14 @@ ms.devlang: dotnet
 ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 11/07/2017
-ms.author: tdykstra
-ms.openlocfilehash: 5786a206b258cfe7c48f52ead9b5a4cceb64cd5f
-ms.sourcegitcommit: c7215d71e1cdeab731dd923a9b6b6643cee6eb04
+ms.date: 08/02/2018
+ms.author: glenga
+ms.openlocfilehash: 2de2ebdea41ca35e853b37ab804e516eb7f4df9f
+ms.sourcegitcommit: eaad191ede3510f07505b11e2d1bbfbaa7585dbd
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/17/2017
-ms.locfileid: "24879406"
+ms.lasthandoff: 08/03/2018
+ms.locfileid: "39494450"
 ---
 # <a name="supported-languages-in-azure-functions"></a>Azure Functions でサポートされている言語
 
@@ -41,19 +41,19 @@ ms.locfileid: "24879406"
 
 ### <a name="experimental-languages"></a>試験段階の言語
 
-1.x の試験段階の言語は、スケーリングが適切に行われず、一部のバインドがサポートされていません。 たとえば、Python の場合、Functions ランタイムが関数呼び出しごとに *python.exe* を実行するため、低速になります。 また、Python では HTTP バインドがサポートされていますが、要求オブジェクトにアクセスできません。
+バージョン 1.x の試験段階の言語は、スケーリングが適切に行われず、一部のバインドがサポートされていません。 たとえば、Python の場合、Functions ランタイムが関数呼び出しごとに *python.exe* を実行するため、低速になります。 また、Python では HTTP バインドがサポートされていますが、要求オブジェクトにアクセスできません。
 
-PowerShell の試験段階のサポートは、バージョン 4.0 に制限されています。Function アプリを実行する VM にインストールされるのがこのバージョンであるためです。 PowerShell スクリプトを実行する場合は、[Azure Automation](https://azure.microsoft.com/services/automation/) を検討してください。
-
-2.x ランタイムでは、試験段階の言語はサポートされていません。 2.x では、その言語でスケーリングが適切に行われ、高度なトリガーがサポートされる場合にだけ、その言語のサポートを追加します。
+PowerShell の試験段階のサポートは、バージョン 5.1 に制限されています。これは、関数アプリが実行される VM に既定でインストールされるのがこのバージョンであるためです。 PowerShell スクリプトを実行する場合は、[Azure Automation](https://azure.microsoft.com/services/automation/) を検討してください。
 
 1.x だけで使用できるいずれかの言語を使用する場合は、1.x ランタイムを使用し続けてください。 ただし、信頼性が大切である場合には、試験段階の言語は使用しないでください。それらの言語には公式なサポートがありません。 [GitHub で問題を作成する](https://github.com/Azure/azure-webjobs-sdk-script/issues)ことによって支援を依頼することができますが、試験段階の言語に関する問題についてはサポート ケースを開かないでください。 
+
+バージョン 2.x ランタイムでは、試験段階の言語はサポートされていません。 新しい言語のサポートは、運用環境でその言語をサポートできる場合にのみ追加されます。 
 
 ### <a name="language-extensibility"></a>言語拡張
 
 2.x ランタイムは、[言語拡張](https://github.com/Azure/azure-webjobs-sdk-script/wiki/Language-Extensibility)を提供するように設計されています。 この拡張モデルに基づく最初の言語として、Java などがあります。Java は、2.x ではプレビューです。
 
-## <a name="next-steps"></a>次のステップ
+## <a name="next-steps"></a>次の手順
 
 Azure Functions で GA またはプレビューであるいずれかの言語を使用する方法の詳細については、以下のリソースを参照してください。
 

@@ -12,14 +12,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 05/03/2018
+ms.date: 08/08/2018
 ms.author: kumud
-ms.openlocfilehash: 20897137c617ddf9a33a8f4966bcd7e30ac7c60c
-ms.sourcegitcommit: 1b8665f1fff36a13af0cbc4c399c16f62e9884f3
+ms.openlocfilehash: dad76ab9f2a1a621fb513a4d411792fe2f88a557
+ms.sourcegitcommit: d0ea925701e72755d0b62a903d4334a3980f2149
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35261935"
+ms.lasthandoff: 08/09/2018
+ms.locfileid: "40005877"
 ---
 # <a name="azure-load-balancer-standard-overview"></a>Azure Load Balancer Standard の概要
 
@@ -40,7 +40,7 @@ Standard Load Balancer は、パブリック ロード バランサーまたは�
 ロード バランサー リソースはオブジェクトであり、その中では、ユーザーが作成したいシナリオを実現するために Azure がそのマルチ テナント インフラストラクチャをプログラミングする方法を表すことができます。  ロード バランサー リソースと実際のインフラストラクチャの間に直接的な関係はありません。ロード バランサーを作成してもインスタンスは作成されず、容量は常に使用可能であり、考慮しなければならない起動時またはスケーリング時の遅延はありません。 
 
 >[!NOTE]
-> Azure では、ユーザーのシナリオのために完全に管理された負荷分散ソリューションのスイートが提供されます。  TLS 終端 ("SSL オフロード") または HTTP/HTTPS 要求によるアプリケーション レイヤーの処理が必要な場合は、「[Application Gateway](../application-gateway/application-gateway-introduction.md)」をご覧ください。  グローバル DNS の負荷分散が必要な場合は、「[Traffic Manager](../traffic-manager/traffic-manager-overview.md)」をご覧ください。  実際のエンド ツー エンドのシナリオでは、必要に応じてこれらのソリューションを組み合わせると役に立つことがあります。
+> Azure では、ユーザーのシナリオのためにフル マネージドの負荷分散ソリューションのスイートが提供されます。  TLS 終端 ("SSL オフロード") または HTTP/HTTPS 要求によるアプリケーション レイヤーの処理が必要な場合は、「[Application Gateway](../application-gateway/application-gateway-introduction.md)」をご覧ください。  グローバル DNS の負荷分散が必要な場合は、「[Traffic Manager](../traffic-manager/traffic-manager-overview.md)」をご覧ください。  実際のエンド ツー エンドのシナリオでは、必要に応じてこれらのソリューションを組み合わせると役に立つことがあります。
 
 ## <a name="why-use-standard-load-balancer"></a>Standard Load Balancer を使用する理由
 
@@ -49,21 +49,9 @@ Standard Load Balancer を使用すると、アプリケーションをスケー
 Standard Load Balancer と Basic Load Balancer の違いの概要については、次の表をご覧ください。
 
 >[!NOTE]
-> 新しい設計では、Standard Load Balancer の使用を検討する必要があります。 
+> 新しい設計では、Standard Load Balancer の採用をお勧めします。 
 
-| | Standard SKU | Basic SKU |
-| --- | --- | --- |
-| バックエンド プールのサイズ | 最大 1000 インスタンス | 最大 100 インスタンス |
-| バックエンド プール エンドポイント | 仮想マシン、可用性セット、仮想マシン スケール セットの組み合わせを含む、単一の仮想ネットワーク内の任意の仮想マシン | 単一の可用性セットまたは仮想マシン スケール セット内の仮想マシン |
-| 可用性ゾーン | 受信と送信に対するゾーン冗長とゾーン フロントエンド、送信フロー マッピングによりゾーン障害に耐久、ゾーン間の負荷分散 | / |
-| 診断 | Azure Monitor、バイト カウンターとパケット カウンターを含む多次元メトリック、正常性プローブの状態、接続試行 (TCP SYN)、送信接続の正常性 (SNAT 成功および失敗のフロー)、アクティブなデータ プレーン測定 | パブリック ロード バランサーに対する Azure Log Analytics のみ、SNAT 枯渇アラート、バックエンド プール正常性カウント |
-| HA ポート | 内部ロード バランサー | / |
-| 既定でのセキュリティ保護 | パブリック IP とロード バランサー エンドポイントに対して既定でクローズ、トラフィックが流れるためにはネットワーク セキュリティ グループを使ってホワイト リストへの明示的な登録が必要 | 既定でオープン、ネットワーク セキュリティ グループは任意 |
-| 送信接続 | ルールによるオプトアウトを使用する複数のフロントエンド。仮想マシンが送信接続を使用できるためには、送信シナリオを明示的に作成する "_必要があります_"。  [VNet サービス エンドポイント](../virtual-network/virtual-network-service-endpoints-overview.md)には送信接続なしで到達でき、処理されたデータにはカウントされません。  VNet サービス エンドポイントとして使用できない Azure PaaS サービスなどのすべてのパブリック IP アドレスは、送信接続を介して到達する必要があり、処理されたデータにカウントされます。 内部ロード バランサーだけが仮想マシンに対応しているときは、既定の SNAT による送信接続は利用できません。 送信 SNAT プログラミングは、受信負荷分散ルールのプロトコルに基づくトランスポート プロトコル固有です。 | 単一のフロントエンド。複数のフロントエンドが存在する場合は、ランダムに選ばれます。  内部ロード バランサーだけが仮想マシンに対応している場合は、既定の SNAT が使われます。 |
-| 複数のフロントエンド | 受信および送信 | 受信のみ |
-| 管理操作 | ほとんどの操作は 30 秒未満 | 一般に 60 ～ 90 秒以上 |
-| SLA | 2 つの正常な仮想マシンが存在するデータ パスで 99.99% | VM SLA で暗黙 | 
-| 価格 | ルールの数、リソースに関連付けられた受信または送信で処理されたデータに基づいて課金  | 課金なし |
+[!INCLUDE [comparison table](../../includes/load-balancer-comparison-table.md)]
 
 [ロード バランサーのサービス制限](https://aka.ms/lblimits)、[価格](https://aka.ms/lbpricing)、[SLA](https://aka.ms/lbsla) に関するページをご覧ください。
 
@@ -76,7 +64,15 @@ Standard Load Balancer バックエンド プールは、仮想ネットワー�
 
 バックエンド プールの設計方法を検討するときは、個々のバックエンド プール リソースを最小限の数に設計して、管理操作の期間をさらに最適化できます。  データ プレーンのパフォーマンスやスケールに違いはありません。
 
-## <a name="az"></a>可用性ゾーン
+### <a name="probes"></a>正常性プローブ
+  
+Standard Load Balancer では、HTTPS アプリケーションを正確に監視するための [HTTPS 正常性プローブ](load-balancer-custom-probe-overview.md#httpprobe) (トランスポート層セキュリティ (TLS) ラッパーを使用する HTTP プローブ) のサポートが追加されます。  
+
+また、バックエンド プール全体で[プローブがダウン](load-balancer-custom-probe-overview.md#probedown)したときに、Standard Load Balancer は確立されたすべての TCP 接続の続行を許可します  (Basic Load Balancer は、すべてのインスタンスへのすべての TCP 接続を終了します)。
+
+詳しくは、「[Load Balancer の正常性プローブ](load-balancer-custom-probe-overview.md)」をご覧ください。
+
+### <a name="az"></a>可用性ゾーン
 
 Standard Load Balancer は、可用性ゾーンを利用できるリージョンでの追加機能をサポートします。  これらの機能は、Standard Load Balancer のすべての機能に追加されます。  可用性ゾーンの構成は、パブリックと内部の Standard Load Balancer で利用できます。
 
@@ -179,7 +175,7 @@ SKU は変更不可です。 一方の SKU からもう一方の SKU に移行�
 
 ### <a name="migrate-from-basic-to-standard-sku"></a>Basic SKU から Standard SKU への移行
 
-1. 新しい Standard リソース (必要に応じて、Load Balancer とパブリック IP) を作成します。 規則とプローブ定義を再作成します。
+1. 新しい Standard リソース (必要に応じて、Load Balancer とパブリック IP) を作成します。 規則とプローブ定義を再作成します。  443/tcp に対する TCP プローブを以前に使用していた場合は、このプローブ プロトコルを HTTPS プローブに変更することを検討し、パスを追加してください。
 
 2. NIC またはサブネットで新規 NSGを作成するか、既存の NSG を更新して、負荷分散されたトラフィック、プローブ、その他の許可するすべてのトラフィックをホワイトリストに登録します。
 
@@ -189,7 +185,7 @@ SKU は変更不可です。 一方の SKU からもう一方の SKU に移行�
 
 ### <a name="migrate-from-standard-to-basic-sku"></a>Standard SKU から Basic SKU への移行
 
-1. 新しい Basic リソース (必要に応じて、Load Balancer とパブリック IP) を作成します。 規則とプローブ定義を再作成します。 
+1. 新しい Basic リソース (必要に応じて、Load Balancer とパブリック IP) を作成します。 規則とプローブ定義を再作成します。  443/tcp に対する HTTPS ブローブを TCP プローブに変更します。 
 
 2. すべての VM インスタンスから Standard SKU リソース (必要に応じて、Load Balancer とパブリック IP) を削除します。 可用性セットのすべての VM インスタンスも削除してください。
 
@@ -230,15 +226,16 @@ Standard Load Balancer は、構成された負荷分散ルールの数と、処
 
 ## <a name="next-steps"></a>次の手順
 
-- [Standard Load Balancer と可用性ゾーン](load-balancer-standard-availability-zones.md)の使用について学習する
+- [Standard Load Balancer と可用性ゾーン](load-balancer-standard-availability-zones.md)の使用について学習する。
+- [正常性プローブ](load-balancer-custom-probe-overview.md)について学習する。
 - [可用性ゾーン](../availability-zones/az-overview.md)の詳細を学習する。
 - [Standard Load Balancer の診断](load-balancer-standard-diagnostics.md)について学習する。
 - [Azure Monitor](../monitoring-and-diagnostics/monitoring-overview.md) での診断で[サポートされる多次元メトリック](../monitoring-and-diagnostics/monitoring-supported-metrics.md#microsoftnetworkloadbalancers)について学習する。
 - [送信接続に対する Load Balancer](load-balancer-outbound-connections.md) の使用について学習する。
 - [HA ポート負荷分散ルールでの Standard Load Balancer](load-balancer-ha-ports-overview.md) について学習する。
-- [複数のフロントエンドでの Load Balancer](load-balancer-multivip-overview.md) について学習する。
+- [複数のフロントエンドでの Load Balancer](load-balancer-multivip-overview.md) の使用について学習する。
 - [仮想ネットワーク](../virtual-network/virtual-networks-overview.md)について学習する。
 - [ネットワーク セキュリティ グループ](../virtual-network/security-overview.md)の詳細を確認する。
-- [VNET サービス エンドポイント](../virtual-network/virtual-network-service-endpoints-overview.md)について学習する
+- [VNET サービス エンドポイント](../virtual-network/virtual-network-service-endpoints-overview.md)について学習する。
 - Azure のその他の重要な[ネットワーク機能](../networking/networking-overview.md)について参照してください。
 - [Load Balancer](load-balancer-overview.md) について詳しく学習する。

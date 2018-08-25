@@ -3,8 +3,8 @@ title: 'Azure AD Connect: ハイブリッド Azure AD 参加の構成後タス�
 description: このドキュメントでは、ハイブリッド Azure AD 参加を完了するために必要な構成後のタスクについて詳しく説明します
 services: active-directory
 documentationcenter: ''
-author: anandyadavmsft
-manager: samueld
+author: billmath
+manager: mtillman
 editor: billmath
 ms.assetid: ''
 ms.service: active-directory
@@ -12,15 +12,15 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/27/2018
+ms.date: 08/10/2018
 ms.component: hybrid
-ms.author: anandyadavmsft
-ms.openlocfilehash: b337594f53c03ca1ddbc230473fe191bc968c92b
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.author: billmath
+ms.openlocfilehash: 05cb6d10a7e4269cbe5f9c97ef70cd9eb5a4d68e
+ms.sourcegitcommit: 30c7f9994cf6fcdfb580616ea8d6d251364c0cd1
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34593301"
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "42142752"
 ---
 # <a name="post-configuration-tasks-for-hybrid-azure-ad-join"></a>ハイブリッド Azure AD 参加の構成後のタスク
 
@@ -62,7 +62,7 @@ Azure AD への登録のため、組織ネットワーク内のコンピュー�
 
 ## <a name="6-enable-azure-ad-seamless-sso-for-windows-down-level-devices"></a>6.ダウンレベルの Windows デバイスに対して Azure AD シームレス SSO を有効にする
 
-組織が Azure AD へのサインインにパスワード ハッシュ同期またはパススルー認証を使っている場合は、ダウンレベルの Windows デバイスを認証するため、そのサインイン方法で Azure AD シームレス SSO を有効にします。https://docs.microsoft.com/en-us/azure/active-directory/connect/active-directory-aadconnect-sso をご覧ください。 
+組織が Azure AD へのサインインにパスワード ハッシュ同期またはパススルー認証を使っている場合は、ダウンレベルの Windows デバイスを認証するため、そのサインイン方法で Azure AD シームレス SSO を有効にします。https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect-sso をご覧ください。 
 
 ## <a name="7-set-azure-ad-policy-for-windows-down-level-devices"></a>7.ダウンレベルの Windows デバイスに対する Azure AD ポリシーを設定する
 
@@ -81,7 +81,7 @@ Azure AD への登録のため、組織ネットワーク内のコンピュー�
 
 ## <a name="9-install-microsoft-workplace-join-on-windows-down-level-devices"></a>9.ダウンレベルの Windows デバイスに Microsoft Workplace Join をインストールする
 
-インストーラーは、ユーザーのコンテキストで実行するデバイス システムにスケジュールされたタスクを作成します。 このタスクは、ユーザーが Windows にサインインするとトリガーされます。 このタスクは、統合 Windows 認証を使用して認証した後、ユーザーの資格情報を使用して、デバイスを Azure AD に参加させます。 ダウンロード センターは https://www.microsoft.com/en-us/download/details.aspx?id=53554 にあります。 
+インストーラーは、ユーザーのコンテキストで実行するデバイス システムにスケジュールされたタスクを作成します。 このタスクは、ユーザーが Windows にサインインするとトリガーされます。 このタスクは、統合 Windows 認証を使用して認証した後、ユーザーの資格情報を使用して、デバイスを Azure AD に参加させます。 ダウンロード センターは https://www.microsoft.com/download/details.aspx?id=53554 にあります。 
 
 ## <a name="10-configure-group-policy-to-allow-device-registration"></a>10.デバイスの登録を許可するグループ ポリシーを構成する
 

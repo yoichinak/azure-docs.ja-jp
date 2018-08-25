@@ -3,19 +3,20 @@ title: Azure SQL Database のメトリックと診断のロギング | Microsoft
 description: Azure SQL Database リソースを構成して、リソースの使用状況、接続性、およびクエリ実行の統計情報を保存する方法について説明します。
 services: sql-database
 documentationcenter: ''
-author: veljko-msft
+author: danimir
 manager: craigg
 ms.service: sql-database
 ms.custom: monitor & tune
 ms.topic: conceptual
 ms.date: 03/16/2018
-ms.author: vvasic
-ms.openlocfilehash: c9126080db4d8091b672a9250c68a5c5590e10c7
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.author: v-daljep
+ms.reviewer: carlrab
+ms.openlocfilehash: ba305b66d4b7230f2706136587c4183f81c5e9c3
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34650181"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39525503"
 ---
 # <a name="azure-sql-database-metrics-and-diagnostics-logging"></a>Azure SQL Database のメトリックと診断のロギング 
 Azure SQL Database では、監視を容易にするためのメトリックと診断ログを出力することができます。 リソース使用率、ワーカーとセッション、および接続性を次の Azure リソースのいずれかに格納するように SQL Database を構成することができます。
@@ -49,8 +50,8 @@ Azure SQL Database では、監視を容易にするためのメトリックと�
 - [QueryStoreWaitStatistics](sql-database-metrics-diag-logging.md#query-store-wait-statistics): CPU、ログ、ロック状態など、クエリが何を待機したかを示すクエリ待機統計に関する情報が含まれます。
 - [Errors](sql-database-metrics-diag-logging.md#errors-dataset): このデータベースで発生した SQL エラーに関する情報が含まれます。
 - [DatabaseWaitStatistics](sql-database-metrics-diag-logging.md#database-wait-statistics-dataset): データベースが各種の待機に費やした時間に関する情報が含まれます。
-- [Time-outs](sql-database-metrics-diag-logging.md#time-outs-dataset): データベースで発生したタイムアウトに関する情報が含まれます。
-- [Blockings](sql-database-metrics-diag-logging.md#blockings-dataset): データベースで発生したブロック イベントに関する情報が含まれます。
+- [Timeouts](sql-database-metrics-diag-logging.md#time-outs-dataset): データベースで発生したタイムアウトに関する情報が含まれます。
+- [Blocks](sql-database-metrics-diag-logging.md#blockings-dataset): データベースで発生したブロック イベントに関する情報が含まれます。
 - [SQLInsights](sql-database-metrics-diag-logging.md#intelligent-insights-dataset): Intelligent Insights が含まれます。 [Intelligent Insights](sql-database-intelligent-insights.md) の詳細。
 - **Audit** / **SQLSecurityAuditEvents**: 現在利用できません。
 
@@ -262,9 +263,11 @@ insights-{metrics|logs}-{category name}/resourceId=/SUBSCRIPTIONS/{subscription 
 
 |**リソース**|**メトリック**|
 |---|---|
-|データベース|DTU の割合、使用中の DTU、DTU の上限、CPU の割合、物理データ読み取りの割合、ログ書き込みの割合、ファイアウォール接続による成功/失敗/ブロック、セッションの割合、ワーカーの割合、ストレージ、ストレージの割合、XTP ストレージの割合、デッドロック |
+|Database|DTU の割合、使用中の DTU、DTU の上限、CPU の割合、物理データ読み取りの割合、ログ書き込みの割合、ファイアウォール接続による成功/失敗/ブロック、セッションの割合、ワーカーの割合、ストレージ、ストレージの割合、XTP ストレージの割合、デッドロック |
 |エラスティック プール|eDTU の割合、使用中の eDTU、eDTU の上限、CPU の割合、物理データ読み取りの割合、ログ書き込みの割合、セッションの割合、ワーカーの割合、ストレージ、ストレージの割合、ストレージの上限、XTP ストレージの割合 |
 |||
+
+### <a name="logs"></a>ログ
 
 ### <a name="query-store-runtime-statistics"></a>クエリ ストアのランタイム統計
 
@@ -275,7 +278,7 @@ insights-{metrics|logs}-{category name}/resourceId=/SUBSCRIPTIONS/{subscription 
 |TimeGenerated [UTC]|ログが記録されたときのタイムスタンプ。|
 |type|常に AzureDiagnostics|
 |ResourceProvider|リソース プロバイダーの名前。 常に MICROSOFT.SQL|
-|カテゴリ|カテゴリの名前。 常に QueryStoreRuntimeStatistics|
+|Category|カテゴリの名前。 常に QueryStoreRuntimeStatistics|
 |OperationName|操作の名前。 常に QueryStoreRuntimeStatisticsEvent|
 |リソース|リソースの名前。|
 |ResourceType|リソースの種類の名前。 常に SERVERS/DATABASES|
@@ -326,7 +329,7 @@ insights-{metrics|logs}-{category name}/resourceId=/SUBSCRIPTIONS/{subscription 
 |TimeGenerated [UTC]|ログが記録されたときのタイムスタンプ。|
 |type|常に AzureDiagnostics|
 |ResourceProvider|リソース プロバイダーの名前。 常に MICROSOFT.SQL|
-|カテゴリ|カテゴリの名前。 常に QueryStoreWaitStatistics|
+|Category|カテゴリの名前。 常に QueryStoreWaitStatistics|
 |OperationName|操作の名前。 常に QueryStoreWaitStatisticsEvent|
 |リソース|リソースの名前|
 |ResourceType|リソースの種類の名前。 常に SERVERS/DATABASES|
@@ -364,7 +367,7 @@ insights-{metrics|logs}-{category name}/resourceId=/SUBSCRIPTIONS/{subscription 
 |TimeGenerated [UTC]|ログが記録されたときのタイムスタンプ。|
 |type|常に AzureDiagnostics|
 |ResourceProvider|リソース プロバイダーの名前。 常に MICROSOFT.SQL|
-|カテゴリ|カテゴリの名前。 常に Errors|
+|Category|カテゴリの名前。 常に Errors|
 |OperationName|操作の名前。 常に ErrorEvent|
 |リソース|リソースの名前|
 |ResourceType|リソースの種類の名前。 常に SERVERS/DATABASES|
@@ -374,10 +377,10 @@ insights-{metrics|logs}-{category name}/resourceId=/SUBSCRIPTIONS/{subscription 
 |ElasticPoolName_s|データベースが属するエラスティック プールの名前 (存在する場合)。|
 |DatabaseName_s|データベースの名前。|
 |ResourceId|リソース URI。|
-|メッセージ|プレーンテキストのエラー メッセージ。|
+|Message|プレーンテキストのエラー メッセージ。|
 |user_defined_b|エラーがユーザー定義ビットかどうか。|
 |error_number_d|エラー コード。|
-|重大度|エラーの重大度。|
+|severity|エラーの重大度。|
 |state_d|エラーの状態。|
 |query_hash_s|使用可能な場合は、失敗したクエリのクエリ ハッシュ。|
 |query_plan_hash_s|使用可能な場合は、失敗したクエリのクエリ プラン ハッシュ。|
@@ -393,7 +396,7 @@ insights-{metrics|logs}-{category name}/resourceId=/SUBSCRIPTIONS/{subscription 
 |TimeGenerated [UTC]|ログが記録されたときのタイムスタンプ。|
 |type|常に AzureDiagnostics|
 |ResourceProvider|リソース プロバイダーの名前。 常に MICROSOFT.SQL|
-|カテゴリ|カテゴリの名前。 常に DatabaseWaitStatistics|
+|Category|カテゴリの名前。 常に DatabaseWaitStatistics|
 |OperationName|操作の名前。 常に DatabaseWaitStatisticsEvent|
 |リソース|リソースの名前|
 |ResourceType|リソースの種類の名前。 常に SERVERS/DATABASES|
@@ -422,7 +425,7 @@ insights-{metrics|logs}-{category name}/resourceId=/SUBSCRIPTIONS/{subscription 
 |TimeGenerated [UTC]|ログが記録されたときのタイムスタンプ。|
 |type|常に AzureDiagnostics|
 |ResourceProvider|リソース プロバイダーの名前。 常に MICROSOFT.SQL|
-|カテゴリ|カテゴリの名前。 常に Timeouts|
+|Category|カテゴリの名前。 常に Timeouts|
 |OperationName|操作の名前。 常に TimeoutEvent|
 |リソース|リソースの名前|
 |ResourceType|リソースの種類の名前。 常に SERVERS/DATABASES|
@@ -445,7 +448,7 @@ insights-{metrics|logs}-{category name}/resourceId=/SUBSCRIPTIONS/{subscription 
 |TimeGenerated [UTC]|ログが記録されたときのタイムスタンプ。|
 |type|常に AzureDiagnostics|
 |ResourceProvider|リソース プロバイダーの名前。 常に MICROSOFT.SQL|
-|カテゴリ|カテゴリの名前。 常に Blocks|
+|Category|カテゴリの名前。 常に Blocks|
 |OperationName|操作の名前。 常に BlockEvent|
 |リソース|リソースの名前|
 |ResourceType|リソースの種類の名前。 常に SERVERS/DATABASES|
@@ -459,6 +462,57 @@ insights-{metrics|logs}-{category name}/resourceId=/SUBSCRIPTIONS/{subscription 
 |resource_owner_type_s|ロックの所有者。|
 |blocked_process_filtered_s|ブロックされているプロセスのレポート XML。|
 |duration_d|ロック期間 (ミリ秒)。|
+
+### <a name="deadlocks-dataset"></a>デッドロック データセット
+
+|プロパティ|説明|
+|---|---|
+|TenantId|テナント ID。|
+|SourceSystem|常に Azure|
+|TimeGenerated [UTC] |ログが記録されたときのタイムスタンプ。|
+|type|常に AzureDiagnostics|
+|ResourceProvider|リソース プロバイダーの名前。 常に MICROSOFT.SQL|
+|Category|カテゴリの名前。 常に Deadlocks|
+|OperationName|操作の名前。 常に DeadlockEvent|
+|リソース|リソースの名前。|
+|ResourceType|リソースの種類の名前。 常に SERVERS/DATABASES|
+|SubscriptionId|データベースが属するサブスクリプション GUID。|
+|ResourceGroup|データベースが属するリソース グループの名前。|
+|LogicalServerName_s|データベースが属するサーバーの名前。|
+|ElasticPoolName_s|データベースが属するエラスティック プールの名前 (存在する場合)。|
+|DatabaseName_s|データベースの名前。 |
+|ResourceId|リソース URI。|
+|deadlock_xml_s|デッドロック レポート XML。|
+
+### <a name="automatic-tuning-dataset"></a>自動チューニング データセット
+
+|プロパティ|説明|
+|---|---|
+|TenantId|テナント ID。|
+|SourceSystem|常に Azure|
+|TimeGenerated [UTC]|ログが記録されたときのタイムスタンプ。|
+|type|常に AzureDiagnostics|
+|ResourceProvider|リソース プロバイダーの名前。 常に MICROSOFT.SQL|
+|Category|カテゴリの名前。 常に AutomaticTuning|
+|リソース|リソースの名前。|
+|ResourceType|リソースの種類の名前。 常に SERVERS/DATABASES|
+|SubscriptionId|データベースが属するサブスクリプション GUID。|
+|ResourceGroup|データベースが属するリソース グループの名前。|
+|LogicalServerName_s|データベースが属するサーバーの名前。|
+|LogicalDatabaseName_s|データベースの名前。|
+|ElasticPoolName_s|データベースが属するエラスティック プールの名前 (存在する場合)。|
+|DatabaseName_s|データベースの名前。|
+|ResourceId|リソース URI。|
+|RecommendationHash_s|自動チューニング推奨設定の一意のハッシュ。|
+|OptionName_s|自動チューニング オプション。|
+|Schema_s|データベース スキーマ。|
+|Table_s|影響を受けるテーブル。|
+|IndexName_s|インデックス名。|
+|IndexColumns_s|列名。|
+|IncludedColumns_s|含まれる列。|
+|EstimatedImpact_s|自動チューニング推奨設定 JSON の推定される影響。|
+|Event_s|自動チューニング イベントの種類。|
+|Timestamp_t|最終更新時のタイムスタンプ。|
 
 ### <a name="intelligent-insights-dataset"></a>Intelligent Insights データセット
 [Intelligent Insights ログ形式](sql-database-intelligent-insights-use-diagnostics-log.md)の詳細。

@@ -17,12 +17,12 @@ ms.workload: infrastructure-services
 ms.date: 02/26/2018
 ms.author: sedusch
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 79e77aa067cbb7262a945d94ce8ac1750e80b2d5
-ms.sourcegitcommit: 0c490934b5596204d175be89af6b45aafc7ff730
+ms.openlocfilehash: f6b0ea7479910f7026974e37f8c05099453c0b26
+ms.sourcegitcommit: 8ebcecb837bbfb989728e4667d74e42f7a3a9352
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/27/2018
-ms.locfileid: "37054791"
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "42143617"
 ---
 # <a name="azure-virtual-machines-dbms-deployment-for-sap-netweaver"></a>SAP NetWeaver のための Azure Virtual Machines DBMS のデプロイ
 [767598]:https://launchpad.support.sap.com/#/notes/767598
@@ -288,7 +288,7 @@ ms.locfileid: "37054791"
 [virtual-machines-sql-server-performance-best-practices]:./../../windows/sql/virtual-machines-windows-sql-performance.md
 [virtual-machines-upload-image-windows-resource-manager]:../../virtual-machines-windows-upload-image.md
 [virtual-machines-windows-tutorial]:../../virtual-machines-windows-hero-tutorial.md
-[virtual-machines-workload-template-sql-alwayson]:https://azure.microsoft.com/en-us/resources/templates/sql-server-2014-alwayson-existing-vnet-and-ad/
+[virtual-machines-workload-template-sql-alwayson]:https://azure.microsoft.com/resources/templates/sql-server-2014-alwayson-existing-vnet-and-ad/
 [virtual-network-deploy-multinic-arm-cli]:../linux/multiple-nics.md
 [virtual-network-deploy-multinic-arm-ps]:../windows/multiple-nics.md
 [virtual-network-deploy-multinic-arm-template]:../../../virtual-network/template-samples.md
@@ -481,7 +481,7 @@ Azure デプロイメントでソフトウェア RAID の使用をお勧めす�
 基盤となる Azure Storage は各ディスクを 3 つ以上のストレージ ノードにレプリケートするため、単純な RAID 0 ストライピングを使用できます。 RAID 5 や RAID 1 を実装する必要はありません。
 
 ### <a name="10b041ef-c177-498a-93ed-44b3441ab152"></a>Microsoft Azure Storage
-Microsoft Azure Storage は、ベース VM (OS を含む) とディスクまたは BLOB を 3 つ以上の個別のストレージ ノードに格納します。 ストレージ アカウントまたは管理対象ディスクを作成する場合は、次のような保護の選択肢があります。
+Microsoft Azure Storage は、ベース VM (OS を含む) とディスクまたは BLOB を 3 つ以上の個別のストレージ ノードに格納します。 ストレージ アカウントまたはマネージド ディスクを作成する場合は、次のような保護の選択肢があります。
 
 ![Azure ストレージ アカウントに対して有効化された Geo レプリケーション][dbms-guide-figure-100]
 
@@ -524,7 +524,9 @@ DS シリーズまたは GS シリーズの Azure VM を使用すると、Azure 
 
 Azure Standard Storage と Azure Standard Storage アカウントに関するベスト プラクティスの概要を説明する別の記事については、<https://blogs.msdn.com/b/mast/archive/2014/10/14/configuring-azure-virtual-machines-for-optimal-storage-performance.aspx> を参照してください。
 
-#### <a name="f42c6cb5-d563-484d-9667-b07ae51bce29"></a>Managed Disks
+#### 
+  <a name="f42c6cb5-d563-484d-9667-b07ae51bce29">
+  </a>Managed Disks
 Managed Disks は Azure Resource Manager の新しいリソースの種類で、Azure Storage アカウントに格納されている VHD の代わりに使用できます。 Managed Disks は接続されている仮想マシンの可用性セットに自動的に配置され、仮想マシンと仮想マシンで実行されているサービスの可用性を向上させます。 詳しくは、[概要の記事](https://docs.microsoft.com/azure/storage/storage-managed-disks-overview)をご覧ください。
 
 SAP は現在、Premium Managed Disks のみをサポートします。 詳しくは、SAP Note [1928533] をご覧ください。
@@ -619,7 +621,8 @@ Microsoft Azure 以降では、Windows Server プラットフォームに組み�
 * **Virtual Machine SLA**: Azure で実行されている Virtual Machines の SLA (<https://azure.microsoft.com/support/legal/sla/> を参照してください)。  
 * **SQL バージョンのサポート**: SAP のお客様に対しては、Microsoft Azure Virtual Machines で SQL Server 2008 R2 以降がサポートされています。 これより前のエディションはサポートされていません。 詳細については、この一般的な [サポートの説明](https://support.microsoft.com/kb/956893) を確認してください。 マイクロソフトは基本的には SQL Server 2008 をサポートしています。 ただし、SQL Server 2008 R2 で導入された SAP の重要な機能によって、SQL Server 2008 R2 が SAP の最小リリースとなっています。 SQL Server 2012 および 2014 は IaaS シナリオに対する統合 (Azure Storage への直接バックアップなど) によってさらに拡張されていることに注意してください。 そのため、このホワイト ペーパーは、Azure に対する SQL Server 2012 および 2014 の最新のパッチ レベルに限定して説明します。
 * **SQL 機能のサポート**: SQL Server のほとんどの機能は、いくつかの例外があるものの、Microsoft Azure Virtual Machines でサポートされます。 **共有ディスクを使用した SQL Server フェールオーバー クラスタリングはサポートされていません**。  データベース ミラーリング、AlwaysOn 可用性グループ、レプリケーション、ログ配布、および Service Broker などの分散テクノロジは単一の Azure リージョン内でサポートされます。 <https://blogs.technet.com/b/dataplatforminsider/archive/2014/06/19/sql-server-alwayson-availability-groups-supported-between-microsoft-azure-regions.aspx> に記載されているように、SQL Server AlwaysOn はさまざまな Azure リージョン間でもサポートされます。  詳細については、 [サポートの説明](https://support.microsoft.com/kb/956893) を確認してください。 AlwaysOn 構成をデプロイする方法の例は[こちら][virtual-machines-workload-template-sql-alwayson]の記事に記載されています。 また、[こちら][virtual-machines-sql-server-infrastructure-services]に記載されているベスト プラクティスをご確認ください。 
-* **SQL パフォーマンス**: Microsoft Azure がホストする Virtual Machines は、その他のパブリック クラウド仮想化製品と比べて極めて良好に機能しますが、個々の結果は異なる場合があります。 [こちら][virtual-machines-sql-server-performance-best-practices]の記事をご確認ください。
+* 
+  **SQL パフォーマンス**: Microsoft Azure がホストする Virtual Machines は、その他のパブリック クラウド仮想化製品と比べて極めて良好に機能しますが、個々の結果は異なる場合があります。 [こちら][virtual-machines-sql-server-performance-best-practices]の記事をご確認ください。
 * **Azure Marketplace からのイメージの使用**: 新しい Microsoft Azure VM をデプロイする最も早い方法は、Azure Marketplace からのイメージを使用することです。 Azure Marketplace には、SQL Server を含むイメージがあります。 SQL Server が既にインストールされているイメージは、SAP NetWeaver アプリケーション用にすぐに使用することができません。 その理由は、それらのイメージ内に既定の SQL Server 照合順序がインストールされており、SAP NetWeaver システムで必要な照合順序がインストールされていないためです。 このようなイメージを使用するには、「[Microsoft Azure Marketplace の SQL Server イメージの使用][dbms-guide-5.6]」の章に記載されている手順をご確認ください。 
 * 詳細については、「 [料金の詳細」](https://azure.microsoft.com/pricing/) を参照してください。 「[SQL Server 2012 ライセンス ガイド](https://download.microsoft.com/download/7/3/C/73CAD4E0-D0B5-4BE5-AB49-D5B886A5AE00/SQL_Server_2012_Licensing_Reference_Guide.pdf)」と「[SQL Server 2014 ライセンス ガイド](https://download.microsoft.com/download/B/4/E/B4E604D9-9D38-4BBA-A927-56E4C872E41C/SQL_Server_2014_Licensing_Guide.pdf)」も、重要なリソースです。
 
@@ -1161,7 +1164,7 @@ SRS のインストールと動作は、Azure Virtual Machine サービスでホ
 SAP Replication Server を経由する ASE HADR は、現時点ではサポートされていません。 将来的には Microsoft Azure プラットフォーム用にテストされ、リリースされる可能性があります。
 
 ## <a name="specifics-to-oracle-database-on-windows"></a>Windows 上の Oracle データベースの詳細
-Oracle ソフトウェアを Microsoft Windows Hyper-V や Azure 上で実行できるようになりました。 Windows Hyper-V と Azure の一般的なサポートの詳細については、<https://blogs.oracle.com/cloud/entry/oracle_and_microsoft_join_forces> を参照してください。 
+Oracle ソフトウェアを Microsoft Windows Hyper-V や Azure 上で実行できるようになりました。 
 
 一般的なサポートに続いて、Oracle Database を活用する SAP アプリケーションの特定のシナリオも同様にサポートされます。 詳細については、ドキュメントのこの部分で説明します。
 
@@ -1199,7 +1202,7 @@ Azure ページ BLOB Storage または Managed Disks をベースとするディ
 このドキュメントの最初の 3 つの章で説明したように、Oracle Database を使用した VM のデプロイについては、Azure 可用性セットや SAP の監視などの他のすべての一般的な領域が適用されます。
 
 ## <a name="specifics-to-oracle-database-on-oracle-linux"></a>Oracle Linux 上の Oracle Database の詳細
-Oracle ソフトウェアを Microsoft Windows Hyper-V や Azure 上で実行できるようになりました。 Windows Hyper-V と Azure の一般的なサポートの詳細については、<https://blogs.oracle.com/cloud/entry/oracle_and_microsoft_join_forces> を参照してください。 
+Oracle ソフトウェアを Microsoft Windows Hyper-V や Azure 上で実行できるようになりました。 
 
 一般的なサポートに続いて、Oracle Database を活用する SAP アプリケーションの特定のシナリオも同様にサポートされます。 詳細については、ドキュメントのこの部分で説明します。
 

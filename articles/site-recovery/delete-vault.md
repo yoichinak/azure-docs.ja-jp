@@ -1,20 +1,19 @@
 ---
 title: Site Recovery コンテナーを削除する
 description: サイトの回復シナリオに基づいて、Azure Site Recovery コンテナーを削除する方法を説明します。
-service: site-recovery
 author: rajani-janaki-ram
 manager: rochakm
 ms.service: site-recovery
 ms.devlang: na
 ms.topic: article
-ms.date: 06/11/2018
+ms.date: 07/06/2018
 ms.author: rajani-janaki-ram
-ms.openlocfilehash: 80c479aa23da2a8471af3fd83879a2dbfc5d6195
-ms.sourcegitcommit: 6f6d073930203ec977f5c283358a19a2f39872af
+ms.openlocfilehash: 9c4a88d8a3d63555a57bd5553b721cfbcd77df2c
+ms.sourcegitcommit: f606248b31182cc559b21e79778c9397127e54df
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35300573"
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38971190"
 ---
 # <a name="delete-a-site-recovery-vault"></a>Site Recovery コンテナーを削除する
 
@@ -52,7 +51,7 @@ ms.locfileid: "35300573"
 
 2. コンテナー -> **[Site Recovery Infrastructure]\(Site Recovery インフラストラクチャ\)** - > **[For Hyper-V Sites]\(Hyper-V サイト\)** -> **[レプリケーション ポリシー]** にアクセスして、すべてのレプリケーション ポリシーを関連付け解除し、削除します。
 
-3. HYPER-V サーバーへの関連付けを削除するには、「[HYPER-V ホストの登録を解除](/site-recovery-manage-registration-and-protection.md#unregister-a-hyper-v-host-in-a-hyper-v-site)」の手順に従います。
+3. HYPER-V サーバーへの関連付けを削除するには、「[HYPER-V ホストの登録を解除](site-recovery-manage-registration-and-protection.md#unregister-a-hyper-v-host-in-a-hyper-v-site)」の手順に従います。
 
 4. Hyper-V サイトを削除します。
 
@@ -75,4 +74,4 @@ ms.locfileid: "35300573"
 
     Remove-AzureRmRecoveryServicesVault -Vault $vault
 
-[Get-AzureRMRecoveryServicesVault](https://docs.microsoft.com/en-us/powershell/module/azurerm.recoveryservices/get-azurermrecoveryservicesvault?view=azurermps-6.0.0) と [Remove-AzureRMRecoveryServicesVault](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices/remove-azurermrecoveryservicesvault?view=azurermps-6.0.0) の詳細をご覧ください。
+[Get-AzureRMRecoveryServicesVault](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices/get-azurermrecoveryservicesvault?view=azurermps-6.0.0) と [Remove-AzureRMRecoveryServicesVault](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices/remove-azurermrecoveryservicesvault?view=azurermps-6.0.0) の詳細をご覧ください。

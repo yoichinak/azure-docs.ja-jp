@@ -4,7 +4,7 @@ description: Azure Event Hubs の診断ログを設定する方法について�
 keywords: ''
 documentationcenter: ''
 services: event-hubs
-author: banisadr
+author: ShubhaVijayasarathy
 manager: ''
 editor: ''
 ms.assetid: ''
@@ -13,14 +13,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 01/30/2018
-ms.author: sethm
-ms.openlocfilehash: 451fc42f573db2b60985912cfa63617e04f09e6c
-ms.sourcegitcommit: 9d317dabf4a5cca13308c50a10349af0e72e1b7e
+ms.date: 07/02/2018
+ms.author: shvija
+ms.openlocfilehash: d4ed53cf1f0d21e488631434b60309602169b59a
+ms.sourcegitcommit: d0ea925701e72755d0b62a903d4334a3980f2149
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/01/2018
-ms.locfileid: "28932717"
+ms.lasthandoff: 08/09/2018
+ms.locfileid: "40004652"
 ---
 # <a name="event-hubs-diagnostic-logs"></a>Event Hubs 診断ログ
 
@@ -31,7 +31,7 @@ Azure Event Hubs の 2 種類のログを表示できます。
 
 ## <a name="enable-diagnostic-logs"></a>Azure App Service の Web アプリの診断ログの有効化
 
-既定では、診断ログは無効になっています。 診断ログを有効にするには
+既定では、診断ログは無効になっています。 診断ログを有効にするには、次の手順を実行します。
 
 1.  [Azure ポータル](https://portal.azure.com)の **[監視 + 管理]** で、**[診断ログ]** をクリックします。
 
@@ -75,15 +75,15 @@ Name | 説明
 TaskName | 失敗したタスクの説明。
 ActivityId | 内部 ID。追跡目的で使用されます。
 trackingId | 内部 ID。追跡目的で使用されます。
-ResourceId | Azure Resource Manager リソース ID。
+resourceId | Azure Resource Manager リソース ID。
 eventHub | イベント ハブの完全名 (名前空間の名前を含みます)。
 partitionId | 書き込み先のイベント ハブ パーティション。
 archiveStep | ArchiveFlushWriter
 startTime | 障害開始時刻。
 failures | 障害が発生した回数。
 durationInSeconds | 障害の時間。
-Message | エラー メッセージ。
-カテゴリ | ArchiveLogs
+message | エラー メッセージ。
+category | ArchiveLogs
 
 次のコードは、アーカイブ ログの JSON 文字列の例です。
 
@@ -108,17 +108,17 @@ Message | エラー メッセージ。
 
 操作ログの JSON 文字列には、次の表に示す要素が含まれます。
 
-Name | [説明]
+Name | 説明
 ------- | -------
 ActivityId | 内部 ID。追跡目的で使用されます。
 EventName | 操作の名前。  
-ResourceId | Azure Resource Manager リソース ID。
+resourceId | Azure Resource Manager リソース ID。
 SubscriptionId | [サブスクリプション ID] が表示されます。
 EventTimeString | 操作時間。
 EventProperties | 操作プロパティ。
-状態 | 操作の状態。
+Status | 操作の状態。
 Caller | 操作の呼び出し元 (Azure Portal または管理クライアント)。
-カテゴリ | OperationalLogs
+category | OperationalLogs
 
 次のコードは、操作ログの JSON 文字列の例です。
 

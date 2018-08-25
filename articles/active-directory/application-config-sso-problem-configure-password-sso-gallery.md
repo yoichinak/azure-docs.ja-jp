@@ -11,15 +11,15 @@ ms.component: app-mgmt
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 07/11/2017
 ms.author: barbkess
-ms.openlocfilehash: 37c2a50a3aca281596a06e0d666edff05347f660
-ms.sourcegitcommit: 95d9a6acf29405a533db943b1688612980374272
+ms.openlocfilehash: 01b77fc2521c221594a38b3731694115adf82e2c
+ms.sourcegitcommit: a62cbb539c056fe9fcd5108d0b63487bd149d5c3
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/23/2018
-ms.locfileid: "36331157"
+ms.lasthandoff: 08/22/2018
+ms.locfileid: "42617327"
 ---
 # <a name="problem-configuring-password-single-sign-on-for-an-azure-ad-gallery-application"></a>Azure AD ギャラリー アプリケーションのパスワード シングル サインオンを構成する場合の問題
 
@@ -31,7 +31,7 @@ ms.locfileid: "36331157"
 
 Microsoft には、統合の破綻を自動的に検出するテクノロジがありますが、このような問題をすぐに発見できなかったり、修正に時間がかかったりする場合があります。 このような統合が正しく機能しない場合は、サポート ケースを開いていただければ、できるだけ早く対処いたします。
 
-**このアプリケーションのベンダーに連絡する**場合は、アプリケーションを Azure Active Directory にネイティブに統合できるように、Microsoft と連係するよう伝えてください。 連係を開始するために、「[Azure Active Directory アプリケーション ギャラリーでのアプリケーションの表示](./develop/active-directory-app-gallery-listing.md)」をベンダーに参照してもらいます。
+**このアプリケーションのベンダーに連絡する**場合は、アプリケーションを Azure Active Directory にネイティブに統合できるように、Microsoft と連係するよう伝えてください。 連係を開始するために、「[Azure Active Directory アプリケーション ギャラリーでのアプリケーションの表示](develop/howto-app-gallery-listing.md)」をベンダーに参照してもらいます。
 
 ## <a name="credentials-are-filled-in-and-submitted-but-the-page-indicates-the-credentials-are-incorrect"></a>資格情報を入力して送信したが、ページには資格情報が正しくないと表示される
 
@@ -59,7 +59,7 @@ Microsoft には、統合の破綻を自動的に検出するテクノロジが�
 
 Microsoft には、アプリケーションの統合の破綻を自動的に検出するテクノロジがありますが、このような問題をすぐに発見できなかったり、修正に時間がかかったりする場合があります。 統合が正常に機能しないときは、サポート ケースを開いていただければ、できるだけ早く対処いたします。 
 
-さらに、**このアプリケーションのベンダーに連絡する**場合は、アプリケーションを Azure Active Directory にネイティブに統合できるように、**Microsoft と連係するようお伝えください**。 連係を開始するために、「[Azure Active Directory アプリケーション ギャラリーでのアプリケーションの表示](./develop/active-directory-app-gallery-listing.md)」をベンダーに参照してもらいます。
+さらに、**このアプリケーションのベンダーに連絡する**場合は、アプリケーションを Azure Active Directory にネイティブに統合できるように、**Microsoft と連係するようお伝えください**。 連係を開始するために、「[Azure Active Directory アプリケーション ギャラリーでのアプリケーションの表示](develop/howto-app-gallery-listing.md)」をベンダーに参照してもらいます。
 
 ## <a name="the-extension-works-in-chrome-and-firefox-but-not-in-internet-explorer"></a>拡張機能が Chrome と Firefox で機能するが、Internet Explorer で機能しない
 
@@ -73,7 +73,7 @@ Microsoft には、アプリケーションの統合の破綻を自動的に検�
 
    * 残念ながら、このような状況は、ブラウザーのバージョン、コンピューターの速度、またはアクセスしたサイトによって異なります。 この場合は、この特定のアプリケーションの統合を修正できるように、サポートに問い合わせることをお勧めします。
 
-さらに、**このアプリケーションのベンダーに連絡する**場合は、アプリケーションを Azure Active Directory にネイティブに統合できるように、**Microsoft と連係するようお伝えください**。 連係を開始するために、「[Azure Active Directory アプリケーション ギャラリーでのアプリケーションの表示](./develop/active-directory-app-gallery-listing.md)」をベンダーに参照してもらいます。
+さらに、**このアプリケーションのベンダーに連絡する**場合は、アプリケーションを Azure Active Directory にネイティブに統合できるように、**Microsoft と連係するようお伝えください**。 連係を開始するために、「[Azure Active Directory アプリケーション ギャラリーでのアプリケーションの表示](develop/howto-app-gallery-listing.md)」をベンダーに参照してもらいます。
 
 ## <a name="check-if-the-applications-login-page-has-changed-recently-or-requires-an-additional-field"></a>アプリケーションのログイン ページが最近変更されたり、追加のフィールドが必要になったりしたかどうかを確認する
 
@@ -81,7 +81,7 @@ Microsoft には、アプリケーションの統合の破綻を自動的に検�
 
 Microsoft には、アプリケーションの統合の破綻を自動的に検出するテクノロジがありますが、このような問題をすぐに発見できなかったり、修正に時間がかかったりする場合があります。 統合が正常に機能しないときは、サポート ケースを開いていただければ、できるだけ早く対処いたします。 
 
-さらに、**このアプリケーションのベンダーに連絡する**場合は、アプリケーションを Azure Active Directory にネイティブに統合できるように、**Microsoft と連係するようお伝えください**。 連係を開始するために、「[Azure Active Directory アプリケーション ギャラリーでのアプリケーションの表示](./develop/active-directory-app-gallery-listing.md)」をベンダーに参照してもらいます。
+さらに、**このアプリケーションのベンダーに連絡する**場合は、アプリケーションを Azure Active Directory にネイティブに統合できるように、**Microsoft と連係するようお伝えください**。 連係を開始するために、「[Azure Active Directory アプリケーション ギャラリーでのアプリケーションの表示](develop/howto-app-gallery-listing.md)」をベンダーに参照してもらいます。
 
 ## <a name="how-to-install-the-access-panel-browser-extension"></a>アクセス パネルのブラウザー拡張機能をインストールする方法
 

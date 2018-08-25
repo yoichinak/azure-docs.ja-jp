@@ -3,7 +3,7 @@ title: 認証、要求、応答
 description: Key Vault を使用するために AD に対する認証を行います
 services: key-vault
 documentationcenter: ''
-author: lleonard-msft
+author: bryanla
 manager: mbaldwin
 tags: azure-resource-manager
 ms.assetid: 4c321939-8a5b-42ca-83c4-2f5f647ca13e
@@ -13,19 +13,19 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 05/09/2018
-ms.author: alleonar
-ms.openlocfilehash: 94080fb124478a4b8e196e341c335ca32321ecdf
-ms.sourcegitcommit: 909469bf17211be40ea24a981c3e0331ea182996
+ms.author: bryanla
+ms.openlocfilehash: be076be95b62e2ea12dfc8786c50f36a5f434d2e
+ms.sourcegitcommit: 0fcd6e1d03e1df505cf6cb9e6069dc674e1de0be
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/10/2018
-ms.locfileid: "34011942"
+ms.lasthandoff: 08/14/2018
+ms.locfileid: "42140319"
 ---
 # <a name="authentication-requests-and-responses"></a>認証、要求、応答
 
 Azure Key Vault は、JSON 形式の要求と応答をサポートします。 Azure Key Vault に対する要求は、HTTPS を使用し、いくつかの URL パラメーターと JSON でエンコードされた要求および応答の本文を含んで、有効な Azure Key Vault の URL に送られます。
 
-このトピックでは、Azure Key Vault サービスの詳細について説明します。 認証/承認およびアクセス トークンを取得する方法など、Azure REST インターフェイスの使用に関して詳しくは、[Azure REST API リファレンス](https://docs.microsoft.com/rest/api/)をご覧ください。
+このトピックでは、Azure Key Vault サービスの詳細について説明します。 認証/承認およびアクセス トークンを取得する方法など、Azure REST インターフェイスの使用に関して詳しくは、[Azure REST API リファレンス](https://docs.microsoft.com/rest/api/azure)をご覧ください。
 
 ## <a name="request-url"></a>要求 URL  
  キー管理操作には HTTP DELETE、GET、PATCH、PUT、HTTP POST が使用され、既存のキー オブジェクトに対する暗号操作には HTTP POST が使用されます。 特定の HTTP 動詞をサポートできないクライアントも、X-HTTP-REQUEST ヘッダーを使う POST を使用して、目的の動詞を指定できます。通常は本文を必要としない要求でも、HTTP POST を使用するときは (DELETE の代わりに POST を使用する場合など)、空の本文を含める必要があります。  
@@ -92,10 +92,10 @@ Azure Key Vault は、JSON 形式の要求と応答をサポートします。 A
 
 ```  
 
-## <a name="authentication"></a>認証  
+## <a name="authentication"></a>Authentication  
  Azure Key Vault に対するすべての要求は、認証を受ける必要があります。 Azure Key Vault は、OAuth2 [[RFC6749](http://tools.ietf.org/html/rfc6749)] を使用して取得できる Azure Active Directory アクセス トークンをサポートしています。 
  
- アプリケーションの登録と、Azure Key Vault を使用するための認証について詳しくは、[Azure AD でのクライアント アプリケーションの登録](https://docs.microsoft.com/rest/api/index#register-your-client-application-with-azure-ad)に関するページをご覧ください。
+ アプリケーションの登録と、Azure Key Vault を使用するための認証について詳しくは、[Azure AD でのクライアント アプリケーションの登録](https://docs.microsoft.com/rest/api/azure/index#register-your-client-application-with-azure-ad)に関するページをご覧ください。
  
  HTTP Authorization ヘッダーを使用して、サービスにアクセス トークンを送信する必要があります。  
 

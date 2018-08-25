@@ -15,12 +15,12 @@ ms.topic: get-started-article
 ms.date: 06/18/2018
 ms.author: danlep
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8e179e2af3ee7a19c39a2f2c688e0eb25a0c02ca
-ms.sourcegitcommit: d8ffb4a8cef3c6df8ab049a4540fc5e0fa7476ba
+ms.openlocfilehash: dfaee72be883ee8902fe4550890d757f114ff932
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/20/2018
-ms.locfileid: "36287536"
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39426109"
 ---
 # <a name="create-a-batch-account-with-the-azure-portal"></a>Azure Portal で Batch アカウントを作成する
 
@@ -34,11 +34,11 @@ Batch アカウントとシナリオの背景情報については、[機能の�
 
 1. [Azure Portal][azure_portal] にサインインします。
 
-2. **[リソースの作成]** > **[Compute]** > **[Batch サービス]** の順に選択します。
+1. **[リソースの作成]** > **[Compute]** > **[Batch サービス]** の順に選択します。
 
     ![Marketplace での Batch][marketplace_portal]
 
-3. **[新しい Batch アカウント]** 設定を入力します。 次の詳細を確認してください。
+1. **[新しい Batch アカウント]** 設定を入力します。 次の詳細を確認してください。
 
     ![Batch アカウントを作成する][account_portal]
 
@@ -56,7 +56,7 @@ Batch アカウントとシナリオの背景情報については、[機能の�
 
     f. **プール割り当てモード**: ほとんどのシナリオで、既定の **[Batch サービス]** をそのまま使用してください。
 
-4. **[作成]** を選択して、アカウントを作成します。
+1. **[作成]** を選択して、アカウントを作成します。
 
 
 
@@ -85,22 +85,22 @@ Batch アカウントとシナリオの背景情報については、[機能の�
 
 1. [Azure Portal][azure_portal] にサインインします。
 
-2. **[すべてのサービス]** > **[サブスクリプション]** の順に選択し、Batch アカウントに使用するサブスクリプションを選択します。
+1. **[すべてのサービス]** > **[サブスクリプション]** の順に選択し、Batch アカウントに使用するサブスクリプションを選択します。
 
-3. **[サブスクリプション]** ページで、**[リソース プロバイダー]** を選択し、**[Microsoft.Batch]** を検索します。 **Microsoft.Batch** リソース プロバイダーがサブスクリプションに登録されていることを確認します。 登録されていない場合は、**[登録]** リンクを選択します。
+1. **[サブスクリプション]** ページで、**[リソース プロバイダー]** を選択し、**[Microsoft.Batch]** を検索します。 **Microsoft.Batch** リソース プロバイダーがサブスクリプションに登録されていることを確認します。 登録されていない場合は、**[登録]** リンクを選択します。
 
     ![Microsoft.Batch プロバイダーの登録][register_provider]
 
-3. **[サブスクリプション]** ページで、**[アクセス制御 (IAM)]** > **[追加]** の順に選択します。
+1. **[サブスクリプション]** ページで、**[アクセス制御 (IAM)]** > **[追加]** の順に選択します。
 
     ![サブスクリプションのアクセスの制御][subscription_access]
 
-4. **[アクセス許可の追加]** ページで、**[共同作成者]** ロールを選択し、Batch API を探します。 API が見つかるまで、次の各文字列を検索します。
+1. **[アクセス許可の追加]** ページで、**[共同作成者]** ロールを選択し、Batch API を探します。 API が見つかるまで、次の各文字列を検索します。
     1. **MicrosoftAzureBatch**。
-    2. **Microsoft Azure Batch**。 新しい Azure AD テナントでは、この名前が使用される場合があります。
-    3. **ddbf3205-c6bd-46ae-8127-60eb93363864** は Batch API の ID です。 
+    1. **Microsoft Azure Batch**。 新しい Azure AD テナントでは、この名前が使用される場合があります。
+    1. **ddbf3205-c6bd-46ae-8127-60eb93363864** は Batch API の ID です。 
 
-5. Batch API を見つけたら、それを選択して **[保存]** を選択します。
+1. Batch API を見つけたら、それを選択して **[保存]** を選択します。
 
     ![Batch のアクセス許可を追加する][add_permission]
 
@@ -109,7 +109,7 @@ Batch アカウントとシナリオの背景情報については、[機能の�
 
 1. [Azure portal][azure_portal] で、**[新規]** > **[セキュリティ]** > **[Key Vault]** の順に選択します。
 
-2. **[Key Vault の作成]** ページで、キー コンテナーの名前を入力し、Batch アカウント用のリージョンでリソース グループを作成します。 残りの設定については既定値のままにして、**[作成]** を選択します。
+1. **[Key Vault の作成]** ページで、キー コンテナーの名前を入力し、Batch アカウント用のリージョンでリソース グループを作成します。 残りの設定については既定値のままにして、**[作成]** を選択します。
 
 ユーザー サブスクリプション モードで Batch アカウントを作成しているときに、キー コンテナーのリソース グループを使用して、**ユーザー サブスクリプション**をプール割り当てモードとして指定し、キー コンテナーを選択します。
 
@@ -122,7 +122,7 @@ Azure portal を利用する方法に加えて、次のようなツールを使�
 
 ## <a name="next-steps"></a>次の手順
 * Batch サービスの概念と機能の詳細については、[Batch 機能の概要](batch-api-basics.md)に関するページを参照してください。 この記事では、プール、コンピューティング ノード、ジョブ、タスクなど、主要な Batch リソースについて説明するほか、大規模なコンピューティング ワークロード向けのこのサービスの機能の概要について説明します。
-* [Batch .NET クライアント ライブラリ](batch-dotnet-get-started.md)または [Python](batch-python-tutorial.md) を使用した Batch 対応アプリケーションの開発に関する基本事項を確認してください。 これらの入門記事では、Batch サービスを使用して複数のコンピューティング ノードでワークロードを実行する実用アプリケーションの開発手順を説明しています。また、Azure Storage を使用してワークロード ファイルのステージングと取得を行う方法についても取り上げています。
+* [Batch .NET クライアント ライブラリ](quick-run-dotnet.md)または [Python](quick-run-python.md) を使用した Batch 対応アプリケーションの開発に関する基本事項を確認してください。 これらのクイック スタートでは、Batch サービスを使用して複数のコンピューティング ノードでワークロードを実行するサンプル アプリケーションの開発手順を説明しています。また、Azure Storage を使用してワークロード ファイルのステージングと取得を行う方法についても取り上げています。
 
 [azure_portal]: https://portal.azure.com
 [batch_pricing]: https://azure.microsoft.com/pricing/details/batch/

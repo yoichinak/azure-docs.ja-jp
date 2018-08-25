@@ -4,7 +4,7 @@ description: Azure Active Directory シームレス シングル サインオン
 services: active-directory
 keywords: Azure AD Connect とは, Active Directory のインストール, Azure AD に必要なコンポーネント, SSO, シングル サインオン
 documentationcenter: ''
-author: swkrish
+author: billmath
 manager: mtillman
 ms.assetid: 9f994aca-6088-40f5-b2cc-c753a4f41da7
 ms.service: active-directory
@@ -12,15 +12,15 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/22/2018
+ms.date: 08/07/2018
 ms.component: hybrid
 ms.author: billmath
-ms.openlocfilehash: 1407af9e19df784f8dcb501e0556572276e9863e
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: 29ed96044ceaa914db3f8b7090a1be5f65827e54
+ms.sourcegitcommit: 4de6a8671c445fae31f760385710f17d504228f8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34592247"
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39627476"
 ---
 # <a name="azure-active-directory-seamless-single-sign-on-frequently-asked-questions"></a>Azure Active Directory シームレス シングル サインオン: よく寄せられる質問
 
@@ -28,7 +28,7 @@ ms.locfileid: "34592247"
 
 ## <a name="what-sign-in-methods-do-seamless-sso-work-with"></a>シームレス SSO は、どのようなサインイン方法と動作しますか。
 
-シームレス SSO は、サインインの方法として、[パスワード ハッシュ同期](active-directory-aadconnectsync-implement-password-hash-synchronization.md)または[パススルー認証](active-directory-aadconnect-pass-through-authentication.md)のどちらとも組み合わせることができます。 ただし、この機能は、Active Directory フェデレーション サービス (AD FS) で使用できません。
+シームレス SSO は、サインインの方法として、 [パスワード ハッシュ同期](active-directory-aadconnectsync-implement-password-hash-synchronization.md)または[パススルー認証](active-directory-aadconnect-pass-through-authentication.md)のどちらとも組み合わせることができます。 ただし、この機能は、Active Directory フェデレーション サービス (AD FS) で使用できません。
 
 ## <a name="is-seamless-sso-a-free-feature"></a>シームレス SSO は無料の機能ですか。
 
@@ -40,19 +40,20 @@ ms.locfileid: "34592247"
 
 ## <a name="what-applications-take-advantage-of-domainhint-or-loginhint-parameter-capability-of-seamless-sso"></a>どのアプリケーションがシームレス SSO の `domain_hint` または `login_hint` 機能を利用していますか。
 
-Azure AD にこれらのパラメーターを送信し、その結果、シームレス SSO を使用するサイレント サインオン エクスペリエンスをユーザーに提供する (つまり、ユーザーが自分のユーザー名を入力する必要がない) アプリケーションの一部を以下にリストします。
+Azure AD にこれらのパラメーターを送信でき、その結果、シームレス SSO を使用するサイレント サインオン エクスペリエンスをユーザーに提供する (つまり、ユーザーが自分のユーザー名屋パスワードを入力する必要がない) アプリケーションの一部を以下にリストします。
 
 | アプリケーション名 | 使用するアプリケーションの URL |
 | -- | -- |
-| アクセス パネル | myapps.microsoft.com/contoso.com |
-| Web 上の Outlook | outlook.office365.com/contoso.com |
+| アクセス パネル | https://myapps.microsoft.com/contoso.com |
+| Web 上の Outlook | https://outlook.office365.com/contoso.com |
+| Office 365 ポータル | https://portal.office.com?domain_hint=contoso.com |
 
-また、アプリケーションがサインイン要求を、Azure AD の共通エンドポイント (つまり、https://login.microsoftonline.com/common/<...>) ではなく、Azure AD のテナント エンドポイント (つまり、https://login.microsoftonline.com/contoso.com/<..> または https://login.microsoftonline.com/<tenant_ID>/<..>) に送信する場合、ユーザーにはサイレント サインオン エクスペリエンスも提供されます。 これらの種類のサインイン要求を行うアプリケーションの一部を以下にリストします。
+また、アプリケーションがサインイン要求を、Azure AD の共通エンドポイント (つまり、 https://login.microsoftonline.com/common/<...>) ではなく、Azure AD のテナント エンドポイント (つまり、 https://login.microsoftonline.com/contoso.com/<..> または https://login.microsoftonline.com/<tenant_ID>/<..>) に送信する場合、ユーザーにはサイレント サインオン エクスペリエンスも提供されます。 これらの種類のサインイン要求を行うアプリケーションの一部を以下にリストします。
 
 | アプリケーション名 | 使用するアプリケーションの URL |
 | -- | -- |
-| SharePoint Online | contoso.sharepoint.com |
-| Azure ポータル | portal.azure.com/contoso.com |
+| SharePoint Online | https://contoso.sharepoint.com |
+| Azure ポータル | https://portal.azure.com/contoso.com |
 
 テナントの適切なアプリケーションの URL を取得するには、上記の表の "contoso.com" をご利用のドメイン名で置き換えます。
 
@@ -64,7 +65,7 @@ Azure AD にこれらのパラメーターを送信し、その結果、シー�
 
 ## <a name="what-is-the-difference-between-the-single-sign-on-experience-provided-by-azure-ad-joinactive-directory-azureadjoin-overviewmd-and-seamless-sso"></a>[Azure AD Join](../active-directory-azureadjoin-overview.md) とシームレス SSO のシングル サインオン エクスペリエンスの違いは何ですか。
 
-[Azure AD Join](../active-directory-azureadjoin-overview.md) の場合、SSO は、デバイスが Azure AD に登録されているユーザーに提供されます。 そのデバイスは、必ずしもドメインに参加する必要があるとは限りません。 SSO は、Kerberos ではなく、"*プライマリ更新トークン*" (*PRT*) を使用して提供されます。 Windows 10 デバイスで、最適なユーザー エクスペリエンスが実現します。 SSO は、Microsoft Edge ブラウザーで自動的に実行されます。 ブラウザー拡張機能を使用することで Chrome でも動作します。
+[Azure AD Join](../active-directory-azureadjoin-overview.md) の場合、SSO は、デバイスが Azure AD に登録されているユーザーに提供されます。 そのデバイスは、必ずしもドメインに参加する必要があるとは限りません。 SSO は、Kerberos ではなく、"*プライマリ更新トークン*" (*PRT*) を使用して提供されます。 Windows 10 デバイスで、最適なユーザー エクスペリエンスが実現します。 SSO は、Edge ブラウザーで自動的に実行されます。 ブラウザー拡張機能を使用することで Chrome でも動作します。
 
 テナントでは、Azure AD Join とシームレス SSO の両方をご利用いただけます。 この 2 つは補完的な機能です。 両方の機能が有効な場合は、Azure AD Join がシームレス SSO に優先します。
 
@@ -93,6 +94,10 @@ Azure AD Connect が実行されているオンプレミス サーバーで次�
 ### <a name="step-2-update-the-kerberos-decryption-key-on-each-ad-forest-that-it-was-set-it-up-on"></a>手順 2. Kerberos の復号化キーが設定された各 AD フォレストでキーを更新します。
 
 1. `$creds = Get-Credential` を呼び出します。 メッセージが表示されたら、目的の AD フォレストのドメイン管理者の資格情報を入力します。
+
+    >[!NOTE]
+    >Microsoft は、ユーザー プリンシパル名 (UPN) (johndoe@contoso.com) の形式またはドメインで修飾された sam アカウント名 (contoso \johndoe または contoso.com\johndoe) の形式で提供されている、ドメイン管理者のユーザー名を使用して目的の AD フォレストを検索します。 ドメインで修飾された sam アカウント名が使用されている場合、Microsoft はユーザー名のドメイン部分を使用して、[DNS を使用してドメイン管理者のドメイン コントローラー](https://social.technet.microsoft.com/wiki/contents/articles/24457.how-domain-controllers-are-located-in-windows.aspx)を検索します。 UPN が使用されている場合、Microsoft は[それをドメインで修飾された sam アカウント名に変換](https://docs.microsoft.com/windows/desktop/api/ntdsapi/nf-ntdsapi-dscracknamesa)してから、適切なドメイン コントローラーを検索します。
+
 2. `Update-AzureADSSOForest -OnPremCredentials $creds` を呼び出します。 このコマンドは、この特定の AD フォレスト内で `AZUREADSSOACC` コンピューター アカウントの Kerberos 復号化キーを更新し、Azure AD 内でこのキーを更新します。
 3. 機能が有効に設定されている AD フォレストごとに、上記の手順を繰り返します。
 
@@ -101,17 +106,36 @@ Azure AD Connect が実行されているオンプレミス サーバーで次�
 
 ## <a name="how-can-i-disable-seamless-sso"></a>シームレス SSO はどのように無効にできますか。
 
-シームレス SSO は、Azure AD Connect を使用して無効にできます。
+### <a name="step-1-disable-the-feature-on-your-tenant"></a>手順 1. テナントで機能を無効にする
 
-Azure AD Connect を実行し、[Change user sign-in page] \(ユーザー サインイン ページの変更) を選択して [次へ] をクリックします。 [シングル サインオンを有効にする] チェック ボックスをオフにします。 ウィザードの手順を続行します。 ウィザードの完了後、シームレス SSO はテナントで無効になります。
+#### <a name="option-a-disable-using-azure-ad-connect"></a>オプション A: Azure AD Connect を使用して無効にする
 
-ただし、画面に次のようなメッセージが表示されます。
+1. Azure AD Connect を実行し、**[Change user sign-in page]\(ユーザー サインイン ページの変更\)** を選択して **[次へ]** をクリックします。
+2. **[シングル サインオンを有効にする]** チェック ボックスをオフにします。 ウィザードの手順を続行します。
+
+ウィザードの完了後、シームレス SSO はテナントで無効になります。 ただし、画面に次のようなメッセージが表示されます。
 
 「シングル サインオンは現在無効ですが、クリーンアップを完了するために実行できる追加の手動手順があります。 詳細情報」
 
-プロセスを完了するには、Azure AD Connect が実行されているオンプレミス サーバーで次の手動の手順を実行します。
+クリーンアップ プロセスを完了するには、Azure AD Connect が実行されているオンプレミス サーバーで手順 2 と 3 を手順を実行します。
 
-### <a name="step-1-get-list-of-ad-forests-where-seamless-sso-has-been-enabled"></a>手順 1. シームレス SSO が有効になっている AD フォレストのリストの取得
+#### <a name="option-b-disable-using-powershell"></a>オプション B: PowerShell を使用して無効にする
+
+Azure AD Connect が実行されているオンプレミス サーバーで次の手順を実行します。
+
+1. 最初に、[Microsoft Online Services サインイン アシスタント](http://go.microsoft.com/fwlink/?LinkID=286152)をダウンロードしてインストールします。
+2. 次に、 [64-bit Azure Active Directory Module for Windows PowerShell](http://go.microsoft.com/fwlink/p/?linkid=236297)をダウンロードしてインストールします。
+3. `%programfiles%\Microsoft Azure Active Directory Connect` フォルダーに移動します。
+4. 以下のコマンドを使用して、Seamless SSO PowerShell モジュールをインポートします。`Import-Module .\AzureADSSO.psd1`
+5. PowerShell を管理者として実行します。 PowerShell で、`New-AzureADSSOAuthenticationContext` を呼び出します。 このコマンドでは、テナントのグローバル管理者の資格情報を入力するポップアップが表示されます。
+6. `Enable-AzureADSSO -Enable $false` を呼び出します。
+
+>[!IMPORTANT]
+>PowerShell を使用してシームレス SSO を無効にしても、Azure AD Connect での状態は変更されません。 シームレス SSO は、**[ユーザー サインインの変更]** ページに有効と表示されます。
+
+### <a name="step-2-get-list-of-ad-forests-where-seamless-sso-has-been-enabled"></a>手順 2. シームレス SSO が有効になっている AD フォレストのリストの取得
+
+Azure AD Connect を使用してシームレス SSO を無効にした場合は、以下の手順の 1 から 5 を実行します。 PowerShell を使ってシームレス SSO を無効にした場合は、次の手順 6. に進んでください。
 
 1. 最初に、[Microsoft Online Services サインイン アシスタント](http://go.microsoft.com/fwlink/?LinkID=286152)をダウンロードしてインストールします。
 2. 次に、 [64-bit Azure Active Directory Module for Windows PowerShell](http://go.microsoft.com/fwlink/p/?linkid=236297)をダウンロードしてインストールします。
@@ -120,7 +144,7 @@ Azure AD Connect を実行し、[Change user sign-in page] \(ユーザー サイ
 5. PowerShell を管理者として実行します。 PowerShell で、`New-AzureADSSOAuthenticationContext` を呼び出します。 このコマンドでは、テナントのグローバル管理者の資格情報を入力するポップアップが表示されます。
 6. `Get-AzureADSSOStatus` を呼び出します。 このコマンドでは、この機能が有効になっている AD フォレストのリスト ("ドメイン" リストを参照) が表示されます。
 
-### <a name="step-2-manually-delete-the-azureadssoacct-computer-account-from-each-ad-forest-that-you-see-listed"></a>手順 2. 表示されている各 AD フォレストから `AZUREADSSOACCT` コンピューター アカウントを手動で削除します。
+### <a name="step-3-manually-delete-the-azureadssoacct-computer-account-from-each-ad-forest-that-you-see-listed"></a>手順 3. 表示されている各 AD フォレストから `AZUREADSSOACCT` コンピューター アカウントを手動で削除します。
 
 ## <a name="next-steps"></a>次の手順
 

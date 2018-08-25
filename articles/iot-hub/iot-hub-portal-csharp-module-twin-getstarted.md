@@ -9,12 +9,12 @@ ms.devlang: csharp
 ms.topic: conceptual
 ms.date: 04/26/2018
 ms.author: dobett
-ms.openlocfilehash: b4502dfc8f856516989326c8d748a5d13fdba02b
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: 3de08d9e4a45b842fc921436f855831afb6b9ce0
+ms.sourcegitcommit: 7b845d3b9a5a4487d5df89906cc5d5bbdb0507c8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34634592"
+ms.lasthandoff: 08/14/2018
+ms.locfileid: "42146235"
 ---
 # <a name="get-started-with-iot-hub-module-identity-and-module-twin-using-the-portal-and-net-device"></a>ポータルと .NET デバイスを使用した Azure IoT Hub モジュール ID とモジュール ツインの概要
 
@@ -26,12 +26,12 @@ ms.locfileid: "34634592"
 2. .NET デバイス SDK を使用して、モジュール ツインをデバイスから更新する方法。
 
 > [!NOTE]
-> デバイス上で動作するアプリケーションの作成とソリューションのバックエンドで動作するアプリケーションの開発に利用できる各種 Azure IoT SDK については、「[Azure IoT SDK][lnk-hub-sdks]」をご覧ください。
+> デバイス上で動作するアプリケーションの作成とソリューションのバックエンドで動作するアプリケーションの開発に利用できる各種 Azure IoT SDK については、「[Azure IoT SDK][lnk-hub-sdks]」を参照してください。
 
 このチュートリアルを完了するには、以下が必要です。
 
 * Visual Studio 2015 または Visual Studio 2017。
-* アクティブな Azure アカウントアカウントがない場合、Azure 試用版にサインアップして、最大 10 件の無料 Mobile Apps を入手できます。 (アカウントがない場合は、[無料アカウント][lnk-free-trial]を数分で作成することができます)。
+* アクティブな Azure アカウントアカウントがない場合、Azure 試用版にサインアップして、最大 10 件の無料 Mobile Apps を入手できます。 (アカウントがない場合は、[無料アカウント][lnk-free-trial]を数分で作成できます)。
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
@@ -47,26 +47,25 @@ IoT Hub が作成できたら、 [ポータル](https://portal.azure.com)を開�
 
 行をクリックすると、 デバイスの詳細が表示されます。
 
-![デバイスの詳細][10]
+![[デバイスの詳細]][10]
 
 ## <a name="create-a-module-identity-in-the-portal"></a>モジュール ID をポータルで作成する
 
 1 つのデバイス ID 内には、最大 20 個のモジュール ID を作成できます。 上部の **[Add Module Identity]\(モジュール ID の追加\)** ボタンクリックして、最初のモジュール ID を **myFirstModule** という名前で作成します。 
 
-![デバイスの詳細][9]
+![[デバイスの詳細]][9]
 
 保存し、作成したモジュール ID をクリックします。 モジュール ID の詳細が表示されます。 [Connection string - Primary Key]\(接続文字列 – 主キー\) の値をコピーします。 これは、次のセクション (デバイス上でモジュールを設定するセクション) で使用します。
 
-![デバイスの詳細][12]
+![[デバイスの詳細]][12]
 
-<a id="D2C_csharp"></a>
 ## <a name="update-the-module-twin-using-net-device-sdk"></a>.NET デバイス SDK を使用してモジュール ツインを更新する
 
 IoT Hub 内にモジュール ID が正常に作成されたら、 シミュレートされたデバイスから、クラウドへの通信を試してみましょう。 モジュール ID が作成されると、IoT Hub 内でモジュール ツインが暗黙的に作成されます。 このセクションでは、シミュレートされたデバイス上に .NET コンソール アプリを作成し、モジュール ツインによって報告されたプロパティを更新します。
 
 1. **Visual Studio プロジェクトを作成する** - Visual Studio で、**コンソール アプリ (.NET Framework)** プロジェクト テンプレートを使用して、既存のソリューションに Visual C# Windows Classic Desktop プロジェクトを追加します。 .NET Framework のバージョンが 4.6.1 以降であることを確認してください。 プロジェクトの名前を **UpdateModuleTwinReportedProperties** に設定します。
 
-    ![Visual Studio プロジェクトの作成][13]
+    ![Visual Studio プロジェクトを作成する][13]
 
 2. **最新の Azure IoT Hub .NET デバイス SDK をインストールする** - 現在、モジュール ID とモジュール ツインはパブリック プレビュー段階です。 これらは、IoT Hub プレリリース デバイス版の SDK でのみ使えます。 Visual Studio で、[ツール] > [Nuget パッケージ マネージャー] > [ソリューションの Nuget パッケージの管理] の順に選択します。 Microsoft.Azure.Devices.Client を検索します。 [プレリリースを含める] チェック ボックスをオンにしてください。 最新のバージョンを選択し、インストールします。 これで、モジュールのすべての機能を使用できるようになりました。 
 
@@ -86,7 +85,7 @@ IoT Hub 内にモジュール ID が正常に作成されたら、 シミュレ�
     **Program** クラスに次のフィールドを追加します。 プレースホルダーの値をモジュールの接続文字列に置き換えます。
 
     ```csharp
-    private const string ModuleConnectionString = "<Your module connection string>“;
+    private const string ModuleConnectionString = "<Your module connection string>";
     private static ModuleClient Client = null;
     ```
 
@@ -138,23 +137,28 @@ IoT Hub 内にモジュール ID が正常に作成されたら、 シミュレ�
         }
 
         Console.WriteLine("Waiting for Events.  Press enter to exit...");
+        Console.ReadKey();
         Client.CloseAsync().Wait();
+    }
+    
+    private static void ConnectionStatusChangeHandler(ConnectionStatus status, ConnectionStatusChangeReason reason)
+    {
+        Console.WriteLine($"Status {status} changed: {reason}");
     }
     ```
 
     このコード サンプルは、モジュール ツインを取得し、報告されたプロパティを AMQP プロトコルを使って更新する方法を示したものです。 パブリック プレビューでは、AMQP はモジュール ツインの操作用にのみサポートされています。
-    ```
 
-## Run the apps
+## <a name="run-the-apps"></a>アプリの実行
 
-You are now ready to run the apps. In Visual Studio, in Solution Explorer, right-click your solution, and then click **Set StartUp projects**. Select **Multiple startup projects**, and then select **Start** as the action for the console app. And then press F5 to start both apps running. 
+これで、アプリを実行する準備が整いました。 Visual Studio のソリューション エクスプローラーでソリューションを右クリックし、 **[スタートアップ プロジェクトの設定]** をクリックします。 コンソール アプリの動作として、**[マルチ スタートアップ プロジェクト]** を選択し、**[起動する]** を選択します。 次に、F5 キーを押して、両方のアプリケーションを実行します。 
 
-## Next steps
+## <a name="next-steps"></a>次の手順
 
-To continue getting started with IoT Hub and to explore other IoT scenarios, see:
+引き続き IoT Hub の使用方法を確認すると共に、他の IoT のシナリオについて調べるには、次のページを参照してください。
 
-* [Get started with IoT Hub module identity and module twin using .NET backup and .NET device][lnk-csharp-csharp-getstarted]
-* [Getting started with IoT Edge][lnk-iot-edge]
+* [.NET バックアップおよび .NET デバイスを使用した Azure IoT Hub モジュール ID とモジュール ツインの概要][lnk-csharp-csharp-getstarted]
+* [IoT Edge の概要][lnk-iot-edge]
 
 
 <!-- Images. -->

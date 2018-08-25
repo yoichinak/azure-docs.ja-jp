@@ -12,14 +12,14 @@ ms.workload: media
 ms.tgt_pltfrm: media
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 10/18/2017
+ms.date: 07/24/2018
 ms.author: juliako
-ms.openlocfilehash: e2512a2af05ee7101713886c3ae1b5c6c74dd3db
-ms.sourcegitcommit: 0fa8b4622322b3d3003e760f364992f7f7e5d6a9
+ms.openlocfilehash: 220ff194ab5f8fa49ba7603ecd91122459d4dc1e
+ms.sourcegitcommit: 156364c3363f651509a17d1d61cf8480aaf72d1a
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/27/2018
-ms.locfileid: "37018540"
+ms.lasthandoff: 07/25/2018
+ms.locfileid: "39249225"
 ---
 # <a name="azure-media-services-release-notes"></a>Azure Media Services リリース ノート
 この Azure Media Services のリリース ノートには、以前のリリースからの変更と既知の問題が要約されています。
@@ -45,6 +45,10 @@ ms.locfileid: "37018540"
 
 ## <a name="a-idrestversionhistoryrest-api-version-history"></a><a id="rest_version_history"/>REST API バージョン履歴
 Media Services REST API バージョン履歴の詳細については、[Azure Media Services REST API リファレンス]をご覧ください。
+
+## <a name="july-2018"></a>2018 年 7 月
+
+最新のサービス リリースでは、ジョブが失敗したときにサービスが返すエラー メッセージに対して書式設定 (メッセージを 2 行以上に分割する方法) の軽微な変更を行いました。
 
 ## <a name="may-2018"></a>2018 年 5 月 
 
@@ -366,7 +370,7 @@ Azure Media Services パッケージおよび暗号化機能で次のバグが�
 
 ## <a id="may_changes_14"></a>2014 年 5 月のリリース
 ### <a id="may_14_changes"></a>Media Services の全般的な更新
-[ダイナミック パッケージ]を使用して、HLS バージョン 3 をストリーミングできるようになりました。 HLS バージョン 3 をストリーミングするには、*.ism/manifest(format=m3u8-aapl-v3) をオリジン ロケーター パスに追加します。 詳細については、 [このブログ](http://blog-ndrouin.azurewebsites.net/hls-v3-new-old-thing/)をご覧ください。
+[ダイナミック パッケージ]を使用して、HLS バージョン 3 をストリーミングできるようになりました。 HLS バージョン 3 をストリーミングするには、*.ism/manifest(format=m3u8-aapl-v3) をオリジン ロケーター パスに追加します。 詳細については、[このフォーラム](https://social.msdn.microsoft.com/Forums/en-US/13b8a776-9519-4145-b9ed-d2b632861fde/dynamic-packaging-to-hls-v3)を参照してください。
 
 動的パッケージが、PlayReady による Smooth Streaming 静的暗号化に基づく、PlayReady による HLS (バージョン 3 と バージョン 4) 暗号化の配信もサポートするようになりました。 PlayReady による Smooth Streaming の暗号化方法の詳細については、[PlayReady による Smooth Streaming の保護](http://msdn.microsoft.com/library/azure/dn189154.aspx)に関するページをご覧ください。
 
@@ -396,7 +400,7 @@ Media Services .NET SDK が 3.0.0.5 にバージョン アップしました。 
 * OrderBy ステートメントでの LINQ クエリの使用に関する問題が修正されました。
 * [GitHub] のテスト ソリューションが、ユニットベースのテストとシナリオベースのテストに分割されました。
 
-変更の詳細については、[Media Services .NET SDK 3.0.0.1 および 3.0.0.2 のリリース](http://www.gtrifonov.com/2014/02/07/windows-azure-media-services-.net-sdk-3.0.0.2-release/)に関するページをご覧ください。
+変更の詳細については、[Media Services .NET SDK 3.0.0.1 および 3.0.0.2 のリリース](http://gtrifonov.com/2014/02/07/windows-azure-media-services-net-sdk-3-0-0-2-release/index.html)に関するページをご覧ください。
 
 バージョン 3.0.0.3 では次の点が変更されました。
 

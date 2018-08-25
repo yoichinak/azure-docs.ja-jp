@@ -14,12 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/20/2017
 ms.author: jeedes
-ms.openlocfilehash: 18ac9fcf5a8b0c66d3c9e3d3b4e3064099e201c4
-ms.sourcegitcommit: d8ffb4a8cef3c6df8ab049a4540fc5e0fa7476ba
+ms.openlocfilehash: 04708806b9e1ba224e7b438f11c68dca82d6320e
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/20/2018
-ms.locfileid: "36287611"
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39448820"
 ---
 # <a name="tutorial-azure-active-directory-integration-with-scalex-enterprise"></a>チュートリアル: Azure Active Directory と ScaleX Enterprise の統合
 
@@ -52,7 +52,7 @@ ScaleX Enterprise と Azure AD の統合を構成するには、次のものが�
 このチュートリアルでは、テスト環境で Azure AD のシングル サインオンをテストします。 このチュートリアルで説明するシナリオは、主に次の 2 つの要素で構成されています。
 
 1. ギャラリーからの ScaleX Enterprise の追加
-2. Azure AD シングル サインオンの構成とテスト
+1. Azure AD シングル サインオンの構成とテスト
 
 ## <a name="adding-scalex-enterprise-from-the-gallery"></a>ギャラリーからの ScaleX Enterprise の追加
 Azure AD への ScaleX Enterprise の統合を構成するには、ギャラリーから管理対象 SaaS アプリの一覧に ScaleX Enterprise を追加する必要があります。
@@ -63,19 +63,19 @@ Azure AD への ScaleX Enterprise の統合を構成するには、ギャラリ�
 
     ![Active Directory][1]
 
-2. **[エンタープライズ アプリケーション]** に移動します。 次に、**[すべてのアプリケーション]** に移動します。
+1. **[エンタープライズ アプリケーション]** に移動します。 次に、**[すべてのアプリケーション]** に移動します。
 
     ![[アプリケーション]][2]
     
-3. ダイアログの上部にある **[追加]** をクリックします。
+1. ダイアログの上部にある **[追加]** をクリックします。
 
     ![[アプリケーション]][3]
 
-4. **検索ボックス**に、「ScaleX Enterprise」と入力します。
+1. **検索ボックス**に、「ScaleX Enterprise」と入力します。
 
     ![Azure AD のテスト ユーザーの作成](./media/scalexenterprise-tutorial/tutorial_scalexenterprise_search.png)
 
-5. 結果ウィンドウで **[ScaleX Enterprise]** を選択し、**[追加]** をクリックして、アプリケーションを追加します。
+1. 結果ウィンドウで **[ScaleX Enterprise]** を選択し、**[追加]** をクリックして、アプリケーションを追加します。
 
     ![Azure AD のテスト ユーザーの作成](./media/scalexenterprise-tutorial/tutorial_scalexenterprise_addfromgallery.png)
 
@@ -89,10 +89,10 @@ Azure AD への ScaleX Enterprise の統合を構成するには、ギャラリ�
 ScaleX Enterprise で Azure AD のシングル サインオンを構成し、テストするには、次の要素を完了する必要があります。
 
 1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - ユーザーがこの機能を使用できるようにします。
-2. **[Azure AD のテスト ユーザーの作成](#creating-an-azure-ad-test-user)** - Britta Simon で Azure AD のシングル サインオンをテストします。
-3. **[ScaleX Enterprise のテスト ユーザーの作成](#creating-a-scalex-enterprise-test-user)** - ScaleX Enterprise で Britta Simon に対応するユーザーを作成し、Azure AD の Britta Simon にリンクさせます。
-4. **[Azure AD テスト ユーザーの割り当て](#assigning-the-azure-ad-test-user)** - Britta Simon が Azure AD のシングル サインオンを使用できるようにします。
-5. **[シングル サインオンのテスト](#testing-single-sign-on)** - 構成が機能するかどうかを確認します。
+1. **[Azure AD のテスト ユーザーの作成](#creating-an-azure-ad-test-user)** - Britta Simon で Azure AD のシングル サインオンをテストします。
+1. **[ScaleX Enterprise のテスト ユーザーの作成](#creating-a-scalex-enterprise-test-user)** - ScaleX Enterprise で Britta Simon に対応するユーザーを作成し、Azure AD の Britta Simon にリンクさせます。
+1. **[Azure AD テスト ユーザーの割り当て](#assigning-the-azure-ad-test-user)** - Britta Simon が Azure AD のシングル サインオンを使用できるようにします。
+1. **[シングル サインオンのテスト](#testing-single-sign-on)** - 構成が機能するかどうかを確認します。
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Azure AD シングル サインオンの構成
 
@@ -102,69 +102,69 @@ ScaleX Enterprise で Azure AD のシングル サインオンを構成し、テ
 
 1. Azure ポータルの **ScaleX Enterprise** アプリケーション統合ページで、**[シングル サインオン]** をクリックします。
 
-    ![[Configure Single Sign-On]][4]
+    ![Configure single sign-on][4]
 
-2. **[シングル サインオン]** ダイアログで、**[モード]** として **[SAML ベースのサインオン]** を選択してシングル サインオンを有効にします。
+1. **[シングル サインオン]** ダイアログで、**[モード]** として **[SAML ベースのサインオン]** を選択してシングル サインオンを有効にします。
  
-    ![[Configure Single Sign-On]](./media/scalexenterprise-tutorial/tutorial_scalexenterprise_samlbase.png)
+    ![Configure single sign-on](./media/scalexenterprise-tutorial/tutorial_scalexenterprise_samlbase.png)
 
-3. **[ScaleX Enterprise のドメインと URL]** セクションで、**IDP 開始モード**でアプリケーションを構成する場合は、次の手順に従います。
+1. **[ScaleX Enterprise のドメインと URL]** セクションで、**IDP 開始モード**でアプリケーションを構成する場合は、次の手順に従います。
 
-    ![[Configure Single Sign-On]](./media/scalexenterprise-tutorial/tutorial_scalexenterprise_url1.png)
+    ![Configure single sign-on](./media/scalexenterprise-tutorial/tutorial_scalexenterprise_url1.png)
 
     a. **[識別子]** ボックスに、`https://platform.rescale.com/saml2/<company id>/` の形式で値を入力します。
 
     b. **[応答 URL]** ボックスに、`https://platform.rescale.com/saml2/<company id>/acs/` のパターンを使用して URL を入力します。
 
-4. **SP** 開始モードでアプリケーションを構成する場合は、**[詳細な URL 設定の表示]** チェックボックスをオンにします。
+1. **SP** 開始モードでアプリケーションを構成する場合は、**[詳細な URL 設定の表示]** チェックボックスをオンにします。
 
-    ![[Configure Single Sign-On]](./media/scalexenterprise-tutorial/tutorial_scalexenterprise_url2.png)
+    ![Configure single sign-on](./media/scalexenterprise-tutorial/tutorial_scalexenterprise_url2.png)
 
     **[サインオン URL]** ボックスに、`https://platform.rescale.com/saml2/<company id>/sso/` のパターンを使用して値を入力します。
      
     > [!NOTE] 
     > これらは実際の値ではありません。 実際の識別子、応答 URL、サインオン URL でこれらの値を更新します。 これらの値を取得するには、[ScaleX Enterprise クライアント サポート チーム](http://info.rescale.com/contact_sales)に問い合わせてください。 
 
-5. ScaleX アプリケーションでは、特定の形式の SAML アサーションを使用するため、カスタム属性マッピングを SAML トークン属性の構成に変更する必要があります。 **[その他のすべてのユーザー属性を表示および編集する]** チェックボックスをオンにして、カスタム属性設定を開きます。
+1. ScaleX アプリケーションでは、特定の形式の SAML アサーションを使用するため、カスタム属性マッピングを SAML トークン属性の構成に変更する必要があります。 **[その他のすべてのユーザー属性を表示および編集する]** チェックボックスをオンにして、カスタム属性設定を開きます。
 
-    ![[Configure Single Sign-On]](./media/scalexenterprise-tutorial/scalex_attributes.png)
+    ![Configure single sign-on](./media/scalexenterprise-tutorial/scalex_attributes.png)
     
     a. **name**  属性を右クリックし、[削除] をクリックします。
 
-    ![[Configure Single Sign-On]](./media/scalexenterprise-tutorial/delete_attribute_name.png)
+    ![Configure single sign-on](./media/scalexenterprise-tutorial/delete_attribute_name.png)
 
     b. **emailaddress** 属性をクリックして、[属性の編集] ウィンドウを開きます。 その値を、**user.mail** から **user.userprincipalname** に変更し、[Ok] をクリックします。
 
-    ![[Configure Single Sign-On]](./media/scalexenterprise-tutorial/edit_email_attribute.png) 
+    ![Configure single sign-on](./media/scalexenterprise-tutorial/edit_email_attribute.png) 
     
-5. **[SAML 署名証明書]** セクションで、**[証明書 (Base64)]** をクリックし、コンピューターに証明書ファイルを保存します。
+1. **[SAML 署名証明書]** セクションで、**[証明書 (Base64)]** をクリックし、コンピューターに証明書ファイルを保存します。
 
-    ![[Configure Single Sign-On]](./media/scalexenterprise-tutorial/tutorial_scalexenterprise_certificate.png) 
+    ![Configure single sign-on](./media/scalexenterprise-tutorial/tutorial_scalexenterprise_certificate.png) 
 
-6. **[保存]** ボタンをクリックします。
+1. **[保存]** ボタンをクリックします。
 
-    ![[Configure Single Sign-On]](./media/scalexenterprise-tutorial/tutorial_general_400.png)
+    ![Configure single sign-on](./media/scalexenterprise-tutorial/tutorial_general_400.png)
     
-7. **[ScaleX Enterprise の構成]** セクションで、**[ScaleX Enterprise を構成する]** をクリックして、**[サインオンの構成]** ウィンドウを開きます。 **[クイック リファレンス]** セクションから **SAML エンティティ ID** と **SAML シングル サインオン サービス URL** をコピーします。
+1. **[ScaleX Enterprise の構成]** セクションで、**[ScaleX Enterprise を構成する]** をクリックして、**[サインオンの構成]** ウィンドウを開きます。 **[クイック リファレンス]** セクションから **SAML エンティティ ID** と **SAML シングル サインオン サービス URL** をコピーします。
 
-    ![[Configure Single Sign-On]](./media/scalexenterprise-tutorial/tutorial_scalexenterprise_configure.png) 
+    ![Configure single sign-on](./media/scalexenterprise-tutorial/tutorial_scalexenterprise_configure.png) 
 
-8. **ScaleX Enterprise** 側でシングル サインオンを構成するには、管理者として ScaleX Enterprise の Web サイトにログインします。
+1. **ScaleX Enterprise** 側でシングル サインオンを構成するには、管理者として ScaleX Enterprise の Web サイトにログインします。
 
-9. 右上隅のメニューを選択し、**[Contoso Administration (Contoso の管理)]** をクリックします。
+1. 右上隅のメニューを選択し、**[Contoso Administration (Contoso の管理)]** をクリックします。
 
     > [!NOTE] 
     > Contoso は一例です。 これは、実際の会社名でなければなりません。 
 
-    ![[Configure Single Sign-On]](./media/scalexenterprise-tutorial/Test_Admin.png) 
+    ![Configure single sign-on](./media/scalexenterprise-tutorial/Test_Admin.png) 
 
-10. 上部メニューから **[Integrations (統合)]** を選択し、**[Single Sign-On (シングル サインオン)]** を選択します。
+1. 上部メニューから **[Integrations (統合)]** を選択し、**[Single Sign-On (シングル サインオン)]** を選択します。
 
-    ![[Configure Single Sign-On]](./media/scalexenterprise-tutorial/admin_sso.png) 
+    ![Configure single sign-on](./media/scalexenterprise-tutorial/admin_sso.png) 
 
-11. 次のようにフォームの操作を実行します。
+1. 次のようにフォームの操作を実行します。
 
-    ![[Configure Single Sign-On]](./media/scalexenterprise-tutorial/scalex_admin_save.png) 
+    ![Configure single sign-on](./media/scalexenterprise-tutorial/scalex_admin_save.png) 
     
     a. **[Create any user who can authenticate with SSO (SSO で認証できるユーザーを作成する)]** を選択します。
 
@@ -197,15 +197,15 @@ ScaleX Enterprise で Azure AD のシングル サインオンを構成し、テ
 
     ![Azure AD のテスト ユーザーの作成](./media/scalexenterprise-tutorial/create_aaduser_01.png) 
 
-2. **[ユーザーとグループ]** に移動し、**[すべてのユーザー]** をクリックして、ユーザーの一覧を表示します。
+1. **[ユーザーとグループ]** に移動し、**[すべてのユーザー]** をクリックして、ユーザーの一覧を表示します。
     
     ![Azure AD のテスト ユーザーの作成](./media/scalexenterprise-tutorial/create_aaduser_02.png) 
 
-3. ダイアログの上部にある **[追加]** をクリックして **[ユーザー]** ダイアログを開きます。
+1. ダイアログの上部にある **[追加]** をクリックして **[ユーザー]** ダイアログを開きます。
  
     ![Azure AD のテスト ユーザーの作成](./media/scalexenterprise-tutorial/create_aaduser_03.png) 
 
-4. **[ユーザー]** ダイアログ ページで、次の手順を実行します。
+1. **[ユーザー]** ダイアログ ページで、次の手順を実行します。
  
     ![Azure AD のテスト ユーザーの作成](./media/scalexenterprise-tutorial/create_aaduser_04.png) 
 
@@ -233,29 +233,29 @@ Azure AD ユーザーが ScaleX Enterprise にログインできるようにす�
 
     ![ユーザーの割り当て][201] 
 
-2. アプリケーションの一覧で、 **[ScaleX Enterprise]** を選択します。
+1. アプリケーションの一覧で、 **[ScaleX Enterprise]** を選択します。
 
-    ![[Configure Single Sign-On]](./media/scalexenterprise-tutorial/tutorial_scalexenterprise_app.png) 
+    ![Configure single sign-on](./media/scalexenterprise-tutorial/tutorial_scalexenterprise_app.png) 
 
-3. 左側のメニューで **[ユーザーとグループ]** をクリックします。
+1. 左側のメニューで **[ユーザーとグループ]** をクリックします。
 
     ![ユーザーの割り当て][202] 
 
-4. **[追加]** ボタンをクリックします。 次に、**[割り当ての追加]** ダイアログで **[ユーザーとグループ]** を選択します。
+1. **[追加]** ボタンをクリックします。 次に、**[割り当ての追加]** ダイアログで **[ユーザーとグループ]** を選択します。
 
     ![ユーザーの割り当て][203]
 
-5. **[ユーザーとグループ]** ダイアログで、ユーザーの一覧から **[Britta Simon]** を選択します。
+1. **[ユーザーとグループ]** ダイアログで、ユーザーの一覧から **[Britta Simon]** を選択します。
 
-6. **[ユーザーとグループ]** ダイアログで **[選択]** をクリックします。
+1. **[ユーザーとグループ]** ダイアログで **[選択]** をクリックします。
 
-7. **[割り当ての追加]** ダイアログで **[割り当て]** ボタンをクリックします。
+1. **[割り当ての追加]** ダイアログで **[割り当て]** ボタンをクリックします。
 
 ### <a name="testing-single-sign-on"></a>シングル サインオンのテスト
 
 このセクションでは、アクセス パネルを使用して Azure AD のシングル サインオン構成をテストします。
 
-アクセス パネルで [ScaleX Enterprise] タイルをクリックすると、自動的に ScaleX Enterprise アプリケーションにサインオンします。 アクセス パネルの詳細については、[アクセス パネルの概要](../active-directory-saas-access-panel-introduction.md)に関する記事を参照してください。
+アクセス パネルで [ScaleX Enterprise] タイルをクリックすると、自動的に ScaleX Enterprise アプリケーションにサインオンします。 アクセス パネルの詳細については、[アクセス パネルの概要](../user-help/active-directory-saas-access-panel-introduction.md)に関する記事を参照してください。
 
 
 ## <a name="additional-resources"></a>その他のリソース

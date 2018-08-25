@@ -10,17 +10,17 @@ ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.component: protection
+ms.topic: conceptual
+ms.component: pim
 ms.date: 04/02/2018
 ms.author: rolyon
 ms.custom: pim
-ms.openlocfilehash: 205b4f3113f369279dbe18e75b5945a0498e7bbd
-ms.sourcegitcommit: 1b8665f1fff36a13af0cbc4c399c16f62e9884f3
+ms.openlocfilehash: 336453c1ef6ef8d0295d00f31afc6a5e7e42e8b6
+ms.sourcegitcommit: 35ceadc616f09dd3c88377a7f6f4d068e23cceec
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35260381"
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39621550"
 ---
 # <a name="eligible-assignments-and-resource-visibility-with-privileged-identity-management"></a>Privileged Identity Management での有資格割り当てとリソース可視性
 

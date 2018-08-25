@@ -11,16 +11,16 @@ ms.component: app-mgmt
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 05/24/2018
 ms.author: barbkess
 ms.reviewer: asteen
-ms.openlocfilehash: f318c53de073c8f1fa6c3ae11cb335a4a91e137d
-ms.sourcegitcommit: 95d9a6acf29405a533db943b1688612980374272
+ms.openlocfilehash: ad2140d9d94cc4655043625200d42485b03c719b
+ms.sourcegitcommit: f86e5d5b6cb5157f7bde6f4308a332bfff73ca0f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/23/2018
-ms.locfileid: "36334963"
+ms.lasthandoff: 07/31/2018
+ms.locfileid: "39364293"
 ---
 # <a name="troubleshoot-kerberos-constrained-delegation-configurations-for-application-proxy"></a>Application Proxy のための、制限付き委任構成のトラブルシューティング Kerberos
 
@@ -90,7 +90,7 @@ Azure AD アプリケーション プロキシは、各種のインフラスト�
 
    ![KCD の正しくない構成によるエラー](./media/application-proxy-back-end-kerberos-constrained-delegation-how-to/graphic3.png)
 
-また、イベント ログ内に見られる、該当するエントリが、イベント 13019 またはイベント 12027 として記録されます。 Microsoft** &gt; **AadApplicationProxy** &gt; **Connector** &gt; **Admin** の**アプリケーションおよびサービスログ** &gt; **内に、コネクタのイベントログを見つけます。
+また、イベント ログ内に見られる、該当するエントリが、イベント 13019 またはイベント 12027 として記録されます。 **Microsoft** &gt; **AadApplicationProxy** &gt; **Connector** &gt; **Admin** の**アプリケーションおよびサービスログ** &gt; 内に、コネクタのイベントログを見つけます。
 
    ![イベント 13019 (アプリケーション プロキシのイベント ログ)](./media/application-proxy-back-end-kerberos-constrained-delegation-how-to/graphic4.png)
 

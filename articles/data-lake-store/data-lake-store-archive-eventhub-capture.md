@@ -11,12 +11,12 @@ ms.devlang: na
 ms.topic: conceptual
 ms.date: 05/29/2018
 ms.author: nitinme
-ms.openlocfilehash: 57c4d9ccc64c9644c3d333fad1262c997aeff5d1
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: bda52acc12aad3cad20143c319f557f11d760c42
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34624663"
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39435154"
 ---
 # <a name="use-azure-data-lake-store-to-capture-data-from-event-hubs"></a>Azure Data Lake Store を使用して Event Hubs からデータをキャプチャする
 
@@ -39,11 +39,11 @@ Azure Data Lake Store を使用して、Azure Event Hubs で受信したデー�
 
     ![Data Lake Store データ エクスプローラー](./media/data-lake-store-archive-eventhub-capture/data-lake-store-open-data-explorer.png "Data Lake Store データ エクスプローラー")
 
-2.  **[新しいフォルダー]** をクリックし、データをキャプチャするフォルダーの名前を入力します。
+1.  **[新しいフォルダー]** をクリックし、データをキャプチャするフォルダーの名前を入力します。
 
     ![Data Lake Store に新しいフォルダーを作成する](./media/data-lake-store-archive-eventhub-capture/data-lake-store-create-new-folder.png "Data Lake Store に新しいフォルダーを作成する")
 
-3. Data Lake Store のルートにアクセス許可を割り当てます。 
+1. Data Lake Store のルートにアクセス許可を割り当てます。 
 
     a. **[データ エクスプローラー]** をクリックし、Data Lake Store アカウントのルートを選択して、**[アクセス]** をクリックします。
 
@@ -64,7 +64,7 @@ Azure Data Lake Store を使用して、Azure Event Hubs で受信したデー�
 
     Click **OK**.
 
-4. データをキャプチャする Data Lake Store アカウントのフォルダーにアクセス許可を割り当てます。
+1. データをキャプチャする Data Lake Store アカウントのフォルダーにアクセス許可を割り当てます。
 
     a. **[データ エクスプローラー]** をクリックし、Data Lake Store アカウントのフォルダーを選択して、**[アクセス]** をクリックします。
 
@@ -86,11 +86,11 @@ Azure Data Lake Store を使用して、Azure Event Hubs で受信したデー�
 
 このセクションでは、Event Hubs 名前空間内にイベント ハブを作成します。 さらに、Azure Data Lake Store アカウントにデータをキャプチャするよう、そのイベント ハブを構成します。 このセクションでは、Event Hubs 名前空間を既に作成していることを前提としています。
 
-2. Event Hubs 名前空間の **[概要]** ウィンドウで、**+ [イベント ハブ]** をクリックします。
+1. Event Hubs 名前空間の **[概要]** ウィンドウで、**+ [イベント ハブ]** をクリックします。
 
     ![イベント ハブを作成する](./media/data-lake-store-archive-eventhub-capture/data-lake-store-create-event-hub.png "イベント ハブを作成する")
 
-3. 次の値を設定して、Data Lake Store にデータをキャプチャするよう Event Hubs を構成します。
+1. 次の値を設定して、Data Lake Store にデータをキャプチャするよう Event Hubs を構成します。
 
     ![イベント ハブを作成する](./media/data-lake-store-archive-eventhub-capture/data-lake-store-configure-eventhub.png "イベント ハブを作成する")
 

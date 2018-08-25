@@ -1,23 +1,20 @@
 ---
-title: Azure 仮想ネットワーク内で HBase クラスターのレプリケーションを設定する | Microsoft Docs
+title: Azure 仮想ネットワーク内で HBase クラスターのレプリケーションを設定する
 description: 負荷分散、高可用性、ダウンタイムなしの移行と更新、およびディザスター リカバリーを実現するために、ある HDInsight バージョンから別のバージョンへの HBase レプリケーションを設定する方法について説明します。
 services: hdinsight,virtual-network
-documentationcenter: ''
-author: mumian
-manager: jhubbard
-editor: cgronlun
+author: jasonwhowell
+editor: jasonwhowell
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
 ms.topic: conceptual
 ms.date: 05/11/2018
-ms.author: jgao
-ms.openlocfilehash: 56b2b5ae9d3e4a0e682ec3dd47cd5cc30ebf6d58
-ms.sourcegitcommit: fc64acba9d9b9784e3662327414e5fe7bd3e972e
+ms.author: jasonh
+ms.openlocfilehash: 535b5dcc62020119cda3db36bfdbd707badfe549
+ms.sourcegitcommit: 1f0587f29dc1e5aef1502f4f15d5a2079d7683e9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2018
-ms.locfileid: "34077328"
+ms.lasthandoff: 08/07/2018
+ms.locfileid: "39600307"
 ---
 # <a name="set-up-hbase-cluster-replication-in-azure-virtual-networks"></a>Azure 仮想ネットワーク内で HBase クラスターのレプリケーションを設定する
 
@@ -62,7 +59,7 @@ Azure の 1 つの仮想ネットワーク内または 2 つの仮想ネット�
 
 ### <a name="set-up-two-virtual-networks-in-two-different-regions"></a>2 つの異なるリージョンに 2 つの仮想ネットワークを設定する
 
-2 つの異なるリージョンに 2 つの仮想ネットワークを作成し、その VNet 間に VPN 接続を作成するには、次のイメージを選択して作成します。 このテンプレートは、[パブリック BLOB ストレージ]](https://hditutorialdata.blob.core.windows.net/hbaseha/azuredeploy.json)に格納されています。
+2 つの異なるリージョンの 2 つの仮想ネットワークと、その VNet 間の VPN 接続を作成するテンプレートを使用するには、次の **[Deploy to Azure]** ボタンを選択します。 テンプレートの定義は、[パブリック BLOB ストレージ](https://hditutorialdata.blob.core.windows.net/hbaseha/azuredeploy.json)に格納されています。
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Fhbaseha%2Fazuredeploy.json" target="_blank"><img src="./media/apache-hbase-replication/deploy-to-azure.png" alt="Deploy to Azure"></a>
 
@@ -72,7 +69,7 @@ Azure の 1 つの仮想ネットワーク内または 2 つの仮想ネット�
 
 | プロパティ | 値 |
 |----------|-------|
-| 場所 | 米国西部 |
+| Location | 米国西部 |
 | VNet の名前 | &lt;クラスター名のプレフィックス>-vnet1 |
 | アドレス空間プレフィックス | 10.1.0.0/16 |
 | サブネット名 | subnet 1 |
@@ -89,7 +86,7 @@ Azure の 1 つの仮想ネットワーク内または 2 つの仮想ネット�
 
 | プロパティ | 値 |
 |----------|-------|
-| 場所 | 米国東部 |
+| Location | 米国東部 |
 | VNet の名前 | &lt;クラスター名のプレフィックス>-vnet2 |
 | アドレス空間プレフィックス | 10.2.0.0/16 |
 | サブネット名 | subnet 1 |
@@ -301,11 +298,11 @@ sudo service bind9 status
     >
     > ソースと宛先の両方のクラスター DNS 名に FQDN ではなくホスト名を使用します。
 
-6. **[作成]** を選択します。 このスクリプトの実行には、少し時間がかかます (特に **-copydata** 引数を使用する場合)。
+6. **作成**を選択します。 このスクリプトの実行には、少し時間がかかます (特に **-copydata** 引数を使用する場合)。
 
 必須の引数:
 
-|名前|説明|
+|Name|説明|
 |----|-----------|
 |-s, --src-cluster | ソース HBase クラスターの DNS 名を指定します。 例: -s hbsrccluster, --src-cluster=hbsrccluster |
 |-d, --dst-cluster | デスティネーション (レプリカ) HBase クラスターの DNS 名を指定します。 例: -s dsthbcluster, --src-cluster=dsthbcluster |
@@ -314,7 +311,7 @@ sudo service bind9 status
 
 省略可能な引数:
 
-|名前|説明|
+|Name|説明|
 |----|-----------|
 |-su, --src-ambari-user | ソース HBase クラスターでの Ambari の管理ユーザー名を指定します。 既定値は **admin** です。 |
 |-du, --dst-ambari-user | デスティネーション HBase クラスターでの Ambari の管理者ユーザー名を指定します。 既定値は **admin** です。 |
@@ -390,7 +387,7 @@ sudo service bind9 status
 - **すべてのテーブルのレプリケーションを無効にする**:
 
         -m hn1 -s <source cluster DNS name> -sp Mypassword\!789 -all
-  または
+  or
 
         --src-cluster=<source cluster DNS name> --dst-cluster=<destination cluster DNS name> --src-ambari-user=<source cluster Ambari user name> --src-ambari-password=<source cluster Ambari password>
 

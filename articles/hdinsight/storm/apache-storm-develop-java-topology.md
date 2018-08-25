@@ -1,26 +1,21 @@
 ---
-title: Apache Storm Java トポロジの例 - Azure HDInsight | Microsoft Docs
+title: Apache Storm Java トポロジの例 - Azure HDInsight
 description: ワード カウント トポロジの例を作成して、Java で Apache Storm トポロジを作成する方法について説明します。
 services: hdinsight
-documentationcenter: ''
-author: Blackmist
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
+author: jasonwhowell
+editor: jasonwhowell
 keywords: apache storm,apache storm の例,storm java,storm トポロジの例
-ms.assetid: a8838f29-9c08-4fd9-99ef-26655d1bf6d7
 ms.service: hdinsight
-ms.devlang: java
 ms.topic: conceptual
 ms.date: 02/20/2018
-ms.author: larryfr
+ms.author: jasonh
 ms.custom: H1Hack27Feb2017,hdinsightactive,hdiseo17may2017
-ms.openlocfilehash: 5f2a6de9737569c75e0350e2aceec19b149d9549
-ms.sourcegitcommit: 9cdd83256b82e664bd36991d78f87ea1e56827cd
+ms.openlocfilehash: 9376d80e3c856df570f3709ca52c353b81579100
+ms.sourcegitcommit: 35ceadc616f09dd3c88377a7f6f4d068e23cceec
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31418494"
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39619007"
 ---
 # <a name="create-an-apache-storm-topology-in-java"></a>Java での Apache Storm トポロジの作成
 
@@ -597,10 +592,10 @@ Flux は、構成と実装が分離可能な、Storm 0.10.0 以降で使用で�
 
 YAML ファイルは、トポロジと、これらの間のデータ フローに使用するコンポーネントを定義します。 jar ファイルの一部として YAML ファイルを含めることも、外部 YAML ファイルを使用することもできます。
 
-Flux の詳細については、「[Flux フレームワーク (https://storm.apache.org/releases/0.10.0/flux.html)](https://storm.apache.org/releases/0.10.0/flux.html)」に関するセクションを参照してください。
+Flux の詳細については、「[Flux フレームワーク (https://storm.apache.org/releases/1.0.6/flux.html)](https://storm.apache.org/releases/1.0.6/flux.html)」に関するセクションを参照してください。
 
 > [!WARNING]
-> Storm 1.0.1 での[バグ (https://issues.apache.org/jira/browse/STORM-2055)](https://issues.apache.org/jira/browse/STORM-2055) のため、Flux トポロジをローカルに実行するには [Storm 開発環境のインストール](https://storm.apache.org/releases/1.0.1/Setting-up-development-environment.html)が必要になる場合があります。
+> Storm 1.0.1 での[バグ (https://issues.apache.org/jira/browse/STORM-2055)](https://issues.apache.org/jira/browse/STORM-2055) のため、Flux トポロジをローカルに実行するには [Storm 開発環境のインストール](http://storm.apache.org/releases/current/Setting-up-development-environment.html)が必要になる場合があります。
 
 1. `WordCountTopology.java` ファイルをプロジェクトの外部に移動します。 以前は、このファイルでトポロジを定義していましたが、Flux では不要です。
 
@@ -719,9 +714,9 @@ Flux の詳細については、「[Flux フレームワーク (https://storm.ap
     ```
 
     > [!WARNING]
-    > トポロジが Storm 1.0.1 ビットを使っている場合、このコマンドは失敗します。 このエラーは[https://issues.apache.org/jira/browse/STORM-2055](https://issues.apache.org/jira/browse/STORM-2055)が原因です。 代わりに、[開発環境に Storm をインストール](http://storm.apache.org/releases/0.10.0/Setting-up-development-environment.html)し、次の手順を使ってください。
+    > トポロジが Storm 1.0.1 ビットを使っている場合、このコマンドは失敗します。 このエラーは[https://issues.apache.org/jira/browse/STORM-2055](https://issues.apache.org/jira/browse/STORM-2055)が原因です。 代わりに、[開発環境に Storm をインストール](http://storm.apache.org/releases/current/Setting-up-development-environment.html)し、次の手順を使ってください。
     >
-    > [開発環境に Storm がインストールされている](http://storm.apache.org/releases/0.10.0/Setting-up-development-environment.html)場合、代わりに次のコマンドを使うことができます。
+    > [開発環境に Storm がインストールされている](http://storm.apache.org/releases/current/Setting-up-development-environment.html)場合、代わりに次のコマンドを使うことができます。
     >
     > ```bash
     > mvn compile package
@@ -767,7 +762,7 @@ Flux の詳細については、「[Flux フレームワーク (https://storm.ap
 
     トポロジが開始されると、バッチが出力される時間間隔が変更され、newtopology.yaml の値が反映されていることがわかります。 このように、トポロジを再コンパイルしなくても YAML ファイルから構成を変更できることがわかります。
 
-Flux フレームワークのその他の機能の詳細については、 [Flux(https://storm.apache.org/releases/0.10.0/flux.html)](https://storm.apache.org/releases/0.10.0/flux.html)に関するページをご覧ください。
+Flux フレームワークのその他の機能の詳細については、 [Flux(https://storm.apache.org/releases/1.0.6/flux.html)](https://storm.apache.org/releases/1.0.6/flux.html)に関するページをご覧ください。
 
 ## <a name="trident"></a>Trident
 

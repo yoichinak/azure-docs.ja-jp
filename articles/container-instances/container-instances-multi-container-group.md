@@ -2,19 +2,19 @@
 title: Azure Container Instances に複数コンテナー グループをデプロイする
 description: 複数のコンテナーを含むコンテナー グループを Azure Container Instances にデプロイする方法を説明します。
 services: container-instances
-author: neilpeterson
+author: mmacy
 manager: jeconnoc
 ms.service: container-instances
 ms.topic: article
 ms.date: 06/08/2018
-ms.author: nepeters
+ms.author: marsma
 ms.custom: mvc
-ms.openlocfilehash: db3f616d85c21f01c751fd82532289593a6e7e45
-ms.sourcegitcommit: 3c3488fb16a3c3287c3e1cd11435174711e92126
+ms.openlocfilehash: 8a3dbe67a835cc9f1b8deca6a103e3f4aaa66ff9
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/07/2018
-ms.locfileid: "34850571"
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39424683"
 ---
 # <a name="deploy-a-container-group"></a>コンテナー グループのデプロイ
 
@@ -25,7 +25,7 @@ Azure CLI を使用して複数コンテナー グループをデプロイする
 * Resource Manager テンプレートのデプロイ (この記事)
 * [YAML ファイルのデプロイ](container-instances-multi-container-yaml.md)
 
-コンテナー インスタンスのデプロイ時に追加の Azure サービス リソース (Azure Files 共有など) をデプロイする必要がある場合は、Resource Manager テンプレートでのデプロイをお勧めします。 YAML フォーマットは簡潔であるため、コンテナー インスタンス*のみ*を含むデプロイには YAML ファイルを使用したデプロイをお勧めします。
+コンテナー インスタンスのデプロイ時に追加の Azure サービス リソース (Azure Files 共有など) をデプロイする必要がある場合は、Resource Manager テンプレートでのデプロイをお勧めします。 YAML フォーマットは簡潔であるため、コンテナー インスタンス*のみ*を含むデプロイには YAML ファイルを使用するデプロイをお勧めします。
 
 > [!NOTE]
 > 複数コンテナー グループは、現在、Linux コンテナーに限定されています。 すべての機能を Windows コンテナーにも採り入れることに取り組んでいますが、現在のプラットフォームの違いは、「[Quotas and region availability for Azure Container Instances](container-instances-quotas.md)」(Azure Container Instances のクォータとリージョンの可用性) で確認できます。
@@ -222,8 +222,8 @@ Connection: keep-alive
 
 <!-- LINKS - Internal -->
 [aci-tutorial]: ./container-instances-tutorial-prepare-app.md
-[az-container-logs]: /cli/azure/container#az_container_logs
-[az-container-show]: /cli/azure/container#az_container_show
-[az-group-create]: /cli/azure/group#az_group_create
-[az-group-deployment-create]: /cli/azure/group/deployment#az_group_deployment_create
+[az-container-logs]: /cli/azure/container#az-container-logs
+[az-container-show]: /cli/azure/container#az-container-show
+[az-group-create]: /cli/azure/group#az-group-create
+[az-group-deployment-create]: /cli/azure/group/deployment#az-group-deployment-create
 [template-reference]: https://docs.microsoft.com/azure/templates/microsoft.containerinstance/containergroups

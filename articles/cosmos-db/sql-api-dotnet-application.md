@@ -7,22 +7,24 @@ author: SnehaGunda
 manager: kfile
 ms.service: cosmos-db
 ms.component: cosmosdb-sql
+ms.workload: azure-vs
 ms.devlang: dotnet
 ms.topic: tutorial
 ms.date: 08/03/2017
 ms.author: sngun
-ms.custom: devcenter
-ms.openlocfilehash: 193f0f74d7a8ebaee72105698c646b55a8159a3b
-ms.sourcegitcommit: 6116082991b98c8ee7a3ab0927cf588c3972eeaa
+ms.custom: devcenter, vs-azure
+ms.openlocfilehash: f62388c649d576cc4b52ebea0af1e9c8743f3127
+ms.sourcegitcommit: fab878ff9aaf4efb3eaff6b7656184b0bafba13b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/05/2018
-ms.locfileid: "34796997"
+ms.lasthandoff: 08/22/2018
+ms.locfileid: "42440291"
 ---
 # <a name="_Toc395809351"></a>ASP.NET MVC チュートリアル: Azure Cosmos DB を使用した Web アプリケーションの開発
 > [!div class="op_single_selector"]
 > * [.NET](sql-api-dotnet-application.md)
 > * [Node.js](sql-api-nodejs-application.md)
+> * [Node.js - v2.0 プレビュー](sql-api-nodejs-application-preview.md)
 > * [Java](sql-api-java-application.md)
 > * [Python](sql-api-python-application.md)
 > 
@@ -237,7 +239,7 @@ MVC の標準的な構成要素を準備できたので、次に Azure Cosmos DB
         using System.Configuration;
         using System.Linq.Expressions;
         using System.Threading.Tasks;
-        using System.Net
+        using System.Net;
         
     次のコード 
    

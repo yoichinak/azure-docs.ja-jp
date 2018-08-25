@@ -1,20 +1,20 @@
 ---
 title: Azure Backup のレポートを構成する
-description: この記事では、Recovery Services コンテナーを使用する Azure Backup の Power BI レポートを構成する方法について説明します。
+description: Recovery Services コンテナーを使用する Azure Backup の Power BI レポートを構成します。
 services: backup
-author: JPallavi
-manager: vijayts
+author: adiganmsft
+manager: shivamg
 ms.service: backup
 ms.topic: conceptual
-ms.date: 11/10/2017
-ms.author: pajosh
+ms.date: 07/26/2018
+ms.author: adigan
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: b645d12255ab2bd6c3747eb966b2a6ecc3e284b3
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: 4839b1aaa56be1ad93fa1dd685ca3176d1cc8a27
+ms.sourcegitcommit: 8ebcecb837bbfb989728e4667d74e42f7a3a9352
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34605231"
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "42146909"
 ---
 # <a name="configure-azure-backup-reports"></a>Azure Backup のレポートを構成する
 この記事では、Recovery Services コンテナーを使用する Azure Backup のレポートを構成し、Power BI を使用してそのレポートにアクセスする手順を説明します。 この手順を実行すると、Power BI に直接アクセスしてすべてのレポートを表示し、レポートのカスタマイズおよび作成を行えるようになります。 
@@ -24,10 +24,9 @@ ms.locfileid: "34605231"
 2. 現時点では、Azure SQL、DPM、および Azure Backup Server に対するレポートはサポートされていません。
 3. 各コンテナーに対して同じストレージ アカウントが構成されている場合は、複数のコンテナーおよび複数のサブスクリプションにわたるレポートを表示できます。 選択するストレージ アカウントは、Recovery Services コンテナーと同じリージョンにある必要があります。
 4. Power BI での、レポートのスケジュールされた更新の頻度は 24 時間ごとです。 Power BI ではレポートのアドホック更新も実行できます。その場合、顧客のストレージ アカウント内の最新データを使用してレポートがレンダリングされます。 
-5. Azure Backup のレポートは、国内のクラウドでは現在サポートされていません。
 
 ## <a name="prerequisites"></a>前提条件
-1. レポート用に構成する [Azure ストレージ アカウントを作成](../storage/common/storage-create-storage-account.md#create-a-storage-account)します。 このストレージ アカウントは、レポート関連のデータを格納するために使用されます。
+1. レポート用に構成する [Azure ストレージ アカウントを作成](../storage/common/storage-quickstart-create-account.md)します。 このストレージ アカウントは、レポート関連のデータを格納するために使用されます。
 2. Power BI ポータルを使用して独自のレポートを表示、カスタマイズ、および作成するための [Power BI アカウントを作成](https://powerbi.microsoft.com/landing/signin/)します。
 3. ストレージ アカウントのサブスクリプションと Recovery Services コンテナーのサブスクリプションにリソース プロバイダー **Microsoft.insights** がまだ登録されていない場合は登録して、レポート データをストレージ アカウントにフローできるようにします。 そのためには、Azure Portal で [サブスクリプション] > [リソース プロバイダー] に移動し、このプロバイダーを探して登録します。 
 
@@ -75,7 +74,7 @@ Azure Portal で次の手順を使用して、Recovery Services コンテナー�
 ## <a name="view-reports-in-power-bi"></a>Power BI でレポートを表示する 
 Recovery Services コンテナーを使用するレポート用にストレージ アカウントを構成した後、レポート データのフローが開始されるまでに約 24 時間かかります。 ストレージ アカウントを設定してから 24 時間が経過したら、次の手順を使用して Power BI でレポートを表示します。
 1. Power BI に[サインイン](https://powerbi.microsoft.com/landing/signin/)します。
-2. **[データの取得]** をクリックし、[コンテンツ パック ライブラリ] の **[サービス]** の下にある **[取得]** をクリックします。 [Power BI のドキュメントで説明されているコンテンツ パックへのアクセス手順](https://powerbi.microsoft.com/en-us/documentation/powerbi-content-packs-services/)を使用します。
+2. **[データの取得]** をクリックし、[コンテンツ パック ライブラリ] の **[サービス]** の下にある **[取得]** をクリックします。 [Power BI のドキュメントで説明されているコンテンツ パックへのアクセス手順](https://powerbi.microsoft.com/documentation/powerbi-content-packs-services/)を使用します。
 
      ![コンテンツ パックをインポートする](./media/backup-azure-configure-reports/content-pack-import.png)
 3. 検索バーに「**Azure Backup**」と入力し、**[今すぐ入手する]** をクリックします。

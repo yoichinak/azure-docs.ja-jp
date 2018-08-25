@@ -1,6 +1,6 @@
 ---
-title: Azure CLI スクリプト - Azure Cosmos DB の Gremlin API アカウント、データベース、およびコレクションを作成する | Microsoft Docs
-description: Azure CLI のサンプル スクリプト - Azure Cosmos DB の Gremlin API アカウント、データベース、およびコレクションを作成する
+title: Azure CLI スクリプト - Azure Cosmos DB の Gremlin API アカウント、データベース、およびグラフを作成する | Microsoft Docs
+description: Azure CLI のサンプル スクリプト - Azure Cosmos DB の Gremlin API アカウント、データベース、およびグラフを作成する
 services: cosmos-db
 documentationcenter: cosmosdb
 author: SnehaGunda
@@ -15,16 +15,16 @@ ms.tgt_pltfrm: cosmosdb
 ms.workload: database
 ms.date: 05/29/2018
 ms.author: sngun
-ms.openlocfilehash: 72253d2733b7d15d22506e520b81ebe1379d289f
-ms.sourcegitcommit: 6116082991b98c8ee7a3ab0927cf588c3972eeaa
+ms.openlocfilehash: a1fc66c82456b86a7ecc2c050db06cc743fa7573
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/05/2018
-ms.locfileid: "34796024"
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39425441"
 ---
 # <a name="azure-cosmos-db-create-a-gremlin-api-account-using-the-azure-cli"></a>Azure Cosmos DB: Azure CLI を使用して Gremlin API アカウントを作成する
 
-この CLI サンプル スクリプトでは、Azure Cosmos DB の Gremlin API アカウント、データベース、およびコレクションを作成します。 
+この CLI サンプル スクリプトでは、Azure Cosmos DB の Gremlin API アカウント、データベース、およびグラフを作成します。 
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
@@ -32,7 +32,7 @@ CLI をローカルにインストールして使用する場合、このトピ�
 
 ## <a name="sample-script"></a>サンプル スクリプト
 
-[!code-azurecli-interactive[main](../../../cli_scripts/cosmosdb/create-cosmosdb-gremlin-account/create-cosmosdb-gremlin-account.sh?highlight=15-35 "Create an Azure Cosmos DB Gremlin API account, database, and collection")]
+[!code-azurecli-interactive[main](../../../cli_scripts/cosmosdb/create-cosmosdb-gremlin-account/create-cosmosdb-gremlin-account.sh?highlight=15-35 "Create an Azure Cosmos DB Gremlin API account, database, and graph")]
 
 ## <a name="clean-up-deployment"></a>デプロイのクリーンアップ
 
@@ -48,9 +48,9 @@ az group delete --name myResourceGroup
 
 | コマンド | メモ |
 |---|---|
-| [az group create](/cli/azure/group#az_group_create) | すべてのリソースを格納するリソース グループを作成します。 |
-| [az cosmosdb create](/cli/azure/cosmosdb#az_cosmosdb_create) | Azure Cosmos DB アカウントを作成します。 |
-| [az group delete](/cli/azure/resource#az_resource_delete) | 入れ子になったリソースすべてを含むリソース グループを削除します。 |
+| [az group create](/cli/azure/group#az-group-create) | すべてのリソースを格納するリソース グループを作成します。 |
+| [az cosmosdb create](/cli/azure/cosmosdb#az-cosmosdb-create) | Azure Cosmos DB アカウントを作成します。 |
+| [az group delete](/cli/azure/resource#az-resource-delete) | 入れ子になったリソースすべてを含むリソース グループを削除します。 |
 
 ## <a name="next-steps"></a>次の手順
 

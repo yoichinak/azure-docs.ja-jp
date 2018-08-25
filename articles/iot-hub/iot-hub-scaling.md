@@ -8,12 +8,12 @@ services: iot-hub
 ms.topic: conceptual
 ms.date: 04/02/2018
 ms.author: kgremban
-ms.openlocfilehash: 23ace9f643596c4519014f370cf0142540724be6
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: 01aeaee03a4cfabbda3a29cddd17febdc8a16e45
+ms.sourcegitcommit: d0ea925701e72755d0b62a903d4334a3980f2149
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34635442"
+ms.lasthandoff: 08/09/2018
+ms.locfileid: "40003534"
 ---
 # <a name="choose-the-right-iot-hub-tier-for-your-solution"></a>ソリューションに適した IoT Hub のレベルを選択する
 
@@ -31,7 +31,7 @@ Azure IoT Hub には Basic と Standard の 2 つのレベルがあり、サポ�
 
 IoT Hub の Standard レベルではすべての機能が有効になり、双方向通信機能を利用する IoT ソリューションの場合はこのレベルが必要です。 Basic レベルでは機能のサブセットが有効になり、デバイスからクラウドへの単方向通信だけが必要な IoT ソリューション用です。 提供されるセキュリティ機能と認証機能は、どちらのレベルも同じです。
 
-IoT Hub を作成した後は、既存の操作を中断することなく、Basic レベルから Standard レベルにアップグレードできます。 詳しくは、「[IoT Hub のアップグレード方法](iot-hub-upgrade.md)」をご覧ください。
+IoT Hub を作成した後は、既存の操作を中断することなく、Basic レベルから Standard レベルにアップグレードできます。 詳しくは、「[IoT Hub のアップグレード方法](iot-hub-upgrade.md)」をご覧ください。 Basic レベルの IoT Hub のパーティションの最大制限は 8 で、Standard レベルの場合は 32 であることにご注意ください。 ほとんどの IoT Hub では、4 つのパーティションのみ必要です。 IoT Hub の作成時にパーティション制限が選択され、device-to-cloud メッセージがこれらのメッセージの同時閲覧者数に関連付けられます。 Basic レベルから Standard レベルに移行してもこの値は変わりません。 1 つのレベル内の[エディション](https://azure.microsoft.com/pricing/details/iot-hub/)は IoT Hub あたり 1 種類だけ選択できます。 たとえば、S1 と B3 や S1 と S2 などの異なるエディションのユニットの組み合わせではなく、S1 のユニットを複数持つ IoT Hub を作成できます。
 
 | 機能 | Basic レベル | Standard レベル |
 | ---------- | ---------- | ------------- |
@@ -53,34 +53,34 @@ IoT Hub の Basic レベルと Standard レベルでサポートされる機能�
 
 | API | Basic レベル | Standard レベル |
 | --- | ---------- | ------------- |
-| [デバイスの削除](https://docs.microsoft.com/rest/api/iothub/deviceapi/deletedevice) | [はい] | [はい] |
-| [デバイスの取得](https://docs.microsoft.com/rest/api/iothub/deviceapi/getdevice) | [はい] | [はい] |
+| [デバイスの削除](https://docs.microsoft.com/rest/api/iothub/service/deletedevice) | [はい] | [はい] |
+| [デバイスの取得](https://docs.microsoft.com/rest/api/iothub/service/getdevice) | [はい] | [はい] |
 | モジュールの削除 | [はい] | [はい] |
 | モジュールの取得 | [はい] | [はい] |
-| [レジストリの統計情報の取得](https://docs.microsoft.com/rest/api/iothub/deviceapi/getregistrystatistics) | [はい] | [はい] |
-| [サービスの統計情報の取得](https://docs.microsoft.com/rest/api/iothub/deviceapi/getservicestatistics) | [はい] | [はい] |
-| [デバイスの設定](https://docs.microsoft.com/rest/api/iothub/deviceapi/putdevice) | [はい] | [はい] |
+| [レジストリの統計情報の取得](https://docs.microsoft.com/rest/api/iothub/service/getdeviceregistrystatistics) | [はい] | [はい] |
+| [サービスの統計情報の取得](https://docs.microsoft.com/rest/api/iothub/service/getservicestatistics) | [はい] | [はい] |
+| [デバイスの作成または更新](https://docs.microsoft.com/rest/api/iothub/service/createorupdatedevice) | [はい] | [はい] |
 | モジュールの設定 | [はい] | [はい] |
-| [デバイスのクエリ](https://docs.microsoft.com/rest/api/iothub/deviceapi/querydevices) | [はい] | [はい] |
+| [IoT Hub にクエリを実行する](https://docs.microsoft.com/rest/api/iothub/service/queryiothub) | [はい] | [はい] |
 | モジュールのクエリ | [はい] | [はい] |
-| [ファイル アップロード SAS URI の作成](https://docs.microsoft.com/rest/api/iothub/httpruntime/createfileuploadsasuri) | [はい] | [はい] |
-| [デバイス バインド通知の受け取り](https://docs.microsoft.com/rest/api/iothub/httpruntime/receivedeviceboundnotification) | [はい] | [はい] |
-| [デバイス イベントの送信](https://docs.microsoft.com/rest/api/iothub/httpruntime/senddeviceevent) | [はい] | [はい] |
+| [ファイル アップロード SAS URI の作成](https://docs.microsoft.com/rest/api/iothub/device/createfileuploadsasuri) | [はい] | [はい] |
+| [デバイス バインド通知の受け取り](https://docs.microsoft.com/rest/api/iothub/device/receivedeviceboundnotification) | [はい] | [はい] |
+| [デバイス イベントの送信](https://docs.microsoft.com/rest/api/iothub/device/senddeviceevent) | [はい] | [はい] |
 | モジュール イベントの送信 | [はい] | [はい] |
-| [ファイル アップロード ステータスの更新](https://docs.microsoft.com/rest/api/iothub/httpruntime/updatefileuploadstatus) | [はい] | [はい] |
-| [デバイスの一括操作](https://docs.microsoft.com/rest/api/iothub/deviceapi/bulkdeviceoperation) | はい (IoT Edge 機能を除く) | [はい] | 
-| [コマンド キューの消去](https://docs.microsoft.com/rest/api/iothub/deviceapi/purgecommandqueue) |   | [はい] |
-| [デバイス ツインの取得](https://docs.microsoft.com/rest/api/iothub/devicetwinapi/getdevicetwin) |   | [はい] |
+| [ファイル アップロード ステータスの更新](https://docs.microsoft.com/rest/api/iothub/device/updatefileuploadstatus) | [はい] | [はい] |
+| [デバイスの一括操作](https://docs.microsoft.com/rest/api/iot-dps/deviceenrollment/bulkoperation) | はい (IoT Edge 機能を除く) | [はい] | 
+| [コマンド キューの消去](https://docs.microsoft.com/rest/api/iothub/service/purgecommandqueue) |   | [はい] |
+| [デバイス ツインの取得](https://docs.microsoft.com/rest/api/iothub/service/gettwin) |   | [はい] |
 | モジュール ツインの取得 |   | [はい] |
-| [デバイス メソッドの呼び出し](https://docs.microsoft.com/rest/api/iothub/devicetwinapi/invokedevicemethod) |   | [はい] |
-| [デバイス ツインの更新](https://docs.microsoft.com/rest/api/iothub/devicetwinapi/updatedevicetwin) |   | [はい] | 
+| [デバイス メソッドの呼び出し](https://docs.microsoft.com/rest/api/iothub/service/invokedevicemethod) |   | [はい] |
+| [デバイス ツインの更新](https://docs.microsoft.com/rest/api/iothub/service/updatetwin) |   | [はい] | 
 | モジュール ツインの更新 |   | [はい] | 
-| [デバイス バインド通知の破棄](https://docs.microsoft.com/rest/api/iothub/httpruntime/abandondeviceboundnotification) |   | [はい] |
-| [デバイス バインド通知の完了](https://docs.microsoft.com/rest/api/iothub/httpruntime/completedeviceboundnotification) |   | [はい] |
-| [ジョブの取り消し](https://docs.microsoft.com/rest/api/iothub/jobapi/canceljob) |   | [はい] |
-| [ジョブの作成](https://docs.microsoft.com/rest/api/iothub/jobapi/createjob) |   | [はい] |
-| [ジョブの取得](https://docs.microsoft.com/rest/api/iothub/jobapi/getjob) |   | [はい] |
-| [ジョブのクエリ](https://docs.microsoft.com/rest/api/iothub/jobapi/queryjobs) |   | [はい] |
+| [デバイス バインド通知の破棄](https://docs.microsoft.com/rest/api/iothub/device/abandondeviceboundnotification) |   | [はい] |
+| [デバイス バインド通知の完了](https://docs.microsoft.com/rest/api/iothub/device/completedeviceboundnotification) |   | [はい] |
+| [ジョブの取り消し](https://docs.microsoft.com/rest/api/iothub/service/canceljob) |   | [はい] |
+| [ジョブの作成](https://docs.microsoft.com/rest/api/iothub/service/createjob) |   | [はい] |
+| [ジョブの取得](https://docs.microsoft.com/rest/api/iothub/service/getjob) |   | [はい] |
+| [ジョブのクエリ](https://docs.microsoft.com/rest/api/iothub/service/queryjobs) |   | [はい] |
 
 ## <a name="message-throughput"></a>メッセージのスループット
 
@@ -106,6 +106,9 @@ IoT Hub ソリューションのサイズを設定する方法として最適な
 IoT Hub の ID レジストリの操作は、ほとんどがデバイス プロビジョニングに関連しているため、ランタイム操作にはなりません。
 
 特定のバースト パフォーマンスの数値については、[IoT Hub のクォータと調整][IoT Hub quotas and throttles]に関するページを参照してください。
+
+## <a name="auto-scale"></a>自動スケール
+お使いの IoT Hub で許可されているメッセージ上限に到達しそうな場合、[自動スケーリングの手順](https://azure.microsoft.com/resources/samples/iot-hub-dotnet-autoscale/)を使用して、同じ IoT Hub レベルにある IoT Hub ユニットを増分します。
 
 ## <a name="sharding"></a>シャーディング
 1 つの IoT Hub を数百万のデバイスに拡張できますが、使用しているソリューションに、1 つの IoT Hub では保証できない特定のパフォーマンス特性が必要になる場合があります。 その場合は、デバイスを複数の IoT Hub に分割できます。 複数の IoT hub は、トラフィックの急増を抑え、必要なスループットまたは必要とされる操作の速度を取得します。

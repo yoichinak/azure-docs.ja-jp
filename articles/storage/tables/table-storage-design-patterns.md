@@ -2,23 +2,18 @@
 title: Azure ストレージ テーブルの設計パターン | Microsoft Docs
 description: Azure Table service ソリューションのパターンを使用します。
 services: storage
-documentationcenter: na
 author: MarkMcGeeAtAquent
-manager: kfile
-ms.assetid: 8e228b0c-2998-4462-8101-9f16517393ca
 ms.service: storage
-ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: data-services
 ms.date: 04/23/2018
 ms.author: sngun
-ms.openlocfilehash: 0d098b7befe5426db4aff503e9633623b1249dbf
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.component: tables
+ms.openlocfilehash: b06f5a66566c250eef608ddccc551aaebe24ef74
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34660415"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39522800"
 ---
 # <a name="table-design-patterns"></a>テーブルの設計パターン
 この記事では、Table service ソリューションで使用するのに適したパターンをいくつか紹介します。 また、他のテーブル ストレージ設計の記事で説明されている問題やトレードオフの一部に実際に対処する方法についても説明します。 次の図は、さまざまなパターンの関係をまとめたものです。  
@@ -1022,7 +1017,7 @@ employeeTable.Execute(TableOperation.Merge(department));
 ```
 
 ## <a name="controlling-access-with-shared-access-signatures"></a>共有アクセス署名でのアクセスを制御する
-Shared Access Signature (SAS) トークンを使うと、クライアント アプリケーションで、Table サービスに対して直接認証しなくてもテーブル エンティティを直接変更 (と照会) できるようになります。 通常、アプリケーションで SAS を使うと、次の 3 つのメリットが得られます。  
+Shared Access Signature (SAS) トークンを使うと、ストレージ アカウント キーをコードに追加しなくても、クライアント アプリケーションからテーブル エンティティに対して変更を加えたり、クエリを実行したりすることができます。 通常、アプリケーションで SAS を使うと、次の 3 つのメリットが得られます。  
 
 * デバイスで Table service のエンティティにアクセスして変更できるようにするために、安全ではないプラットフォーム (モバイル デバイスなど) にストレージ アカウント キーを配布する必要がない。  
 * Web ロールまたは worker ロールがエンティティを管理する際に実行する処理の一部を、エンド ユーザー コンピューターやモバイル デバイスなどのクライアント デバイスにオフロードできる。  

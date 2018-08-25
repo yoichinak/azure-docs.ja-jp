@@ -11,15 +11,15 @@ ms.workload: na
 pms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/22/2018
-ms.author: mabrigg
+ms.date: 06/08/2018
+ms.author: brenduns
 ms.reviewer: alfredo
-ms.openlocfilehash: ef7ca59647a1f8c15d85c809609060a5945bedde
-ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
+ms.openlocfilehash: efd1c1eafbff8bf56b16131e44cff6b03ce7338a
+ms.sourcegitcommit: a5eb246d79a462519775a9705ebf562f0444e4ec
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/28/2018
-ms.locfileid: "32159113"
+ms.lasthandoff: 07/26/2018
+ms.locfileid: "39264812"
 ---
 # <a name="manage-tenant-registration-in-azure-stack"></a>Azure Stack でテナントの登録を管理する
 
@@ -35,8 +35,15 @@ ms.locfileid: "32159113"
 
 テナントには 1 つの Azure サブスクリプションのみを関連付けできます。 既存のテナントに第 2 のサブスクリプションを追加しようとすると、最初のサブスクリプションは上書きされます。 
 
+### <a name="use-api-profiles"></a>API プロファイルの使用
 
-| パラメーター                  | [説明] |
+この記事で取り上げるコマンドレットは、PowerShell を実行する際に API プロファイルを指定する必要があります。 API プロファイルは、一連の Azure リソース プロバイダーとその API バージョンを表します。 世界各国の Azure と Azure Stack を扱うときなど、複数の Azure クラウドを対話操作する際は、プロファイルを指定することにより適切なバージョンの API を使うことができます。 プロファイルは、その公開日に対応する名前で指定します。 この記事では、**2017-09-03** プロファイルを使用する必要があります。
+
+Azure Stack と API プロファイルの詳細については、「[Azure Stack での API バージョンのプロファイルの管理](user/azure-stack-version-profiles.md)」を参照してください。 API プロファイルと PowerShell を使用するために必要な手順については、「[Azure Stack での PowerShell による API バージョンのプロファイルの使用](user/azure-stack-version-profiles-powershell.md)」を参照してください。
+
+### <a name="parameters"></a>parameters
+
+| パラメーター                  | 説明 |
 |---                         | --- |
 | registrationSubscriptionID | 初期登録に使用された Azure サブスクリプション。 |
 | customerSubscriptionID     | 登録される顧客の Azure サブスクリプション (Azure Stack ではない)。 クラウド サービス プロバイダー (CSP) プランで作成されている必要があります。 実際には、パートナー センターを介することを意味します。 顧客が 1 つ以上のテナントを持っている場合は、Azure Stack へのログインに使用されるテナントでこのサブスクリプションを作成する必要があります。 |
@@ -48,7 +55,7 @@ ms.locfileid: "32159113"
 
 ### <a name="powershell"></a>PowerShell
 
-New-AzureRmResource コマンドレットを使用して、登録リソースを更新します。 初期登録に使用したアカウントを使用して Azure (`Add-AzureRmAccount`) にログインします。 テナントの追加方法の例を次に示します。
+New-AzureRmResource コマンドレットを使用して、登録リソースを更新します。 初期登録に使用したアカウントを使用して Azure (`Add-AzureRmAccount`) にサインインします。 テナントの追加方法の例を次に示します。
 
 ```powershell
   New-AzureRmResource -ResourceId "subscriptions/{registrationSubscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/customerSubscriptions/{customerSubscriptionId}" -ApiVersion 2017-06-01 -Properties
@@ -71,7 +78,7 @@ New-AzureRmResource コマンドレットを使用して、登録リソースを
 
 ### <a name="parameters"></a>parameters
 
-| パラメーター                  | [説明]          |
+| パラメーター                  | 説明          |
 |---                         | ---                  |
 | registrationSubscriptionId | 初期登録に使用された Azure サブスクリプション。   |
 | resourceGroup              | 登録が格納されている Azure 内のリソース グループ。    |
@@ -79,7 +86,7 @@ New-AzureRmResource コマンドレットを使用して、登録リソースを
 
 ### <a name="powershell"></a>PowerShell
 
-登録されているすべてのテナントを一覧表示するには、Get-AzureRmResovurce コマンドレットを使用します。 初期登録に使用したアカウントを使用して Azure (`Add-AzureRmAccount`) にログインします。 テナントの追加方法の例を次に示します。
+登録されているすべてのテナントを一覧表示するには、Get-AzureRmResovurce コマンドレットを使用します。 初期登録に使用したアカウントを使用して Azure (`Add-AzureRmAccount`) にサインインします。 テナントの追加方法の例を次に示します。
 
 ```powershell
   Get-AzureRmResovurce -ResourceId "subscriptions/{registrationSubscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/customerSubscriptions" -ApiVersion 2017-06-01
@@ -121,7 +128,7 @@ api-version=2017-06-01 HTTP/1.1`
 
 ### <a name="parameters"></a>parameters
 
-| パラメーター                  | [説明]          |
+| パラメーター                  | 説明          |
 |---                         | ---                  |
 | registrationSubscriptionId | 登録用のサブスクリプション ID です。   |
 | resourceGroup              | 登録のリソース グループです。   |

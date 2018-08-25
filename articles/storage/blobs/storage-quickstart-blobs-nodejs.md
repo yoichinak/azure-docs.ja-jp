@@ -3,18 +3,17 @@ title: Azure クイック スタート - Node.js を使用してオブジェク�
 description: このクイック スタートでは、ストレージ アカウントとコンテナーをオブジェクト (BLOB) ストレージ内に作成します。 その後、Node.js 用のストレージ クライアント ライブラリを使用して、Azure Storage への BLOB のアップロード、BLOB のダウンロード、およびコンテナー内の BLOB の一覧表示を行います。
 services: storage
 author: craigshoemaker
-manager: jeconnoc
 ms.custom: mvc
 ms.service: storage
 ms.topic: quickstart
 ms.date: 04/09/2018
 ms.author: cshoe
-ms.openlocfilehash: 07ac5195d9653affdbb0f305ac1697cecd379319
-ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
+ms.openlocfilehash: acf332209ca0588ab7722ddcfdcfe7b6715d672c
+ms.sourcegitcommit: d4c076beea3a8d9e09c9d2f4a63428dc72dd9806
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/28/2018
-ms.locfileid: "32190981"
+ms.lasthandoff: 08/01/2018
+ms.locfileid: "39397934"
 ---
 # <a name="quickstart-upload-download-and-list-blobs-using-nodejs"></a>クイック スタート: Node.js を使用して BLOB をアップロード、ダウンロード、および一覧表示する
 
@@ -57,7 +56,7 @@ node index.js --command createContainer
 
 次のコマンドを使用できます。
 
-| コマンド | [説明] |
+| コマンド | 説明 |
 |---------|---------|
 |*createContainer* | *test-container* という名前のコンテナーを作成する (コンテナーが既に存在する場合でも成功します) |
 |*upload*          | *example.txt* ファイルを *test-container* コンテナーにアップロードする |

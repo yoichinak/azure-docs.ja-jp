@@ -1,25 +1,20 @@
 ---
-title: Azure HDInsight で実行される Apache Spark ジョブのデバッグ | Microsoft Docs
+title: Azure HDInsight で実行される Apache Spark ジョブのデバッグ
 description: Azure HDInsight の Spark クラスターで実行されるジョブの追跡とデバッグには、YARN UI、Spark UI、Spark History Server を使用します。
 services: hdinsight
-documentationcenter: ''
-author: mumian
-manager: cgronlun
-editor: cgronlun
-tags: azure-portal
-ms.assetid: 59af05a7-2bd9-44b0-b55f-2438d294198b
+author: jasonwhowell
+editor: jasonwhowell
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
 ms.topic: conceptual
 ms.date: 12/20/2017
-ms.author: jgao
-ms.openlocfilehash: 1ddf8cd38b4d62dc206a9f27e0620f8c7b232ec3
-ms.sourcegitcommit: 1362e3d6961bdeaebed7fb342c7b0b34f6f6417a
+ms.author: jasonh
+ms.openlocfilehash: 10d46da66fa6b06089e09816f400eefbe40c0c65
+ms.sourcegitcommit: 35ceadc616f09dd3c88377a7f6f4d068e23cceec
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/18/2018
-ms.locfileid: "31519384"
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39622665"
 ---
 # <a name="debug-apache-spark-jobs-running-on-azure-hdinsight"></a>Azure HDInsight で実行される Apache Spark ジョブのデバッグ
 
@@ -107,6 +102,7 @@ ms.locfileid: "31519384"
 
 ## <a name="see-also"></a>関連項目
 *  [Azure HDInsight での Apache Spark クラスターのリソースの管理](apache-spark-resource-manager.md)
+*  [拡張された Spark History Server を使用して Spark ジョブをデバッグする方法に関する記事](apache-azure-spark-history-server.md)
 
 ### <a name="for-data-analysts"></a>データ アナリスト向け
 

@@ -2,7 +2,7 @@
 title: Azure Functions の host.json のリファレンス
 description: Azure Functions の host.json ファイルのリファレンス ドキュメント
 services: functions
-author: tdykstra
+author: ggailey777
 manager: cfowler
 editor: ''
 tags: ''
@@ -13,17 +13,17 @@ ms.topic: article
 ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 02/12/2018
-ms.author: tdykstra
-ms.openlocfilehash: d1dec6f2da4f6fcbeb38585fc6a1cfcd9d622c4a
-ms.sourcegitcommit: e221d1a2e0fb245610a6dd886e7e74c362f06467
+ms.author: glenga
+ms.openlocfilehash: 9043add91022c2829c305425dba9c8f11b224fcf
+ms.sourcegitcommit: 30fd606162804fe8ceaccbca057a6d3f8c4dd56d
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/07/2018
-ms.locfileid: "33764589"
+ms.lasthandoff: 07/30/2018
+ms.locfileid: "39345516"
 ---
 # <a name="hostjson-reference-for-azure-functions"></a>Azure Functions の host.json のリファレンス
 
-*host.json* メタデータ ファイルには、関数アプリのすべての関数に影響するグローバル構成オプションが含まれています。 この記事では、使用できる設定の一覧を紹介します。 JSON スキーマは、http://json.schemastore.org/host にあります。
+*host.json* メタデータ ファイルには、関数アプリのすべての関数に影響するグローバル構成オプションが含まれています。 この記事では、使用できる設定の一覧を紹介します。 JSON スキーマは、 http://json.schemastore.org/host にあります。
 
 [アプリ設定](functions-app-settings.md)と [local.settings.json](functions-run-local.md#local-settings-file) ファイルには、他のグローバル構成オプションがあります。
 
@@ -116,7 +116,7 @@ ms.locfileid: "33764589"
 }
 ```
 
-|プロパティ |既定値  | [説明] |
+|プロパティ |既定値  | 説明 |
 |---------|---------|---------| 
 |batchSize|1,000|集計する要求の最大数。| 
 |flushTimeout|00:00:30|集計する最長期間。| 
@@ -138,7 +138,7 @@ ms.locfileid: "33764589"
 }
 ```
 
-|プロパティ  |既定値 | [説明] |
+|プロパティ  |既定値 | 説明 |
 |---------|---------|---------| 
 |isEnabled|true|サンプリングを有効または無効にします。| 
 |maxTelemetryItemsPerSecond|5|サンプリングが開始されるしきい値。| 
@@ -159,15 +159,18 @@ ms.locfileid: "33764589"
     "MaxConcurrentOrchestratorFunctions": 10,
     "AzureStorageConnectionStringName": "AzureWebJobsStorage",
     "TraceInputsAndOutputs": false,
+    "LogReplayEvents": false,
     "EventGridTopicEndpoint": "https://topic_name.westus2-1.eventgrid.azure.net/api/events",
-    "EventGridKeySettingName":  "EventGridKey"
+    "EventGridKeySettingName":  "EventGridKey",
+    "EventGridPublishRetryCount": 3,
+    "EventGridPublishRetryInterval": "00:00:30"
   }
 }
 ```
 
 タスク ハブの名前は、先頭文字をアルファベットとする必要があります。また、使用できるのはアルファベットと数値だけです。 指定しない場合、関数アプリの既定のタスク ハブ名は **DurableFunctionsHub** です。 詳細については、[タスク ハブ](durable-functions-task-hubs.md)に関するページをご覧ください。
 
-|プロパティ  |既定値 | [説明] |
+|プロパティ  |既定値 | 説明 |
 |---------|---------|---------|
 |HubName|DurableFunctionsHub|代替[タスク ハブ](durable-functions-task-hubs.md)名を使用すると、複数の Durable Functions アプリケーションが同じストレージ バックエンドを使用している場合でも、これらのアプリケーションを互いに分離できます。|
 |ControlQueueBatchSize|32|コントロール キューから一度にプルするメッセージの数。|
@@ -178,8 +181,11 @@ ms.locfileid: "33764589"
 |MaxConcurrentOrchestratorFunctions |現在のマシン上のプロセッサ数の 10 倍|1 つのホスト インスタンスで同時に処理できるアクティビティ関数の最大数。|
 |AzureStorageConnectionStringName |AzureWebJobsStorage|基になる Azure Storage リソースの管理に使用される Azure Storage 接続文字列を含むアプリ設定の名前。|
 |TraceInputsAndOutputs |false|関数呼び出しの入力と出力をトレースするかどうかを示す値。 関数の実行イベントをトレースした場合の既定の動作では、関数呼び出しのシリアル化された入力および出力のバイト数が記録されます。 これにより、ログが肥大化することも、機密情報が誤ってログに公開されることもなく、入力および出力に関する最小限の情報が示されます。 このプロパティを true に設定すると、既定の関数ログ記録によって、関数の入力および出力の内容全体がログに記録されます。|
-|EventGridTopicEndpoint ||Azure Event Grid カスタム トピック エンドポイントの URL。 このプロパティが設定されている場合は、オーケストレーションのライフ サイクル通知イベントがこのエンドポイントに発行されます。|
-|EventGridKeySettingName ||`EventGridTopicEndpoint` での Azure Event Grid カスタム トピックによる認証に使用されるキーを含むアプリ設定の名前。
+|LogReplayEvents|false|オーケストレーションの再生イベントを Application Insights に書き込むかどうかを示す値。|
+|EventGridTopicEndpoint ||Azure Event Grid カスタム トピック エンドポイントの URL。 このプロパティが設定されている場合は、オーケストレーションのライフ サイクル通知イベントがこのエンドポイントに発行されます。 このプロパティは、アプリ設定の解決をサポートします。|
+|EventGridKeySettingName ||`EventGridTopicEndpoint` での Azure Event Grid カスタム トピックによる認証に使用されるキーを含むアプリ設定の名前。|
+|EventGridPublishRetryCount|0|Event Grid トピックへの発行が失敗した場合に再試行する回数。|
+|EventGridPublishRetryInterval|5 分|Event Grid の発行を再試行する間隔 (*hh:mm:ss* 形式)。|
 
 これらの多くはパフォーマンスの最適化を目的としています。 詳細については、[パフォーマンスとスケール](durable-functions-perf-and-scale.md)に関するページをご覧ください。
 
@@ -225,9 +231,9 @@ ms.locfileid: "33764589"
 }
 ```
 
-|プロパティ  |既定値 | [説明] |
+|プロパティ  |既定値 | 説明 |
 |---------|---------|---------| 
-|有効|true|機能が有効になっているかどうか。 | 
+|enabled|true|機能が有効になっているかどうか。 | 
 |healthCheckInterval|10 秒|定期的なバック グラウンドでの正常性チェックの間隔。 | 
 |healthCheckWindow|2 分|`healthCheckThreshold` 設定と組み合わせて使用するスライド時間枠。| 
 |healthCheckThreshold|6|正常性チェックの最大失敗回数。この回数を超えると、ホスト リサイクルが開始されます。| 
@@ -271,7 +277,7 @@ ms.locfileid: "33764589"
 }
 ```
 
-|プロパティ  |既定値 | [説明] |
+|プロパティ  |既定値 | 説明 |
 |---------|---------|---------| 
 |categoryFilter|該当なし|カテゴリ別のフィルターを指定します| 
 |defaultLevel|情報|`categoryLevels` 配列に指定されていないカテゴリの場合、このレベル以上のログを Application Insights に送信します。| 
@@ -305,7 +311,7 @@ ms.locfileid: "33764589"
 }
 ```
 
-|プロパティ  |既定値 | [説明] |
+|プロパティ  |既定値 | 説明 |
 |---------|---------|---------| 
 |lockPeriod|00:00:15|関数レベルのロックの取得期間。 ロックの自動更新。| 
 |listenerLockPeriod|00:01:00|リスナーのロックの取得期間。| 
@@ -326,7 +332,7 @@ ms.locfileid: "33764589"
 }
 ```
 
-|プロパティ  |既定値 | [説明] |
+|プロパティ  |既定値 | 説明 |
 |---------|---------|---------| 
 |consoleLevel|info|コンソール ログのトレース レベル。 オプションは、`off`、`error`、`warning`、`info`、および `verbose` です。|
 |fileLoggingMode|debugOnly|ファイルのログ記録のトレース レベル。 オプションは、`never`、`always`、`debugOnly` です。| 

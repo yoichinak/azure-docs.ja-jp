@@ -2,22 +2,26 @@
 title: Azure Import/Export を使用した Azure Storage との間でのデータの転送 | Microsoft Docs
 description: Azure Portal でインポートおよびエクスポート ジョブを作成して、Azure Storage との間でデータを転送する方法について説明します。
 author: alkohli
-manager: jeconnoc
 services: storage
 ms.service: storage
 ms.topic: article
-ms.date: 05/17/2018
+ms.date: 07/11/2018
 ms.author: alkohli
-ms.openlocfilehash: 83ba437e699eb150e86e6c89e478377394966419
-ms.sourcegitcommit: 6cf20e87414dedd0d4f0ae644696151e728633b6
+ms.component: common
+ms.openlocfilehash: 480d67917abf3a8aaca64aa9aae30be5acf55e11
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/06/2018
-ms.locfileid: "34809544"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39528558"
 ---
 # <a name="what-is-azure-importexport-service"></a>Azure Import/Export サービスとは
 
-Azure Import/Export サービスでは、Azure データセンターにディスク ドライブを送付することで、Azure Blob Storage と Azure Files に大量のデータを安全にインポートできます。 また、このサービスでは、Azure Blob Storage からディスク ドライブにデータを転送し、オンプレミスのサイトに送付できます。 1 つまたは複数のディスクからのデータを Azure Blob Storage か Azure Files にインポートできます。 
+Azure Import/Export サービスでは、Azure データセンターにディスク ドライブを送付することで、Azure Blob Storage と Azure Files に大量のデータを安全にインポートできます。 また、このサービスでは、Azure Blob Storage からディスク ドライブにデータを転送し、オンプレミスのサイトに送付できます。 1 つまたは複数のディスク ドライブからのデータを、Azure Blob Storage または Azure Files にインポートできます。 
+
+独自のディスク ドライブを用意し、Azure Import/Export サービスでデータを転送します。 Microsoft から提供されるディスク ドライブを使用することもできます。 
+
+Microsoft 提供のディスク ドライブを使用してデータを転送する場合は、[Azure Data Box Disk](../../databox/data-box-disk-overview.md) を使用してデータを Azure にインポートできます。 Microsoft から地域の運送業者を通じて、1 つの注文ごとに合計容量 40 TB の暗号化された SSD (ソリッドステート ディスク ドライブ) を最大 5 台、お客様のデータセンターに発送します。 お客様はそのディスク ドライブを速やかに構成し、USB 3.0 接続でデータをディスク ドライブにコピーしてから、Azure にディスク ドライブを返送することができます。 詳細については、[Azure Data Box Disk の概要](../../databox/data-box-disk-overview.md)に関するページを参照してください。
 
 ## <a name="azure-importexport-usecases"></a>Azure Import/Export ユースケース
 
@@ -32,23 +36,23 @@ Azure Import/Export サービスでは、Azure データセンターにディス
 
 Import/Export サービスでは、次のコンポーネントが使用されます。
 
-- **Import/Export** サービス: Azure Portal で利用できるこのサービスでは、ユーザーはインポート/エクスポート ジョブを作成したり、追跡したりできます。  
+- **Import/Export サービス**: Azure portal で利用できるこのサービスでは、ユーザーはデータのインポート (アップロード) ジョブとエクスポート (ダウンロード) ジョブを作成して追跡することができます。  
 
 - **WAImportExport ツール**: これは次を行うコマンドライン ツールです。 
-    - インポートのためにドライブの配送準備をします。
+    - インポートのためにディスク ドライブの配送準備をします。
     - データをドライブにコピーする作業を容易にします。
     - BitLocker でドライブ上のデータを暗号化します。
     - インポート作成中に使用されるドライブのジャーナル ファイルを生成します。
     - エクスポート ジョブに必要なドライブの数を特定します。
+    
+> [!NOTE]
+> WAImportExport ツールには、バージョン 1 とバージョン 2 の 2 つのバージョンがあります。 次の使い分けをお勧めします。
+> - Azure Blob Storage との間でインポート/エクスポートする場合、バージョン 1。 
+> - Azure Files にデータをインポートする場合、バージョン 2。
+>
+> WAImportExport ツールは、64 ビット Windows オペレーティング システムとのみ互換性があります。 サポートされている特定の OS バージョンについては、[Azure Import/Export の要件](storage-import-export-requirements.md#supported-operating-systems)に関するページを参照してください。
 
-    このツールには 2 つのバージョン、バージョン 1 とバージョン 2 があります。 次の使い分けをお勧めします。
-
-    - Azure Blob Storage との間でインポート/エクスポートする場合、バージョン 1。 
-    - Azure Files にデータをインポートする場合、バージョン 2。
-
-    WAImportExport ツールは、64 ビット Windows オペレーティング システムとのみ互換性があります。 サポートされている特定の OS バージョンについては、[Azure Import/Export の要件](storage-import-export-requirements.md#supported-operating-systems)に関するページを参照してください。
-
-- **ディスク**: ソリッド ステート ドライブ (SSD) またはハード ディスク ドライブ (HDD) を Azure データセンターに送付できます。 インポート ジョブを作成するときは、データが含まれるディスク ドライブを送付します。 エクスポート ジョブを作成するときは、空のドライブを Azure データセンターに送付します。 具体的なディスクの種類については、[サポートされるディスクの種類](storage-import-export-requirements.md#supported-hardware)を参照してください。
+- **ディスク ドライブ**: ソリッド ステート ドライブ (SSD) またはハード ディスク ドライブ (HDD) を Azure データセンターに送付できます。 インポート ジョブを作成するときは、データが含まれるディスク ドライブを送付します。 エクスポート ジョブを作成するときは、空のドライブを Azure データセンターに送付します。 具体的なディスクの種類については、[サポートされるディスクの種類](storage-import-export-requirements.md#supported-hardware)を参照してください。
 
 ## <a name="how-does-importexport-work"></a>Import/Export のしくみは?
 
@@ -56,26 +60,25 @@ Azure Import/Export サービスでは、ジョブを作成することで、Azu
 
 ジョブにはインポート ジョブとエクスポート ジョブがあります。 インポート ジョブでは、Azure Blobs または Azure Files にデータをインポートできます。エクスポート ジョブでは、Azure Blobs からデータをエクスポートできます。 インポート ジョブの場合、データが含まれるディスク ドライブを送付します。 エクスポート ジョブを作成するときは、空のドライブを Azure データセンターに送付します。 いずれの場合でも、ジョブごとに最大 10 台のディスク ドライブを送付できます。
 
-> [!IMPORTANT]
-> Azure Files にはデータをエクスポートできません。
-
-このセクションでは、ジョブのインポートとエクスポートに含まれる手順の概要を説明します。 
-
-
 ### <a name="inside-an-import-job"></a>インポート ジョブの内部
 
 大まかに言うと、インポート ジョブには次の手順が含まれます。
 
 1. インポートするデータ、必要なドライブの数、Azure Storage でインポート先となる Blob の場所を決定します。
-2. WAImportExport ツールを使用し、データをディスク ドライブにコピーします。 BitLocker でディスクを暗号化します。
+2. WAImportExport ツールを使用し、データをディスク ドライブにコピーします。 BitLocker でディスク ドライブを暗号化します。
 3. Azure Portal のターゲット ストレージ アカウントでインポート ジョブを作成します。 ドライブのジャーナル ファイルをアップロードします。
-2. ドライブの返送先となる住所と運送業者アカウント番号を指定します。
-3. ジョブの作成時に提供された送付先住所にディスク ドライブを発送します。
-4. インポート ジョブの詳細で配送問い合わせ番号を更新し、インポート ジョブを送信します。
-5. ドライブが Azure データ センターに届き、処理されます。
-6. 運送業者アカウントを使用して、インポート ジョブで提供された返送先住所にドライブが送付されます。
-  
-    ![図 1: インポート ジョブのフロー](./media/storage-import-export-service/importjob.png)
+4. ドライブの返送先となる住所と運送業者アカウント番号を指定します。
+5. ジョブの作成時に提供された送付先住所にディスク ドライブを発送します。
+6. インポート ジョブの詳細で配送問い合わせ番号を更新し、インポート ジョブを送信します。
+7. ドライブが Azure データ センターに届き、処理されます。
+8. 運送業者アカウントを使用して、インポート ジョブで提供された返送先住所にドライブが送付されます。
+
+> [!NOTE]
+> 現地 (データ センターの所在国内) 発送の場合は、国内運送業者のアカウントを共有してください 
+>
+> 海外 (データ センターの所在国外) 発送の場合は、国際運送業者のアカウントを共有してください
+
+ ![図 1: インポート ジョブのフロー](./media/storage-import-export-service/importjob.png)
 
 データの段階的インポート方法については、次にお進みください。
 
@@ -99,8 +102,13 @@ Azure Import/Export サービスでは、ジョブを作成することで、Azu
 8. ドライブが Azure データ センターに届き、処理されます。
 9. ドライブが BitLocker で暗号化され、Azure Portal を介してキーが提供されます。  
 10. 運送業者アカウントを使用して、インポート ジョブで提供された返送先住所にドライブが送付されます。
+
+> [!NOTE]
+> 現地 (データ センターの所在国内) 発送の場合は、国内運送業者のアカウントを共有してください 
+>
+> 海外 (データ センターの所在国外) 発送の場合は、国際運送業者のアカウントを共有してください
   
-    ![図 2: エクスポート ジョブのフロー](./media/storage-import-export-service/exportjob.png)
+ ![図 2: エクスポート ジョブのフロー](./media/storage-import-export-service/exportjob.png)
 
 データ エクスポートの段階的な手順については、[Azure Blobs からデータをエクスポートする](storage-import-export-data-from-blobs.md)方法に関するページを参照してください。
 
@@ -113,7 +121,7 @@ Azure Import/Export サービスでは、すべての Azure Storage アカウン
 
 |Country  |Country  |Country  |Country  |
 |---------|---------|---------|---------|
-|米国東部    | 北ヨーロッパ        | インド中部        |米国政府アイオワ州         |
+|米国東部    | 北ヨーロッパ        | インド中部        |US Gov アイオワ         |
 |米国西部     |西ヨーロッパ         | インド南部        | US DoD East        |
 |米国東部 2    | 東アジア        |  インド西部        | US DoD Central        |
 |米国西部 2     | 東南アジア        | カナダ中部        | 中国 (東部)         |

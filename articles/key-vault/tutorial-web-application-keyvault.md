@@ -12,12 +12,12 @@ ms.topic: tutorial
 ms.date: 05/17/2018
 ms.author: barclayn
 ms.custom: mvc
-ms.openlocfilehash: b82eeb43c29fd52f4df2d453bb24bb2b3bd581ad
-ms.sourcegitcommit: 150a40d8ba2beaf9e22b6feff414f8298a8ef868
+ms.openlocfilehash: 91e2047998d6e743691821c631e15c94cd63cf15
+ms.sourcegitcommit: 744747d828e1ab937b0d6df358127fcf6965f8c8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/27/2018
-ms.locfileid: "37030517"
+ms.lasthandoff: 08/16/2018
+ms.locfileid: "41917605"
 ---
 # <a name="tutorial-configure-an-azure-web-application-to-read-a-secret-from-key-vault"></a>チュートリアル: キー コンテナーからシークレットを読み取るように Azure Web アプリケーションを構成する
 
@@ -44,7 +44,7 @@ az login
 
 ## <a name="create-resource-group"></a>リソース グループの作成
 
-[az group create](/cli/azure/group#az_group_create) コマンドでリソース グループを作成します。 Azure リソース グループとは、Azure リソースのデプロイと管理に使用する論理コンテナーです。
+[az group create](/cli/azure/group#az-group-create) コマンドでリソース グループを作成します。 Azure リソース グループとは、Azure リソースのデプロイと管理に使用する論理コンテナーです。
 
 次の例では、*ContosoResourceGroup* という名前のリソース グループを *eastus* の場所に作成します。
 
@@ -128,8 +128,8 @@ Web アプリケーションでインストールしておく必要のある NuG
 3. 検索ボックスの横にある  **[プレリリースを含める]** のチェック ボックスをオンにします。
 4. 以下に示す 2 つの NuGet パッケージを検索して、ソリューションへの追加を許可します。
 
-    * [Microsoft.Azure.Services.AppAuthentication (プレビュー)](https://www.nuget.org/packages/Microsoft.Azure.Services.AppAuthentication) - サービスから Azure サービスへの認証シナリオでのアクセス トークンのフェッチを簡単にします。 
-    * [Microsoft.Azure.KeyVault](https://www.nuget.org/packages/Microsoft.Azure.KeyVault/2.4.0-preview) - Key Vault と対話するためのメソッドが含まれています。
+    * [Microsoft.Azure.Services.AppAuthentication](https://www.nuget.org/packages/Microsoft.Azure.Services.AppAuthentication) - サービスから Azure サービスへの認証シナリオでのアクセス トークンのフェッチを容易にします。 
+    * [Microsoft.Azure.KeyVault](https://www.nuget.org/packages/Microsoft.Azure.KeyVault) - Key Vault と対話するためのメソッドが含まれています。
 
 5. ソリューション エクスプローラーを使用して `Program.cs` を開き、Program.cs ファイルの内容を次のコードに置き換えます。 ```<YourKeyVaultName>``` には、お使いのキー コンテナーの名前を指定してください。
 
@@ -142,37 +142,36 @@ Web アプリケーションでインストールしておく必要のある NuG
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Configuration.AzureKeyVault;
     
-        namespace WebKeyVault
-        {
-        public class Program
-        {
-        public static void Main(string[] args)
-        {
-        BuildWebHost(args).Run();
-        }
-    
-            public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration((ctx, builder) =>
-                {
-                    var keyVaultEndpoint = GetKeyVaultEndpoint();
-                    if (!string.IsNullOrEmpty(keyVaultEndpoint))
-                    {
-                        var azureServiceTokenProvider = new AzureServiceTokenProvider();
-                        var keyVaultClient = new KeyVaultClient(
-                            new KeyVaultClient.AuthenticationCallback(
-                                azureServiceTokenProvider.KeyVaultTokenCallback));
-                        builder.AddAzureKeyVault(
-                            keyVaultEndpoint, keyVaultClient, new DefaultKeyVaultSecretManager());
-                    }
-                }
-             )
-                .UseStartup<Startup>()
-                .Build();
-    
-            private static string GetKeyVaultEndpoint() => "https://<YourKeyVaultName>.vault.azure.net";
-        }
-        }
+    namespace WebKeyVault
+    {
+       public class Program
+       {
+           public static void Main(string[] args)
+           {
+               BuildWebHost(args).Run();
+           }
+
+           public static IWebHost BuildWebHost(string[] args) =>
+           WebHost.CreateDefaultBuilder(args)
+               .ConfigureAppConfiguration((ctx, builder) =>
+               {
+                   var keyVaultEndpoint = GetKeyVaultEndpoint();
+                   if (!string.IsNullOrEmpty(keyVaultEndpoint))
+                   {
+                       var azureServiceTokenProvider = new AzureServiceTokenProvider();
+                       var keyVaultClient = new KeyVaultClient(
+                           new KeyVaultClient.AuthenticationCallback(
+                               azureServiceTokenProvider.KeyVaultTokenCallback));
+                       builder.AddAzureKeyVault(
+                           keyVaultEndpoint, keyVaultClient, new DefaultKeyVaultSecretManager());
+                   }
+               }
+            ).UseStartup<Startup>()
+             .Build();
+
+           private static string GetKeyVaultEndpoint() => "https://<YourKeyVaultName>.vault.azure.net";
+         }
+    }
     ```
 
 6. ソリューション エクスプローラーを使用して **[ページ]** セクションに移動し、`About.cshtml` を開きます。 **About.cshtml.cs** の内容を次のコードに置き換えます。
@@ -206,14 +205,15 @@ Web アプリケーションでインストールしておく必要のある NuG
 7. メイン メニューから、**[デバッグ]** > **[デバッグなしで開始]** を選択します。 ブラウザーが表示されたら、**[About]\(詳細\)** ページに移動します。 AppSecret の値が表示されます。
 
 >[!IMPORTANT]
-> HTTP エラー 502.5 のプロセス エラー メッセージを取得した場合は、`Program.cs` に指定したキー コンテナーの名前を確認してください。
+> HTTP エラー 502.5 が発生した場合 - エラー メッセージを処理し、
+> > `Program.cs` に指定されたキー コンテナーの名前を確認します。
 
 ## <a name="publish-the-web-application-to-azure"></a>Azure に Web アプリケーションを発行する
 
 1. エディターの上にある **[WebKeyVault]** を選択します。
 2. **[発行]**、**[開始]** の順に選択します。
 3. 新しい **App Service** を作成し、**[発行]** を選択します。
-4. **[作成]** を選択します。
+4. **作成**を選択します。
 
 >[!IMPORTANT]
 > ブラウザー ウィンドウが開き、502.5 のプロセス エラー メッセージが表示されます。 これは予期されることです。 キー コンテナーからシークレットを読み取るために、アプリケーション ID の権限を付与する必要があります。

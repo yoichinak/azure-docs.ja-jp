@@ -2,19 +2,19 @@
 title: Azure Container Service の DC/OS エージェント プール
 description: パブリックおよびプライベートのエージェント プールが Azure Container Service の DC/OSクラスターで機能する仕組み
 services: container-service
-author: dlepow
+author: iainfoulds
 manager: jeconnoc
 ms.service: container-service
 ms.topic: article
 ms.date: 01/04/2017
-ms.author: danlep
+ms.author: iainfou
 ms.custom: mvc
-ms.openlocfilehash: 81059fd75f0e61324221614c4bb8eccd94203478
-ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
+ms.openlocfilehash: 17029f51be9fed8fc36c5f919ece84acbf0461d9
+ms.sourcegitcommit: a2ae233e20e670e2f9e6b75e83253bd301f5067c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/28/2018
-ms.locfileid: "32162264"
+ms.lasthandoff: 08/13/2018
+ms.locfileid: "42140726"
 ---
 # <a name="dcos-agent-pools-for-azure-container-service"></a>Azure Container Service の DC/OS エージェント プール
 Azure Container Service の DC/OS クラスターでは、エージェント ノードを 2 つのプール (パブリック プールとプライベート プール) に格納します。 アプリケーションはどちらのプールにもデプロイできますが、コンテナー サービス内のコンピューター間のアクセスに影響があります。 コンピューターはインターネットに公開することも (パブリック)、内部だけで維持することも (プライベート) できます。 この記事では、パブリック プールとプライベート プールがある理由の概要について説明します。
@@ -24,7 +24,7 @@ Azure Container Service の DC/OS クラスターでは、エージェント ノ
 
 * **パブリック Agents**: パブリック エージェント ノードは、パブリックにアクセスできるネットワークを介して DC/OS アプリとサービスを実行します。 
 
-DC/OS ネットワークのセキュリティの詳細については、[DC/OS のドキュメント](https://dcos.io/docs/1.7/administration/securing-your-cluster/)を参照してください。
+DC/OS ネットワークのセキュリティの詳細については、[DC/OS のドキュメント](https://dcos.io/docs/1.8/administration/securing-your-cluster/)を参照してください。
 
 ## <a name="deploy-agent-pools"></a>エージェント プールのデプロイ
 

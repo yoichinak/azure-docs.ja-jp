@@ -12,55 +12,55 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 07/31/2017
+ms.date: 06/12/2018
 ms.author: cawa
-ms.openlocfilehash: 2878fb737f5daa875b91aefc77c6b8bc495f917e
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: 94ade24f1761700b93ab79d497e273c64c51bddf
+ms.sourcegitcommit: df50934d52b0b227d7d796e2522f1fd7c6393478
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34657572"
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38990899"
 ---
 # <a name="microsoft-azure-storage-explorer-release-notes"></a>Microsoft Azure Storage Explorer のリリース ノート
 
-この記事には、Azure Storage Explorer 1.0.0 リリースのリリース ノート、および以前のバージョンのリリース ノートが含まれています。
+この記事には、Azure Storage Explorer 1.2.0 リリースのリリース ノート、および以前のバージョンのリリース ノートが含まれています。
 
 [Microsoft Azure Storage Explorer](./vs-azure-tools-storage-manage-with-storage-explorer.md) は、Windows、macOS、Linux で Azure Storage データを容易に操作できるスタンドアロン アプリです。
 
-## <a name="version-110"></a>バージョン 1.1.0
-2018/05/09
+## <a name="version-130"></a>バージョン 1.3.0
+2018/07/09
 
-### <a name="download-azure-storage-explorer-110"></a>Azure Storage Explorer 1.1.0 をダウンロードする
-- [Windows 用 Azure Storage Explorer 1.1.0](https://go.microsoft.com/fwlink/?LinkId=708343)
-- [Mac 用 Azure Storage Explorer 1.1.0](https://go.microsoft.com/fwlink/?LinkId=708342)
-- [Linux 用 Azure Storage Explorer 1.1.0](https://go.microsoft.com/fwlink/?LinkId=722418)
+### <a name="download-azure-storage-explorer-130"></a>Azure Storage Explorer 1.3.0 のダウンロード
+- [Windows 用 Azure Storage Explorer 1.3.0](https://go.microsoft.com/fwlink/?LinkId=708343)
+- [Mac 用 Azure Storage Explorer 1.3.0](https://go.microsoft.com/fwlink/?LinkId=708342)
+- [Linux 用 Azure Storage Explorer 1.3.0](https://go.microsoft.com/fwlink/?LinkId=722418)
 
 ### <a name="new"></a>新規
-* Storage Explorer で Azurite を使用できるようになりました。 注: Azurite への接続は、既定の開発エンドポイントにハードコードされています。
-* Storage Explorer で、BLOB 専用のストレージ アカウントと GPV2 ストレージ アカウントのアクセス レベルがサポートされるようになりました。 アクセス レベルの詳細については、[こちら](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-storage-tiers)をご覧ください。
-* SAS を生成するときに、開始時刻が不要になりました。
+* 静的な Web サイトで使用される $web コンテナーへのアクセスがサポートされるようになりました。 これにより、Web サイトで使用されるファイルとフォルダーのアップロードと管理を容易に実行できます。 [#223](https://github.com/Microsoft/AzureStorageExplorer/issues/223)
+* macOS のアプリ バーが再構成されています。 変更には、[ファイル] メニュー、いくつかのショートカット キーの変更、およびアプリ メニューのさまざまな新しいコマンドが含まれています。 [#99](https://github.com/Microsoft/AzureStorageExplorer/issues/99)
+* Azure US Government にサインインするための証明機関のエンドポイントが https://login.microsoftonline.us/ に変更されています。
+* アクセシビリティ: スクリーン リーダーがアクティブであるとき、キーボード ナビゲーションが、項目を右側に表示するために使用されるテーブルでも機能するようになりました。 方向キーを使用して行と列を移動し、Enter キーで既定のアクションを呼び出し、コンテキスト メニュー キーで項目のコンテキスト メニューを開き、Shift または Control キーで複数選択を行うことができます。 [#103](https://github.com/Microsoft/AzureStorageExplorer/issues/103)
 
 ### <a name="fixes"></a>修正
-* 米国政府機関のアカウントのサブスクリプションを取得できませんでした。 この問題は修正されています。 [#61](https://github.com/Microsoft/AzureStorageExplorer/issues/61)
-* アクセス ポリシーの有効期限が正しく保存されていませんでした。 この問題は修正されています。 [#50](https://github.com/Microsoft/AzureStorageExplorer/issues/50)
-* コンテナー内の項目の SAS URL を生成したときに、項目の名前が URL に追加されていませんでした。 この問題は修正されています。 [#44](https://github.com/Microsoft/AzureStorageExplorer/issues/44)
-* SAS の作成時に、過去の有効期限が既定値になることがありました。 これは、Storage Explorer で、前回使用された開始時刻と有効期限が既定値として使用されていたことが原因です。 現在は、SAS ダイアログを開くたびに、一連の新しい既定値が生成されます。 [#35](https://github.com/Microsoft/AzureStorageExplorer/issues/35)
-* ストレージ アカウント間でコピーを実行すると、24 時間の SAS が生成されます。 コピーが 24 時間以上続いた場合、コピーは失敗します。 期限切れの SAS が原因でコピーが失敗する可能性を低減するために、SAS の期間を 1 週間に延長しました。 [#62](https://github.com/Microsoft/AzureStorageExplorer/issues/62)
-* 一部のアクティビティで、[キャンセル] のクリックが機能しないことがありました。 この問題は修正されています。 [#125](https://github.com/Microsoft/AzureStorageExplorer/issues/125)
-* 一部のアクティビティで、転送速度が間違っていました。 この問題は修正されています。 [#124](https://github.com/Microsoft/AzureStorageExplorer/issues/124)
-* [View] メニューの [Previous] のスペルが間違っていました。 現在は正しいスペルになっています。 [#71](https://github.com/Microsoft/AzureStorageExplorer/issues/71)
-* Windows インストーラーの最後のページに [次へ] ボタンがありました。 これが [完了] ボタンに変更されました。 [#70](https://github.com/Microsoft/AzureStorageExplorer/issues/70)
-* HC Black テーマの使用時に、ダイアログのボタンのタブ フォーカスが表示されませんでした。 現在は表示されます。[#64](https://github.com/Microsoft/AzureStorageExplorer/issues/64)
-* アクティビティ ログでアクションの "Auto-Resolve" の大文字小文字の表記が間違っていました。 現在は正しい表記になっています。 [#51](https://github.com/Microsoft/AzureStorageExplorer/issues/51)
-* テーブルからエンティティを削除するときに、確認を求めるダイアログにエラー アイコンが表示されていました。 このダイアログで警告アイコンが使用されるようになりました。 [#148](https://github.com/Microsoft/AzureStorageExplorer/issues/148)
+*  一部のコンピュータで、子プロセスの起動に時間がかかっていました。 これが発生すると、"子プロセスを適切なタイミングで開始できませんでした" エラーが表示されました。 現在、子プロセスに割り当てられる開始時間が、20 秒から90 秒に引き上げられています。 この問題による影響がまだある場合は、リンクされた GitHub 問題でコメントしてください。 [#281](https://github.com/Microsoft/AzureStorageExplorer/issues/281)
+* 読み取りアクセス許可がない SAS を使用した場合、大きな BLOB をアップロードすることはできませんでした。 このシナリオでも機能するように、アップロードのロジックが変更されています。 [#305](https://github.com/Microsoft/AzureStorageExplorer/issues/305)
+* コンテナーのパブリック アクセス レベルを設定すると、すべてのアクセス ポリシーが削除されました (逆の場合も同様です)。 パブリック アクセス レベルとアクセス ポリシーのどちらを設定した場合でも、両方が保持されるようになりました。 [#197](https://github.com/Microsoft/AzureStorageExplorer/issues/197)
+* [プロパティ] ダイアログで "AccessTierChangeTime" が切り捨てられていました。 この問題は修正されています。 [#145](https://github.com/Microsoft/AzureStorageExplorer/issues/145)
+* [新しいディレクトリの作成] ダイアログで "Microsoft Azure Storage Explorer -" プレフィックスが欠落していました。 この問題は修正されています。 [#299](https://github.com/Microsoft/AzureStorageExplorer/issues/299)
+* アクセシビリティ: ボイス オーバーを使用したときに [エンティティの追加] ダイアログに簡単に移動できませんでした。 改良が加えられています。 [#206](https://github.com/Microsoft/AzureStorageExplorer/issues/206)
+* アクセシビリティ: [アクション] ウィンドウと [プロパティ] ウィンドウの折りたたみ/展開ボタンの背景色が、ハイコントラスト黒テーマ表示での類似する UI コントロールと一貫性がありませんでした。 色が変更されています。 [#123](https://github.com/Microsoft/AzureStorageExplorer/issues/123)
+* アクセシビリティ: ハイコントラスト黒テーマ表示で、[プロパティ] ダイアログの [X] ボタンのフォーカス スタイルが見えませんでした。 この問題は修正されています。 [#243](https://github.com/Microsoft/AzureStorageExplorer/issues/243)
+* アクセシビリティ: [アクション] タブと [プロパティ] タブで、複数の aria 値が欠落していたため、スクリーン リーダーの質が低下していました。 欠落していた aria 値が追加されています。 [#316](https://github.com/Microsoft/AzureStorageExplorer/issues/316)
+* Accessibility: 左側の折り畳まれたツリー ノードに、aria 拡張値 false が指定されませんでした。 この問題は修正されています。 [#352](https://github.com/Microsoft/AzureStorageExplorer/issues/352)
 
 ### <a name="known-issues"></a>既知の問題
+* Azure Storage エミュレーターや Azurite などのエミュレーターを使用している場合、エミュレーターに既定のポートでの接続をリッスンさせる必要があります。 そうしないと、Storage Explorer がそれらに接続できません。
 * VS for Mac を使用しており、カスタム AAD 構成を作成したことがある場合、サインインできないことがあります。 この問題を回避するには、~/.IdentityService/AadConfigurations の内容を削除します。 これを行ってもブロックが解除されない場合は、[この問題](https://github.com/Microsoft/AzureStorageExplorer/issues/97)についてコメントをお寄せください。
 * Azurite は、すべての Storage API を完全に実装しているわけではありません。 そのため、開発ストレージに Azurite を使用すると、予期しないエラーや動作が発生する可能性があります。
 * まれに、ツリーのフォーカスがクイック アクセスから移動しなくなることがあります。 フォーカスを移動できるようにするには、[すべて更新] をクリックします。
 * NodeJS のバグが原因で、OneDrive フォルダーからのアップロードが機能しません。 バグは修正されましたが、Electron にまだ統合されていません。
 * Azure Stack を対象にしている場合、一部のファイルについては、追加 BLOB としてアップロードできない可能性があります。
-* タスクの [キャンセル] をクリックすると、そのタスクのキャンセルに少し時間がかかる場合があります。 これは、[こちら](https://github.com/Azure/azure-storage-node/issues/317)で説明したフィルターのキャンセル回避策を使用しているためです。 
+* タスクの [キャンセル] をクリックすると、そのタスクのキャンセルに少し時間がかかる場合があります。 これは、[こちら](https://github.com/Azure/azure-storage-node/issues/317)で説明したフィルターのキャンセル回避策を使用しているためです。
 * 誤った PIN/スマートカードの証明書を選択した場合、その記録をストレージ エクスプローラーから消すためには、再起動する必要があります
 * BLOB の名前の変更で (個別または名前を変更する BLOB コンテナーの内部)、スナップショットが保持されません。 BLOB、ファイル、エンティティの他のすべてのプロパティとメタデータは、名前変更の間に保持されます。
 * 現在、Azure Stack ではファイル共有をサポートしていませんが、ファイル共有ノードがアタッチされた Azure Stack ストレージ アカウントの下に表示され続けます。
@@ -88,6 +88,8 @@ ms.locfileid: "34657572"
 
 ## <a name="previous-releases"></a>以前のリリース
 
+* [バージョン 1.2.0](#version-120)
+* [バージョン 1.1.0](#version-110)
 * [バージョン 1.0.0](#version-100)
 * [バージョン 0.9.6](#version-096)
 * [バージョン 0.9.5](#version-095)
@@ -112,13 +114,120 @@ ms.locfileid: "34657572"
 * [バージョン 0.7.20160105.0](#version-07201601050)
 * [バージョン 0.7.20151116.0](#version-07201511160)
 
+## <a name="version-120"></a>バージョン 1.2.0
+2018/06/12
+
+### <a name="new"></a>新規
+* Storage Explorer がテナントのサブセットについてのみ、サブスクリプションの読み込みに失敗した場合は、正常に読み込まれたサブスクリプションと、失敗したテナントに関するエラー メッセージが表示されます。 [#159](https://github.com/Microsoft/AzureStorageExplorer/issues/159)
+* Windows では、更新プログラムが提供された際に、[Update on Close]\(終了時に更新\) を選択できるようになりました。 このオプションを選択した場合、更新プログラムのインストーラーは Storage Explorer を終了した後に実行されます。 [#21](https://github.com/Microsoft/AzureStorageExplorer/issues/21)
+* ファイル共有スナップショットを表示しているときに、ファイル共有エディターのコンテキスト メニューに [スナップショットの復元] が表示されるようになりました。[#131](https://github.com/Microsoft/AzureStorageExplorer/issues/131)
+* [キューのクリア] ボタンが常に有効化されるようになりました。[#135](https://github.com/Microsoft/AzureStorageExplorer/issues/135)
+* ADFS Azure Stack へのサインインのサポートが再度有効化されました。 Azure Stack バージョン 1804 以上が必要です。 [#150](https://github.com/Microsoft/AzureStorageExplorer/issues/150)
+
+### <a name="fixes"></a>修正
+* 同じストレージ アカウント内の別のファイル共有のプレフィックスを名前に持つファイル共有のスナップショットを表示すると、もう一方のファイル共有のスナップショットも一覧に表示されていました。 この問題は修正されています。 [#255](https://github.com/Microsoft/AzureStorageExplorer/issues/255)
+* SAS を介してアタッチされている場合、ファイル共有スナップショットからファイルを復元すると、エラーが発生していました。 この問題は修正されています。 [#211](https://github.com/Microsoft/AzureStorageExplorer/issues/211)
+* BLOB のスナップショットを表示しているときに、ベース BLOB と 1 つのスナップショットが選択されると、スナップショットの昇格アクションが有効化されていました。 このアクションは、1 つのスナップショットが選択された場合にのみ、有効化されるようになりました。 [#230](https://github.com/Microsoft/AzureStorageExplorer/issues/230)
+* 1 つのジョブ (BLOB のダウンロードなど) が開始され、その後失敗しても、同じ種類の別のジョブが開始されるまで、ジョブは自動的に再試行されませんでした。 現在は、キュー内のジョブの数に関係なく、すべてのジョブが自動的に再試行されるようになりました。
+* GPV2 および Blob Storage アカウントで新規作成された BLOB コンテナーに対して開かれるエディターに、アクセス レベル列が表示されませんでした。 この問題は修正されています。 [#109](https://github.com/Microsoft/AzureStorageExplorer/issues/109)
+* Storage アカウントまたは BLOB コンテナーが SAS を介してアタッチされている場合に、アクセス レベル列が表示されないことがありました。 現在、この列は常に表示されるようになりました (ただし、アクセス レベルが設定されていない場合は、空の値が使用されます)。 [#160](https://github.com/Microsoft/AzureStorageExplorer/issues/160)
+* 新たにアップロードされたブロック BLOB のアクセス レベルの設定が無効化されていました。 この問題は修正されています。 [#171](https://github.com/Microsoft/AzureStorageExplorer/issues/171)
+* [タブを開いたままにする] ボタンがキーボードを使って呼び出された場合に、キーボードのフォーカスが失われていました。 現在は、開いたままにされたタブへとフォーカスが移動するようになりました。 [#163](https://github.com/Microsoft/AzureStorageExplorer/issues/163)
+* クエリ ビルダーのクエリについて、VoiceOver で現在の演算子のわかりやすい説明が提供されませんでした。 現在では、説明が分かりやすくなっています。 [#207](https://github.com/Microsoft/AzureStorageExplorer/issues/207)
+* 各種エディターの改ページ リンクがわかりやすくありませんでした。 これは、わかりやすいように変更されました。 [#205](https://github.com/Microsoft/AzureStorageExplorer/issues/205)
+* [エンティティの追加] ダイアログ ボックスで、入力要素がどの列に属しているのかが VoiceOver によって伝えられませんでした。 今リリースでは、要素の説明に現在の列の名前が含まれるようになりました。 [#206](https://github.com/Microsoft/AzureStorageExplorer/issues/206)
+* オプション ボタンとチェック ボックスに、フォーカス時に表示される枠線がありませんでした。 この問題は修正されています。 [#237](https://github.com/Microsoft/AzureStorageExplorer/issues/237)
+
+### <a name="known-issues"></a>既知の問題
+* Azure Storage エミュレーターや Azurite などのエミュレーターを使用している場合、エミュレーターに既定のポートでの接続をリッスンさせる必要があります。 そうしないと、Storage Explorer がそれらに接続できません。
+* VS for Mac を使用しており、カスタム AAD 構成を作成したことがある場合、サインインできないことがあります。 この問題を回避するには、~/.IdentityService/AadConfigurations の内容を削除します。 これを行ってもブロックが解除されない場合は、[この問題](https://github.com/Microsoft/AzureStorageExplorer/issues/97)についてコメントをお寄せください。
+* Azurite は、すべての Storage API を完全に実装しているわけではありません。 そのため、開発ストレージに Azurite を使用すると、予期しないエラーや動作が発生する可能性があります。
+* まれに、ツリーのフォーカスがクイック アクセスから移動しなくなることがあります。 フォーカスを移動できるようにするには、[すべて更新] をクリックします。
+* NodeJS のバグが原因で、OneDrive フォルダーからのアップロードが機能しません。 バグは修正されましたが、Electron にまだ統合されていません。
+* Azure Stack を対象にしている場合、一部のファイルについては、追加 BLOB としてアップロードできない可能性があります。
+* タスクの [キャンセル] をクリックすると、そのタスクのキャンセルに少し時間がかかる場合があります。 これは、[こちら](https://github.com/Azure/azure-storage-node/issues/317)で説明したフィルターのキャンセル回避策を使用しているためです。
+* 誤った PIN/スマートカードの証明書を選択した場合、その記録をストレージ エクスプローラーから消すためには、再起動する必要があります
+* BLOB の名前の変更で (個別または名前を変更する BLOB コンテナーの内部)、スナップショットが保持されません。 BLOB、ファイル、エンティティの他のすべてのプロパティとメタデータは、名前変更の間に保持されます。
+* 現在、Azure Stack ではファイル共有をサポートしていませんが、ファイル共有ノードがアタッチされた Azure Stack ストレージ アカウントの下に表示され続けます。
+* Storage Explorer で使用されている Electron シェルには、一部の GPU (グラフィックス処理装置) ハードウェア アクセラレータで問題が発生します。 Storage Explorer に空白 (空) のメイン ウィンドウが表示される場合は、コマンド ラインから Storage Explorer を起動し、`--disable-gpu` スイッチを追加して、GPU アクセラレータを無効にしてみてください: 
+
+```
+./StorageExplorer.exe --disable-gpu
+```
+
+* Linux ユーザーは、[.NET Core 2.0](https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x) をインストールする必要があります。
+* Ubuntu 14.04 のユーザーの場合、GCC が最新版であることを確認する必要があります。これは、次のコマンドを実行し、コンピューターを再起動して行います。
+
+    ```
+    sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+    sudo apt-get update
+    sudo apt-get upgrade
+    sudo apt-get dist-upgrade
+    ```
+
+* Ubuntu 17.04 のユーザーの場合、GConf をインストールする必要があります。次のコマンドを実行し、マシンを再起動して、この操作を行うことができます。
+
+    ```
+    sudo apt-get install libgconf-2-4
+    ```
+
+## <a name="version-110"></a>バージョン 1.1.0
+2018/05/09
+
+### <a name="new"></a>新規
+* Storage Explorer で Azurite を使用できるようになりました。 注: Azurite への接続は、既定の開発エンドポイントにハードコードされています。
+* Storage Explorer で、BLOB 専用のストレージ アカウントと GPV2 ストレージ アカウントのアクセス レベルがサポートされるようになりました。 アクセス レベルの詳細については、[こちら](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-storage-tiers)をご覧ください。
+* SAS を生成するときに、開始時刻が不要になりました。
+
+### <a name="fixes"></a>修正
+* 米国政府機関のアカウントのサブスクリプションを取得できませんでした。 この問題は修正されています。 [#61](https://github.com/Microsoft/AzureStorageExplorer/issues/61)
+* アクセス ポリシーの有効期限が正しく保存されていませんでした。 この問題は修正されています。 [#50](https://github.com/Microsoft/AzureStorageExplorer/issues/50)
+* コンテナー内の項目の SAS URL を生成したときに、項目の名前が URL に追加されていませんでした。 この問題は修正されています。 [#44](https://github.com/Microsoft/AzureStorageExplorer/issues/44)
+* SAS の作成時に、過去の有効期限が既定値になることがありました。 これは、Storage Explorer で、前回使用された開始時刻と有効期限が既定値として使用されていたことが原因です。 現在は、SAS ダイアログを開くたびに、一連の新しい既定値が生成されます。 [#35](https://github.com/Microsoft/AzureStorageExplorer/issues/35)
+* ストレージ アカウント間でコピーを実行すると、24 時間の SAS が生成されます。 コピーが 24 時間以上続いた場合、コピーは失敗します。 期限切れの SAS が原因でコピーが失敗する可能性を低減するために、SAS の期間を 1 週間に延長しました。 [#62](https://github.com/Microsoft/AzureStorageExplorer/issues/62)
+* 一部のアクティビティで、[キャンセル] のクリックが機能しないことがありました。 この問題は修正されています。 [#125](https://github.com/Microsoft/AzureStorageExplorer/issues/125)
+* 一部のアクティビティで、転送速度が間違っていました。 この問題は修正されています。 [#124](https://github.com/Microsoft/AzureStorageExplorer/issues/124)
+* [View] メニューの [Previous] のスペルが間違っていました。 現在は正しいスペルになっています。 [#71](https://github.com/Microsoft/AzureStorageExplorer/issues/71)
+* Windows インストーラーの最後のページに [次へ] ボタンがありました。 これが [完了] ボタンに変更されました。 [#70](https://github.com/Microsoft/AzureStorageExplorer/issues/70)
+* HC Black テーマの使用時に、ダイアログのボタンのタブ フォーカスが表示されませんでした。 現在は表示されます。[#64](https://github.com/Microsoft/AzureStorageExplorer/issues/64)
+* アクティビティ ログでアクションの "Auto-Resolve" の大文字小文字の表記が間違っていました。 現在は正しい表記になっています。 [#51](https://github.com/Microsoft/AzureStorageExplorer/issues/51)
+* テーブルからエンティティを削除するときに、確認を求めるダイアログにエラー アイコンが表示されていました。 このダイアログで警告アイコンが使用されるようになりました。 [#148](https://github.com/Microsoft/AzureStorageExplorer/issues/148)
+
+### <a name="known-issues"></a>既知の問題
+* VS for Mac を使用しており、カスタム AAD 構成を作成したことがある場合、サインインできないことがあります。 この問題を回避するには、~/.IdentityService/AadConfigurations の内容を削除します。 これを行ってもブロックが解除されない場合は、[この問題](https://github.com/Microsoft/AzureStorageExplorer/issues/97)についてコメントをお寄せください。
+* Azurite は、すべての Storage API を完全に実装しているわけではありません。 そのため、開発ストレージに Azurite を使用すると、予期しないエラーや動作が発生する可能性があります。
+* まれに、ツリーのフォーカスがクイック アクセスから移動しなくなることがあります。 フォーカスを移動できるようにするには、[すべて更新] をクリックします。
+* NodeJS のバグが原因で、OneDrive フォルダーからのアップロードが機能しません。 バグは修正されましたが、Electron にまだ統合されていません。
+* Azure Stack を対象にしている場合、一部のファイルについては、追加 BLOB としてアップロードできない可能性があります。
+* タスクの [キャンセル] をクリックすると、そのタスクのキャンセルに少し時間がかかる場合があります。 これは、[こちら](https://github.com/Azure/azure-storage-node/issues/317)で説明したフィルターのキャンセル回避策を使用しているためです。
+* 誤った PIN/スマートカードの証明書を選択した場合、その記録をストレージ エクスプローラーから消すためには、再起動する必要があります
+* BLOB の名前の変更で (個別または名前を変更する BLOB コンテナーの内部)、スナップショットが保持されません。 BLOB、ファイル、エンティティの他のすべてのプロパティとメタデータは、名前変更の間に保持されます。
+* 現在、Azure Stack ではファイル共有をサポートしていませんが、ファイル共有ノードがアタッチされた Azure Stack ストレージ アカウントの下に表示され続けます。
+* Storage Explorer で使用されている Electron シェルには、一部の GPU (グラフィックス処理装置) ハードウェア アクセラレータで問題が発生します。 Storage Explorer に空白 (空) のメイン ウィンドウが表示される場合は、コマンド ラインから Storage Explorer を起動し、`--disable-gpu` スイッチを追加して、GPU アクセラレータを無効にしてみてください: 
+
+```
+./StorageExplorer.exe --disable-gpu
+```
+
+* Linux ユーザーは、[.NET Core 2.0](https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x) をインストールする必要があります。
+* Ubuntu 14.04 のユーザーの場合、GCC が最新版であることを確認する必要があります。これは、次のコマンドを実行し、コンピューターを再起動して行います。
+
+    ```
+    sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+    sudo apt-get update
+    sudo apt-get upgrade
+    sudo apt-get dist-upgrade
+    ```
+
+* Ubuntu 17.04 のユーザーの場合、GConf をインストールする必要があります。次のコマンドを実行し、マシンを再起動して、この操作を行うことができます。
+
+    ```
+    sudo apt-get install libgconf-2-4
+    ```
+
+
 ## <a name="version-100"></a>バージョン 1.0.0
 2018/04/16
-
-### <a name="download-azure-storage-explorer-100"></a>Azure Storage Explorer 1.0.0 をダウンロードする
-- [Windows 用 Azure Storage Explorer 1.0.0](https://go.microsoft.com/fwlink/?LinkId=708343)
-- [Mac 用 Azure Storage Explorer 1.0.0](https://go.microsoft.com/fwlink/?LinkId=708342)
-- [Linux 用 Azure Storage Explorer 1.0.0](https://go.microsoft.com/fwlink/?LinkId=722418)
 
 ### <a name="new"></a>新規
 * 認証が強化され、Storage Explorer で Visual Studio 2017 と同じアカウント ストアを使用できるようになりました。 この機能を使用するには、アカウントに再ログインし、フィルター処理されたサブスクリプションを再設定する必要があります。
@@ -156,7 +265,7 @@ ms.locfileid: "34657572"
 ### <a name="known-issues"></a>既知の問題
 * まれに、ツリーのフォーカスがクイック アクセスから移動しなくなることがあります。 フォーカスを移動できるようにするには、[すべて更新] をクリックします。
 * Azure Stack を対象にしている場合、一部のファイルについては、追加 BLOB としてアップロードできない可能性があります。
-* タスクの [キャンセル] をクリックすると、そのタスクのキャンセルに少し時間がかかる場合があります。 これは、ここで説明したフィルターのキャンセル回避策を使用しているためです。 
+* タスクの [キャンセル] をクリックすると、そのタスクのキャンセルに少し時間がかかる場合があります。 これは、ここで説明したフィルターのキャンセル回避策を使用しているためです。
 * 誤った PIN/スマートカードの証明書を選択した場合、その記録をストレージ エクスプローラーから消すためには、再起動する必要があります
 * BLOB の名前の変更で (個別または名前を変更する BLOB コンテナーの内部)、スナップショットが保持されません。 BLOB、ファイル、エンティティの他のすべてのプロパティとメタデータは、名前変更の間に保持されます。
 * 現在、Azure Stack ではファイル共有をサポートしていませんが、ファイル共有ノードがアタッチされた Azure Stack ストレージ アカウントの下に表示され続けます。
@@ -184,11 +293,6 @@ ms.locfileid: "34657572"
 
 ## <a name="version-096"></a>バージョン 0.9.6
 2018/02/28
-
-### <a name="download-azure-storage-explorer-096-preview"></a>Azure Storage Explorer 0.9.6 (プレビュー) をダウンロードする
-- [Windows 用 Azure Storage Explorer 0.9.6 (プレビュー)](https://go.microsoft.com/fwlink/?LinkId=708343)
-- [Mac 用 Azure Storage Explorer 0.9.6 (プレビュー)](https://go.microsoft.com/fwlink/?LinkId=708342)
-- [Linux 用 Azure Storage Explorer 0.9.6 (プレビュー)](https://go.microsoft.com/fwlink/?LinkId=722418)
 
 ### <a name="fixes"></a>修正
 * 予期される BLOB/ファイルがエディターに表示されない問題がありました。 この問題は修正されています。
@@ -225,11 +329,6 @@ ms.locfileid: "34657572"
 
 ## <a name="version-095"></a>バージョン 0.9.5
 2018/02/06
-
-### <a name="download-azure-storage-explorer-095-preview"></a>Azure Storage Explorer 0.9.5 (プレビュー) をダウンロードする
-- [Windows 用 Azure Storage Explorer 0.9.5 (プレビュー)](https://go.microsoft.com/fwlink/?LinkId=708343)
-- [Mac 用 Azure Storage Explorer 0.9.5 (プレビュー)](https://go.microsoft.com/fwlink/?LinkId=708342)
-- [Linux 用 Azure Storage Explorer 0.9.5 (プレビュー)](https://go.microsoft.com/fwlink/?LinkId=722418)
 
 ### <a name="new"></a>新規
 
@@ -279,11 +378,6 @@ ms.locfileid: "34657572"
 
 ## <a name="version-094-and-093"></a>バージョン 0.9.4 および 0.9.3
 2018/01/21
-
-### <a name="download-azure-storage-explorer-094-preview"></a>Azure Storage Explorer 0.9.4 (プレビュー) をダウンロードする
-* [Windows 用 Azure Storage Explorer 0.9.4 (プレビュー) のダウンロード](https://go.microsoft.com/fwlink/?LinkId=809306)
-* [Mac 用 Azure Storage Explorer 0.9.4 (プレビュー) のダウンロード](https://go.microsoft.com/fwlink/?LinkId=809307)
-* [Linux 用 Azure Storage Explorer 0.9.4 (プレビュー) のダウンロード](https://go.microsoft.com/fwlink/?LinkId=809308)
 
 ### <a name="new"></a>新規
 * 既存の Storage Explorer ウィンドウは以下の場合に再利用されます。

@@ -7,22 +7,19 @@ manager: craigg
 ms.service: sql-database
 ms.custom: business continuity
 ms.topic: conceptual
-ms.date: 04/04/2018
+ms.date: 07/25/2018
 ms.author: sashan
 ms.reviewer: carlrab
-ms.openlocfilehash: 0ce22cae50e70ca7232e025d4009b23d62f6a198
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: 6f0d8a3a09ce000ddff078614c4febfc44ac941f
+ms.sourcegitcommit: a5eb246d79a462519775a9705ebf562f0444e4ec
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34649229"
+ms.lasthandoff: 07/26/2018
+ms.locfileid: "39264945"
 ---
 # <a name="manage-azure-sql-database-long-term-backup-retention"></a>Azure SQL Database の長期的なバックアップ保有期間を管理する
 
 [長期的なバックアップ保有期間](sql-database-long-term-retention.md)ポリシー (LTR) を使用して Azure SQL Database を構成し、Azure BLOB ストレージに最大 10 年間自動的にバックアップを保持することができます。 Azure Portal または PowerShell でこのようなバックアップを使用して、データベースを復旧できます。
-
-> [!NOTE]
-> 2016 年 10 月にリリースされたこの機能のプレビューの初期リリースの一環として、バックアップは Azure Services Recovery Service コンテナーに保存されていました。 この更新プログラムではこの依存関係は削除されていますが、下位互換性のために元の API は 2018 年 5 月 31 日までサポートされます。 Azure Services Recovery コンテナーのバックアップと操作する必要がある場合は、[Azure Services Recovery Service コンテナーを使用した長期的なバックアップ保有期間](sql-database-long-term-backup-retention-configure-vault.md)に関するページを参照してください。 
 
 ## <a name="use-the-azure-portal-to-configure-long-term-retention-policies-and-restore-backups"></a>Azure Portal を使用して長期保存ポリシーを構成し、バックアップを復元する
 
@@ -32,29 +29,21 @@ ms.locfileid: "34649229"
 
 ご利用のサービス レベルのリテンション期間より長く[自動バックアップを保持](sql-database-long-term-retention.md)するように SQL Database を構成できます。 
 
-1. Azure Portal で SQL Server を選択し、**[長期的なバックアップ保有期間]** をクリックします。
+1. Azure Portal で SQL Server を選択し、**[バックアップの管理]** をクリックします。 **[ポリシーの構成**] タブで、長期的なバックアップ保有期間ポリシーを設定または変更するデータベースを選択します。
 
-   ![長期的なバックアップ保有期間のリンク](./media/sql-database-long-term-retention/ltr-configure-ltr.png)
+   ![バックアップの管理リンク](./media/sql-database-long-term-retention/ltr-configure-ltr.png)
 
-2. **[ポリシーの構成**] タブで、長期的なバックアップ保有期間ポリシーを設定または変更するデータベースを選択します。
-
-   ![データベースを選択する](./media/sql-database-long-term-retention/ltr-configure-select-database.png)
-
-3. **[ポリシーの構成]** ウィンドウで、毎週、毎月、または毎年のバックアップを保持するかどうかを選択し、それぞれの保有期間を指定します。 
+2. **[ポリシーの構成]** ウィンドウで、毎週、毎月、または毎年のバックアップを保持するかどうかを選択し、それぞれの保有期間を指定します。 
 
    ![ポリシーを構成する](./media/sql-database-long-term-retention/ltr-configure-policies.png)
 
-4. 完了したら、**[適用]** をクリックします。
+3. 完了したら、**[適用]** をクリックします。
 
 ### <a name="view-backups-and-restore-from-a-backup-using-azure-portal"></a>Azure Portal を使用してバックアップを表示し、バックアップから復元する
 
 LTR ポリシーを使用して保持されている特定のデータベースのバックアップを表示し、それらのバックアップから復元します。 
 
-1. Azure Portal で SQL Server を選択し、**[長期的なバックアップ保有期間]** をクリックします。
-
-   ![長期的なバックアップ保有期間のリンク](./media/sql-database-long-term-retention/ltr-configure-ltr.png)
-
-2. **[利用可能なバックアップ]** タブで、利用可能なバックアップを表示するデータベースを選択します。
+1. Azure Portal で SQL Server を選択し、**[バックアップの管理]** をクリックします。 **[利用可能なバックアップ]** タブで、利用可能なバックアップを表示するデータベースを選択します。
 
    ![データベースを選択する](./media/sql-database-long-term-retention/ltr-available-backups-select-database.png)
 
@@ -70,7 +59,7 @@ LTR ポリシーを使用して保持されている特定のデータベース�
 
 6. ツール バーの通知アイコンをクリックして、復元ジョブの状態を確認します。
 
-   ![コンテナーからの復元ジョブの進行状況](./media/sql-database-get-started-backup-recovery/restore-job-progress-long-term.png)
+   ![復元ジョブの進行状況](./media/sql-database-get-started-backup-recovery/restore-job-progress-long-term.png)
 
 5. 復元ジョブが完了したら、**[SQL データベース]** ページを開き、新しく復元されたデータベースを確認します。
 
@@ -83,8 +72,10 @@ LTR ポリシーを使用して保持されている特定のデータベース�
 以下のセクションでは、PowerShell を使用して長期的なバックアップ保有期間を構成し、Azure SQL ストレージ内のバックアップを表示し、Azure SQL ストレージ内のバックアップから復元する方法について説明します。
 
 > [!IMPORTANT]
-> LTR V2 ポリシーを設定するには、最新の AzureRM PowerShell を使用する必要があります。 現在のバージョンは [AzureRM 4.5.0-preview](https://www.powershellgallery.com/packages/AzureRM.Sql/4.5.0-preview) です。これはプレビュー バージョンです。コマンド `Install-Module -Name AzureRM.Sql -AllowPrerelease -Force` でインストールします。
-> プレリリース版のインストール方法については、[PowerShellGet モジュールの取得](https://docs.microsoft.com/en-us/powershell/gallery/installing-psget)に関するページを参照してください。 AzureRM PowerShell の 2018 年 5 月リリースが数日後に予定されています (2018 年 5 月 18 日予定)。リリース後、リリース版をインストールするとき、-AllowPrelease スイッチを無視できます。コマンド `Install-Module -Name AzureRM.Sql -Force` を使用してください。
+> LTR V2 API は、次の PowerShell のバージョンでサポートされています。
+- [AzureRM.Sql-4.5.0](https://www.powershellgallery.com/packages/AzureRM.Sql/4.5.0) 以降
+- [AzureRM-6.1.0](https://www.powershellgallery.com/packages/AzureRM/6.1.0) 以降
+> 
 
 ### <a name="create-an-ltr-policy"></a>LTR ポリシーを作成する
 

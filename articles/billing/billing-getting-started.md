@@ -1,5 +1,5 @@
 ---
-title: 課金を管理して予想外のコストを防ぐ - Azure | Microsoft Docs
+title: Azure で課金を管理して予想外のコストを防ぐ | Microsoft Docs
 description: Azure の課金内容が予想外の金額となるのを防ぐ方法について説明します。 Microsoft Azure サブスクリプションに対して、コスト管理機能を使用します。
 services: ''
 documentationcenter: ''
@@ -15,12 +15,12 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/24/2018
 ms.author: tonguyen
-ms.openlocfilehash: 797421e40a5550e1897443f35089838a349ad85a
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: dc516aa64399447973cefa47e913193adce2f8f5
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34607397"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39528267"
 ---
 # <a name="prevent-unexpected-charges-with-azure-billing-and-cost-management"></a>Azure の課金とコスト管理で想定外の料金を防ぐ
 
@@ -121,7 +121,7 @@ Azure にサインアップしたら、支出を把握するために行える�
 
 ### <a name="turn-on-and-check-out-azure-advisor-recommendations"></a>Azure Advisor の推奨事項を有効にして確認する
 
-[Azure Advisor](../advisor/advisor-overview.md) は、使用量の少ないリソースを特定してコストを削減するのに役立つプレビュー機能です。 Azure Portal で Azure Advisor を有効にします。
+[Azure Advisor](../advisor/advisor-overview.md) は、使用量の少ないリソースを特定してコストを削減するのに役立つ機能です。 Azure Portal で Advisor にアクセスします。
 
 ![Azure Portal の [Azure Advisor] ボタンのスクリーンショット](./media/billing-getting-started/advisor-button.PNG)
 

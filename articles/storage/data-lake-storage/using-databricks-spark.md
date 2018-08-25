@@ -1,26 +1,24 @@
 ---
-title: Spark を使用して Databricks で Azure Data Lake Storage Gen2 プレビューのデータにアクセスする | Microsoft Docs
-description: Databricks クラスター上で Spark クエリを実行して、Azure Data Lake Storage Gen2 ストレージ アカウント内のデータにアクセスする方法を学習します。
+title: Spark を使用して Azure Databricks で Azure Data Lake Storage Gen2 プレビューのデータにアクセスする | Microsoft Docs
+description: Azure Databricks クラスター上で Spark クエリを実行して、Azure Data Lake Storage Gen2 ストレージ アカウント内のデータにアクセスする方法を説明します。
 services: hdinsight,storage
 tags: azure-portal
 author: dineshm
-manager: twooley
 ms.component: data-lake-storage-gen2
-ms.service: hdinsight
-ms.workload: big-data
+ms.service: storage
 ms.topic: tutorial
 ms.date: 6/27/2018
 ms.author: dineshm
-ms.openlocfilehash: 013369c84ca7f2ec232f542549c22260eca46980
-ms.sourcegitcommit: f06925d15cfe1b3872c22497577ea745ca9a4881
+ms.openlocfilehash: 42bf3fca0e30c21e5f8737e37f4ac35db188ee90
+ms.sourcegitcommit: a62cbb539c056fe9fcd5108d0b63487bd149d5c3
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/27/2018
-ms.locfileid: "37062536"
+ms.lasthandoff: 08/22/2018
+ms.locfileid: "42616492"
 ---
-# <a name="tutorial-access-azure-data-lake-storage-gen2-preview-data-with-databricks-using-spark"></a>チュートリアル: Spark を使用して Databricks で Azure Data Lake Storage Gen2 プレビューのデータにアクセスする
+# <a name="tutorial-access-azure-data-lake-storage-gen2-preview-data-with-azure-databricks-using-spark"></a>チュートリアル: Spark を使用して Azure Databricks で Azure Data Lake Storage Gen2 プレビューのデータにアクセスする
 
-このチュートリアルでは、Databricks クラスター上で Spark クエリを実行して、Azure Data Lake Storage Gen2 プレビュー対応アカウント内のデータを照会する方法を学習します。
+このチュートリアルでは、Azure Databricks クラスター上で Spark クエリを実行して、Azure Data Lake Storage Gen2 プレビュー対応アカウント内のデータを照会する方法を説明します。
 
 > [!div class="checklist"]
 > * Databricks クラスターを作成する
@@ -51,7 +49,7 @@ ms.locfileid: "37062536"
 
 次の手順では、[Databricks クラスター](https://docs.azuredatabricks.net/)を作成して、データ ワークスペースを作成します。
 
-1. [Databricks サービス](https://ms.portal.azure.com/#create/Microsoft.Databricks)を作成し、**myFlightDataService** という名前を付けます (このサービスを作成するときに、*[ダッシュボードにピン留めする]* チェックボックスを必ずオンにします)。
+1. [Databricks サービス](https://ms.portal.azure.com/#create/Microsoft.Databricks)を作成し、**myFlightDataService** という名前を付けます (このサービスを作成するときに、*[ダッシュボードにピン留めする]* チェック ボックスを必ずオンにします)。
 2. **[Launch Workspace]\(ワークスペースの起動\)** をクリックして、新しいブラウザー ウィンドウでワークスペースを開きます。
 3. 左側のナビゲーション バーで **[クラスター]** をクリックします。
 4. **[クラスターの作成]** をクリックします。
@@ -61,9 +59,9 @@ ms.locfileid: "37062536"
 8. ページの上部にある **[クラスターの作成]** をクリックします (このプロセスは完了までに最大 5 分かかる場合があります)。
 9. 処理が完了したら、ナビゲーション バーの左上にある **[Azure Databricks]** を選択します。
 10. ページの下半分にある **[新規]** セクションで **[Notebook]\(ノートブック\)** を選択します。
-11. **[名前]** フィールドに任意の名前を入力します。
+11. **[名前]** フィールドに任意の名前を入力し、言語として **[Python]** を選択します。
 12. その他のフィールドはすべて既定値のままでかまいません。
-13. **[作成]** を選択します。
+13. **作成**を選択します。
 14. **[Cmd 1]** セルに次のコードを貼り付けて、値をストレージ アカウントに保持していた値で置き換えます。
 
     ```bash
@@ -93,17 +91,17 @@ azcopy cp "<DOWNLOAD_FILE_PATH>" https://<ACCOUNT_NAME>.dfs.core.windows.net/dbr
 2. ページの下半分にある **[新規]** セクションで **[Notebook]\(ノートブック\)** を選択します。
 3. **[名前]** フィールドに「**CSV2Parquet**」と入力します。
 4. その他のフィールドはすべて既定値のままでかまいません。
-5. **[作成]** を選択します。
+5. **作成**を選択します。
 6. **[Cmd 1]** セルに次のコードを貼り付けます (このコードはエディターに自動保存されます)。
 
-    ```
+    ```python
     #mount Azure Blob Storage as an HDFS file system to your databricks cluster
     #you need to specify a storage account and container to connect to. 
     #use a SAS token or an account key to connect to Blob Storage.  
-    accountname = "<insert account name>' 
-    accountkey = " <insert account key>'
-    fullname = "fs.azure.account.key." +accountname+ ".blob.core.windows.net"
-    accountsource = "abfs://dbricks@" +accountname+ ".blob.core.windows.net/folder1"
+    accountname = "<insert account name>"
+    accountkey = " <insert account key>"
+    fullname = "fs.azure.account.key." +accountname+ ".dfs.core.windows.net"
+    accountsource = "abfs://dbricks@" +accountname+ ".dfs.core.windows.net/folder1"
     #create a dataframe to read data
     flightDF = spark.read.format('csv').options(header='true', inferschema='true').load(accountsource + "/On_Time_On_Time*.csv")
     #read the all the airline csv files and write the output to parquet format for easy query

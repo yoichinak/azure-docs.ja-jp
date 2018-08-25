@@ -2,19 +2,19 @@
 title: Azure Container Service チュートリアル - DC/OS の管理
 description: Azure Container Service チュートリアル - DC/OS の管理
 services: container-service
-author: neilpeterson
+author: iainfoulds
 manager: jeconnoc
 ms.service: container-service
 ms.topic: tutorial
 ms.date: 02/26/2018
-ms.author: nepeters
+ms.author: iainfou
 ms.custom: mvc
-ms.openlocfilehash: 1c06605db3044234f6171d8b784bafb7e7ce759e
-ms.sourcegitcommit: e2adef58c03b0a780173df2d988907b5cb809c82
+ms.openlocfilehash: c4f1b63e2d564f0480508c3ec5a5a24c76ea6bc4
+ms.sourcegitcommit: a2ae233e20e670e2f9e6b75e83253bd301f5067c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/28/2018
-ms.locfileid: "32168940"
+ms.lasthandoff: 08/13/2018
+ms.locfileid: "41919548"
 ---
 # <a name="azure-container-service-tutorial---manage-dcos"></a>Azure Container Service チュートリアル - DC/OS の管理
 
@@ -34,7 +34,7 @@ DC/OS は、最新のコンテナー化されたアプリケーションを実�
 
 ## <a name="create-dcos-cluster"></a>DC/OS クラスターの作成
 
-まず、[az group create](/cli/azure/group#az_group_create) コマンドでリソース グループを作成します。 Azure リソース グループとは、Azure リソースのデプロイと管理に使用する論理コンテナーです。 
+まず、[az group create](/cli/azure/group#az-group-create) コマンドでリソース グループを作成します。 Azure リソース グループとは、Azure リソースのデプロイと管理に使用する論理コンテナーです。 
 
 次の例では、*myResourceGroup* という名前のリソース グループを *westeurope* の場所に作成します。
 
@@ -42,7 +42,7 @@ DC/OS は、最新のコンテナー化されたアプリケーションを実�
 az group create --name myResourceGroup --location westeurope
 ```
 
-次に、[az acs create](/cli/azure/acs#az_acs_create) コマンドを使用して DC/OS クラスターを作成します。
+次に、[az acs create](/cli/azure/acs#az-acs-create) コマンドを使用して DC/OS クラスターを作成します。
 
 次の例では、*myDCOSCluster* という名前の DC/OS クラスターを作成し、まだ SSH キーが存在しない場合は SSH キーを作成します。 特定のキーのセットを使用するには、`--ssh-key-value` オプションを使用します。  
 
@@ -72,7 +72,7 @@ sudo ssh -i ~/.ssh/id_rsa -fNL 80:localhost:80 -p 2200 azureuser@$ip
 
 ## <a name="install-dcos-cli"></a>DC/OS CLI のインストール
 
-[az acs dcos install-cli](/azure/acs/dcos#install-cli) コマンドを使用して DC/OS CLI をインストールします。 Azure CloudShell を使用している場合、DC/OS CLI は既にインストールされています。 Azure CLI を macOS または Linux で実行しているとき、場合によっては sudo を使用してコマンドを実行する必要があります。
+[az acs dcos install-cli](/cli/azure/acs/dcos#az-acs-dcos-install-cli) コマンドを使用して DC/OS CLI をインストールします。 Azure CloudShell を使用している場合、DC/OS CLI は既にインストールされています。 Azure CLI を macOS または Linux で実行しているとき、場合によっては sudo を使用してコマンドを実行する必要があります。
 
 ```azurecli
 az acs dcos install-cli
@@ -240,13 +240,13 @@ az network public-ip list --resource-group myResourceGroup --query "[?contains(n
 
 前の例では、アプリケーションを複数のインスタンスにスケーリングしました。 DC/OS インフラストラクチャをスケーリングして、計算容量を増減することもできます。 これは、[az acs scale]() コマンドを使用して行います。 
 
-DC/OS エージェントの現在の数を表示するには、[az acs show](/cli/azure/acs#az_acs_show) を使用します。
+DC/OS エージェントの現在の数を表示するには、[az acs show](/cli/azure/acs#az-acs-show) を使用します。
 
 ```azurecli
 az acs show --resource-group myResourceGroup --name myDCOSCluster --query "agentPoolProfiles[0].count"
 ```
 
-数を 5 に増やすには、[az acs scale](/cli/azure/acs#az_acs_scale) コマンドを使用します。 
+数を 5 に増やすには、[az acs scale](/cli/azure/acs#az-acs-scale) コマンドを使用します。 
 
 ```azurecli
 az acs scale --resource-group myResourceGroup --name myDCOSCluster --new-agent-count 5
@@ -254,7 +254,7 @@ az acs scale --resource-group myResourceGroup --name myDCOSCluster --new-agent-c
 
 ## <a name="delete-dcos-cluster"></a>DC/OS クラスターの削除
 
-必要がなくなったら、[az group delete](/cli/azure/group#az_group_delete) コマンドを使用して、リソース グループ、DC/OS クラスター、およびすべての関連リソースを削除できます。
+必要がなくなったら、[az group delete](/cli/azure/group#az-group-delete) コマンドを使用して、リソース グループ、DC/OS クラスター、およびすべての関連リソースを削除できます。
 
 ```azurecli 
 az group delete --name myResourceGroup --no-wait

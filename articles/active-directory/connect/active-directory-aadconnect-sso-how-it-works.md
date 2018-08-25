@@ -4,7 +4,7 @@ description: この記事では、Azure Active Directory シームレス シン�
 services: active-directory
 keywords: Azure AD Connect とは, Active Directory のインストール, Azure AD に必要なコンポーネント, SSO, シングル サインオン
 documentationcenter: ''
-author: swkrish
+author: billmath
 manager: mtillman
 ms.assetid: 9f994aca-6088-40f5-b2cc-c753a4f41da7
 ms.service: active-directory
@@ -12,15 +12,15 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/15/2018
+ms.date: 07/19/2018
 ms.component: hybrid
 ms.author: billmath
-ms.openlocfilehash: bcd9ec44eafd586648ba964c5cba248a184a8ec3
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: 6507158a63de508164fc74bcafe39785046a2c79
+ms.sourcegitcommit: 248c2a76b0ab8c3b883326422e33c61bd2735c6c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34591563"
+ms.lasthandoff: 07/23/2018
+ms.locfileid: "39213352"
 ---
 # <a name="azure-active-directory-seamless-single-sign-on-technical-deep-dive"></a>Azure Active Directory シームレス シングル サインオン: 技術的な詳細
 
@@ -36,8 +36,8 @@ ms.locfileid: "34591563"
 ### <a name="how-does-set-up-work"></a>設定のしくみ
 
 シームレス SSO は、[こちら](active-directory-aadconnect-sso-quick-start.md)で示す通り、Azure AD Connect を使用して有効にできます。 この機能を有効にすると、次の手順が発生します。
-- オンプレミスの Active Directory (AD) で (Azure AD を表す) `AZUREADSSOACC` という名前のコンピューター アカウントが作成されます。
-- コンピューター アカウントの Kerberos の復号化キーは、Azure AD と安全に共有されます。
+- 各 Active Directory (AD) フォレスト内のオンプレミスの AD に (Azure AD を表す) `AZUREADSSOACC` という名前のコンピューター アカウントが作成されます。
+- コンピューター アカウントの Kerberos の復号化キーは、Azure AD と安全に共有されます。 複数の AD フォレストがある場合は、それぞれに専用の Kerberos 復号化キーが作成されます。
 - また、Azure AD のサインイン時に使用される 2 つの URL を表す、2 つの Kerberos サービス プリンシパル名 (SPN) も作成されます。
 
 >[!NOTE]
@@ -52,7 +52,7 @@ ms.locfileid: "34591563"
 
 Web ブラウザーでのサインインのフローは次のとおりです。
 
-1. ユーザーは、web のアプリケーション（たとえば、outlook　Web アプリケーションに）、https://outlook.office365.com/owa/)企業ネットワーク内のドメインに参加している、会社のデバイスからアクセスします。
+1. ユーザーは、web のアプリケーション（たとえば、outlook　Web アプリケーションに）、 https://outlook.office365.com/owa/)企業ネットワーク内のドメインに参加している、会社のデバイスからアクセスします。
 2. まだサインインしていない場合、ユーザーは、Azure AD のサインイン ページにリダイレクトされます。
 3. ユーザーが、Azure AD サインイン ページにユーザー名を入力します。
 

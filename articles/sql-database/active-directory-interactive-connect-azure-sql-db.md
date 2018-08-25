@@ -6,16 +6,16 @@ author: GithubMirek
 manager: craigg
 ms.service: sql-database
 ms.custom: active directory
-ms.topic: article
+ms.topic: conceptual
 ms.date: 04/06/2018
 ms.author: MirekS
 ms.reviewer: GeneMi
-ms.openlocfilehash: 6489fb5630e1990c942b461859650e2e469cda73
-ms.sourcegitcommit: b6319f1a87d9316122f96769aab0d92b46a6879a
+ms.openlocfilehash: 3d6eb70b3ce9072dc2c51220af89549022b5dacf
+ms.sourcegitcommit: 194789f8a678be2ddca5397137005c53b666e51e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/20/2018
-ms.locfileid: "34365017"
+ms.lasthandoff: 07/25/2018
+ms.locfileid: "39238270"
 ---
 # <a name="use-activedirectoryinteractive-mode-to-connect-to-azure-sql-database"></a>ActiveDirectoryInteractive モードを使用した Azure SQL Database への接続
 
@@ -96,7 +96,7 @@ Azure AD Authentication を使用するには、C# クライアント プログ�
 
 Azure SQL Database サーバーに固有の Azure AD では、特定のデータベースにアクセスするユーザーを追加できます。
 
-詳細については、「[Use Azure Active Directory Authentication for authentication with SQL Database, Managed Instance, or SQL Data Warehouse (SQL Database、Managed Instance、または SQL Data Warehouse での認証に Azure Active Directory Authentication を使用する)](sql-database-aad-authentication.md)」をご覧ください。
+詳細については、「[Use Azure Active Directory Authentication for authentication with SQL Database, Managed Instance, or SQL Data Warehouse (SQL Database、マネージド インスタンス、または SQL Data Warehouse での認証に Azure Active Directory Authentication を使用する)](sql-database-aad-authentication.md)」をご覧ください。
 
 
 ### <a name="d-add-a-non-admin-user-to-azure-ad"></a>D. Azure AD に管理者以外のユーザーを追加する
@@ -122,13 +122,13 @@ SQL Database サーバーの Azure AD 管理者を使用して、SQL Database �
 
 この C# の例で利用する名前空間の 1 つが **System.Data.SqlClient** です。 特に重要なのは、**SqlAuthenticationMethod** 列挙型です。 この列挙型には次の値があります。
 
-- **SqlAuthenticationMethod.ActiveDirectory*Interactive***:&nbsp; MFA (Multi-Factor Authentication) を実現するために、Azure AD ユーザー名と共に使用します。
+- **SqlAuthenticationMethod.ActiveDirectory\*Interactive**\*:&nbsp; MFA (Multi-Factor Authentication) を実現するために、Azure AD ユーザー名と共に使用します。
     - この記事ではこの値が重視されます。 ユーザー パスワードのダイアログを表示し、このユーザーに MFA を適用する場合は MFA 検証のダイアログを表示することで、対話型エクスペリエンスを実現します。
     - この値は、.NET Framework バージョン 4.7.2 以降で使用できます。
 
-- **SqlAuthenticationMethod.ActiveDirectory*Integrated***:&nbsp; "*フェデレーション*" アカウントに使用します。 フェデレーション アカウントの場合、ユーザー名は Windows ドメインに認識されています。 この方法では、MFA はサポートされていません。
+- **SqlAuthenticationMethod.ActiveDirectory\*Integrated**\*:&nbsp; "*フェデレーション*" アカウントに使用します。 フェデレーション アカウントの場合、ユーザー名は Windows ドメインに認識されています。 この方法では、MFA はサポートされていません。
 
-- **SqlAuthenticationMethod.ActiveDirectory*Password***:&nbsp; Azure AD ユーザーとそのユーザーのパスワードを必要とする認証に使用します。 Azure SQL Database によって認証が実行されます。 この方法では、MFA はサポートされていません。
+- **SqlAuthenticationMethod.ActiveDirectory\*Password**\*:&nbsp; Azure AD ユーザーとそのユーザーのパスワードを必要とする認証に使用します。 Azure SQL Database によって認証が実行されます。 この方法では、MFA はサポートされていません。
 
 
 

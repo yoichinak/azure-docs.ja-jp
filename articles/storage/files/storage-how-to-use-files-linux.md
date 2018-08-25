@@ -2,24 +2,18 @@
 title: Linux で Azure Files を使用する | Microsoft Docs
 description: Linux で SMB 経由で Azure File 共有をマウントする方法について説明します。
 services: storage
-documentationcenter: na
 author: RenaShahMSFT
-manager: aungoo
-editor: tamram
-ms.assetid: 6edc37ce-698f-4d50-8fc1-591ad456175d
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
 ms.date: 03/29/2018
 ms.author: renash
-ms.openlocfilehash: ec900182e2fe201ee598518076c6a75a7ac057c2
-ms.sourcegitcommit: 944d16bc74de29fb2643b0576a20cbd7e437cef2
+ms.component: files
+ms.openlocfilehash: 89343f3e4ec91dd32b24cdea6632cecd855cc6f8
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/07/2018
-ms.locfileid: "34839571"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39523225"
 ---
 # <a name="use-azure-files-with-linux"></a>Linux で Azure Files を使用する
 [Azure Files](storage-files-introduction.md) は、Microsoft の使いやすいクラウド ファイル システムです。 Azure ファイル共有は、[SMB カーネル クライアント](https://wiki.samba.org/index.php/LinuxCIFS)を使用して Linux ディストリビューションにマウントできます。 この記事では、Azure ファイル共有を `mount` コマンドを使用してオンデマンドでマウントするか、`/etc/fstab` にエントリを作成することで起動時にマウントするという 2 つの方法について説明します。
@@ -28,15 +22,28 @@ ms.locfileid: "34839571"
 > Azure ファイル共有がホストされている Azure リージョン以外の場所 (オンプレミスや他の Azure リージョンなど) に Azure File 共有をマウントするには、OS が SMB 3.0 の暗号化機能をサポートしている必要があります。
 
 ## <a name="prerequisites-for-mounting-an-azure-file-share-with-linux-and-the-cifs-utils-package"></a>Linux で cifs-utils パッケージを使用してAzure ファイル共有をマウントするための前提条件
-* **cifs-utils パッケージをインストールできる Linux ディストリビューションを選択している。**  
-    次の Linux ディストリビューションは、Azure ギャラリーで使用可能です。
+<a id="smb-client-reqs"></a>
+* **マウントのニーズに合わせて Linux ディストリビューションを選択する。**  
+      Azure Files は、SMB 2.1 および SMB 3.0 経由のどちらかでマウントできます。 クライアントのオンプレミスから受信した接続や他の Azure リージョンでの接続の場合、Azure Files は SMB 2.1 (または、非暗号化 SMB 3.0) を拒否します。 *[安全な転送が必須]* がストレージ アカウントで有効になっている場合、Azure Files は暗号化付き SMB 3.0 を使った接続のみを許可します。
+    
+    SMB 3.0 暗号化サポートは、Linux カーネル バージョン 4.11 で導入され、普及している Linux ディストリビューションのより古いカーネル バージョンにバックポートされました。 このドキュメントの公開時点では、Azure ギャラリーの以下のディストリビューションでは、テーブル ヘッダーで指定されたマウント オプションをサポートしています。 
 
-    * Ubuntu Server 14.04+
-    * RHEL 7+
-    * CentOS 7+
-    * Debian 8+
-    * openSUSE 13.2+
-    * SUSE Linux Enterprise Server 12
+* **該当のマウント機能で推奨される最低限のバージョン (SMB バージョン 2.1 と SMB バージョン 3.0)**    
+    
+    |   | SMB 2.1 <br>(同じ Azure リージョン内の VM 上のマウント) | SMB 3.0 <br>(オンプレミスおよびクロスリージョンからのマウント) |
+    | --- | :---: | :---: |
+    | Ubuntu Server | 14.04+ | 16.04+ |
+    | RHEL | 7+ | 7.5+ |
+    | CentOS | 7+ |  7.5+ |
+    | Debian | 8+ |   |
+    | openSUSE | 13.2+ | 42.3 以降 |
+    | SUSE Linux Enterprise Server | 12 | 12 SP3+ |
+    
+    お使いの Linux ディストリビューションがこの一覧にない場合は、次のコマンドを使用して Linux カーネル バージョンを参照し、チェックできます。    
+
+   ```bash
+   uname -r
+   ```    
 
 * <a id="install-cifs-utils"></a>**cifs-utils パッケージがインストールされている。**  
     cifs-utils パッケージは、選択した Linux ディストリビューションのパッケージ マネージャーを使用してインストールできます。 
@@ -61,22 +68,7 @@ ms.locfileid: "34839571"
     ```
 
     他のディストリビューションでは、適切なパッケージ マネージャーを使用するか、[ソースからコンパイル](https://wiki.samba.org/index.php/LinuxCIFS_utils#Download)します。
-
-* <a id="smb-client-reqs"></a>**SMB クライアント要件を理解している。**  
-    Azure Files は、SMB 2.1 および SMB 3.0 経由のどちらかでマウントできます。 クライアントのオンプレミスから受信した接続や他の Azure リージョンでの接続の場合、Azure Files は SMB 2.1 (または、非暗号化 SMB 3.0) を拒否します。 *[安全な転送が必須]* がストレージ アカウントで有効になっている場合、Azure Files は暗号化付き SMB 3.0 を使った接続のみを許可します。
     
-    SMB 3.0 暗号化サポートは、Linux カーネル バージョン 4.11 で導入され、普及している Linux ディストリビューションのより古いカーネル バージョンにバックポートされました。 このドキュメントの公開時点では、Azure ギャラリーの以下のディストリビューションで、この機能がサポートされています。
-
-    - Ubuntu Server 16.04+
-    - openSUSE 42.3+
-    - SUSE Linux Enterprise Server 12 SP3+
-    
-    お使いの Linux ディストリビューションがこの一覧にない場合は、次のコマンドを使用して Linux カーネル バージョンを参照し、チェックできます。
-
-    ```bash
-    uname -r
-    ```
-
 * **マウントされた共有のディレクトリ/ファイルのアクセス権限を決定する**: この後の例では、アクセス許可 `0777`を使用してすべてのユーザーに読み取り、書き込み、および実行権限を与えています。 必要に応じて、他の [chmod 権限](https://en.wikipedia.org/wiki/Chmod)に置き換えることができます。 
 
 * **ストレージ アカウント名**: Azure File 共有をマウントするには、ストレージ アカウントの名前が必要です。

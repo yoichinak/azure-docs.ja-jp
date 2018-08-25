@@ -13,16 +13,16 @@ ms.service: functions
 ms.devlang: multiple
 ms.topic: quickstart
 ms.tgt_pltfrm: multiple
-ms.workload: na
+ms.workload: azure-vs
 ms.date: 05/22/2018
 ms.author: glenga
-ms.custom: mvc, devcenter, 23113853-34f2-4f
-ms.openlocfilehash: d815bf3fa4b63f12ac9f0d871e353e872a5aca25
-ms.sourcegitcommit: 59fffec8043c3da2fcf31ca5036a55bbd62e519c
+ms.custom: mvc, devcenter, , vs-azure, 23113853-34f2-4f
+ms.openlocfilehash: 48e4d809177c07005b142c25f1a8adef39776100
+ms.sourcegitcommit: fab878ff9aaf4efb3eaff6b7656184b0bafba13b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/04/2018
-ms.locfileid: "34699973"
+ms.lasthandoff: 08/22/2018
+ms.locfileid: "42394154"
 ---
 # <a name="create-your-first-function-using-visual-studio"></a>Visual Studio を使用して初めての関数を作成する
 
@@ -95,5 +95,4 @@ Azure Functions Core Tools を使用すると、ローカルの開発用コン�
 Visual Studio を使用して、HTTP によってトリガーされる単純な関数を含む C# 関数アプリを作成して発行しました。
 
 * [他のサービスと統合する入力および出力バインドを追加する方法を学習します。](functions-develop-vs.md#add-bindings)
-* [Azure Functions Core Tools を使用したローカル テストとデバッグについて学習します。](functions-run-local.md#vs-debug)
 * [.NET クラス ライブラリとして関数を開発する詳細を学習します](functions-dotnet-class-library.md)。

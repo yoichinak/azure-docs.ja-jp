@@ -6,22 +6,23 @@ documentationcenter: ''
 author: MarkusVi
 manager: mtillman
 editor: ''
+ms.component: devices
 ms.assetid: 6ae9df8b-31fe-4d72-9181-cf50cfebbf05
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/14/2017
+ms.date: 07/23/2018
 ms.author: markvi
 ms.reviewer: jairoc
 ms.custom: seohack1
-ms.openlocfilehash: 0ce4497a8bebf9078363509c1f962728ab4189f8
-ms.sourcegitcommit: e221d1a2e0fb245610a6dd886e7e74c362f06467
+ms.openlocfilehash: 38d024de0fd2490d33f7c06498d3ff8d0d06e503
+ms.sourcegitcommit: 30c7f9994cf6fcdfb580616ea8d6d251364c0cd1
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/07/2018
-ms.locfileid: "33764208"
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "42146753"
 ---
 # <a name="setting-up-on-premises-conditional-access-by-using-azure-active-directory-device-registration"></a>Azure Active Directory デバイス登録を使用したオンプレミスの条件付きアクセスの設定
 Azure Active Directory デバイス登録サービスに対して個人用デバイスの workplace-join を行うようユーザーに要求すれば、組織にとってそれらのデバイスが既知のものであるとマーク付けできます。 以下に、Windows Server 2012 R2 で Active Directory フェデレーション サービス (AD FS) を使用して、オンプレミス アプリケーションへの条件付きアクセスを有効にするための手順を示します。
@@ -47,7 +48,7 @@ Azure Active Directory デバイス登録サービスに対して個人用デバ
 * Azure Active Directory Premium のライセンス
 * Azure AD に対する SSO 用に構成された Windows Server 2012 R2 フェデレーション サービス
 * Windows Server 2012 R2 の Web アプリケーション プロキシ 
-* Microsoft Azure Active Directory Connect (Azure AD Connect) [(Azure AD Connect をダウンロード)](http://www.microsoft.com/en-us/download/details.aspx?id=47594)
+* Microsoft Azure Active Directory Connect (Azure AD Connect) [(Azure AD Connect をダウンロード)](http://www.microsoft.com/download/details.aspx?id=47594)
 * 確認済みドメイン
 
 ## <a name="known-issues-in-this-release"></a>このリリースの既知の問題
@@ -164,7 +165,7 @@ Azure Active Directory デバイス登録では、iOS デバイスに対して�
 ### <a name="join-a-windows-7-device-by-using-azure-active-directory-device-registration"></a>Azure Active Directory デバイス登録を使用して Windows 7 デバイスを参加させる
 Windows 7 ドメイン参加済みデバイスを登録するには、[デバイス登録ソフトウェア パッケージ](https://www.microsoft.com/download/details.aspx?id=53554)をデプロイする必要があります。
 
-パッケージを使用する手順については、「[非 Windows 10 コンピューター用の Windows インストーラー パッケージ](device-management-hybrid-azuread-joined-devices-setup.md#windows-installer-packages-for-non-windows-10-computers)」をご覧ください。
+パッケージを使用する手順については、「[非 Windows 10 コンピューター用の Windows インストーラー パッケージ](devices/hybrid-azuread-join-control.md#control-windows-down-level-devices)」をご覧ください。
 
 ## <a name="verify-that-registered-devices-are-written-back-to-active-directory"></a>登録済みのデバイスが Active Directory に書き戻されていることを確認する
 LDP.exe または ADSI Edit を使用して、デバイス オブジェクトが Active Directory に書き戻されたことを表示し、確認することができます。 どちらも、Active Directory 管理ツールで利用できます。

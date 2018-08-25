@@ -3,8 +3,8 @@ title: Azure Marketplace 向けの仮想マシン イメージの作成 | Micros
 description: 顧客が購入できるように Azure Marketplace 向けの仮想マシン イメージを作成する方法について詳しく説明します。
 services: Azure Marketplace
 documentationcenter: ''
-author: msmbaldwin
-manager: mbaldwin
+author: HannibalSII
+manager: hascipio
 editor: ''
 ms.assetid: 5c937b8e-e28d-4007-9fef-624046bca2ae
 ms.service: marketplace
@@ -13,13 +13,13 @@ ms.topic: article
 ms.tgt_pltfrm: Azure
 ms.workload: na
 ms.date: 01/05/2017
-ms.author: mbaldwin
-ms.openlocfilehash: ad6d48a03575e8fabd7eed2ebc1f7926ec4559d4
-ms.sourcegitcommit: 6cf20e87414dedd0d4f0ae644696151e728633b6
+ms.author: hascipio; v-divte
+ms.openlocfilehash: 9199c9fc9a46e6b09eb066be5125c74420ad6cd6
+ms.sourcegitcommit: d16b7d22dddef6da8b6cfdf412b1a668ab436c1f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/06/2018
-ms.locfileid: "34808742"
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39715337"
 ---
 # <a name="guide-to-create-a-virtual-machine-image-for-the-azure-marketplace"></a>Azure Marketplace 向け仮想マシン イメージ作成ガイド
 この記事 ( **手順 2**) では、Azure Marketplace にデプロイする仮想ハード ディスク (VHD) の準備について説明します。 VHD は SKU の基礎です。 プロセスは、Linux ベースの SKU または Windows ベースの SKU のどちらを提供するかによって異なります。 この記事では、両方のシナリオについて説明します。 このプロセスは、[アカウントの作成および登録][link-acct-creation]と並行して実行できます。
@@ -43,8 +43,8 @@ SKU は、VM イメージの取引名です。 VM イメージには、1 個の�
 
 ### <a name="11-add-an-offer"></a>1.1 プランの追加
 1. 販売者アカウントを使用して、[発行ポータル][link-pubportal]にサインインします。
-2. 発行ポータルの **[Virtual Machines]** タブを選択します。 フィールドにプラン名を入力します。 通常、プラン名は Azure Marketplace で販売する計画の製品またはサービスの名前です。
-3. **[作成]** を選択します。
+2. 発行ポータルの **[Virtual Machines]** タブを選択します。 フィールドにプラン名を入力します。 通常、オファー名は Azure Marketplace で販売する計画の製品またはサービスの名前です。
+3. **作成**を選択します。
 
 ### <a name="12-define-a-sku"></a>1.2 SKU の定義
 プランを追加した後、SKU を定義および特定する必要があります。 複数のプランを作成し、各プランに複数の SKU を定義できます。 プランをステージングにプッシュすると、そのすべての SKU も一緒にプッシュされます。
@@ -119,8 +119,9 @@ Microsoft Azure ポータルから承認された基本イメージに基づい�
 リモート デスクトップ プロトコル (RDP) を使用してクラウドで VHD を開発することを強くお勧めします。 プロビジョニングではユーザー名とパスワードを指定して RDP に接続します。
 
 > [!IMPORTANT]
-> **管理ディスクを使わないでください。** 管理ディスクが基になっている仮想マシンを使って、クラウド用の VHD を開発ないでください。現在、VHD は管理ディスクからのイメージの作成をサポートしていません。
-> オプション機能で仮想マシンを作成すると、管理ディスクの既定値が変更されます。
+> 
+>   **管理ディスクを使わないでください。** 管理ディスクが基になっている仮想マシンを使って、クラウド用の VHD を開発ないでください。現在、VHD は管理ディスクからのイメージの作成をサポートしていません。
+オプション機能で仮想マシンを作成すると、管理ディスクの既定値が変更されます。
 
 > オンプレミスで VHD を開発する場合は (推奨されません)、「 [Creating a virtual machine image on-premises (オンプレミスでの仮想マシン イメージの作成)](marketplace-publishing-vm-image-creation-on-premise.md)」を参照してください。 クラウドで開発する場合は、VHD をダウンロードする必要はありません。
 >
@@ -447,13 +448,13 @@ Azure CLI を使用して SAS URL を生成するための手順を次に示し�
 
     b. **`<Storage Account Key>`**: ストレージ アカウント キーを指定します。
 
-    c. **`<Permission Start Date>`**: UTC 時刻を保護するため、現在の日付の前日を選択します。 たとえば、今日が 2016 年 10 月 25 日の場合は、2016 年 10 月 25 日にしてください。 Azure CLI 2.0 (az コマンド) を使用している場合は、日付と時刻の両方を開始日と終了日に入力してください (例: 10-25-2016T00:00:00Z)。
+    c. **`<Permission Start Date>`**: UTC 時刻を保護するため、現在の日付の前日を選択します。 たとえば、今日が 2016 年 10 月 26 日の場合は、2016 年 10 月 25 日にしてください。 Azure CLI 2.0 (az コマンド) を使用している場合は、日付と時刻の両方を開始日と終了日に入力してください (例: 10-25-2016T00:00:00Z)。
 
     d. **`<Permission End Date>`**: **開始日**から少なくとも 3 週間後の日付を選択します。 値は **2016年11月2日**にする必要があります。 Azure CLI 2.0 (az コマンド) を使用している場合は、日付と時刻の両方を開始日と終了日に入力してください (例: 11-02-2016T00:00:00Z)。
 
     適切なパラメーターに更新した後のコード例を次に示します。
 
-          $conn="DefaultEndpointsProtocol=https;AccountName=st20151;AccountKey=<account-key>"
+          $conn="DefaultEndpointsProtocol=https;AccountName=st20151;AccountKey=TIQE5QWMKHpT5q2VnF1bb+NUV7NVMY2xmzVx1rdgIVsw7h0pcI5nMM6+DVFO65i4bQevx21dmrflA91r0Vh2Yw=="
           azure storage container list vhds -c $conn
           azure storage container sas create vhds rl 11/02/2016 -c $conn --start 10/25/2016  
 
@@ -515,18 +516,19 @@ Azure CLI を使用して SAS URL を生成するための手順を次に示し�
 
 |問題|エラー メッセージ|解決策|ドキュメント リンク|
 |---|---|---|---|
-|イメージのコピーに失敗する - SAS URL の "?" が見つからない|Failure: Copying Images. (エラー: イメージのコピー。) Not able to download blob using provided SAS Uri. (指定された SAS URI を使用して BLOB をダウンロードすることができません。)|推奨ツールを使用して SAS URL を更新します|[https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/)|
-|イメージのコピーに失敗する - SAS URL の "st" および "se" パラメーターがない|Failure: Copying Images. (エラー: イメージのコピー。) Not able to download blob using provided SAS Uri. (指定された SAS URI を使用して BLOB をダウンロードすることができません。)|開始日と終了日を指定して SAS URL を更新します|[https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/)|
-|イメージのコピーに失敗する - SAS URL の "sp=rl" がない|Failure: Copying Images. (エラー: イメージのコピー。) Not able to download blob using provided SAS Uri (指定された SAS URI を使用して BLOB をダウンロードすることができません)|「読み取り」と「一覧」として設定したアクセス許可を指定して SAS URL を更新します|[https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/)|
-|イメージのコピーに失敗する - SAS URL の VHD 名に空白が含まれる|Failure: Copying Images. (エラー: イメージのコピー。) Not able to download blob using provided SAS Uri. (指定された SAS URI を使用して BLOB をダウンロードすることができません。)|空白のない状態で SAS URL を更新します|[https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/)|
-|イメージのコピーに失敗する - SAS URL の承認エラー|Failure: Copying Images. (エラー: イメージのコピー。) Not able to download blob due to authorization error (承認エラーのため BLOB をダウンロードできません)|SAS URL を再生成します|[https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/)|
+|イメージのコピーに失敗する - SAS URL の "?" が見つからない|Failure: Copying Images. (エラー: イメージのコピー。) Not able to download blob using provided SAS Uri. (指定された SAS URI を使用して BLOB をダウンロードすることができません。)|推奨ツールを使用して SAS URL を更新します|[https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/](https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/)|
+|イメージのコピーに失敗する - SAS URL の "st" および "se" パラメーターがない|Failure: Copying Images. (エラー: イメージのコピー。) Not able to download blob using provided SAS Uri. (指定された SAS URI を使用して BLOB をダウンロードすることができません。)|開始日と終了日を指定して SAS URL を更新します|[https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/](https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/)|
+|イメージのコピーに失敗する - SAS URL の "sp=rl" がない|Failure: Copying Images. (エラー: イメージのコピー。) Not able to download blob using provided SAS Uri (指定された SAS URI を使用して BLOB をダウンロードすることができません)|「読み取り」と「一覧」として設定したアクセス許可を指定して SAS URL を更新します|[https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/](https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/)|
+|イメージのコピーに失敗する - SAS URL の VHD 名に空白が含まれる|Failure: Copying Images. (エラー: イメージのコピー。) Not able to download blob using provided SAS Uri. (指定された SAS URI を使用して BLOB をダウンロードすることができません。)|空白のない状態で SAS URL を更新します|[https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/](https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/)|
+|イメージのコピーに失敗する - SAS URL の承認エラー|Failure: Copying Images. (エラー: イメージのコピー。) Not able to download blob due to authorization error (承認エラーのため BLOB をダウンロードできません)|SAS URL を再生成します|[https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/](https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/)|
 |イメージのコピーに失敗する – SAS URL の "st" および "se" パラメーターで完全な日付と時刻が指定されていない|Failure: Copying Images. (エラー: イメージのコピー。) Not able to download blob due to incorrect SAS Url (SAS URL が正しくないため BLOB をダウンロードできません) |SAS URL の 開始日付と終了日付のパラメーター ("st"、"se") では、日付のみ、または短縮されたバージョンの時刻ではなく、完全な日付と時刻が指定されている必要があります (例: 11-02-2017T00:00:00Z)。 このシナリオは、Azure CLI 2.0 (az コマンド) を使用している場合に発生する可能性があります。 完全な日付と時刻を指定し、SAS URL を再生成してください。|[https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/)|
 
 ## <a name="next-step"></a>次のステップ
 SKU の詳細について入力が完了したら、[Azure Marketplace のマーケティング コンテンツ ガイド][link-pushstaging]のページに進むことができます。 発行プロセスのそのステップでは、**ステップ 3: ステージングでの VM プランのテスト**の前に必要なマーケティング コンテンツ、価格、その他の情報を提供します。ステップ 3 では、プランを Azure Marketplace にデプロイして一般に公開して購入できるようにする前にさまざまなユース ケース シナリオをテストします。  
 
 ## <a name="see-also"></a>関連項目
-* [Microsoft Azure Marketplace へのプランの発行方法](marketplace-publishing-getting-started.md)
+* 
+  [概要: Azure Marketplace へのプランの発行方法](marketplace-publishing-getting-started.md)
 
 [img-acom-1]:media/marketplace-publishing-vm-image-creation/vm-image-acom-datacenter.png
 [img-portal-vm-size]:media/marketplace-publishing-vm-image-creation/vm-image-portal-size.png

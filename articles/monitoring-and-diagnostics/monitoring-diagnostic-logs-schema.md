@@ -5,25 +5,49 @@ author: johnkemnetz
 services: azure-monitor
 ms.service: azure-monitor
 ms.topic: reference
-ms.date: 6/08/2018
+ms.date: 7/18/2018
 ms.author: johnkem
 ms.component: logs
-ms.openlocfilehash: 45595893a199b845c8b010bc1e2545b89aa688cd
-ms.sourcegitcommit: 1b8665f1fff36a13af0cbc4c399c16f62e9884f3
+ms.openlocfilehash: a075b60c525fc3883f4464f19a8964fb64ce15a0
+ms.sourcegitcommit: 4de6a8671c445fae31f760385710f17d504228f8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35264981"
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39627714"
 ---
 # <a name="supported-services-schemas-and-categories-for-azure-diagnostic-logs"></a>Azure 診断ログでサポートされているサービス、スキーマ、カテゴリ
 
-[Azure リソース診断ログ](monitoring-overview-of-diagnostic-logs.md)は、Azure リソースから出力されるログであり、そのリソースの操作を説明します。 これらのログは、リソースの種類ごとに固有です。 この記事では、サポートされる一連のサービスと、各サービスで出力されるイベントのイベント スキーマについて説明します。 また、この記事にはリソースの種類ごとに使用可能なログ カテゴリの完全な一覧も含まれています。
+[Azure Monitor 診断ログ](monitoring-overview-of-diagnostic-logs.md)は、Azure サービスから出力されるログで、サービスやリソースの操作が記述されています。 Azure Monitor を通じて使用可能なすべての診断ログでは、共通の上位スキーマを共有します。そのため、各サービスは独自のイベントの一意のプロパティをフレキシブルに出力することができます。
 
-## <a name="supported-services-and-schemas-for-resource-diagnostic-logs"></a>リソース診断ログでサポートされているサービスとスキーマ
-リソース診断ログのスキーマは、リソースとログ カテゴリによって異なります。   
+(`resourceId` プロパティで使用可能な) リソースの種類と `category` を組み合わせて、スキーマを一意に識別します。 この記事では、診断ログの上位スキーマについて説明し、各サービスのスキーマへのリンクを示します。
 
-| サービス | スキーマとドキュメント |
+## <a name="top-level-diagnostic-logs-schema"></a>診断ログの上位スキーマ
+
+| Name | 必須/省略可能 | 説明 |
+|---|---|---|
+| time | 必須 | イベントのタイムスタンプ (UTC)。 |
+| resourceId | 必須 | イベントを出力したリソースのリソース ID。 テナント サービスの場合、形式は /tenants/tenant-id/providers/provider-name です。 |
+| tenantId | テナント ログで必須 | このイベントが関連付けられている Active Directory テナントのテナント ID。 このプロパティは、テナントレベルのログでのみ使用されます。リソースレベルのログには表示されません。 |
+| operationName | 必須 | このイベントで表される操作の名前。 イベントが RBAC 操作を表す場合、これは RBAC 操作の名前になります (例:  Microsoft.Storage/storageAccounts/blobServices/blobs/Read)。 実際の文書化されている Resource Manager 操作でない場合でも、通常は、Resource Manager 操作の形式でモデル化されます (`Microsoft.<providerName>/<resourceType>/<subtype>/<Write/Read/Delete/Action>`)。 |
+| operationVersion | 省略可能 | operationName が API を使用して実行された場合は、操作に関連付けられている api-version (例:  http://myservice.windowsazure.net/object?api-version=2016-06-01) この操作に対応する API がない場合、バージョンは、操作に関連付けられているプロパティが今後、変更された場合、その操作のバージョンを表します。 |
+| category | 必須 | イベントのログ カテゴリ。 カテゴリは細分化されており、これを使用して、特定のリソースのログを有効または無効にすることができます。 イベントのプロパティ BLOB 内に表示されるプロパティは、特定のログ カテゴリとリソースの種類内のものと同じです。 一般的なログ カテゴリは、"Audit"、"Operational"、"Execution"、"Request" です。 |
+| resultType | 省略可能 | イベントの状態。 一般的な値は、Started、In Progress、Succeeded、Failed、Active、Resolved です。 |
+| resultSignature | 省略可能 | イベントの副状態。 この操作が REST API 呼び出しに対応している場合、これは、対応する REST 呼び出しの HTTP 状態コードです。 |
+| resultDescription | 省略可能 | この操作を説明する静的テキスト (例:  "Get storage file")。 |
+| durationMs | 省略可能 | 操作時間 (ミリ秒)。 |
+| callerIpAddress | 省略可能 | 操作が、一般的に利用できる IP アドレスを持つエンティティからの API 呼び出しに対応している場合は、呼び出し元 IP アドレス。 |
+| correlationId | 省略可能 | 関連するイベントのセットをグループ化するために使用される GUID。 通常、2 つのイベントの operationName は同じであるものの、状態が異なる (たとえば、 "Started" と "Succeeded") 場合、同じ関連付け ID が共有されます。 これは、イベント間の他のリレーションシップを表す場合もあります。 |
+| identity | 省略可能 | 操作を実行したユーザーまたはアプリケーションの ID を説明する JSON BLOB。 通常、これにはアクティブ ディレクトリからの認証および要求 / JWT トークンが含まれます。 |
+| Level | 省略可能 | イベントの重大度レベル。 Informational、Warning、Error、Critical のいずれかである必要があります。 |
+| location | 省略可能 | イベントを出力するリソースの領域 (例:  "East US"、"France South")。 |
+| properties | 省略可能 | この特定のイベント カテゴリに関連する拡張プロパティ。 すべてのカスタム/一意のプロパティは、このスキーマの "Part B" 内に配置する必要があります。 |
+
+## <a name="service-specific-schemas-for-resource-diagnostic-logs"></a>リソース診断ログのサービス固有のスキーマ
+リソース診断ログのスキーマは、リソースとログ カテゴリによって異なります。 この一覧は、診断ログを使用できるようにするすべてのサービスと、サービスおよびカテゴリ固有のスキーマ (使用可能な場合) へのリンクを示しています。
+
+| Service | スキーマとドキュメント |
 | --- | --- |
+| Azure Active Directory | [概要](../active-directory/reports-monitoring/overview-activity-logs-in-azure-monitor.md)、[監査ログ スキーマ](../active-directory/reports-monitoring/reference-azure-monitor-audit-log-schema.md)、および[サインイン スキーマ](../active-directory/reports-monitoring/reference-azure-monitor-sign-ins-log-schema.md) |
 | Analysis Services | https://azure.microsoft.com/blog/azure-analysis-services-integration-with-azure-diagnostic-logs/ |
 | API Management | [API Management の診断ログ](../api-management/api-management-howto-use-azure-monitor.md#diagnostic-logs) |
 | Application Gateway |[Application Gateway の診断ログ](../application-gateway/application-gateway-diagnostics.md) |
@@ -54,10 +78,10 @@ ms.locfileid: "35264981"
 | 仮想ネットワーク ゲートウェイ | スキーマは使用できません。 |
 
 ## <a name="supported-log-categories-per-resource-type"></a>リソースの種類ごとのサポートされているログ カテゴリ
-|リソースの種類|カテゴリ|カテゴリの表示名|
+|リソースの種類|Category|カテゴリの表示名|
 |---|---|---|
-|Microsoft.AnalysisServices/servers|エンジン|エンジン|
-|Microsoft.AnalysisServices/servers|サービス|サービス|
+|Microsoft.AnalysisServices/servers|Engine|Engine|
+|Microsoft.AnalysisServices/servers|Service|Service|
 |Microsoft.ApiManagement/service|GatewayLogs|ApiManagement Gateway に関連するログ|
 |Microsoft.Automation/automationAccounts|JobLogs|ジョブ ログ|
 |Microsoft.Automation/automationAccounts|JobStreams|ジョブ ストリーム|
@@ -74,12 +98,12 @@ ms.locfileid: "35264981"
 |Microsoft.DataLakeStore/accounts|Requests|要求ログ|
 |Microsoft.DBforPostgreSQL/servers|PostgreSQLLogs|PostgreSQL サーバー ログ|
 |Microsoft.DBforPostgreSQL/servers|PostgreSQLBackupEvents|PostgreSQL のバックアップ イベント|
-|Microsoft.Devices/IotHubs|接続|接続|
+|Microsoft.Devices/IotHubs|Connections|Connections|
 |Microsoft.Devices/IotHubs|DeviceTelemetry|デバイス テレメトリ|
 |Microsoft.Devices/IotHubs|C2DCommands|C2D コマンド|
 |Microsoft.Devices/IotHubs|DeviceIdentityOperations|デバイス ID の操作|
 |Microsoft.Devices/IotHubs|FileUploadOperations|ファイルのアップロード操作|
-|Microsoft.Devices/IotHubs|ルート|ルート|
+|Microsoft.Devices/IotHubs|Routes|Routes|
 |Microsoft.Devices/IotHubs|D2CTwinOperations|D2CTwinOperations|
 |Microsoft.Devices/IotHubs|C2DTwinOperations|C2D ツイン操作|
 |Microsoft.Devices/IotHubs|TwinQueries|ツイン クエリ|
@@ -113,7 +137,7 @@ ms.locfileid: "35264981"
 |Microsoft.Network/virtualNetworkGateways|P2SDiagnosticLog|P2S 診断ログ|
 |Microsoft.Network/trafficManagerProfiles|ProbeHealthStatusEvents|Traffic Manager プローブの正常性結果イベント|
 |Microsoft.Network/expressRouteCircuits|GWMCountersTable|GWM カウンターのテーブル|
-|Microsoft.PowerBIDedicated/capacities|エンジン|エンジン|
+|Microsoft.PowerBIDedicated/capacities|Engine|Engine|
 |Microsoft.RecoveryServices/Vaults|AzureBackupReport|Azure Backup レポート データ|
 |Microsoft.RecoveryServices/Vaults|AzureSiteRecoveryJobs|Azure Site Recovery ジョブ|
 |Microsoft.RecoveryServices/Vaults|AzureSiteRecoveryEvents|Azure Site Recovery イベント|
@@ -128,13 +152,13 @@ ms.locfileid: "35264981"
 |Microsoft.Sql/servers/databases|QueryStoreWaitStatistics|クエリ ストアの待機統計|
 |Microsoft.Sql/servers/databases|Errors|Errors|
 |Microsoft.Sql/servers/databases|DatabaseWaitStatistics|データベースの待機統計|
-|Microsoft.Sql/servers/databases|タイムアウト|タイムアウト|
-|Microsoft.Sql/servers/databases|ブロック|ブロック|
+|Microsoft.Sql/servers/databases|Timeouts|Timeouts|
+|Microsoft.Sql/servers/databases|Blocks|Blocks|
 |Microsoft.Sql/servers/databases|SQLInsights|SQL Insights|
 |Microsoft.Sql/servers/databases|Audit|Audit Logs|
 |Microsoft.Sql/servers/databases|SQLSecurityAuditEvents|SQL セキュリティ監査イベント|
-|Microsoft.StreamAnalytics/streamingjobs|実行|実行|
-|Microsoft.StreamAnalytics/streamingjobs|作成|作成|
+|Microsoft.StreamAnalytics/streamingjobs|Execution|実行|
+|Microsoft.StreamAnalytics/streamingjobs|作成|Authoring|
 
 ## <a name="next-steps"></a>次の手順
 

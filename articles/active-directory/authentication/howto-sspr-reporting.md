@@ -4,18 +4,18 @@ description: Azure AD のセルフサービスによるパスワード リセッ
 services: active-directory
 ms.service: active-directory
 ms.component: authentication
-ms.topic: article
-ms.date: 01/11/2018
+ms.topic: conceptual
+ms.date: 07/11/2018
 ms.author: joflore
 author: MicrosoftGuyJFlo
 manager: mtillman
 ms.reviewer: sahenry
-ms.openlocfilehash: efdef681dd94cdb97d84de657668c49022b72d95
-ms.sourcegitcommit: 6eb14a2c7ffb1afa4d502f5162f7283d4aceb9e2
+ms.openlocfilehash: 5931958d17ea119e58c066a78a44169be2b9f451
+ms.sourcegitcommit: 4de6a8671c445fae31f760385710f17d504228f8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/25/2018
-ms.locfileid: "36751498"
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39627527"
 ---
 # <a name="reporting-options-for-azure-ad-password-management"></a>Azure AD のパスワード管理に関するレポート オプション
 
@@ -26,7 +26,7 @@ ms.locfileid: "36751498"
 次の質問に対する答えは、[Azure Portal] (https://portal.azure.com/):) に用意されているレポートから得られます。
 
 > [!NOTE]
-> ユーザーは[グローバル管理者](../active-directory-assign-admin-roles-azure-portal.md)であること、および組織の代表としてこのデータを収集できるようにオプトインすることが必要です。 オプトインするには、**[レポート]** タブまたは監査ログに少なくとも 1 回アクセスする必要があります。 それまでは、ご自分の組織のデータが収集されることはありません。
+> ユーザーは[グローバル管理者](../users-groups-roles/directory-assign-admin-roles.md)であること、および組織の代表としてこのデータを収集できるようにオプトインすることが必要です。 オプトインするには、**[レポート]** タブまたは監査ログに少なくとも 1 回アクセスする必要があります。 それまでは、ご自分の組織のデータが収集されることはありません。
 >
 
 * パスワード リセットを登録した人数
@@ -40,7 +40,7 @@ ms.locfileid: "36751498"
 
 ## <a name="power-bi-content-pack"></a>Power BI コンテンツ パック
 
-Power BI ユーザーには、使いやすい SSPR レポートを含む Azure AD 用のコンテンツ パックが用意されています。 コンテンツ パックを使用およびデプロイする方法の詳細については、「[Azure Active Directory Power BI コンテンツ パックの使用方法](../active-directory-reporting-power-bi-content-pack-how-to.md)」をご覧ください。 コンテンツ パックを使用すると、独自のダッシュボードを作成して組織内で共有できます。
+Power BI ユーザーには、使いやすい SSPR レポートを含む Azure AD 用のコンテンツ パックが用意されています。 コンテンツ パックを使用およびデプロイする方法の詳細については、「[Azure Active Directory Power BI コンテンツ パックの使用方法](../reports-monitoring/howto-power-bi-content-pack.md)」をご覧ください。 コンテンツ パックを使用すると、独自のダッシュボードを作成して組織内で共有できます。
 
 ## <a name="how-to-view-password-management-reports-in-the-azure-portal"></a>Azure Portal でパスワード管理レポートを表示する方法
 
@@ -54,6 +54,10 @@ Azure Portal エクスペリエンスでは、パスワード リセットおよ
 6. パスワード リセット関連イベントのみが表示されるようにこのビューをフィルター処理するには、ウィンドウの上部にある **[フィルター]** ボタンを選択します。
 7. **[フィルター]** メニューから **[カテゴリ]** ボックスを選択し、カテゴリの種類を **[Self-service Password Management]\(セルフサービスのパスワード管理\)** に変更します。
 8. 必要な場合は、関心のある特定の **[アクティビティ]** を選択して、リストをさらにフィルター処理します。
+
+### <a name="converged-registration-preview"></a>集中型登録 (プレビュー)
+
+集中型登録のパブリック ビューに参加している場合、監査ログのユーザー アクティビティに関する情報は **[認証方法]** というカテゴリの下にあります。
 
 ## <a name="description-of-the-report-columns-in-the-azure-portal"></a>Azure Portal でのレポートの列の説明
 
@@ -173,8 +177,8 @@ Azure Portal エクスペリエンスでは、パスワード リセットおよ
 ## <a name="next-steps"></a>次の手順
 
 * [SSPR のロールアウトを正常に完了する方法](howto-sspr-deployment.md)
-* [パスワードのリセットと変更。](../active-directory-passwords-update-your-own-password.md)
-* [セルフサービスによるパスワード リセットの登録。](../active-directory-passwords-reset-register.md)
+* [パスワードのリセットと変更。](../user-help/active-directory-passwords-update-your-own-password.md)
+* [セルフサービスによるパスワード リセットの登録。](../user-help/active-directory-passwords-reset-register.md)
 * [ライセンスに関する質問](concept-sspr-licensing.md)
 * [SSPR が使用するデータと、ユーザー用に事前設定が必要なデータ](howto-sspr-authenticationdata.md)
 * [ユーザーが使用できる認証方法](concept-sspr-howitworks.md#authentication-methods)

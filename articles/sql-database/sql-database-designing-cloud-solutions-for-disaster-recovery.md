@@ -1,5 +1,5 @@
 ---
-title: Azure SQL Database を使用した高可用性サービスの設計 | Microsoft Docs
+title: Azure SQL Database を使用して世界規模の可用性を備えたサービスを設計する | Microsoft Docs
 description: Azure SQL Database を使用した高可用性サービスのアプリケーション設計について説明します。
 keywords: クラウド ディザスター リカバリー, ディザスター リカバリー ソリューション, アプリ データのバックアップ, geo レプリケーション, クラウド ビジネス継続性計画
 services: sql-database
@@ -8,22 +8,22 @@ manager: craigg
 ms.service: sql-database
 ms.custom: business continuity
 ms.topic: conceptual
-ms.date: 04/04/2018
+ms.date: 07/26/2018
 ms.author: sashan
 ms.reviewer: carlrab
-ms.openlocfilehash: ebe6d2b4d3210ad7c02ec2d26a311645660aeab8
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: 88a6e1a66390b2b317e1e30a71455ad693e6d7df
+ms.sourcegitcommit: a5eb246d79a462519775a9705ebf562f0444e4ec
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34647070"
+ms.lasthandoff: 07/26/2018
+ms.locfileid: "39264656"
 ---
-# <a name="designing-highly-available-services-using-azure-sql-database"></a>Azure SQL Database を使用した高可用性サービスの設計
+# <a name="designing-globally-available-services-using-azure-sql-database"></a>Azure SQL Database を使用して世界規模の可用性を備えたサービスを設計する
 
-Azure SQL Database の高可用性サービスを構築してデプロイするときは、[フェールオーバー グループとアクティブ geo レプリケーション](sql-database-geo-replication-overview.md)を使って、局地的な機能停止や致命的な障害に対する回復力を用意します。 また、セカンダリ データベースに高速復旧できます。 この記事では一般的なアプリケーション パターンを紹介したうえで、それぞれの選択肢の利点とトレードオフについて説明します。 エラスティック プールでのアクティブ geo レプリケーションについては、[Elastic Pool のディザスター リカバリー戦略](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md)に関するページを参照してください。
+Azure SQL Database を使ったクラウド サービスを構築してデプロイするときは、[フェールオーバー グループとアクティブ geo レプリケーション](sql-database-geo-replication-overview.md)を使って、局地的な機能停止や致命的な障害に対する回復力を用意します。 同じ機能を使用して、データへのローカル アクセス向けに最適化された、世界規模で分散されたアプリケーションを作成することができます。 この記事では一般的なアプリケーション パターンについて説明したうえで、それぞれの選択肢の利点とトレードオフについて説明します。 
 
 > [!NOTE]
-> Premium または Business Critical (プレビュー) データベースとエラスティック プールを使用している場合、これらをゾーン冗長デプロイ構成 (現在はプレビュー内) に変換することで、リージョン障害に対する回復性を与えることができます。 「[ゾーン冗長データベース](sql-database-high-availability.md)」をご覧ください。  
+> Premium または Business Critical データベースとエラスティック プールを使用している場合、これらをゾーン冗長デプロイ構成に変換することで、リージョン障害に対する回復性を与えることができます。 「[ゾーン冗長データベース](sql-database-high-availability.md)」をご覧ください。  
 
 ## <a name="scenario-1-using-two-azure-regions-for-business-continuity-with-minimal-downtime"></a>シナリオ 1: 最小限のダウンタイムでのビジネス継続性のための 2 つの Azure リージョンの使用
 このシナリオのアプリケーションには次のような特徴があります。 

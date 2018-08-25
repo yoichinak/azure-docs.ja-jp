@@ -1,25 +1,20 @@
 ---
-title: ETL ツールとして Apache Hive を使用する - Azure HDInsight | Microsoft Docs
+title: ETL ツールとして Apache Hive を使用する - Azure HDInsight
 description: Apache Hive を使用し、Azure HDInsight でデータの抽出、変換、読み込み (ETL) を行います。
 services: hdinsight
-documentationcenter: ''
-author: ashishthaps
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: ''
 ms.service: hdinsight
-ms.custom: hdinsightactive
-ms.devlang: na
-ms.topic: article
-ms.date: 11/14/2017
+author: ashishthaps
 ms.author: ashishth
-ms.openlocfilehash: 06e06d87abd66c80deb2c8731f68bb8171da574b
-ms.sourcegitcommit: 9cdd83256b82e664bd36991d78f87ea1e56827cd
+editor: jasonwhowell
+ms.custom: hdinsightactive
+ms.topic: conceptual
+ms.date: 11/14/2017
+ms.openlocfilehash: 2bdfe35c7ce705966904487c3de6691e05c09098
+ms.sourcegitcommit: 30c7f9994cf6fcdfb580616ea8d6d251364c0cd1
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31399588"
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "42143100"
 ---
 # <a name="use-apache-hive-as-an-extract-transform-and-load-etl-tool"></a>抽出、変換、読み込み (ETL) ツールとして Apache Hive を使用する
 
@@ -97,4 +92,5 @@ ETL プロセスの一環として、データに対して複数の操作を実�
 
 * [大規模な ETL](apache-hadoop-etl-at-scale.md)
 * [データ パイプラインを運用化する](../hdinsight-operationalize-data-pipeline.md)
+
 <!-- * [ETL Deep Dive](../hdinsight-etl-deep-dive.md) -->

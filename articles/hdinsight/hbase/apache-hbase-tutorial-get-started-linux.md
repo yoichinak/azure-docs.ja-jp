@@ -1,25 +1,21 @@
 ---
-title: HDInsight での HBase の例の概要 - Azure | Microsoft Docs
+title: HDInsight での HBase の例の概要 - Azure
 description: この Apache HBase の例に従って、HDInsight で Hadoop を使い始めることができます。 HBase シェルからテーブルを作成し、Hive を使用したクエリを実行します。
 keywords: hbasecommand,hbase の例
 services: hdinsight
-documentationcenter: ''
-author: mumian
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 4d6a2658-6b19-4268-95ee-822890f5a33a
+author: jasonwhowell
+editor: jasonwhowell
 ms.service: hdinsight
 ms.custom: hdinsightactive,hdiseo17may2017
-ms.devlang: na
 ms.topic: conceptual
 ms.date: 02/22/2018
-ms.author: jgao
-ms.openlocfilehash: f85772aa74e876764181330b6d29c4f8d2b48508
-ms.sourcegitcommit: 1362e3d6961bdeaebed7fb342c7b0b34f6f6417a
+ms.author: jasonh
+ms.openlocfilehash: 4baee16d3a28a77700f7e134a55f6ebfd607869a
+ms.sourcegitcommit: 1f0587f29dc1e5aef1502f4f15d5a2079d7683e9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/18/2018
-ms.locfileid: "31521991"
+ms.lasthandoff: 08/07/2018
+ms.locfileid: "39595268"
 ---
 # <a name="get-started-with-an-apache-hbase-example-in-hdinsight"></a>HDInsight で Apache HBase の例を使用する
 
@@ -35,7 +31,7 @@ HDInsight で HBase クラスターを作成する方法、HBase テーブルを
 * [curl](http://curl.haxx.se/download.html)。
 
 ## <a name="create-hbase-cluster"></a>HBase クラスターの作成
-次の手順では、Azure Resource Manager テンプレートを使用して、HBase クラスターと依存する既定の Azure Storage アカウントを作成します。 この手順で使用するパラメーターとその他のクラスター作成方法について理解するには、「 [HDInsight での Linux ベースの Hadoop クラスターの作成](../hdinsight-hadoop-provision-linux-clusters.md)」を参照してください。
+次の手順では、Azure Resource Manager テンプレートを使用して、HBase クラスターと依存する既定の Azure Storage アカウントを作成します。 この手順で使用するパラメーターとその他のクラスター作成方法について理解するには、「 [HDInsight での Linux ベースの Hadoop クラスターの作成](../hdinsight-hadoop-provision-linux-clusters.md)」を参照してください。 Data Lake Storage Gen2 の使用について詳しくは、「[クイック スタート: HDInsight のクラスターを設定する](../../storage/data-lake-storage/quickstart-create-connect-hdi-cluster.md)」をご覧ください。
 
 1. 次の画像をクリックして Azure ポータルでテンプレートを開きます。 テンプレートは「[Azure クイック スタート テンプレート](https://azure.microsoft.com/resources/templates/)」にあります。
    
@@ -43,7 +39,7 @@ HDInsight で HBase クラスターを作成する方法、HBase テーブルを
 2. **[カスタム デプロイ]** ブレードで以下の値を入力します。
    
    * **サブスクリプション**: クラスターの作成に使用する Azure サブスクリプションを選択します。
-   * **リソース グループ**: Azure リソース管理グループを作成するか、既存のグループを使用します。
+   * **リソース グループ**: Azure リソース管理グループを作成するか、または既存のグループを使用します。
    * **場所**: リソース グループの場所を指定します。 
    * **[ClusterName]**: HBase クラスターの名前を入力します。
    * **クラスターのログイン名とパスワード**: 既定のログイン名は **admin** です。

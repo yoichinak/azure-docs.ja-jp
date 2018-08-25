@@ -14,12 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/28/2017
 ms.author: jeedes
-ms.openlocfilehash: 7010983d1b41589d3c0654ddd6362c80ca71a337
-ms.sourcegitcommit: 16ddc345abd6e10a7a3714f12780958f60d339b6
+ms.openlocfilehash: 94ded0ef1bf77de20973a87a1ca2d6d1dd3fdf3f
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36223795"
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39426654"
 ---
 # <a name="tutorial-azure-active-directory-integration-with-jitbit-helpdesk"></a>チュートリアル: Azure Active Directory と Jitbit Helpdesk の統合
 
@@ -52,7 +52,7 @@ Jitbit Helpdesk と Azure AD の統合を構成するには、次のものが必
 このチュートリアルでは、テスト環境で Azure AD のシングル サインオンをテストします。 このチュートリアルで説明するシナリオは、主に次の 2 つの要素で構成されています。
 
 1. ギャラリーからの Jitbit Helpdesk の追加
-2. Azure AD シングル サインオンの構成とテスト
+1. Azure AD シングル サインオンの構成とテスト
 
 ## <a name="adding-jitbit-helpdesk-from-the-gallery"></a>ギャラリーからの Jitbit Helpdesk の追加
 Azure AD への Jitbit Helpdesk の統合を構成するには、ギャラリーから管理対象 SaaS アプリの一覧に Jitbit Helpdesk を追加する必要があります。
@@ -63,19 +63,19 @@ Azure AD への Jitbit Helpdesk の統合を構成するには、ギャラリー
 
     ![Active Directory][1]
 
-2. **[エンタープライズ アプリケーション]** に移動します。 次に、**[すべてのアプリケーション]** に移動します。
+1. **[エンタープライズ アプリケーション]** に移動します。 次に、**[すべてのアプリケーション]** に移動します。
 
     ![[アプリケーション]][2]
     
-3. 新しいアプリケーションを追加するには、ダイアログの上部にある **[新しいアプリケーション]** をクリックします。
+1. 新しいアプリケーションを追加するには、ダイアログの上部にある **[新しいアプリケーション]** をクリックします。
 
     ![[アプリケーション]][3]
 
-4. 検索ボックスに、「**Jitbit Helpdesk**」と入力します。
+1. 検索ボックスに、「**Jitbit Helpdesk**」と入力します。
 
     ![Azure AD のテスト ユーザーの作成](./media/jitbit-helpdesk-tutorial/tutorial_jitbit-helpdesk_search.png)
 
-5. 結果ウィンドウで **[Jitbit Helpdesk]** を選択し、**[追加]** ボタンをクリックしてアプリケーションを追加します。
+1. 結果ウィンドウで **[Jitbit Helpdesk]** を選択し、**[追加]** ボタンをクリックしてアプリケーションを追加します。
 
     ![Azure AD のテスト ユーザーの作成](./media/jitbit-helpdesk-tutorial/tutorial_jitbit-helpdesk_addfromgallery.png)
 
@@ -89,10 +89,10 @@ Jitbit Helpdesk で、Azure AD の **[ユーザー名]** の値を **[ユーザ�
 Jitbit Helpdesk で Azure AD のシングル サインオンを構成してテストするには、次の構成要素を完了する必要があります。
 
 1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - ユーザーがこの機能を使用できるようにします。
-2. **[Azure AD のテスト ユーザーの作成](#creating-an-azure-ad-test-user)** - Britta Simon で Azure AD のシングル サインオンをテストします。
-3. **[Jitbit Helpdesk テスト ユーザーの作成](#creating-a-jitbit-helpdesk-test-user)** - Jitbit Helpdesk で Britta Simon に対応するユーザーを作成し、Azure AD の Britta Simon にリンクさせます。
-4. **[Azure AD テスト ユーザーの割り当て](#assigning-the-azure-ad-test-user)** - Britta Simon が Azure AD のシングル サインオンを使用できるようにします。
-5. **[シングル サインオンのテスト](#testing-single-sign-on)** - 構成が機能するかどうかを確認します。
+1. **[Azure AD のテスト ユーザーの作成](#creating-an-azure-ad-test-user)** - Britta Simon で Azure AD のシングル サインオンをテストします。
+1. **[Jitbit Helpdesk テスト ユーザーの作成](#creating-a-jitbit-helpdesk-test-user)** - Jitbit Helpdesk で Britta Simon に対応するユーザーを作成し、Azure AD の Britta Simon にリンクさせます。
+1. **[Azure AD テスト ユーザーの割り当て](#assigning-the-azure-ad-test-user)** - Britta Simon が Azure AD のシングル サインオンを使用できるようにします。
+1. **[シングル サインオンのテスト](#testing-single-sign-on)** - 構成が機能するかどうかを確認します。
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Azure AD シングル サインオンの構成
 
@@ -102,15 +102,15 @@ Jitbit Helpdesk で Azure AD のシングル サインオンを構成してテ�
 
 1. Azure Portal の **Jitbit Helpdesk** アプリケーション統合ページで、**[シングル サインオン]** をクリックします。
 
-    ![[Configure Single Sign-On]][4]
+    ![Configure single sign-on][4]
 
-2. **[シングル サインオン]** ダイアログで、**[モード]** として **[SAML ベースのサインオン]** を選択し、シングル サインオンを有効にします。
+1. **[シングル サインオン]** ダイアログで、**[モード]** として **[SAML ベースのサインオン]** を選択し、シングル サインオンを有効にします。
  
-    ![[Configure Single Sign-On]](./media/jitbit-helpdesk-tutorial/tutorial_jitbit-helpdesk_samlbase.png)
+    ![Configure single sign-on](./media/jitbit-helpdesk-tutorial/tutorial_jitbit-helpdesk_samlbase.png)
 
-3. **[Jitbit Helpdesk のドメインと URL]** セクションで、次の手順を実行します。
+1. **[Jitbit Helpdesk のドメインと URL]** セクションで、次の手順を実行します。
 
-    ![[Configure Single Sign-On]](./media/jitbit-helpdesk-tutorial/tutorial_jitbit-helpdesk_url.png)
+    ![Configure single sign-on](./media/jitbit-helpdesk-tutorial/tutorial_jitbit-helpdesk_url.png)
 
     a. **[サインオン URL]** ボックスに、次の形式で URL を入力します。 
     | |     
@@ -128,29 +128,29 @@ Jitbit Helpdesk で Azure AD のシングル サインオンを構成してテ�
  
 
 
-4. **[SAML 署名証明書]** セクションで、**[証明書 (Base64)]** をクリックし、コンピューターに証明書ファイルを保存します。
+1. **[SAML 署名証明書]** セクションで、**[証明書 (Base64)]** をクリックし、コンピューターに証明書ファイルを保存します。
 
-    ![[Configure Single Sign-On]](./media/jitbit-helpdesk-tutorial/tutorial_jitbit-helpdesk_certificate.png) 
+    ![Configure single sign-on](./media/jitbit-helpdesk-tutorial/tutorial_jitbit-helpdesk_certificate.png) 
 
-5. **[保存]** ボタンをクリックします。
+1. **[保存]** ボタンをクリックします。
 
-    ![[Configure Single Sign-On]](./media/jitbit-helpdesk-tutorial/tutorial_general_400.png)
+    ![Configure single sign-on](./media/jitbit-helpdesk-tutorial/tutorial_general_400.png)
 
-6. **[Jitbit Helpdesk Configuration]\(Jitbit Helpdesk の構成\)** セクションで、**[Configure Jitbit Helpdesk]\(Jitbit Helpdesk の構成\)** をクリックして **[サインオンの構成]** ウィンドウを開きます。 **[クイック リファレンス]** セクションから **SAML シングル サインオン サービスの URL** をコピーします。
+1. **[Jitbit Helpdesk Configuration]\(Jitbit Helpdesk の構成\)** セクションで、**[Configure Jitbit Helpdesk]\(Jitbit Helpdesk の構成\)** をクリックして **[サインオンの構成]** ウィンドウを開きます。 **[クイック リファレンス]** セクションから **SAML シングル サインオン サービスの URL** をコピーします。
 
-    ![[Configure Single Sign-On]](./media/jitbit-helpdesk-tutorial/tutorial_jitbit-helpdesk_configure.png) 
+    ![Configure single sign-on](./media/jitbit-helpdesk-tutorial/tutorial_jitbit-helpdesk_configure.png) 
 
-7. 別の Web ブラウザーのウィンドウで、Jitbit Helpdesk の企業サイトに管理者としてログインします。
+1. 別の Web ブラウザーのウィンドウで、Jitbit Helpdesk の企業サイトに管理者としてログインします。
 
-8. 上部のツールバーで **[管理]** をクリックします。
+1. 上部のツールバーで **[管理]** をクリックします。
    
     ![Administration](./media/jitbit-helpdesk-tutorial/ic777681.png "Administration")
 
-9. **[全般設定]** をクリックします。
+1. **[全般設定]** をクリックします。
    
     ![[Users, companies, and permissions]\(ユーザー、企業、アクセス許可\)](./media/jitbit-helpdesk-tutorial/ic777680.png "[Users, companies, and permissions]\(ユーザー、企業、アクセス許可\)")
 
-10. **[認証設定]** 構成セクションで、次の手順を実行します。
+1. **[認証設定]** 構成セクションで、次の手順を実行します。
    
     ![Authentication settings](./media/jitbit-helpdesk-tutorial/ic777683.png "Authentication settings")
     
@@ -177,15 +177,15 @@ Jitbit Helpdesk で Azure AD のシングル サインオンを構成してテ�
 
     ![Azure AD のテスト ユーザーの作成](./media/jitbit-helpdesk-tutorial/create_aaduser_01.png) 
 
-2. **[ユーザーとグループ]** に移動し、**[すべてのユーザー]** をクリックして、ユーザーの一覧を表示します。
+1. **[ユーザーとグループ]** に移動し、**[すべてのユーザー]** をクリックして、ユーザーの一覧を表示します。
     
     ![Azure AD のテスト ユーザーの作成](./media/jitbit-helpdesk-tutorial/create_aaduser_02.png) 
 
-3. ダイアログの上部にある **[追加]** をクリックして、**[ユーザー]** ダイアログを開きます。
+1. ダイアログの上部にある **[追加]** をクリックして、**[ユーザー]** ダイアログを開きます。
  
     ![Azure AD のテスト ユーザーの作成](./media/jitbit-helpdesk-tutorial/create_aaduser_03.png) 
 
-4. **[ユーザー]** ダイアログ ページで、次の手順を実行します。
+1. **[ユーザー]** ダイアログ ページで、次の手順を実行します。
  
     ![Azure AD のテスト ユーザーの作成](./media/jitbit-helpdesk-tutorial/create_aaduser_04.png) 
 
@@ -205,19 +205,19 @@ Azure AD ユーザーが Jitbit Helpdesk にログインできるようにする
 
 1. **Jitbit Helpdesk** テナントにログインします。
 
-2. 上部のメニューで **[管理]** をクリックします。
+1. 上部のメニューで **[管理]** をクリックします。
    
     ![Administration](./media/jitbit-helpdesk-tutorial/ic777681.png "Administration")
 
-3. **[ユーザー、会社、およびアクセス許可]** をクリックします。
+1. **[ユーザー、会社、およびアクセス許可]** をクリックします。
    
     ![[Users, companies, and permissions]\(ユーザー、企業、アクセス許可\)](./media/jitbit-helpdesk-tutorial/ic777682.png "[Users, companies, and permissions]\(ユーザー、企業、アクセス許可\)")
 
-4. **[ユーザーの追加]** をクリックします。
+1. **[ユーザーの追加]** をクリックします。
    
     ![ユーザーの追加](./media/jitbit-helpdesk-tutorial/ic777685.png "ユーザーの追加")
    
-5. [作成] セクションで、プロビジョニングする Azure AD アカウントのデータを次のように入力します。
+1. [作成] セクションで、プロビジョニングする Azure AD アカウントのデータを次のように入力します。
 
     ![作成](./media/jitbit-helpdesk-tutorial/ic777686.png "作成")
    
@@ -248,30 +248,30 @@ Azure AD ユーザーが Jitbit Helpdesk にログインできるようにする
 
     ![ユーザーの割り当て][201] 
 
-2. アプリケーションの一覧で、**[Jitbit Helpdesk]** を選択します。
+1. アプリケーションの一覧で、**[Jitbit Helpdesk]** を選択します。
 
-    ![[Configure Single Sign-On]](./media/jitbit-helpdesk-tutorial/tutorial_jitbit-helpdesk_app.png) 
+    ![Configure single sign-on](./media/jitbit-helpdesk-tutorial/tutorial_jitbit-helpdesk_app.png) 
 
-3. 左側のメニューで **[ユーザーとグループ]** をクリックします。
+1. 左側のメニューで **[ユーザーとグループ]** をクリックします。
 
     ![ユーザーの割り当て][202] 
 
-4. **[追加]** ボタンをクリックします。 次に、**[割り当ての追加]** ダイアログで **[ユーザーとグループ]** を選択します。
+1. **[追加]** ボタンをクリックします。 次に、**[割り当ての追加]** ダイアログで **[ユーザーとグループ]** を選択します。
 
     ![ユーザーの割り当て][203]
 
-5. **[ユーザーとグループ]** ダイアログで、ユーザーの一覧から **[Britta Simon]** を選択します。
+1. **[ユーザーとグループ]** ダイアログで、ユーザーの一覧から **[Britta Simon]** を選択します。
 
-6. **[ユーザーとグループ]** ダイアログで **[選択]** をクリックします。
+1. **[ユーザーとグループ]** ダイアログで **[選択]** をクリックします。
 
-7. **[割り当ての追加]** ダイアログで **[割り当て]** ボタンをクリックします。
+1. **[割り当ての追加]** ダイアログで **[割り当て]** ボタンをクリックします。
     
 ### <a name="testing-single-sign-on"></a>シングル サインオンのテスト
 
 このセクションでは、アクセス パネルを使用して Azure AD のシングル サインオン構成をテストします。
 
 アクセス パネルで [Jitbit Helpdesk] タイルをクリックすると、Jitbit Helpdesk アプリケーションのログイン ページが表示されます。
-アクセス パネルの詳細については、[アクセス パネルの概要](../active-directory-saas-access-panel-introduction.md)に関する記事を参照してください。
+アクセス パネルの詳細については、[アクセス パネルの概要](../user-help/active-directory-saas-access-panel-introduction.md)に関する記事を参照してください。
 
 ## <a name="additional-resources"></a>その他のリソース
 

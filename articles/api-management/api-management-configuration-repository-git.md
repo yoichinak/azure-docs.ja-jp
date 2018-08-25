@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2018
 ms.author: apimpm
-ms.openlocfilehash: 0165de82850c0c80052564c5f31a5e5cf5effb11
-ms.sourcegitcommit: 828d8ef0ec47767d251355c2002ade13d1c162af
+ms.openlocfilehash: b2cdb88ba71b4a3d3005ec9d64b6e94cdb1d1c55
+ms.sourcegitcommit: 0b4da003fc0063c6232f795d6b67fa8101695b61
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/25/2018
-ms.locfileid: "36938310"
+ms.lasthandoff: 07/05/2018
+ms.locfileid: "37857533"
 ---
 # <a name="how-to-save-and-configure-your-api-management-service-configuration-using-git"></a>Git を使用して API Management サービス構成を保存および構成する方法
 
@@ -226,8 +226,8 @@ REST API を使用してこの操作を実行する方法については、「 [
 ### <a name="groups-folder"></a>groups フォルダー
 `groups` フォルダーには、サービス インスタンスで定義された各グループのフォルダーが含まれています。
 
-* `groups\<group name>\configuration.json` - これはグループの構成です。 [特定のグループの取得](https://msdn.microsoft.com/library/azure/dn776329.aspx#GetGroup) 操作を呼び出した場合に返される情報と同じです。
-* `groups\<group name>\description.html` - これはグループの説明で、[グループ エンティティ](https://msdn.microsoft.com/library/azure/dn776329.aspx#EntityProperties)の `description` プロパティに対応します。
+* `groups\<group name>\configuration.json` - これはグループの構成です。 [特定のグループの取得](https://docs.microsoft.com/en-us/rest/api/apimanagement/group/get) 操作を呼び出した場合に返される情報と同じです。
+* `groups\<group name>\description.html` - これはグループの説明で、[グループ エンティティ](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-group-entity)の `description` プロパティに対応します。
 
 ### <a name="policies-folder"></a>policies フォルダー
 `policies` フォルダーには、サービス インスタンスのポリシー ステートメントが含まれています。
@@ -246,8 +246,8 @@ REST API を使用してこの操作を実行する方法については、「 [
 ### <a name="products-folder"></a>products フォルダー
 `products` フォルダーには、サービス インスタンスで定義された各製品のフォルダーが含まれています。
 
-* `products\<product name>\configuration.json` - これは製品の構成です。 [特定の製品の取得](https://msdn.microsoft.com/library/azure/dn776336.aspx#GetProduct) 操作を呼び出した場合に返される情報と同じです。
-* `products\<product name>\product.description.html` - これは製品の説明で、REST API の[製品エンティティ](https://msdn.microsoft.com/library/azure/dn776336.aspx#Product)の `description` プロパティに対応します。
+* `products\<product name>\configuration.json` - これは製品の構成です。 [特定の製品の取得](https://docs.microsoft.com/en-us/rest/api/apimanagement/product/get) 操作を呼び出した場合に返される情報と同じです。
+* `products\<product name>\product.description.html` - これは製品の説明で、REST API の[製品エンティティ](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-product-entity)の `description` プロパティに対応します。
 
 ### <a name="templates"></a>テンプレート
 `templates` フォルダーには、サービス インスタンスの [電子メール テンプレート](api-management-howto-configure-notifications.md) の構成が含まれています。

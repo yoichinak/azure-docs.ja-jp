@@ -13,16 +13,16 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/21/2018
 ms.author: tomfitz
-ms.openlocfilehash: a8784a8e29e65d8abea566b5a2bf41a2ae6cadf0
-ms.sourcegitcommit: b6319f1a87d9316122f96769aab0d92b46a6879a
+ms.openlocfilehash: 57d017e2320e5cfea15f1716bc3b6518606e2ea4
+ms.sourcegitcommit: 068fc623c1bb7fb767919c4882280cad8bc33e3a
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/20/2018
-ms.locfileid: "34359630"
+ms.lasthandoff: 07/27/2018
+ms.locfileid: "39282247"
 ---
 # <a name="use-portal-to-create-an-azure-active-directory-application-and-service-principal-that-can-access-resources"></a>リソースにアクセスできる Azure Active Directory アプリケーションとサービス プリンシパルをポータルで作成する
 
-コードでリソースにアクセスしたり変更を加えたりするには、Azure Active Directory (AD) アプリケーションをセットアップする必要があります。 そして、AD アプリケーションに必要な権限を割り当てます。 このアプローチは、自分の資格情報の下でアプリを実行するよりも優れています。自分のアクセス許可とは異なるアプリ ID に対してアクセス許可を割り当てることができるためです。 通常、こうしたアクセス許可は、アプリが行う必要があることに制限されます。
+コードでリソースにアクセスしたり変更を加えたりするには、Azure Active Directory (AD) アプリケーションをセットアップする必要があります。 その後、AD アプリケーションに必要な権限を割り当てることができます。 このアプローチは、自分の資格情報の下でアプリを実行するよりも優れています。自分のアクセス許可とは異なるアプリ ID に対してアクセス許可を割り当てることができるためです。 通常、こうしたアクセス許可は、アプリが行う必要があることに制限されます。
 
 この記事では、ポータル経由でそれらの手順を実行する方法を示しています。 ここでは、シングル テナント アプリケーション (1 つの組織内でのみ実行することを目的としたアプリケーション) に焦点を絞って説明します。 一般に、組織内で実行される基幹業務アプリケーションには、シングル テナント アプリケーションが使用されます。
 
@@ -47,7 +47,7 @@ ms.locfileid: "34359630"
 
    ![[アプリの登録] を表示する](./media/resource-group-create-service-principal-portal/view-app-registrations.png)
 
-1. アプリの登録設定が **[いいえ]** に設定されている場合は、[グローバル管理者](../active-directory/active-directory-assign-admin-roles-azure-portal.md)だけがアプリを登録できます。 お使いのアカウントが Azure AD テナントの管理者かどうかを確認します。 **[概要]** を選択し、ユーザー情報を確認します。 アカウントがユーザー ロールに割り当てられていても、(前の手順の) アプリの登録設定が管理者ユーザーに制限されている場合は、管理者に連絡して、グローバル管理者ロールに割り当ててもらうか、ユーザーがアプリを登録できるようにしてもらいます。
+1. アプリの登録設定が **[いいえ]** に設定されている場合は、[グローバル管理者](../active-directory/users-groups-roles/directory-assign-admin-roles.md)だけがアプリを登録できます。 お使いのアカウントが Azure AD テナントの管理者かどうかを確認します。 **[概要]** を選択し、ユーザー情報を確認します。 アカウントがユーザー ロールに割り当てられていても、(前の手順の) アプリの登録設定が管理者ユーザーに制限されている場合は、管理者に連絡して、グローバル管理者ロールに割り当ててもらうか、ユーザーがアプリを登録できるようにしてもらいます。
 
    ![ユーザーを検索する](./media/resource-group-create-service-principal-portal/view-user-info.png)
 
@@ -156,7 +156,7 @@ Azure サブスクリプションで、AD アプリをロールに割り当て�
 
    ![select add](./media/resource-group-create-service-principal-portal/select-add.png)
 
-1. アプリケーションに割り当てるロールを選択します。 次の図は、**閲覧者**ロールを示しています。
+1. アプリケーションに割り当てるロールを選択します。 インスタンスの**再起動**、**開始**、**停止**などのアクションをアプリケーションが実行できるようにするには、**共同作成者**ロールを選択する必要があります。 次の図は、**閲覧者**ロールを示しています。
 
    ![select role](./media/resource-group-create-service-principal-portal/select-role.png)
 

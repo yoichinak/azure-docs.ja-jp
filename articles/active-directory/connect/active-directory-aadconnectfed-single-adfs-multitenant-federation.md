@@ -4,7 +4,7 @@ description: このドキュメントでは、複数の Azure AD と単一の AD
 keywords: フェデレーション, ADFS, AD FS, 複数のテナント, 単一の AD FS, 1 つの ADFS, マルチテナント フェデレーション, マルチ フォレスト ADFS, AAD Connect, 認証連携, クロステナント フェデレーション
 services: active-directory
 documentationcenter: ''
-author: anandyadavmsft
+author: billmath
 manager: mtillman
 editor: ''
 ms.assetid: ''
@@ -15,13 +15,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/17/2017
 ms.component: hybrid
-ms.author: anandy; billmath
-ms.openlocfilehash: f9a8abc6e5d66f31a59ba895250861708689aa6d
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.author: billmath
+ms.openlocfilehash: 91436af0aa26c079d5cd2cc19d16a1ff0354e860
+ms.sourcegitcommit: b9786bd755c68d602525f75109bbe6521ee06587
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34593107"
+ms.lasthandoff: 07/18/2018
+ms.locfileid: "39126594"
 ---
 # <a name="federate-multiple-instances-of-azure-ad-with-single-instance-of-ad-fs"></a>複数の Azure AD インスタンスと単一の AD FS インスタンスとのフェデレーション
 
@@ -58,9 +58,9 @@ AD FS サーバーで Azure AD PowerShell を開いて、次の手順を実行�
 Azure AD PowerShell セッションで、次の手順を実行します。まず、ドメイン fabrikam.com を含んだ Azure Active Directory に接続します。
 
     Connect-MsolService
-fabrikam.com の管理対象ドメインをフェデレーション ドメインに変換します。
+fabrikam.com のマネージド ドメインをフェデレーション ドメインに変換します。
 
-    Convert-MsolDomainToFederated -DomainName anandmsft.com -Verbose -SupportMultipleDomain
+    Convert-MsolDomainToFederated -DomainName fabrikam.com -Verbose -SupportMultipleDomain
  
 上記の操作によって、同じ AD FS との間で fabrikam.com ドメインが認証連携されます。 両方のドメインに Get-MsolDomainFederationSettings を使用してその設定を検証できます。
 

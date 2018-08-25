@@ -1,6 +1,6 @@
 ---
 title: チュートリアル - ASA ジョブを Azure IoT Edge デバイスに展開する | Microsoft Docs
-description: Azure Stream Analytics をモジュールとして IoT Edge デバイスに展開します
+description: このチュートリアルでは、Azure Stream Analytics をモジュールとして IoT Edge デバイスに展開します
 author: kgremban
 manager: timlt
 ms.author: kgremban
@@ -9,14 +9,14 @@ ms.topic: tutorial
 ms.service: iot-edge
 services: iot-edge
 ms.custom: mvc
-ms.openlocfilehash: ad2895a457a20632823260f2429ac95fad82089c
-ms.sourcegitcommit: f06925d15cfe1b3872c22497577ea745ca9a4881
+ms.openlocfilehash: afbdf2171c1fc1eef95514526a509d171e262d4a
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/27/2018
-ms.locfileid: "37060197"
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39435684"
 ---
-# <a name="tutorial-deploy-azure-stream-analytics-as-an-iot-edge-module---preview"></a>チュートリアル: Azure Stream Analytics を IoT Edge モジュールとして展開する - プレビュー
+# <a name="tutorial-deploy-azure-stream-analytics-as-an-iot-edge-module-preview"></a>チュートリアル: Azure Stream Analytics を IoT Edge モジュールとして展開する (プレビュー)
 
 IoT ソリューションの多くが、分析サービスを使用して、IoT デバイスからクラウドに送信されたデータの分析情報を得ます。 Azure IoT Edge を使用すると、[Azure Stream Analytics][azure-stream] ロジックを取得し、そのロジックをデバイス自体に移動できます。 エッジで利用統計情報のストリームを処理することで、アップロードされるデータの量を削減し、アクションにつながる分析情報への対応にかかる時間を短縮できます。
 
@@ -36,10 +36,19 @@ Azure Stream Analytics には、クラウド上と IoT Edge デバイス上の�
 >[!NOTE]
 >IoT Edge の Azure Stream Analytics モジュールは[パブリック プレビュー](https://azure.microsoft.com/support/legal/preview-supplemental-terms/)段階にあります。
 
+[!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
+
 ## <a name="prerequisites"></a>前提条件
 
-* IoT ハブ
-* [Windows][lnk-quickstart-win] または [Linux][lnk-quickstart-lin] 用のクイック スタートで作成および構成した IoT Edge デバイス。 
+Azure IoT Edge デバイス:
+
+* [Linux デバイス](quickstart-linux.md) または [Windows デバイス](quickstart.md)のクイック スタートに記載された手順に従って開発マシンまたは仮想マシンをエッジ デバイスとして使用できます。
+* Azure Machine Learning モジュールでは、ARM プロセッサをサポートしていません。
+
+クラウド リソース:
+
+* Azure の Standard レベルの [IoT Hub](../iot-hub/iot-hub-create-through-portal.md)。 
+
 
 ## <a name="create-an-azure-stream-analytics-job"></a>Azure Stream Analytics ジョブの作成
 
@@ -51,7 +60,7 @@ Azure Stream Analytics ジョブには Azure ストレージ アカウントが�
 
 1. Azure Portal で **[リソースの作成]** に移動し、[検索] ボックスに「**ストレージ アカウント**」と入力して、**[ストレージ アカウント - Blob、File、Table、Queue]** を選びます。
 
-2. **[ストレージ アカウントの作成]** ウィンドウで、ストレージ アカウントの名前を入力し、お使いの IoT ハブが格納されるのと同じ場所を選び、お使いの IoT ハブと同じリソース グループを選んで、**[作成]** を選びます。 後で使うので名前をメモしておきます。
+1. **[ストレージ アカウントの作成]** ウィンドウで、ストレージ アカウントの名前を入力し、お使いの IoT ハブが格納されるのと同じ場所を選び、お使いの IoT ハブと同じリソース グループを選んで、**[作成]** を選びます。 後で使うので名前をメモしておきます。
 
     ![ストレージ アカウントの作成][1]
 
@@ -60,40 +69,40 @@ Azure Stream Analytics ジョブには Azure ストレージ アカウントが�
 
 1. Azure Portal で、**[リソースの作成]** > **[モノのインターネット]** に移動し、**[Stream Analytics ジョブ]** を選びます。
 
-2. **[新しい Stream Analytics ジョブ]** ウィンドウで、次の手順を実行します。
+1. **[新しい Stream Analytics ジョブ]** ウィンドウで、次の手順を実行します。
 
    1. **[ジョブ名]** ボックスに、ジョブの名前を入力します。
    
-   2. ご自身の IoT ハブと同じ**リソース グループ**および**場所**を使用します。 
+   1. ご自身の IoT ハブと同じ**リソース グループ**および**場所**を使用します。 
 
       > [!NOTE]
       > 現在、IoT Edge 上の Azure Stream Analytics ジョブは、米国西部 2 リージョンではサポートされていません。 
 
-   3. **[ホスティング環境]** で **[Edge]** を選びます。
+   1. **[ホスティング環境]** で **[Edge]** を選びます。
     
-3. **[作成]** を選択します。
+1. **作成**を選択します。
 
-4. 作成したジョブの **[ジョブ トポロジ]** で **[入力]** を開きます。
+1. 作成したジョブの **[ジョブ トポロジ]** で **[入力]** を開きます。
 
    ![Azure Stream Analytics の入力](./media/tutorial-deploy-stream-analytics/asa_input.png)
 
-5. **[ストリーム入力の追加]** を選んでから、**[Edge Hub]** を選びます。
+1. **[ストリーム入力の追加]** を選んでから、**[Edge Hub]** を選びます。
 
-6. **[新しい入力]** ウィンドウで、入力のエイリアスとして「**温度**」と入力します。 
+1. **[新しい入力]** ウィンドウで、入力のエイリアスとして「**温度**」と入力します。 
 
-7. **[保存]** を選択します。
+1. **[保存]** を選択します。
 
-8. **[ジョブ トポロジ]** で **[出力]** を開きます。
+1. **[ジョブ トポロジ]** で **[出力]** を開きます。
 
    ![Azure Stream Analytics の出力](./media/tutorial-deploy-stream-analytics/asa_output.png)
 
-9. **[追加]** を選んでから、**[Edge Hub]** を選びます。
+1. **[追加]** を選んでから、**[Edge Hub]** を選びます。
 
-10. **[新しい出力]** ウィンドウで、出力のエイリアスとして「**アラート**」と入力します。 
+1. **[新しい出力]** ウィンドウで、出力のエイリアスとして「**アラート**」と入力します。 
 
-11. **[保存]** を選択します。
+1. **[保存]** を選択します。
 
-12. **[ジョブ トポロジ]** で、**[クエリ]** を選択し、既定のテキストを次のクエリで置き換えます。このクエリでは、30 秒間のマシン平均温度が 70 度に達した場合にアラートが作成されます。
+1. **[ジョブ トポロジ]** で、**[クエリ]** を選択し、既定のテキストを次のクエリで置き換えます。このクエリでは、30 秒間のマシン平均温度が 70 度に達した場合にアラートが作成されます。
 
     ```sql
     SELECT  
@@ -106,15 +115,15 @@ Azure Stream Analytics ジョブには Azure ストレージ アカウントが�
     HAVING Avg(machine.temperature) > 70
     ```
 
-13. **[保存]** を選択します。
+1. **[保存]** を選択します。
 
-14. **[構成]** で、**[IoT Edge の設定]** を選択します。
+1. **[構成]** で、**[IoT Edge の設定]** を選択します。
 
-15. ドロップダウン メニューから **[ストレージ アカウント]** を選択します。
+1. ドロップダウン メニューから **[ストレージ アカウント]** を選択します。
 
-16. **[コンテナー]** フィールドで、**[新規作成]** を選択し、ストレージ コンテナーの名前を指定します。 
+1. **[コンテナー]** フィールドで、**[新規作成]** を選択し、ストレージ コンテナーの名前を指定します。 
 
-17. **[保存]** を選択します。 
+1. **[保存]** を選択します。 
 
 
 ## <a name="deploy-the-job"></a>ジョブのデプロイ
@@ -123,25 +132,25 @@ IoT Edge デバイスに Azure Stream Analytics ジョブをデプロイする�
 
 1. Azure portal のご自身の IoT ハブで、**[IoT Edge]** に移動し、ご自身の IoT Edge デバイスの詳細ページを開きます。
 
-2. **[Set modules]\(モジュールの設定\)** を選びます。  
+1. **[Set modules]\(モジュールの設定\)** を選びます。  
 
    以前、このデバイスに tempSensor モジュールをデプロイしたことがある場合は、自動入力されている可能性があります。 そうでない場合は、次の手順でモジュールを追加します。
 
    1. **[追加]** をクリックし、**[IoT Edge モジュール]** を選択します。
-   2. 名前として「**tempsensor**」と入力します。
-   3. イメージ URI として「**mcr.microsoft.com/azureiotedge-simulated-temperature-sensor:1.0**」と入力します。 
-   4. 他の設定はそのままにします。
-   5. **[保存]** を選択します。
+   1. 名前に「**tempSensor**」と入力します。
+   1. イメージ URI として「**mcr.microsoft.com/azureiotedge-simulated-temperature-sensor:1.0**」と入力します。 
+   1. 他の設定はそのままにします。
+   1. **[保存]** を選択します。
 
-3. 次の手順に従って、ご自身の Azure Stream Analytics Edge ジョブを追加します。
+1. 次の手順に従って、ご自身の Azure Stream Analytics Edge ジョブを追加します。
 
    1. **[追加]** をクリックし、**[Azure Stream Analytics モジュール]** を選択します。
-   2. 自分のサブスクリプションと、作成した Azure Stream Analytics Edge ジョブを選びます。 
-   3. **[保存]** を選択します。
+   1. 自分のサブスクリプションと、作成した Azure Stream Analytics Edge ジョブを選びます。 
+   1. **[保存]** を選択します。
 
-4. **[次へ]** を選択します。
+1. **[次へ]** を選択します。
 
-5. **[ルート]** の既定値を以下のコードで置き換えます。 Azure Stream Analytics モジュールの名前で _{moduleName}_ を更新します。 モジュールの名前は、そのモジュールの作成元のジョブと同じである必要があります。 
+1. **[ルート]** の既定値を以下のコードで置き換えます。 Azure Stream Analytics モジュールの名前で _{moduleName}_ を更新します。 モジュールの名前は、そのモジュールの作成元のジョブと同じである必要があります。 
 
     ```json
     {
@@ -154,11 +163,11 @@ IoT Edge デバイスに Azure Stream Analytics ジョブをデプロイする�
     }
     ```
 
-6. **[次へ]** を選択します。
+1. **[次へ]** を選択します。
 
-7. **[Review Deployment]\(展開のレビュー\)** ステップで、**[送信]** を選びます。
+1. **[Review Deployment]\(展開のレビュー\)** ステップで、**[送信]** を選びます。
 
-8. デバイスの詳細ページに戻り、**[更新]** を選びます。  
+1. デバイスの詳細ページに戻り、**[更新]** を選びます。  
 
     新しい Stream Analytics モジュールが、IoT Edge エージェント モジュールおよび IoT Edge ハブと共に実行されていることがわかります。
 
@@ -176,7 +185,7 @@ IoT Edge デバイスに Azure Stream Analytics ジョブをデプロイする�
 <!--
    ![Docker output][8]
 -->
-2. すべてのシステム ログとメトリック データを表示します。 Stream Analytics モジュールの名前を使用してください。
+1. すべてのシステム ログとメトリック データを表示します。 Stream Analytics モジュールの名前を使用してください。
 
    ```cmd/sh
    iotedge logs -f {moduleName}  
@@ -201,7 +210,7 @@ IoT Edge デバイスに Azure Stream Analytics ジョブをデプロイする�
 IoT ハブだけを削除するには、ハブ名とリソース グループ名を指定して次のコマンドを実行します。
 
 ```azurecli-interactive
-az iot hub delete --name MyIoTHub --resource-group TestResources
+az iot hub delete --name {hub_name} --resource-group IoTEdgeResources
 ```
 
 
@@ -209,14 +218,14 @@ az iot hub delete --name MyIoTHub --resource-group TestResources
 
 1. [Azure ポータル](https://portal.azure.com) にサインインし、 **[リソース グループ]** をクリックします。
 
-2. **[名前でフィルター処理してください]** ボックスに、IoT ハブが含まれているリソース グループの名前を入力します。 
+1. **[名前でフィルター処理してください]** ボックスに、IoT ハブが含まれているリソース グループの名前を入力します。 
 
-3. 結果一覧のでリソース グループの **[...]** をクリックし、**[リソース グループの削除]** をクリックします。
+1. 結果一覧のでリソース グループの **[...]** をクリックし、**[リソース グループの削除]** をクリックします。
 
 <!--
    ![Delete](./media/iot-edge-quickstarts-clean-up-resources/iot-edge-delete-resource-group.png)
 -->
-4. リソース グループの削除の確認を求めるメッセージが表示されます。 確認のためにリソース グループの名前を再度入力し、**[削除]** をクリックします。 しばらくすると、リソース グループとそこに含まれているすべてのリソースが削除されます。
+1. リソース グループの削除の確認を求めるメッセージが表示されます。 確認のためにリソース グループの名前を再度入力し、**[削除]** をクリックします。 しばらくすると、リソース グループとそこに含まれているすべてのリソースが削除されます。
 
 ## <a name="next-steps"></a>次の手順
 

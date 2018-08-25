@@ -12,14 +12,14 @@ ms.devlang: na
 ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 11/15/2017
+ms.date: 07/12/2018
 ms.author: dugill
-ms.openlocfilehash: ba2466f58b3af0ef208474adb3e4c7ff184ceccc
-ms.sourcegitcommit: 0fa8b4622322b3d3003e760f364992f7f7e5d6a9
+ms.openlocfilehash: 58309977c93864d52a3217919ac8d7fa9152a968
+ms.sourcegitcommit: 615403e8c5045ff6629c0433ef19e8e127fe58ac
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/27/2018
-ms.locfileid: "37018648"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39576904"
 ---
 # <a name="use-resource-manager-authentication-api-to-access-subscriptions"></a>サブスクリプションにアクセスするための Resource Manager 認証 API の使用
 ## <a name="introduction"></a>はじめに
@@ -69,19 +69,25 @@ Web アプリケーションのフローを次に示します。
 ## <a name="register-application"></a>アプリケーションを登録する
 コーディングを開始する前に、Web アプリケーションを Azure Active Directory (AD) に登録します。 アプリケーションの登録により、Azure AD にアプリケーションの主要 ID が作成されます。 この ID には、OAuth クライアント ID、応答 URL、アプリケーションが Azure Resource Manager API に対する認証とアクセスに使用する資格情報など、アプリケーションに関する基本情報が保持されます。 また、アプリケーションの登録により、アプリケーションがユーザーに代わって Microsoft API にアクセスするときに必要となる委任された各種アクセス許可が記録されます。
 
-アプリケーションは他のサブスクリプションにアクセスするため、アプリケーションをマルチテナント アプリケーションとして構成する必要があります。 検証に合格するには、Azure Active Directory に関連付けられているドメインを指定します。 Azure Active Directory に関連付けられているドメインを表示するには、ポータルにログインします。
+アプリケーションは他のサブスクリプションにアクセスするため、アプリケーションをマルチテナント アプリケーションとして構成する必要があります。 検証に合格するには、Azure Active Directory に関連付けられているドメインを指定します。 Azure Active Directory に関連付けられているドメインを表示するには、ポータルにサインインします。
 
 次の例は、Azure PowerShell を使用してアプリケーションを登録する方法を示しています。 このコマンドを機能させるには、Azure PowerShell の最新バージョン (2016 年 8 月) が必要です。
 
-    $app = New-AzureRmADApplication -DisplayName "{app name}" -HomePage "https://{your domain}/{app name}" -IdentifierUris "https://{your domain}/{app name}" -Password "{your password}" -AvailableToOtherTenants $true
+```azurepowershell-interactive
+$app = New-AzureRmADApplication -DisplayName "{app name}" -HomePage "https://{your domain}/{app name}" -IdentifierUris "https://{your domain}/{app name}" -Password "{your password}" -AvailableToOtherTenants $true
+```
 
-AD アプリケーションとしてログインするには、アプリケーション ID とパスワードが必要です。 前のコマンドから返されたアプリケーション ID を表示するには、次のコマンドを使用します。
+AD アプリケーションとしてサインインするには、アプリケーション ID とパスワードが必要です。 前のコマンドから返されたアプリケーション ID を表示するには、次のコマンドを使用します。
 
-    $app.ApplicationId
+```azurepowershell-interactive
+$app.ApplicationId
+```
 
 次の例は、Azure CLI を使用してアプリケーションを登録する方法を示しています。
 
-    azure ad app create --name {app name} --home-page https://{your domain}/{app name} --identifier-uris https://{your domain}/{app name} --password {your password} --available true
+```azurecli-interactive
+az ad app create --display-name {app name} --homepage https://{your domain}/{app name} --identifier-uris https://{your domain}/{app name} --password {your password} --available-to-other-tenants true
+```
 
 結果には、アプリケーションとして認証するときに必要な AppId が含まれています。
 
@@ -100,14 +106,14 @@ Resource Manager の呼び出しに使用できるトークンを要求するに
 ## <a name="get-user--app-access-token"></a>ユーザー + アプリケーション アクセス トークンを取得する
 アプリケーションは、ユーザーの資格情報を認証し、認証コードを返すために、OAuth 2.0 承認要求と共にユーザーを Azure AD にリダイレクトします。 アプリケーションは、認証コードを使用して Resource Manager のアクセス トークンを取得します。 [ConnectSubscription](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/Controllers/HomeController.cs#L42) メソッドが承認要求を作成します。
 
-この記事では、ユーザーを認証するための REST API 要求を示します。 ヘルパー ライブラリを使用して、コードで認証を実行することもできます。 これらのライブラリの詳細については、「[Azure Active Directory 認証ライブラリ](../active-directory/active-directory-authentication-libraries.md)」をご覧ください。 アプリケーションでの ID 管理の統合に関するガイダンスについては、「[Azure Active Directory 開発者ガイド](../active-directory/active-directory-developers-guide.md)」をご覧ください。
+この記事では、ユーザーを認証するための REST API 要求を示します。 ヘルパー ライブラリを使用して、コードで認証を実行することもできます。 これらのライブラリの詳細については、「[Azure Active Directory 認証ライブラリ](../active-directory/active-directory-authentication-libraries.md)」をご覧ください。 アプリケーションでの ID 管理の統合に関するガイダンスについては、「[Azure Active Directory 開発者ガイド](../active-directory/develop/azure-ad-developers-guide.md)」をご覧ください。
 
 ### <a name="auth-request-oauth-20"></a>承認要求 (OAuth 2.0)
 Azure AD 承認エンドポイントに Open ID Connect/OAuth 2.0 承認要求を発行します。
 
     https://login.microsoftonline.com/{tenant-id}/OAuth2/Authorize
 
-この要求で使用できるクエリ文字列パラメーターについては、「[承認コードを要求する](../active-directory/develop/active-directory-protocols-oauth-code.md#request-an-authorization-code)」を参照してください。
+この要求で使用できるクエリ文字列パラメーターについては、「[承認コードを要求する](../active-directory/develop/v1-protocols-oauth-code.md#request-an-authorization-code)」を参照してください。
 
 次の例は、OAuth 2.0 承認を要求する方法を示しています。
 
@@ -120,7 +126,7 @@ Azure AD がユーザーを認証し、必要に応じて、アプリケーシ�
 ### <a name="auth-request-open-id-connect"></a>承認要求 (Open ID Connect)
 ユーザーに代わって Azure Resource Manager にアクセスするだけでなく、ユーザーが Azure AD アカウントを使用してアプリケーションにサインインできるようにする場合は、Open ID Connect 承認要求を発行します。 Open ID Connect により、アプリケーションはユーザーのサインインに使用できる id_token も Azure AD から受け取ります。
 
-この要求で使用できるクエリ文字列パラメーターについては、「[サインイン要求を送信する](../active-directory/develop/active-directory-protocols-openid-connect-code.md#send-the-sign-in-request)」を参照してください。
+この要求で使用できるクエリ文字列パラメーターについては、「[サインイン要求を送信する](../active-directory/develop/v1-protocols-openid-connect-code.md#send-the-sign-in-request)」を参照してください。
 
 Open ID Connect 要求の例を次に示します。
 
@@ -137,7 +143,7 @@ Open ID Connect 応答の例を次に示します。
 
     https://login.microsoftonline.com/{tenant-id}/OAuth2/Token
 
-この要求で使用できるクエリ文字列パラメーターについては、「[承認コードを使用してアクセス トークンを要求する](../active-directory/develop/active-directory-protocols-oauth-code.md#use-the-authorization-code-to-request-an-access-token)」を参照してください。
+この要求で使用できるクエリ文字列パラメーターについては、「[承認コードを使用してアクセス トークンを要求する](../active-directory/develop/v1-protocols-oauth-code.md#use-the-authorization-code-to-request-an-access-token)」を参照してください。
 
 パスワード資格情報を使用したコード付与トークンの要求の例を次に示します。
 
@@ -148,7 +154,7 @@ Open ID Connect 応答の例を次に示します。
 
     grant_type=authorization_code&code=AAABAAAAiL9Kn2Z*****L1nVMH3Z5ESiAA&redirect_uri=http%3A%2F%2Flocalhost%3A62080%2FAccount%2FSignIn&client_id=a0448380-c346-4f9f-b897-c18733de9394&client_secret=olna84E8*****goScOg%3D
 
-証明書資格情報を使用する場合は、JSON Web トークン (JWT) を作成し、アプリケーションの証明書資格情報の秘密キーを使用して署名 (RSA SHA256) します。 トークンの要求の種類については、「[JWT トークン要求](../active-directory/develop/active-directory-protocols-oauth-code.md#jwt-token-claims)」をご覧ください。 クライアント アサーション JWT トークンの署名については、 [Active Directory 認証ライブラリ (.NET) のコード](https://github.com/AzureAD/azure-activedirectory-library-for-dotnet/blob/dev/src/ADAL.PCL.Desktop/CryptographyHelper.cs) を参照してください。
+証明書資格情報を使用する場合は、JSON Web トークン (JWT) を作成し、アプリケーションの証明書資格情報の秘密キーを使用して署名 (RSA SHA256) します。 トークンの要求の種類については、「[JWT トークン要求](../active-directory/develop/v1-protocols-oauth-code.md#jwt-token-claims)」をご覧ください。 クライアント アサーション JWT トークンの署名については、 [Active Directory 認証ライブラリ (.NET) のコード](https://github.com/AzureAD/azure-activedirectory-library-for-dotnet/blob/dev/src/ADAL.PCL.Desktop/CryptographyHelper.cs) を参照してください。
 
 クライアント認証の詳細については、 [Open ID Connect 仕様](http://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication) をご覧ください。
 
@@ -172,7 +178,7 @@ Open ID Connect 応答の例を次に示します。
 
     https://login.microsoftonline.com/{tenant-id}/OAuth2/Token
 
-更新要求で使用するパラメーターについては、「[アクセス トークンの更新](../active-directory/develop/active-directory-protocols-oauth-code.md#refreshing-the-access-tokens)」をご覧ください。
+更新要求で使用するパラメーターについては、「[アクセス トークンの更新](../active-directory/develop/v1-protocols-oauth-code.md#refreshing-the-access-tokens)」をご覧ください。
 
 次の例は、更新トークンの使用方法を示しています。
 
@@ -229,7 +235,7 @@ Azure Resource Manager のアクセス トークンしかないため、Azure AD
 
 ASP.NET MVC サンプル アプリケーションの [GetObjectIdOfServicePrincipalInOrganization](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/AzureADGraphAPIUtil.cs) メソッドは、Active Directory Authentication Library for .NET を使用して、Graph API のアプリケーション専用アクセス トークンを取得します。
 
-この要求で使用できるクエリ文字列パラメーターについては、「[アクセス トークンを要求する](../active-directory/develop/active-directory-protocols-oauth-service-to-service.md#request-an-access-token)」を参照してください。
+この要求で使用できるクエリ文字列パラメーターについては、「[アクセス トークンを要求する](../active-directory/develop/v1-oauth2-client-creds-grant-flow.md#request-an-access-token)」を参照してください。
 
 クライアント資格情報付与トークンの要求の例を次に示します。
 
@@ -295,7 +301,7 @@ ASP.NET MVC サンプル アプリケーションの [GetRoleId](https://github.
 
 よく使用される組み込みロールの ID を次に示します。
 
-| 役割 | GUID |
+| Role | GUID |
 | --- | --- |
 | Reader |acdd72a7-3385-48ef-bd42-f606fba81ae7 |
 | Contributor |b24988ac-6180-42a0-ab88-20f7382dd24c |

@@ -3,7 +3,7 @@ title: Azure Event Hubs Capture の概要 | Microsoft Docs
 description: Event Hubs Capture を使用したテレメトリ データのキャプチャ
 services: event-hubs
 documentationcenter: ''
-author: sethmanheim
+author: ShubhaVijayasarathy
 manager: timlt
 editor: ''
 ms.assetid: e53cdeea-8a6a-474e-9f96-59d43c0e8562
@@ -12,14 +12,14 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/30/2018
-ms.author: sethm
-ms.openlocfilehash: 00eee302cc15d94ec62f5f3332e18ee2df24f5cd
-ms.sourcegitcommit: 6e43006c88d5e1b9461e65a73b8888340077e8a2
+ms.date: 08/16/2018
+ms.author: shvija
+ms.openlocfilehash: 603a5dfcf2137c15ae19ea248f3e0f4f136c22f1
+ms.sourcegitcommit: f057c10ae4f26a768e97f2cb3f3faca9ed23ff1b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2018
-ms.locfileid: "32311435"
+ms.lasthandoff: 08/17/2018
+ms.locfileid: "42142002"
 ---
 # <a name="azure-event-hubs-capture"></a>Azure Event Hubs Capture
 

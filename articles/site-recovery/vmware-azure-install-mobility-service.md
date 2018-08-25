@@ -1,17 +1,17 @@
 ---
 title: モビリティ サービスのインストール (VMware または物理から Azure へ) | Microsoft Docs
 description: モビリティ サービス エージェントをインストールして、オンプレミスの VMware 仮想マシンと、Azure Site Recovery を使用した物理サーバーを保護する方法について説明します。
-author: AnoopVasudavan
+author: Rajeswari-Mamilla
 ms.service: site-recovery
-ms.topic: conceptual
-ms.date: 06/20/2018
-ms.author: anoopkv
-ms.openlocfilehash: 7c292af91fea7f0e0d3b32412cfa9907560d68d9
-ms.sourcegitcommit: d8ffb4a8cef3c6df8ab049a4540fc5e0fa7476ba
+ms.topic: article
+ms.date: 07/06/2018
+ms.author: ramamill
+ms.openlocfilehash: 094c1776c0760c04d85aff6ad3d812a2ad7afa56
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/20/2018
-ms.locfileid: "36287781"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39526999"
 ---
 # <a name="install-the-mobility-service"></a>モビリティ サービスをインストールする 
 
@@ -26,7 +26,8 @@ Azure Site Recovery モビリティ サービスは、Azure にレプリケー�
 
 
 >[!IMPORTANT]
-> バージョン 9.7.0.0 以降、Windows VM では、モビリティ サービスのインストーラーによって、公開されている最新の [Azure VM エージェント](../virtual-machines/extensions/features-windows.md#azure-vm-agent)もインストールされます。 コンピューターが Azure にフェールオーバーされたときに、コンピューターは VM 拡張機能を使用するためのエージェント インストール前提条件を満たしています。
+> バージョン 9.7.0.0 以降、**Windows VM では**、モビリティ サービスのインストーラーによって、公開されている最新の [Azure VM エージェント](../virtual-machines/extensions/features-windows.md#azure-vm-agent)もインストールされます。 コンピューターが Azure にフェールオーバーされたときに、コンピューターは VM 拡張機能を使用するためのエージェント インストール前提条件を満たしています。
+> </br>**Linux VM** では、WALinuxAgent を手動でインストールする必要があります。
 
 ## <a name="prerequisites"></a>前提条件
 モビリティ サービスをサーバーに手動でインストールする前に、次の前提条件を完了してください。
@@ -42,11 +43,14 @@ Azure Site Recovery モビリティ サービスは、Azure にレプリケー�
 
 ### <a name="mobility-service-installer-to-operating-system-mapping"></a>モビリティ サービスのインストーラーからオペレーティング システムへのマッピング
 
+オペレーティング システム バージョンと互換性のあるモビリティ サービス パッケージの一覧については、[VMware 仮想マシンと物理サーバー用にサポートされているオペレーティング システム](vmware-physical-azure-support-matrix.md#replicated-machines)の一覧をご覧ください。
+
 | インストーラー ファイルのテンプレート名| オペレーティング システム |
 |---|--|
 |Microsoft-ASR\_UA\*Windows\*release.exe | Windows Server 2008 R2 SP1 (64 ビット) </br> Windows Server 2012 (64 ビット) </br> Windows Server 2012 R2 (64 ビット) </br> Windows Server 2016 (64 ビット) |
-|Microsoft-ASR\_UA\*RHEL6-64*release.tar.gz| Red Hat Enterprise Linux (RHEL) 6.4、6.5、6.6、6.7、6.8、6.9 (64 ビットのみ) </br> CentOS 6.4、6.5、6.6、6.7、6.8、6.9 (64 ビットのみ) |
-|Microsoft-ASR\_UA\*RHEL7-64\*release.tar.gz | Red Hat Enterprise Linux (RHEL) 7.1、7.2、7.3 (64 ビットのみ) </br> CentOS 7.0、7.1、7.2、7.3 (64 ビットのみ) |
+|Microsoft-ASR\_UA\*RHEL6-64\*release.tar.gz | Red Hat Enterprise Linux (RHEL) 6.* (64 ビットのみ) </br> CentOS 6.* (64 ビットのみ) |
+|Microsoft-ASR\_UA\*RHEL7-64\*release.tar.gz | Red Hat Enterprise Linux (RHEL) 7.* (64 ビットのみ) </br> CentOS 7.* (64 ビットのみ) |
+|Microsoft-ASR\_UA\*SLES12-64\*release.tar.gz | SUSE Linux Enterprise Server 12 SP1、SP2、SP3 (64 ビットのみ)|
 |Microsoft-ASR\_UA\*SLES11-SP3-64\*release.tar.gz| SUSE Linux Enterprise Server 11 SP3 (64 ビットのみ)|
 |Microsoft-ASR\_UA\*SLES11-SP4-64\*release.tar.gz| SUSE Linux Enterprise Server 11 SP4 (64 ビットのみ)|
 |Microsoft-ASR\_UA\*OL6-64\*release.tar.gz | Oracle Enterprise Linux 6.4、6.5 (64 ビットのみ)|
@@ -54,7 +58,6 @@ Azure Site Recovery モビリティ サービスは、Azure にレプリケー�
 |Microsoft-ASR\_UA\*UBUNTU-16.04-64\*release.tar.gz | Ubuntu Linux 16.04 LTS サーバー (64 ビットのみ)|
 |Microsoft-ASR_UA\*DEBIAN7-64\*release.tar.gz | Debian 7 (64 ビットのみ)|
 |Microsoft-ASR_UA\*DEBIAN8-64\*release.tar.gz | Debian 8 (64 ビットのみ)|
-
 
 ## <a name="install-mobility-service-manually-by-using-the-gui"></a>GUI を使用して、モビリティ サービスを手動でインストールする
 

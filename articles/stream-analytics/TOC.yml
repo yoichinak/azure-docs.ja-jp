@@ -20,6 +20,8 @@
       href: stream-analytics-with-azure-functions.md
     - name: 3 - JavaScript UDF の実行
       href: stream-analytics-javascript-user-defined-functions.md
+    - name: 4 - VSTS での CI/CD によるデプロイ
+      href: stream-analytics-tools-visual-studio-cicd-vsts.md
 - name: サンプル
   items:
     - name: コード サンプル
@@ -44,10 +46,14 @@
       href: stream-analytics-compatibility-level.md
     - name: 一般的なクエリのパターン
       href: stream-analytics-stream-analytics-query-patterns.md
+    - name: JSON および AVRO データの解析
+      href: stream-analytics-parsing-json.md
     - name: イベントの順序に関する考慮事項
       href: stream-analytics-out-of-order-and-late-events.md
     - name: チェックポイントと再生
       href: stream-analytics-concepts-checkpoint-replay.md
+    - name: エラー ポリシー
+      href: output-error-policy.md
 - name: ハウツーガイド
   items:
     - name: '[管理]'
@@ -90,6 +96,8 @@
           href: stream-analytics-monitor-and-manage-jobs-use-powershell.md
         - name: ジョブの監視 - Azure .NET SDK
           href: stream-analytics-monitor-jobs.md
+        - name: ジョブの監視 - Visual Studio
+          href: stream-analytics-monitor-jobs-use-vs.md
     - name: スケール
       items:
         - name: ストリーミング ユニットを利用したスケーリング
@@ -111,8 +119,10 @@
       items:
         - name: ツールをインストールする
           href: stream-analytics-tools-for-visual-studio-install.md
-        - name: クラウド ジョブの開発
-          href: stream-analytics-tools-for-visual-studio.md
+        - name: ローカル ジョブのテスト
+          href: stream-analytics-vs-tools-local-run.md
+        - name: Visual Studio でのジョブの表示
+          href: stream-analytics-vs-tools.md
         - name: Edge ジョブの開発
           href: stream-analytics-tools-for-visual-studio-edge-jobs.md
         - name: CI/CD パイプラインの設定
@@ -155,8 +165,6 @@
       href: 'https://azure.microsoft.com/roadmap/'
     - name: ブログ
       href: 'http://blogs.msdn.com/b/streamanalytics/'
-    - name: ビデオ
-      href: 'https://azure.microsoft.com/resources/videos/index/?services=stream-analytics&sort=newest'
     - name: フィードバック フォーラム
       href: 'http://feedback.azure.com/forums/270577-azure-stream-analytics'
     - name: フォーラム
@@ -170,7 +178,7 @@
     - name: スタック オーバーフロー
       href: 'http://stackoverflow.com/questions/tagged/azure-stream-analytics'
     - name: ビデオ
-      href: 'https://azure.microsoft.com/documentation/videos/index/?services=stream-analytics'
+      href: 'https://azure.microsoft.com/resources/videos/index/?services=stream-analytics&sort=newest'
     - name: お客様導入事例
       href: 'https://azure.microsoft.com/case-studies/?service=stream-analytics'
     - name: ホワイトペーパー - リアルタイム イベント処理

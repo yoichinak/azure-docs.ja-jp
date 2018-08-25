@@ -11,12 +11,12 @@ ms.topic: article
 ms.workload: na
 ms.date: 04/05/2018
 ms.author: danlep
-ms.openlocfilehash: 29ac86ed5c744d37150b0f1b2db17f60306fe77e
-ms.sourcegitcommit: fa493b66552af11260db48d89e3ddfcdcb5e3152
+ms.openlocfilehash: 5a321ef7dca86993a913a283fe7b9b076c127d94
+ms.sourcegitcommit: 4e5ac8a7fc5c17af68372f4597573210867d05df
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/23/2018
-ms.locfileid: "31799803"
+ms.lasthandoff: 07/20/2018
+ms.locfileid: "39171257"
 ---
 # <a name="monitor-batch-solutions"></a>Batch ソリューションの監視
 
@@ -43,7 +43,7 @@ Batch アカウントを含むサブスクリプション レベルでは、[Azu
 
 Batch アプリケーションでは、Batch API を使用して、ジョブ、タスク、ノード、プールなどのリソースの状態の監視またはクエリを実行します。 例: 
 
-* [状態別にタスクをカウントする](batch-get-task-counts.md)
+* [状態ごとにタスクとコンピューティング ノードをカウントする](batch-get-resource-counts.md)
 * [効率的に Batch リソースを一覧表示するクエリを作成する](batch-efficient-list-queries.md)
 * [タスクの依存関係を作成する](batch-task-dependencies.md)
 * [ジョブ マネージャー タスク](/rest/api/batchservice/job/add#jobmanagertask)を使用する
@@ -63,7 +63,7 @@ Batch アプリケーションでは、Batch API を使用して、ジョブ、�
   > Application Insights の使用には追加コストが発生する可能性があります。 [価格オプション](https://azure.microsoft.com/pricing/details/application-insights/)に関するページをご覧ください。 
   >
 
-* [BatchLabs](https://github.com/Azure/BatchLabs) は、Azure Batch アプリケーションの作成、デバッグ、および監視を支援する、豊富な機能を備えた無料のスタンドアロン クライアント ツールです。 Mac、Linux、または Windows 用の[インストール パッケージ](https://azure.github.io/BatchLabs/)をダウンロードしてください。 必要に応じて、BatchLabs 内の VM パフォーマンス カウンターなどの [Application Insights データを表示](https://github.com/Azure/batch-insights)するように Batch ソリューションを構成します。
+* [Batch Explorer](https://github.com/Azure/BatchExplorer) は、Azure Batch アプリケーションの作成、デバッグ、および監視を支援する、豊富な機能を備えた無料のスタンドアロン クライアント ツールです。 Mac、Linux、または Windows 用の[インストール パッケージ](https://azure.github.io/BatchExplorer/)をダウンロードしてください。 必要に応じて、Batch Explorer 内の VM パフォーマンス カウンターなどの [Application Insights データを表示](https://github.com/Azure/batch-insights)するように Batch ソリューションを構成します。
 
 
 ## <a name="next-steps"></a>次の手順

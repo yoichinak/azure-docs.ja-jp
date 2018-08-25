@@ -9,12 +9,12 @@ ms.author: gwallace
 ms.date: 03/16/2018
 ms.topic: conceptual
 manager: carmonm
-ms.openlocfilehash: b813ba564e6451f973972f08f297399c3af1747b
-ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
+ms.openlocfilehash: afc1ec8e171bc602f2698b4a36f249bc454cbed9
+ms.sourcegitcommit: 744747d828e1ab937b0d6df358127fcf6965f8c8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/16/2018
-ms.locfileid: "34195490"
+ms.lasthandoff: 08/16/2018
+ms.locfileid: "42141976"
 ---
 # <a name="graphical-authoring-in-azure-automation"></a>Azure Automation でのグラフィカル作成
 
@@ -44,11 +44,11 @@ Azure ポータルでグラフィカル Runbook を作成または編集する�
 
 ライブラリ コントロールは、Runbook に追加する [アクティビティ](#activities) を選択する場所です。 アクティビティをキャンバスに追加し、そこで他のアクティビティに接続します。 これには、以下の表で説明する次の 4 つのセクションが含まれます。
 
-| セクション | [説明] |
+| セクション | 説明 |
 |:--- |:--- |
 | コマンドレット |Runbook で使用できるすべてのコマンドレットが含まれています。 コマンドレットはモジュールごとに整理されます。 オートメーション アカウントにインストールしたモジュールをすべて使用できます。 |
 | Runbooks |お使いの Automation アカウントの Runbook が含まれています。 これらの Runbook は、子 Runbook として使用するためにキャンバスに追加できます。 表示されるのは、編集中の Runbook と同じコアの種類の Runbook のみです。つまり、グラフィカル Runbook の場合は、PowerShell ベースの Runbook のみが表示されるのに対し、グラフィカル PowerShell ワークフロー Runbook の場合は、PowerShell ワークフロー ベースの Runbook のみが表示されます。 |
-| 資産 |Runbook で使用できるオートメーション アカウントに [オートメーション資産](http://msdn.microsoft.com/library/dn939988.aspx) が含まれています。 Runbook に資産を追加すると、選択した資産を取得するワークフロー アクティビティが追加されます。 変数資産の場合は、変数を取得するアクティビティを追加するか、変数を設定するアクティビティを追加するかを選択できます。 |
+| アセット |Runbook で使用できるオートメーション アカウントに [オートメーション資産](http://msdn.microsoft.com/library/dn939988.aspx) が含まれています。 Runbook に資産を追加すると、選択した資産を取得するワークフロー アクティビティが追加されます。 変数資産の場合は、変数を取得するアクティビティを追加するか、変数を設定するアクティビティを追加するかを選択できます。 |
 | Runbook コントロール |現在の Runbook で使用できる Runbook コントロール アクティビティが含まれています。 *ジャンクション* では複数の入力を受け取り、すべてが完了するまで待機してから、ワークフローを続行します。 *コード* アクティビティは、グラフィカル Runbook の種類に応じて、PowerShell または PowerShell Workflow の 1 行以上のコードを実行します。 このアクティビティは、カスタム コードや、他のアクティビティでの実現が難しい機能に使用できます。 |
 
 ### <a name="configuration-control"></a>構成コントロール
@@ -109,7 +109,7 @@ Runbook がまだ発行されていない場合、状態は **[新規]** です�
 
 パラメーターの値を指定する場合は、データ ソースを選択して値の指定方法を決定します。 特定のパラメーターに使用できるデータ ソースは、そのパラメーターの有効な値によって異なります。 たとえば、null 値が許可されていないパラメーターに対するオプションとして Null を使用することはできません。
 
-| [データ ソース] | [説明] |
+| [データ ソース] | 説明 |
 |:--- |:--- |
 | 定数値 |パラメーターの値を入力します。 これを使用できるのは、Int32、Int64、String、Boolean、DateTime、Switch というデータ型の場合のみです。 |
 | アクティビティの出力 |ワークフローの現在のアクティビティより前のアクティビティからの出力です。 有効なすべてのアクティビティが一覧表示されます。 パラメーター値にその出力を使用するアクティビティだけを選択します。 アクティビティが複数のプロパティを持つオブジェクトを出力する場合は、アクティビティを選択してからプロパティの名前を入力できます。 |
@@ -139,7 +139,7 @@ Runbook がまだ発行されていない場合、状態は **[新規]** です�
 
 再試行の条件は、アクティビティの再試行に関する情報にアクセスできる $RetryData という変数を使用できます。 この変数には、次の表のプロパティがあります。
 
-| プロパティ | [説明] |
+| プロパティ | 説明 |
 |:--- |:--- |
 | NumberOfAttempts |アクティビティが実行された回数。 |
 | 出力 |最後に実行されたアクティビティの出力。 |
@@ -191,7 +191,7 @@ $DateTimeStart
 
 リンクを選択して、構成ブレードでそのプロパティを構成します。 これには、次の表で説明されているリンクの種類が含まれます。
 
-| リンクの種類 | [説明] |
+| リンクの種類 | 説明 |
 |:--- |:--- |
 | パイプライン |ソース アクティビティからのオブジェクト出力ごとに 1 回、接続先アクティビティが実行されます。 ソース アクティビティからの出力がない場合、接続先アクティビティは実行されません。 ソース アクティビティからの出力はオブジェクトとして使用できます。 |
 | シーケンス |接続先アクティビティは 1 回だけ実行されます。 ソース アクティビティからのオブジェクトの配列を受け取ります。 ソース アクティビティからの出力は、オブジェクトの配列として使用できます。 |
@@ -290,6 +290,9 @@ Get Run As Connection アクティビティ (つまり Get-AutomationConnection)
 
 ![Connect-AzureRmAccount パラメーター セット](media/automation-graphical-authoring-intro/authenticate-conn-to-azure-parameter-set.png)
 
+> [!IMPORTANT]
+> これで、**Connect-AzureRmAccount** のエイリアスは **Add-AzureRMAccount** に設定されました。 ライブラリ項目を検索して **Connect-AzureRMAccount** が表示されない場合は、**Add-AzureRmAccount** を使用するか、Automation アカウントでモジュールを更新できます。
+
 **APPLICATIONID**、**CERTIFICATETHUMBPRINT**、**TENANTID** パラメーターでは、[フィールド パス] にプロパティの名前を指定する必要があります。これは、アクティビティが複数のプロパティを持つオブジェクトを出力するためです。 指定しなかった場合は、Runbook を実行するときに、認証しようとして失敗します。 これは、実行アカウントで Runbook を認証するために最低限必要なことです。
 
 Azure クラシック デプロイメントまたは Azure Resource Manager のリソースを管理するために [Azure AD ユーザー アカウント](automation-create-aduser-account.md)を使用して Automation アカウントを作成したサブスクライバーのために下位互換性を維持するには、認証方法として、Azure アカウントへのアクセス権を持つ Active Directory ユーザーを表す[資格情報資産](automation-credentials.md)を指定した Add-AzureAccount コマンドレットがあります。
@@ -322,14 +325,14 @@ Runbook の入力パラメーターには、Runbook ツールバーの **[入力
 | プロパティ | [説明] |
 |:--- |:--- |
 | Name |パラメーターの一意の名前です。 これに含めることができるのは英数字のみです。スペースを含めることはできません。 |
-| [説明] |入力パラメーターのオプションの説明です。 |
+| 説明 |入力パラメーターのオプションの説明です。 |
 | type |パラメーター値に必要なデータ型です。 Azure Portal では、入力を求められた場合に各パラメーターのデータ型に適したコントロールが提供されます。 |
 | 必須 |パラメーターの値を指定する必要があるかどうかを示します。 既定値が定義されていない各必須パラメーターの値を指定しないと、Runbook を開始できません。 |
 | 既定値 |パラメーターに値が指定されていない場合は、使用する値を指定します。 Null または特定の値を指定できます。 |
 
 ### <a name="runbook-output"></a>Runbook の出力
 
-発信リンクがない任意のアクティビティによって作成されたデータは、[Runbook の出力](http://msdn.microsoft.com/library/azure/dn879148.aspx)に保存されます。 出力は Runbook ジョブと共に保存され、Runbook を子として使用する場合に親 Runbook で使用できます。
+発信リンクがない任意のアクティビティによって作成されたデータは、[Runbook の出力](https://docs.microsoft.com/azure/automation/automation-runbook-output-and-messages)に保存されます。 出力は Runbook ジョブと共に保存され、Runbook を子として使用する場合に親 Runbook で使用できます。
 
 ## <a name="powershell-expressions"></a>PowerShell の式
 

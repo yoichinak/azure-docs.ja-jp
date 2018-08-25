@@ -3,7 +3,7 @@ title: Azure Functions 用 JavaScript 開発者向けリファレンス | Micros
 description: JavaScript を使用して関数を開発する方法について説明します。
 services: functions
 documentationcenter: na
-author: tdykstra
+author: ggailey777
 manager: cfowler
 editor: ''
 tags: ''
@@ -15,13 +15,13 @@ ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 03/04/2018
-ms.author: tdykstra
-ms.openlocfilehash: 78f29cd4a20861e40bb7f7f398979b8d93387a7b
-ms.sourcegitcommit: d98d99567d0383bb8d7cbe2d767ec15ebf2daeb2
+ms.author: glenga
+ms.openlocfilehash: 1a4b970b07514619b2d81a0483546ac64d07927f
+ms.sourcegitcommit: d0ea925701e72755d0b62a903d4334a3980f2149
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/10/2018
-ms.locfileid: "33936628"
+ms.lasthandoff: 08/09/2018
+ms.locfileid: "40005477"
 ---
 # <a name="azure-functions-javascript-developer-guide"></a>Azure Functions の JavaScript 開発者向けガイド
 
@@ -94,7 +94,9 @@ context.bindings.myOutput = {
 context.done([err],[propertyBag])
 ```
 
-コードが完了したことをランタイムに通知します。 ユーザーは `context.done` を呼び出す必要があります。そうしないと、ランタイムに関数の完了が通知されず、実行がタイムアウトになります。 
+コードが完了したことをランタイムに通知します。 関数で `async function` 宣言 (Functions バージョン 2.x で Node 8+ を使用して利用可能) を使用する場合は、`context.done()` を使用する必要はありません。 `context.done` コールバックは暗黙的に呼び出されます。
+
+関数が非同期関数でない場合は、関数が完了したことをランタイムに通知するために`context.done` を**呼び出す必要があります**。 これがない場合、実行はタイムアウトします。
 
 `context.done` メソッドを使用すると、ユーザー定義のエラーに加えて、`context.bindings` オブジェクトのプロパティを上書きするプロパティのプロパティ バッグをランタイムに渡すことができます。
 
@@ -116,7 +118,7 @@ context.log(message)
 既定のトレース レベルでストリーミング コンソール ログに書き込むことができます。 `context.log` で利用可能な、他のトレース レベルでコンソール ログに書き込むことができるログ記録方法が他にあります。
 
 
-| 方法                 | [説明]                                |
+| 方法                 | 説明                                |
 | ---------------------- | ------------------------------------------ |
 | **error(_message_)**   | エラー レベルのログ、またはそれ以下に書き込みます。   |
 | **warn(_message_)**    | 警告レベルのログ、またはそれ以下に書き込みます。 |
@@ -206,7 +208,7 @@ HTTP、webhook トリガー、および HTTP 出力バインディングでは�
 
 `request` オブジェクトには、次のプロパティがあります。
 
-| プロパティ      | [説明]                                                    |
+| プロパティ      | 説明                                                    |
 | ------------- | -------------------------------------------------------------- |
 | _body_        | 要求の本文を格納するオブジェクト。               |
 | _headers_     | 要求ヘッダーを格納するオブジェクト。                   |
@@ -221,7 +223,7 @@ HTTP、webhook トリガー、および HTTP 出力バインディングでは�
 
 `response` オブジェクトには、次のプロパティがあります。
 
-| プロパティ  | [説明]                                               |
+| プロパティ  | 説明                                               |
 | --------- | --------------------------------------------------------- |
 | _body_    | 応答の本文を格納するオブジェクト。         |
 | _headers_ | 応答ヘッダーを格納するオブジェクト。             |
@@ -271,7 +273,7 @@ HTTP トリガーを使用する場合、HTTP 要求オブジェクトと応答�
 | Functions バージョン | Node.js バージョン | 
 |---|---|
 | 1.x | 6.11.2 (ランタイムによりロック) |
-| 2.x  |現在の LTS 8.9.4 を備えた 8.4.0 以上を推奨。 WEBSITE_NODE_DEFAULT_VERSION [アプリ設定](functions-how-to-use-azure-function-app-settings.md#settings)を使用してバージョンを設定します。|
+| 2.x  | _アクティブ LTS_ と_現在の_ Node.js のバージョン (8.11.1 と 10.6.0 を推奨)。 WEBSITE_NODE_DEFAULT_VERSION [アプリ設定](functions-how-to-use-azure-function-app-settings.md#settings)を使用してバージョンを設定します。|
 
 ランタイムが使用している現在のバージョンを確認するには、任意の関数から `process.version` を出力します。
 

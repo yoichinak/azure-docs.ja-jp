@@ -6,16 +6,16 @@ author: davidmu1
 manager: mtillman
 ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 08/04/2017
 ms.author: davidmu
 ms.component: B2C
-ms.openlocfilehash: b75efe7464c32863781353549f73048b4e127ddf
-ms.sourcegitcommit: 59fffec8043c3da2fcf31ca5036a55bbd62e519c
+ms.openlocfilehash: 00d2f37068c5bedb17ba9a4064d1f5058f5ab72c
+ms.sourcegitcommit: bf522c6af890984e8b7bd7d633208cb88f62a841
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/04/2018
-ms.locfileid: "34710221"
+ms.lasthandoff: 07/20/2018
+ms.locfileid: "39185781"
 ---
 # <a name="define-trust-frameworks-with-azure-ad-b2c-identity-experience-framework"></a>Azure AD B2C Identity Experience Framework で信頼フレームワークを定義する
 
@@ -49,7 +49,8 @@ TF は Open Identity Exchange (OIX) の信頼フレームワーク モデルの�
     - 参加者によって提供または要求される保証のレベル (LOA)。たとえば、デジタル ID 情報の信頼性に関する信頼評価値の順序付けされたセット。
     - 参加者によって提供または要求される保護のレベル (LOP)。たとえば、関係者コミュニティの参加者が扱うデジタル ID 情報の保護に関する信頼評価値の順序付けされたセット。
 
-- **参加者によって提供または要求されるデジタル ID 情報についての説明**。
+- 
+  **参加者によって提供または要求されるデジタル ID 情報についての説明**。
 
 - **デジタル ID 情報の作成と使用、および LOA と LOP の測定に関する技術ポリシー。このような文書化されたポリシーには、通常、以下のようなカテゴリが含まれています。**
     - ID 証明ポリシー。例: *個人の ID 情報がどれだけ詳細に審査されているか。*
@@ -89,7 +90,7 @@ Identity Experience Framework を活用した Azure AD B2C カスタム ポリ�
 
 - 参加者間でネットワーク通信を確立するためのメタデータ。 このメタデータは、証明書利用者と他のコミュニティ参加者との間に "ネットワーク上の" 相互運用性を組み込むため、技術プロファイルと共にトランザクション中に使用されます。
 
-- 必要に応じたプロトコル変換 (例: SAML、OAuth2、WS-Federation、OpenID Connect)。
+- 必要に応じたプロトコル変換 (例: SAML 2.0、OAuth2、WS-Federation、OpenID Connect)。
 
 - 認証要件。
 

@@ -4,18 +4,18 @@ description: Azure MFA とユーザー ポータルを使い始めます。
 services: multi-factor-authentication
 ms.service: active-directory
 ms.component: authentication
-ms.topic: get-started-article
-ms.date: 08/23/2017
+ms.topic: conceptual
+ms.date: 07/11/2018
 ms.author: joflore
 author: MicrosoftGuyJFlo
 manager: mtillman
-ms.reviewer: richagi
-ms.openlocfilehash: 38f75b8fc48f6fdcafd4c6ae25ec0f52641b2c05
-ms.sourcegitcommit: 870d372785ffa8ca46346f4dfe215f245931dae1
+ms.reviewer: michmcla
+ms.openlocfilehash: 1bd9dd82fb72c3d6b0759139680647be764f273a
+ms.sourcegitcommit: 1478591671a0d5f73e75aa3fb1143e59f4b04e6a
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/08/2018
-ms.locfileid: "33869626"
+ms.lasthandoff: 07/19/2018
+ms.locfileid: "39161555"
 ---
 # <a name="user-portal-for-the-azure-multi-factor-authentication-server"></a>Azure Multi-Factor Authentication Server のユーザー ポータル
 
@@ -30,7 +30,7 @@ ms.locfileid: "33869626"
 ![MFA ユーザー ポータル](./media/howto-mfaserver-deploy-userportal/portal.png)
 
 > [!NOTE]
-> ユーザー ポータルは Multi-Factor Authentication Server でのみ使用できます。 Multi-Factor Authentication をクラウドで使用する場合、[2 段階認証のためのアカウント設定](./../../multi-factor-authentication/end-user/multi-factor-authentication-end-user-first-time.md)に関するページか「[2 段階認証設定の管理](./../../multi-factor-authentication/end-user/multi-factor-authentication-end-user-manage-settings.md)」をユーザーに参照してもらってください。
+> ユーザー ポータルは Multi-Factor Authentication Server でのみ使用できます。 Multi-Factor Authentication をクラウドで使用する場合、[2 段階認証のためのアカウント設定](../user-help/multi-factor-authentication-end-user-first-time.md)に関するページか「[2 段階認証設定の管理](../user-help/multi-factor-authentication-end-user-manage-settings.md)」をユーザーに参照してもらってください。
 
 ## <a name="install-the-web-service-sdk"></a>Web サービス SDK のインストール
 
@@ -125,7 +125,7 @@ IIS サーバーに SSL 証明書を構成する方法についてご不明な�
 
 Azure Multi-Factor Authentication Server にはユーザー ポータル用のさまざまなオプションがあります。 次の表に、これらのオプションとそれぞれの使用目的を示します。
 
-| ユーザー ポータル設定 | [説明] |
+| ユーザー ポータル設定 | 説明 |
 |:--- |:--- |
 | ユーザー ポータル URL | ポータルがホストされる場所の URL を入力します。 |
 | プライマリ認証 | ポータルにサインインするときに使用する認証の種類を指定します。 Windows 認証、Radius 認証または LDAP 認証のいずれかです。 |

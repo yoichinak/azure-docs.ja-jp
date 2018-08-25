@@ -10,14 +10,14 @@ ms.author: ghogen
 ms.date: 05/11/2018
 ms.topic: include
 manager: douge
-ms.openlocfilehash: abb7b3bbdbf16760db8595261ea8e543b6ed05f2
-ms.sourcegitcommit: 828d8ef0ec47767d251355c2002ade13d1c162af
+ms.openlocfilehash: e9203772df1c7ab6a146ba907db86866ea366b07
+ms.sourcegitcommit: 4ea0cea46d8b607acd7d128e1fd4a23454aa43ee
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/25/2018
-ms.locfileid: "36939198"
+ms.lasthandoff: 08/15/2018
+ms.locfileid: "40129098"
 ---
-## <a name="well-done"></a>お疲れさまでした。
+### <a name="well-done"></a>お疲れさまでした。
 ファースト ステップ ガイドを修了しました。 以下の方法について学習しました。
 
 > [!div class="checklist"]

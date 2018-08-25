@@ -2,23 +2,24 @@
 title: Azure AD のアクセス レビューを使ってアクセス権をレビューする | Microsoft Docs
 description: Azure Active Directory のアクセス レビューを使ってアクセス権をレビューする方法について説明します。
 services: active-directory
-author: markwahl-msft
+author: rolyon
 manager: mtillman
-editor: ''
+editor: markwahl-msft
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.component: compliance-reports
-ms.date: 09/19/2017
+ms.topic: conceptual
+ms.component: compliance
+ms.date: 07/16/2018
 ms.author: rolyon
-ms.openlocfilehash: dbc06f7978b5669e67f1e4161ebcd0bbeb3dec41
-ms.sourcegitcommit: 4e36ef0edff463c1edc51bce7832e75760248f82
+ms.reviewer: mwahl
+ms.openlocfilehash: f9ab4f5ad863fa5460b5a7ad68f00f154a16f8f0
+ms.sourcegitcommit: 35ceadc616f09dd3c88377a7f6f4d068e23cceec
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/08/2018
-ms.locfileid: "35233497"
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39617889"
 ---
 # <a name="review-access-with-azure-ad-access-reviews"></a>Azure AD のアクセス レビューでアクセス権をレビューする
 
@@ -26,7 +27,11 @@ Azure Active Directory (Azure AD) には、Azure AD をはじめとする Micros
 
 ## <a name="open-an-access-review"></a>アクセス レビューを開始する
 
-実行待ちのアクセス レビューを表示するには、メールに記載されているリンクを選択します。 メールが届かない場合は、次の手順でアクセス レビューの場所を確認できます。
+実行待ちのアクセス レビューを表示するには、メールに記載されているレビュー アクセス リンクをクリックします。 2018 年 8 月より、Azure AD ロール向けの電子メール通知のデザインが変わります。 ユーザーがレビューアーになるように招待されるときに送信される電子メールの例を次に示します。 
+
+![アクセスのレビューの電子メール](./media/active-directory-azure-ad-controls-perform-access-review/new-ar-email.png)
+
+メールが届かない場合は、次の手順でアクセス レビューの場所を確認できます。
 
 1. [Azure AD アクセス パネル](https://myapps.microsoft.com)にサインインします。
 

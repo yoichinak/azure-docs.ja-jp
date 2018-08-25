@@ -12,14 +12,14 @@ ms.workload: multiple
 ms.tgt_pltfrm: powershell
 ms.devlang: na
 ms.topic: conceptual
-ms.date: 02/16/2018
+ms.date: 07/20/2018
 ms.author: tomfitz
-ms.openlocfilehash: 02616ef566dd576c3f406d4b9f3059dab27bf3e0
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: 7cda2a406c6c49e9252bfd5840e8f943e5b7043f
+ms.sourcegitcommit: 30221e77dd199ffe0f2e86f6e762df5a32cdbe5f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34603415"
+ms.lasthandoff: 07/23/2018
+ms.locfileid: "39205801"
 ---
 # <a name="manage-resources-with-azure-powershell"></a>Azure PowerShell でリソースを管理する
 
@@ -56,7 +56,7 @@ New-AzureRmResourceGroup -Name myResourceGroup -Location EastUS
 * [Network Contributor](../role-based-access-control/built-in-roles.md#network-contributor)
 * [Storage Account Contributor](../role-based-access-control/built-in-roles.md#storage-account-contributor)
 
-多くの場合は、個々のユーザーにロールを割り当てる代わりに、類似のアクションを実行する必要のあるユーザーのための [Azure Active Directory グループを作成する](../active-directory/active-directory-groups-create-azure-portal.md)方が簡単です。 その後、そのグループを適切なロールに割り当てます。 この記事を簡略化するために、メンバーを含まない Azure Active Directory グループを作成します。 その場合でも、このグループをスコープのロールに割り当てることができます。 
+多くの場合は、個々のユーザーにロールを割り当てる代わりに、類似のアクションを実行する必要のあるユーザーのための [Azure Active Directory グループを作成する](../active-directory/fundamentals/active-directory-groups-create-azure-portal.md)方が簡単です。 その後、そのグループを適切なロールに割り当てます。 この記事を簡略化するために、メンバーを含まない Azure Active Directory グループを作成します。 その場合でも、このグループをスコープのロールに割り当てることができます。 
 
 次の例では、グループを作成し、それをリソース グループの仮想マシンの共同作業者ロールに割り当てます。 `New-AzureAdGroup` コマンドを実行するには、[Azure Cloud Shell](/azure/cloud-shell/overview) を使用するか、または [Azure AD PowerShell モジュールをダウンロードする](https://www.powershellgallery.com/packages/AzureAD/)必要があります。
 
@@ -72,13 +72,9 @@ New-AzureRmRoleAssignment -ObjectId $adgroup.ObjectId `
 
 通常は、デプロイされたリソースを管理するユーザーが確実に割り当てられるようにするために、このプロセスを**ネットワークの共同作業者**と**ストレージ アカウントの共同作業者**に対して繰り返します。 この記事では、これらの手順を省略できます。
 
-## <a name="azure-policies"></a>Azure のポリシー
+## <a name="azure-policy"></a>Azure Policy
 
-[!INCLUDE [Resource Manager governance policy](../../includes/resource-manager-governance-policy.md)]
-
-### <a name="apply-policies"></a>ポリシーを適用する
-
-サブスクリプションには、既にいくつかのポリシー定義が含まれています。 使用可能なポリシー定義を確認するには、次を使用します。
+[Azure Policy](../azure-policy/azure-policy-introduction.md) は、サブスクリプション内のすべてのリソースが会社の基準を順守するために役立ちます。 サブスクリプションには、既にいくつかのポリシー定義が含まれています。 使用可能なポリシー定義を確認するには、次を使用します。
 
 ```azurepowershell-interactive
 (Get-AzureRmPolicyDefinition).Properties | Format-Table displayName, policyType
@@ -88,7 +84,7 @@ New-AzureRmRoleAssignment -ObjectId $adgroup.ObjectId `
 
 * すべてのリソースの場所を制限する
 * 仮想マシンの SKU を制限する
-* 管理ディスクを使用しない仮想マシンを監査する
+* マネージド ディスクを使用しない仮想マシンを監査する
 
 ```azurepowershell-interactive
 $locations ="eastus", "eastus2"

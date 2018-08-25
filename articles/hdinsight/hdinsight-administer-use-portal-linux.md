@@ -1,25 +1,20 @@
 ---
-title: Azure Portal を使用した HDInsight での Hadoop クラスターの管理 | Microsoft Docs
+title: Azure Portal を使用した HDInsight での Hadoop クラスターの管理
 description: Azure Portal を使用して HDInsight クラスターを作成および管理する方法について説明します。
 services: hdinsight
-documentationcenter: ''
-author: mumian
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: 5a76f897-02e8-4437-8f2b-4fb12225854a
+author: jasonwhowell
+editor: jasonwhowell
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
 ms.topic: conceptual
 ms.date: 05/18/2018
-ms.author: jgao
-ms.openlocfilehash: b672b777e9a60f2f3d978947c06290db48e6766c
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.author: jasonh
+ms.openlocfilehash: 20a48dcd4a9c3dd4c89390c1048ec4fd5f5783ae
+ms.sourcegitcommit: 1f0587f29dc1e5aef1502f4f15d5a2079d7683e9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34627025"
+ms.lasthandoff: 08/07/2018
+ms.locfileid: "39597210"
 ---
 # <a name="manage-hadoop-clusters-in-hdinsight-by-using-the-azure-portal"></a>Azure ポータルを使用した HDInsight での Hadoop クラスターの管理
 
@@ -105,7 +100,7 @@ NoRegisteredProviderFound エラーまたは MissingSubscriptionRegistration エ
     * **[監視]**: Azure Log Analytics でクラスターを監視します。
     * **[プロパティ]**: クラスターのプロパティを表示します。
     * **[ストレージ アカウント]**: ストレージ アカウントとキーを表示します。 ストレージ アカウントは、クラスター作成プロセス中に構成されます。
-    * **[Data Lake Store アクセス]**: Data Lake Store へのアクセスを構成します。  「[Azure Portal を使用して、Data Lake Store を使用する HDInsight クラスターを作成する](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)」をご覧ください。
+    * **[Data Lake Store アクセス]**: Data Lake Store へのアクセスを構成します。  「[Quickstart: Set up clusters in HDInsight](../storage/data-lake-storage/quickstart-create-connect-hdi-cluster.md)」(クイック スタート: HDInsight のクラスターを設定する) をご覧ください。
     * **[リソース正常性]**: 「[Azure Resource Health の概要](../service-health/resource-health-overview.md)」をご覧ください。
     * **[新しいサポート要求]**: Microsoft サポートのサポート チケットを作成できます。
     

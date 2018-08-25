@@ -14,12 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/14/2017
 ms.author: jeedes
-ms.openlocfilehash: 661bb15f93c505ad069e826b1506f6e69c5339e0
-ms.sourcegitcommit: 16ddc345abd6e10a7a3714f12780958f60d339b6
+ms.openlocfilehash: 59bbcbf9aaef17394151e7db1471b63b87a46288
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36223350"
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39445719"
 ---
 # <a name="tutorial-azure-active-directory-integration-with-sap-cloud-for-customer"></a>チュートリアル: Azure Active Directory と SAP Cloud for Customer の統合
 
@@ -52,7 +52,7 @@ Azure AD と SAP Cloud for Customer の統合を構成するには、次のも�
 このチュートリアルでは、テスト環境で Azure AD のシングル サインオンをテストします。 このチュートリアルで説明するシナリオは、主に次の 2 つの要素で構成されています。
 
 1. ギャラリーから SAP Cloud for Customer を追加する
-2. Azure AD シングル サインオンの構成とテスト
+1. Azure AD シングル サインオンの構成とテスト
 
 ## <a name="adding-sap-cloud-for-customer-from-the-gallery"></a>ギャラリーから SAP Cloud for Customer を追加する
 Azure AD への SAP Cloud for Customer の統合を構成するには、ギャラリーから管理対象 SaaS アプリの一覧に SAP Cloud for Customer を追加する必要があります。
@@ -63,19 +63,19 @@ Azure AD への SAP Cloud for Customer の統合を構成するには、ギャ�
 
     ![Active Directory][1]
 
-2. **[エンタープライズ アプリケーション]** に移動します。 次に、**[すべてのアプリケーション]** に移動します。
+1. **[エンタープライズ アプリケーション]** に移動します。 次に、**[すべてのアプリケーション]** に移動します。
 
     ![[アプリケーション]][2]
     
-3. 新しいアプリケーションを追加するには、ダイアログの上部にある **[新しいアプリケーション]** をクリックします。
+1. 新しいアプリケーションを追加するには、ダイアログの上部にある **[新しいアプリケーション]** をクリックします。
 
     ![[アプリケーション]][3]
 
-4. 検索ボックスに、「 **SAP Cloud for Customer**」と入力します。
+1. 検索ボックスに、「 **SAP Cloud for Customer**」と入力します。
 
     ![Azure AD のテスト ユーザーの作成](./media/sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_search.png)
 
-5. 結果パネルで **[SAP Cloud for Customer]** を選択し、**[追加]** をクリックして、アプリケーションを追加します。
+1. 結果パネルで **[SAP Cloud for Customer]** を選択し、**[追加]** をクリックして、アプリケーションを追加します。
 
     ![Azure AD のテスト ユーザーの作成](./media/sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_addfromgallery.png)
 
@@ -89,10 +89,10 @@ SAP Cloud for Customer で、Azure AD の **[ユーザー名]** の値を **[Use
 SAP Cloud for Customer で Azure AD のシングル サインオンを構成してテストするには、次の構成要素を完了する必要があります。
 
 1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - ユーザーがこの機能を使用できるようにします。
-2. **[Azure AD のテスト ユーザーの作成](#creating-an-azure-ad-test-user)** - Britta Simon で Azure AD のシングル サインオンをテストします。
-3. **[SAP Cloud for Customer のテスト ユーザーの作成](#creating-a-sap-cloud-for-customer-test-user)** - SAP Cloud for Customer で Britta Simon に対応するユーザーを作成し、Azure AD の Britta Simon にリンクさせます。
-4. **[Azure AD テスト ユーザーの割り当て](#assigning-the-azure-ad-test-user)** - Britta Simon が Azure AD のシングル サインオンを使用できるようにします。
-5. **[シングル サインオンのテスト](#testing-single-sign-on)** - 構成が機能するかどうかを確認します。
+1. **[Azure AD のテスト ユーザーの作成](#creating-an-azure-ad-test-user)** - Britta Simon で Azure AD のシングル サインオンをテストします。
+1. **[SAP Cloud for Customer のテスト ユーザーの作成](#creating-a-sap-cloud-for-customer-test-user)** - SAP Cloud for Customer で Britta Simon に対応するユーザーを作成し、Azure AD の Britta Simon にリンクさせます。
+1. **[Azure AD テスト ユーザーの割り当て](#assigning-the-azure-ad-test-user)** - Britta Simon が Azure AD のシングル サインオンを使用できるようにします。
+1. **[シングル サインオンのテスト](#testing-single-sign-on)** - 構成が機能するかどうかを確認します。
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Azure AD シングル サインオンの構成
 
@@ -102,15 +102,15 @@ SAP Cloud for Customer で Azure AD のシングル サインオンを構成し�
 
 1. Azure Portal の **SAP Cloud for Customer** アプリケーション統合ページで、**[シングル サインオン]** をクリックします。
 
-    ![[Configure Single Sign-On]][4]
+    ![Configure single sign-on][4]
 
-2. **[シングル サインオン]** ダイアログで、**[モード]** として **[SAML ベースのサインオン]** を選択し、シングル サインオンを有効にします。
+1. **[シングル サインオン]** ダイアログで、**[モード]** として **[SAML ベースのサインオン]** を選択し、シングル サインオンを有効にします。
  
-    ![[Configure Single Sign-On]](./media/sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_samlbase.png)
+    ![Configure single sign-on](./media/sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_samlbase.png)
 
-3. **[SAP Cloud for Customer のドメインと URL]** セクションで、次の手順を実行します。
+1. **[SAP Cloud for Customer のドメインと URL]** セクションで、次の手順を実行します。
 
-    ![[Configure Single Sign-On]](./media/sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_url.png)
+    ![Configure single sign-on](./media/sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_url.png)
 
     a. **[サインオン URL]** ボックスに、`https://<server name>.crm.ondemand.com` のパターンを使用して URL を入力します。
 
@@ -119,28 +119,28 @@ SAP Cloud for Customer で Azure AD のシングル サインオンを構成し�
     > [!NOTE] 
     > これらは実際の値ではありません。 実際のサインオン URL と識別子でこれらの値を更新してください。 これらの値を取得するには、[SAP Cloud for Customer クライアント サポート チーム](https://www.sap.com/about/agreements.sap-cloud-services-customers.html)に連絡してください。 
 
-4. **[User Attributes (ユーザー属性)]** セクションで、次の手順に従います。
+1. **[User Attributes (ユーザー属性)]** セクションで、次の手順に従います。
 
-    ![[Configure Single Sign-On]](./media/sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_attribute.png)
+    ![Configure single sign-on](./media/sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_attribute.png)
 
     a. **[ユーザー識別子]** リストで、**[ExtractMailPrefix()]** 関数を選択します。
 
     b. **[メール]** 一覧から、実装で使用するユーザー属性を選択します。
     たとえば、一意のユーザー識別子として EmployeeID を使用し、その属性値を ExtensionAttribute2 に保存している場合、[user.extensionattribute2] を選択します。  
 
-5. **[SAML 署名証明書]** セクションで、**[Metadata XML (メタデータ XML)]** をクリックし、コンピューターにメタデータ ファイルを保存します。
+1. **[SAML 署名証明書]** セクションで、**[Metadata XML (メタデータ XML)]** をクリックし、コンピューターにメタデータ ファイルを保存します。
 
-    ![[Configure Single Sign-On]](./media/sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_certificate.png) 
+    ![Configure single sign-on](./media/sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_certificate.png) 
 
-6. **[保存]** ボタンをクリックします。
+1. **[保存]** ボタンをクリックします。
 
-    ![[Configure Single Sign-On]](./media/sap-customer-cloud-tutorial/tutorial_general_400.png)
+    ![Configure single sign-on](./media/sap-customer-cloud-tutorial/tutorial_general_400.png)
 
-7. **[SAP Cloud for Customer Configuration (SAP Cloud for Customer 構成)]** セクションで、**[Configure SAP Cloud for Customer (SAP Cloud for Customer を構成する)]** をクリックして、**[サインオンの構成]** ウィンドウを開きます。 **[クイック リファレンス]** セクションから **SAML シングル サインオン サービスの URL** をコピーします。
+1. **[SAP Cloud for Customer Configuration (SAP Cloud for Customer 構成)]** セクションで、**[Configure SAP Cloud for Customer (SAP Cloud for Customer を構成する)]** をクリックして、**[サインオンの構成]** ウィンドウを開きます。 **[クイック リファレンス]** セクションから **SAML シングル サインオン サービスの URL** をコピーします。
 
-    ![[Configure Single Sign-On]](./media/sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_configure.png) 
+    ![Configure single sign-on](./media/sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_configure.png) 
 
-8. 構成された SSO を取得するには、次の手順を実行します。
+1. 構成された SSO を取得するには、次の手順を実行します。
    
     a. SAP Cloud for Customer ポータルに管理者権限でログインします。
    
@@ -148,7 +148,7 @@ SAP Cloud for Customer で Azure AD のシングル サインオンを構成し�
    
     c. **[New Identity Provider (新しい ID プロバイダー)]** をクリックし、Azure Portal からダウンロードしたメタデータの XML ファイルを選択します。 メタデータをインポートすることによって、必要な署名証明書と暗号化証明書が自動的にアップロードされます。
    
-    ![[Configure Single Sign-On]](./media/sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_54.png)
+    ![Configure single sign-on](./media/sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_54.png)
    
     d. Azure Active Directory は、SAML 要求で Assertion Consumer Service URL 要素を必要とするため、**[Include Assertion Consumer Service URL (Assertion Consumer Service URL を含める)]** チェック ボックスをオンにします。
    
@@ -158,11 +158,11 @@ SAP Cloud for Customer で Azure AD のシングル サインオンを構成し�
    
     g. **[My System (自分のシステム)]** タブをクリックします。
    
-    ![[Configure Single Sign-On]](./media/sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_52.png)
+    ![Configure single sign-on](./media/sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_52.png)
    
     h. **[Azure AD Sign On URL (Azure AD サインオン URL)]** ボックスに、Azure Portal からコピーした **SAML シングル サインオン サービス URL** を貼り付けます。
    
-    ![[Configure Single Sign-On]](./media/sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_53.png)
+    ![Configure single sign-on](./media/sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_53.png)
    
     i. ユーザー ID とパスワードでログオンするか、SSO でログオンするかを従業員が手動で選択できるかどうかを、**[Manual Identity Provider Selection (ID プロバイダーの手動選択)]** を選択して指定します。
    
@@ -198,15 +198,15 @@ SAP Cloud for Customer で Azure AD のシングル サインオンを構成し�
 
     ![Azure AD のテスト ユーザーの作成](./media/sap-customer-cloud-tutorial/create_aaduser_01.png) 
 
-2. **[ユーザーとグループ]** に移動し、**[すべてのユーザー]** をクリックして、ユーザーの一覧を表示します。
+1. **[ユーザーとグループ]** に移動し、**[すべてのユーザー]** をクリックして、ユーザーの一覧を表示します。
     
     ![Azure AD のテスト ユーザーの作成](./media/sap-customer-cloud-tutorial/create_aaduser_02.png) 
 
-3. ダイアログの上部にある **[追加]** をクリックして、**[ユーザー]** ダイアログを開きます。
+1. ダイアログの上部にある **[追加]** をクリックして、**[ユーザー]** ダイアログを開きます。
  
     ![Azure AD のテスト ユーザーの作成](./media/sap-customer-cloud-tutorial/create_aaduser_03.png) 
 
-4. **[ユーザー]** ダイアログ ページで、次の手順を実行します。
+1. **[ユーザー]** ダイアログ ページで、次の手順を実行します。
  
     ![Azure AD のテスト ユーザーの作成](./media/sap-customer-cloud-tutorial/create_aaduser_04.png) 
 
@@ -237,30 +237,30 @@ SAP Cloud for Customer で Azure AD のシングル サインオンを構成し�
 
     ![ユーザーの割り当て][201] 
 
-2. アプリケーションの一覧で **[SAP Cloud for Customer]** を選択します。
+1. アプリケーションの一覧で **[SAP Cloud for Customer]** を選択します。
 
-    ![[Configure Single Sign-On]](./media/sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_app.png) 
+    ![Configure single sign-on](./media/sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_app.png) 
 
-3. 左側のメニューで **[ユーザーとグループ]** をクリックします。
+1. 左側のメニューで **[ユーザーとグループ]** をクリックします。
 
     ![ユーザーの割り当て][202] 
 
-4. **[追加]** ボタンをクリックします。 次に、**[割り当ての追加]** ダイアログで **[ユーザーとグループ]** を選択します。
+1. **[追加]** ボタンをクリックします。 次に、**[割り当ての追加]** ダイアログで **[ユーザーとグループ]** を選択します。
 
     ![ユーザーの割り当て][203]
 
-5. **[ユーザーとグループ]** ダイアログで、ユーザーの一覧から **[Britta Simon]** を選択します。
+1. **[ユーザーとグループ]** ダイアログで、ユーザーの一覧から **[Britta Simon]** を選択します。
 
-6. **[ユーザーとグループ]** ダイアログで **[選択]** をクリックします。
+1. **[ユーザーとグループ]** ダイアログで **[選択]** をクリックします。
 
-7. **[割り当ての追加]** ダイアログで **[割り当て]** ボタンをクリックします。
+1. **[割り当ての追加]** ダイアログで **[割り当て]** ボタンをクリックします。
     
 ### <a name="testing-single-sign-on"></a>シングル サインオンのテスト
 
 このセクションでは、アクセス パネルを使用して Azure AD のシングル サインオン構成をテストします。
 
 アクセス パネルで [SAP Cloud for Customer] タイルをクリックすると、自動的に SAP Cloud for Customer アプリケーションにサインオンします。
-アクセス パネルの詳細については、[アクセス パネルの概要](../active-directory-saas-access-panel-introduction.md)に関する記事を参照してください。
+アクセス パネルの詳細については、[アクセス パネルの概要](../user-help/active-directory-saas-access-panel-introduction.md)に関する記事を参照してください。
 
 ## <a name="additional-resources"></a>その他のリソース
 

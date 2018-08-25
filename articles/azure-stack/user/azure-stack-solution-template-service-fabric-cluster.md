@@ -14,12 +14,12 @@ ms.topic: tutorial
 ms.date: 05/08/2018
 ms.author: mattbriggs
 ms.reviewer: shnatara
-ms.openlocfilehash: a88d8dd2af94ac796a3b2e3c667fd40a308f02a1
-ms.sourcegitcommit: 870d372785ffa8ca46346f4dfe215f245931dae1
+ms.openlocfilehash: 9feb2e538d3578fe259aa3fbc693a1e953f2f894
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/08/2018
-ms.locfileid: "33877161"
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39440353"
 ---
 # <a name="deploy-a-service-fabric-cluster-in-azure-stack"></a>Service Fabric クラスターを Azure Stack にデプロイする
 
@@ -39,9 +39,9 @@ Service Fabric クラスターをデプロイするには、次のものが必�
     > [!NOTE]  
     > テスト用途であれば、x.509 サーバー証明書の代わりに自己署名証明書を使用することができます。 自己署名証明書は、クラスターの FQDN と一致している必要はありません。
 
-2.  **管理用クライアント証明書** これは、Service Fabric クラスターに対して認証を行うクライアントが使用する証明書で、自己署名されたものでもかまいません。 このクライアント証明書の作成に関する[要件](https://docs.microsoft.com/azure/service-fabric/service-fabric-cluster-security)を参照してください。
+1.  **管理用クライアント証明書** これは、Service Fabric クラスターに対して認証を行うクライアントが使用する証明書で、自己署名されたものでもかまいません。 このクライアント証明書の作成に関する[要件](https://docs.microsoft.com/azure/service-fabric/service-fabric-cluster-security)を参照してください。
 
-3.  **Azure Stack Marketplace に次の項目が用意されている必要があります。**
+1.  **Azure Stack Marketplace に次の項目が用意されている必要があります。**
      - **Windows Server 2016** - テンプレートで Windows Server 2016 イメージを使用してクラスターを作成します。  
      - **カスタム スクリプト拡張機能** - Microsoft の仮想マシン拡張機能。  
      - **PowerShell Desired State Configuration** - Microsoft の仮想マシン拡張機能。
@@ -124,20 +124,20 @@ KeyVault を作成してそこに "*クラスター証明書*" を追加する�
 
    ![[Service Fabric クラスター] を選択](./media/azure-stack-solution-template-service-fabric-cluster/image2.png)
 
-2. *[基本]* をはじめとする各ページのデプロイ フォームに必要事項を入力します。 指定すべき値がわからない場合は、既定値を使用してください。 **[OK]** を選択して次のページに進みます。
+1. *[基本]* をはじめとする各ページのデプロイ フォームに必要事項を入力します。 指定すべき値がわからない場合は、既定値を使用してください。 **[OK]** を選択して次のページに進みます。
 
    ![基本](media/azure-stack-solution-template-service-fabric-cluster/image3.png)
 
-3. *[ネットワーク設定]* ページでは、アプリケーション用に開放するポートを具体的に指定できます。
+1. *[ネットワーク設定]* ページでは、アプリケーション用に開放するポートを具体的に指定できます。
 
    ![ネットワーク設定](media/azure-stack-solution-template-service-fabric-cluster/image4.png)
 
-4. *[セキュリティ]* ページには、[Azure KeyVault の作成](#add-a-secret-to-key-vault)とシークレットのアップロードによって得られた値を追加します。
+1. *[セキュリティ]* ページには、[Azure KeyVault の作成](#add-a-secret-to-key-vault)とシークレットのアップロードによって得られた値を追加します。
 
-   *[Admin Client Certificate Thumbprint]\(管理用クライアント証明書の拇印\)* には、"*管理用クライアント証明書*" の拇印を入力します  (「[前提条件](#prerequisites)」を参照してください)。
+   *[Admin Client Certificate Thumbprint]\(管理用クライアント証明書の拇印\)* には、"*管理用クライアント証明書*" の拇印を入力します  ([前提条件](#prerequisites)を参照してください)。
    
    - [ソース Key Vault]: スクリプトの実行結果から得られる *keyVault id* 文字列全体を指定します。 
-   - [Cluster Certificate URL]\(クラスター証明書 URL\): スクリプトの実行結果から得られる *Secret Id* の URL 全体を指定します。 
+   - (クラスター証明書 URL\): スクリプトの実行結果から得られる *Secret Id* の URL 全体を指定します。 
    - [クラスター証明書の拇印]: スクリプトの実行結果から得られる "*クラスター証明書の拇印*" を指定します。
    - [Admin Client Certificate Thumbprints]\(管理用クライアント証明書の拇印\): 「前提条件」で作成した "*管理用クライアント証明書の拇印*" を指定します。 
 
@@ -145,7 +145,7 @@ KeyVault を作成してそこに "*クラスター証明書*" を追加する�
 
    ![セキュリティ](media/azure-stack-solution-template-service-fabric-cluster/image6.png)
 
-5. ウィザードを完了し、**[作成]** を選択して Service Fabric クラスターをデプロイします。
+1. ウィザードを完了し、**[作成]** を選択して Service Fabric クラスターをデプロイします。
 
 
 
@@ -169,7 +169,7 @@ Service Fabric クラスターには、Service Fabric Explorer または Service
 
     d. *[証明書ストア]* ページの **[個人用]** を選択してウィザードを完了します。  
        ![証明書ストア](media/azure-stack-solution-template-service-fabric-cluster/image9.png)  
-2. Service Fabric クラスターの FQDN を特定するには、次の手順を実行します。  
+1. Service Fabric クラスターの FQDN を特定するには、次の手順を実行します。  
 
     a. Service Fabric クラスターに関連付けられているリソース グループに移動し、*[パブリック IP アドレス]* リソースを探します。 パブリック IP アドレスに関連付けられているオブジェクトを選択し、*[パブリック IP アドレス]* ブレードを開きます。  
 
@@ -179,12 +179,12 @@ Service Fabric クラスターには、Service Fabric Explorer または Service
 
       ![DNS name](media/azure-stack-solution-template-service-fabric-cluster/image11.png)  
 
-3. Service Fabric Explorer の URL とクライアント接続のエンドポイントを見つけるには、Template deployment の結果を確認します。
+1. Service Fabric Explorer の URL とクライアント接続のエンドポイントを見つけるには、Template deployment の結果を確認します。
 
-4. お使いのブラウザーで https://*FQDN*:19080 にアクセスします。 *FQDN* の部分は、手順 2. で調べた実際の Service Fabric クラスターの FQDN に置き換えてください。   
+1. お使いのブラウザーで https://*FQDN*:19080 にアクセスします。 *FQDN* の部分は、手順 2. で調べた実際の Service Fabric クラスターの FQDN に置き換えてください。   
    自己署名証明書を使用した場合は、接続のセキュリティが確保されていないという警告が表示されます。 Web サイトに進むには、**[詳細表示]** を選択して **[Go on to the webpage]\(Web ページに進む\)** を選択してください。 
 
-5. サイトに対する認証を行うには、使用する証明書を選択する必要があります。 **[More choices]\(その他の選択肢\)** を選択して適切な証明書を選び、**[OK]** をクリックして Service Fabric Explorer に接続します。 
+1. サイトに対する認証を行うには、使用する証明書を選択する必要があります。 **[More choices]\(その他の選択肢\)** を選択して適切な証明書を選び、**[OK]** をクリックして Service Fabric Explorer に接続します。 
 
    ![認証](media/azure-stack-solution-template-service-fabric-cluster/image14.png)
 
@@ -192,9 +192,9 @@ Service Fabric クラスターには、Service Fabric Explorer または Service
 
 ## <a name="use-service-fabric-powershell"></a>Service Fabric PowerShell の使用
 
-1. Azure Service Fabric ドキュメントの「[Windows で開発環境を準備する](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-get-started#install-the-sdk-and-tools)」から *Microsoft Azure Service Fabric SDK* をインストールします。  
+1. Azure Service Fabric ドキュメントの「[Windows で開発環境を準備する](https://docs.microsoft.com/azure/service-fabric/service-fabric-get-started#install-the-sdk-and-tools)」から *Microsoft Azure Service Fabric SDK* をインストールします。  
 
-2. インストールが完了したら、Service Fabric のコマンドレットに PowerShell から確実にアクセスできるようシステム環境変数を構成します。  
+1. インストールが完了したら、Service Fabric のコマンドレットに PowerShell から確実にアクセスできるようシステム環境変数を構成します。  
     
     a. **[コントロール パネル]** > **[システムとセキュリティ]** > **[システム]** に移動し、**[システムの詳細設定]** を選択します。  
     
@@ -206,7 +206,7 @@ Service Fabric クラスターには、Service Fabric Explorer または Service
 
       ![環境変数リスト](media/azure-stack-solution-template-service-fabric-cluster/image16.png)
 
-3. 環境変数の順序を変更したら、PowerShell を再起動し、次の PowerShell スクリプトを実行して Service Fabric クラスターにアクセスします。
+1. 環境変数の順序を変更したら、PowerShell を再起動し、次の PowerShell スクリプトを実行して Service Fabric クラスターにアクセスします。
 
    ````PowerShell  
     Connect-ServiceFabricCluster -ConnectionEndpoint "\[Service Fabric

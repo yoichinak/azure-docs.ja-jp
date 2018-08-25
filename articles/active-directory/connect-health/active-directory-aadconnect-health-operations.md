@@ -3,7 +3,7 @@ title: Azure Active Directory Connect Health の操作
 description: この記事では、Azure AD Connect Health のデプロイ後に実行できる追加操作について説明しています。
 services: active-directory
 documentationcenter: ''
-author: karavar
+author: zhiweiw
 manager: mtillman
 ms.assetid: 86cc3840-60fb-43f9-8b2a-8598a9df5c94
 ms.service: active-directory
@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: c9920857f7d1910921b4bb3771e770fb4c3a42c3
-ms.sourcegitcommit: 9cdd83256b82e664bd36991d78f87ea1e56827cd
+ms.openlocfilehash: 68be732b2a375d1667c743ac277ce653c78105f1
+ms.sourcegitcommit: 11321f26df5fb047dac5d15e0435fce6c4fde663
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31389714"
+ms.lasthandoff: 07/06/2018
+ms.locfileid: "37886871"
 ---
 # <a name="azure-active-directory-connect-health-operations"></a>Azure Active Directory Connect Health の操作
 このトピックでは、Azure Active Directory (Azure AD) Connect Health を使用して実行できるさまざまな操作について説明します。
@@ -99,7 +99,7 @@ Azure AD Connect Health の [ロールベースのアクセス制御 (RBAC)](../
 ### <a name="roles"></a>ロール
 Azure AD Connect Health では、次の組み込みのロールがサポートされています。
 
-| 役割 | アクセス許可 |
+| Role | アクセス許可 |
 | --- | --- |
 | Owner |所有者は、"*アクセスの管理*" (例: ユーザーやグループへのロールの割り当て)、ポータルからの "*すべての情報の表示*" (例: アラートの表示)、Azure AD Connect Health 内の "*設定の変更*" (例: 電子メール通知) を実行できます。 <br>このロールは、既定で Azure AD のグローバル管理者に割り当てられ、これを変更することはできません。 |
 | Contributor |共同作成者は、ポータルからの "*すべての情報の表示*" (例: アラートの表示) と Azure AD Connect Health 内の "*設定の変更*" (例: 電子メール通知) を実行できます。 |
@@ -122,7 +122,7 @@ Azure AD Connect Health 内で "*すべてのサービス インスタンス*" �
 
 #### <a name="step-2-add-users-and-groups-and-assign-roles"></a>手順 2: ユーザーおよびグループを追加し、ロールを割り当てる
 1. **[構成]** セクションで、**[ユーザー]** をクリックします。<br>
-   ![ユーザーが強調表示されている Azure AD Connect Health RBAC のメイン ブレードのスクリーンショット](./media/active-directory-aadconnect-health/RBAC_main_blade.png)
+   ![Azure AD Connect Health リソースのサイドバーのスクリーンショット](./media/active-directory-aadconnect-health/startRBAC.png)
 2. **[追加]** を選択します。
 3. **[役割の選択]** ウィンドウで、ロール (たとえば、**[所有者]**) を選択します。<br>
    ![Azure AD Connect Health RBAC のユーザー ウィンドウのスクリーンショット](./media/active-directory-aadconnect-health/RBAC_add.png)

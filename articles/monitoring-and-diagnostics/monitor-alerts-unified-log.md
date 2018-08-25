@@ -8,19 +8,23 @@ ms.topic: conceptual
 ms.date: 05/01/2018
 ms.author: vinagara
 ms.component: alerts
-ms.openlocfilehash: aab3c843493048291583bea111a52fe3356dc0f0
-ms.sourcegitcommit: 1b8665f1fff36a13af0cbc4c399c16f62e9884f3
+ms.openlocfilehash: fd1fb978fb47c69b2eb672bc27baee73dfdd0a29
+ms.sourcegitcommit: 3f8f973f095f6f878aa3e2383db0d296365a4b18
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35264376"
+ms.lasthandoff: 08/20/2018
+ms.locfileid: "42142891"
 ---
 # <a name="log-alerts-in-azure-monitor---alerts"></a>Azure Monitor でのログ アラート - Alerts 
-この記事では、ログ アラートの詳細について説明します。ログ アラートは、新しい [Azure アラート](monitoring-overview-unified-alerts.md)でサポートされるアラートの一種です。これを使用すると、Azure の分析プラットフォームをアラートの発信基準として使用できます。 ログを使用するメトリック アラートの詳細については、「[Near Real Time Metric Alerts](monitoring-near-real-time-metric-alerts.md)」(ほぼリアルタイムのメトリック アラート) を参照してください。
+この記事では、ログ アラートの詳細について説明します。ログ アラートは、新しい [Azure アラート](monitoring-overview-unified-alerts.md)でサポートされるアラートの一種です。これを使用すると、Azure の分析プラットフォームをアラートの発信基準として使用できます。
 
 
-ログ アラートは、[Azure Log Analytics](../log-analytics/log-analytics-tutorial-viewdata.md) または [Application Insights](../application-insights/app-insights-cloudservices.md#view-azure-diagnostic-events) 用に作成されたログ検索ルールで構成されます
+ログ アラートは、[Azure Log Analytics](../log-analytics/log-analytics-tutorial-viewdata.md) または [Application Insights](../application-insights/app-insights-cloudservices.md#view-azure-diagnostic-events) 用に作成されたログ検索ルールで構成されます。 ログ アラートの価格詳細は「[Azure Monitor の価格](https://azure.microsoft.com/en-us/pricing/details/monitor/)」ページにあります。 Azure 請求書には、ログ アラートが型 `microsoft.insights/scheduledqueryrules` として表示され、さらに次が表示されます。
+- Application Insights のログ アラートが正しいアラート名でリソース グループとアラート プロパティと共に表示されます
+- Log Analytics のログ アラートがアラート名 (`<WorkspaceName>|<savedSearchId>|<scheduleId>|<ActionId>` として) でリソース グループとアラート プロパティと共に表示されます
 
+    > [!NOTE]
+    > Log Analytics API で作成する、すべての保存した検索条件、スケジュール、およびアクションは、小文字にする必要があります。 `<, >, %, &, \, ?, /` のような無効な文字が使用された場合、請求書では `_` で置換されます。
 
 ## <a name="log-search-alert-rule---definition-and-types"></a>ログ検索アラート ルールの定義と種類
 
@@ -83,10 +87,10 @@ Web ベースのアプリがコード 500 (つまり) 内部サーバー エラ�
 #### <a name="example"></a>例
 いずれかのコンピューターでプロセッサの使用率が 90% を超える状態が 30 分間に 3 回発生した場合にアラートを生成するシナリオを考えてみましょう。  以下のような詳細情報を使用してアラート ルールを作成します。  
 
-- **クエリ:** Perf | where ObjectName == "Processor" and CounterName == "% Processor Time" | summarize AggregatedValue = avg(CounterValue) by bin(TimeGenerated, 5 m), Computer<br>
+- **[クエリ]:** Perf | where ObjectName == "Processor" and CounterName == "% Processor Time" | summarize AggregatedValue = avg(CounterValue) by bin(TimeGenerated, 5m), Computer<br>
 - **期間:** 30 分<br>
 - **アラート頻度:** 5 分<br>
-- **集計値:** 90 より大<br>
+- **集計値:** 90 よりも大きい<br>
 - **アラートをトリガーする基準:** 違反総数が 2 より大<br>
 
 このクエリは、各コンピューターの平均値を 5 分間隔で算出します。  このクエリは過去 30 分間に収集されたデータを対象に、5 分ごとに実行されます。  コンピューターが 3 台の場合、サンプル データは以下のようになります。
@@ -104,7 +108,7 @@ Web ベースのアプリがコード 500 (つまり) 内部サーバー エラ�
 - Azure Resource Manager のテンプレート
 
 ### <a name="azure-portal"></a>Azure ポータル
-[新しい Azure アラート](monitoring-overview-unified-alerts.md)が導入されて以来、ユーザーは Azure Portal を使用して、すべての種類のアラートを同じ手順で一元的に管理できるようになりました。 詳しくは、[新しい Azure アラートの使用](monitor-alerts-unified-usage.md)に関する記事をご覧ください。
+[新しい Azure アラート](monitoring-overview-unified-alerts.md)が導入されて以来、ユーザーは Azure portal を使用して、すべての種類のアラートを同じ使用手順で一元的に管理できるようになりました。 詳しくは、[新しい Azure アラートの使用](monitor-alerts-unified-usage.md)に関する記事をご覧ください。
 
 ユーザーはまた、Azure の任意の Analytics プラットフォームでクエリを完成させてから、*そのクエリを保存することによって、Alerts で使用するためにインポート*できます。 次の手順に従います。
 - *Application Insights の場合*: Analytics ポータルに移動し、クエリとその結果を検証します。 次に、一意の名前で *[Shared Queries] (共有クエリ)* に保存します。
@@ -120,7 +124,7 @@ Web ベースのアプリがコード 500 (つまり) 内部サーバー エラ�
 
 REST API の使用に関する詳細と例については、次の記事をご覧ください。
 - [Log Analytics アラートの REST API に関する記事](../log-analytics/log-analytics-api-alerts.md) -  Azure Log Analytics 用のログ検索アラート ルールを作成、管理する方法
-- [Azure Monitor の Scheduled Query Rules REST API に関する記事](https://docs.microsoft.com/en-us/rest/api/monitor/scheduledqueryrules/) - Azure Application Insights 用のログ検索アラート ルールを作成、管理する方法
+- [Azure Monitor の Scheduled Query Rules REST API に関する記事](https://docs.microsoft.com/rest/api/monitor/scheduledqueryrules/) - Azure Application Insights 用のログ検索アラート ルールを作成、管理する方法
 
 ### <a name="azure-resource-manager-template"></a>Azure Resource Manager テンプレート
 ユーザーはまた、[Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) の柔軟な機能を使って、リソースの作成や更新を行い、ログ アラートの作成や更新に使用することができます。
@@ -131,7 +135,7 @@ Resource Manager テンプレートの使用に関する詳細と例について
  
 
 ## <a name="next-steps"></a>次の手順
-* [Azure のログ アラート](monitor-alerts-unified-log-webhook.md)について理解する。
+* [Azure のログ アラートの Webhook](monitor-alerts-unified-log-webhook.md) について理解する。
 * 新しい [Azure アラート](monitoring-overview-unified-alerts.md)について学習する。
 * [Application Insights](../application-insights/app-insights-analytics.md) についてさらに学習します。
 * [Log Analytics](../log-analytics/log-analytics-overview.md) についてさらに学習します。    

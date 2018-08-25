@@ -3,23 +3,24 @@ title: Azure AD のアクセス レビューによるゲスト アクセスの�
 description: Azure Active Directory アクセス レビューを使用し、ゲスト ユーザーをグループのメンバーとして、またはアプリケーションに割り当てられたユーザーとして管理します。
 services: active-directory
 documentationcenter: ''
-author: markwahl-msft
+author: rolyon
 manager: mtillman
-editor: ''
+editor: markwahl-msft
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.component: compliance-reports
+ms.topic: conceptual
+ms.component: compliance
 ms.date: 06/21/2018
 ms.author: rolyon
-ms.openlocfilehash: 8eb7e4bc79ee50982dae5751968eb732ef39e00d
-ms.sourcegitcommit: 0fa8b4622322b3d3003e760f364992f7f7e5d6a9
+ms.reviewer: mwahl
+ms.openlocfilehash: 3f7580b39e0ce9b1b83b5bc8ee0ed897b77e030a
+ms.sourcegitcommit: 35ceadc616f09dd3c88377a7f6f4d068e23cceec
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/27/2018
-ms.locfileid: "37017782"
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39620009"
 ---
 # <a name="manage-guest-access-with-azure-ad-access-reviews"></a>Azure AD のアクセス レビューによるゲスト アクセスの管理
 
@@ -29,7 +30,7 @@ Azure Active Directory (Azure AD) では、組織の境界を越えたコラボ�
 ゲスト ユーザーに適切なアクセス権を確保することも簡単にできます。 ゲスト自身または意思決定者に対し、アクセス レビューに参加してゲストのアクセス権を再確認 (証明) するよう求めることができます。 レビュー担当者は、Azure AD からの提案に基づいて、各ユーザーの継続的なアクセスのニーズを評価することができます。 アクセス レビューが完了したら、変更を加え、不要になったアクセス権をゲストから削除することができます。
 
 > [!NOTE]
-> このドキュメントでは、ゲスト ユーザーのアクセス レビューについて重点的に説明します。 ゲストに限らず全ユーザーのアクセス権をレビューする必要がある場合は、[アクセス レビューでユーザー アクセスを管理する方法](active-directory-azure-ad-controls-manage-user-access-with-access-reviews.md)に関するページを参照してください。 グローバル管理者などの管理者ロールのユーザーのメンバーシップを確認する場合は、[Azure AD Privileged Identity Management でアクセス レビューを開始する方法](active-directory-privileged-identity-management-how-to-start-security-review.md)に関するページを参照してください。 
+> このドキュメントでは、ゲスト ユーザーのアクセス レビューについて重点的に説明します。 ゲストに限らず全ユーザーのアクセス権をレビューする必要がある場合は、[アクセス レビューでユーザー アクセスを管理する方法](active-directory-azure-ad-controls-manage-user-access-with-access-reviews.md)に関するページを参照してください。 グローバル管理者などの管理者ロールのユーザーのメンバーシップを確認する場合は、[Azure AD Privileged Identity Management でアクセス レビューを開始する方法](privileged-identity-management/pim-how-to-start-security-review.md)に関するページを参照してください。 
 >
 >
 

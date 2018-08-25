@@ -9,12 +9,12 @@ ms.devlang: csharp
 ms.topic: conceptual
 ms.date: 09/15/2017
 ms.author: dobett
-ms.openlocfilehash: c1cee32e3ee60ce229308055cca7f0e9832ddc49
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: 28078d1917126af0281dacf263dbc92c16111200
+ms.sourcegitcommit: 7b845d3b9a5a4487d5df89906cc5d5bbdb0507c8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34633827"
+ms.lasthandoff: 08/14/2018
+ms.locfileid: "42140535"
 ---
 # <a name="get-started-with-device-management-netnet"></a>デバイス管理の開始 (.NET/.NET)
 
@@ -38,7 +38,6 @@ ms.locfileid: "34633827"
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
-<a id="DeviceIdentity_csharp"></a>
 [!INCLUDE [iot-hub-get-started-create-device-identity-portal](../../includes/iot-hub-get-started-create-device-identity-portal.md)]
 
 ## <a name="trigger-a-remote-reboot-on-the-device-using-a-direct-method"></a>ダイレクト メソッドを使用してデバイスのリモート再起動をトリガーする
@@ -187,7 +186,7 @@ ms.locfileid: "34633827"
 これで、アプリを実行する準備が整いました。
 1. .NET デバイス アプリ **SimulateManagedDevice** を実行します。  **SimulateManagedDevice** プロジェクトを右クリックし、**[デバッグ]**、**[新しいインスタンスを開始]** の順に選択します。 次のように、IoT ハブからのメソッド呼び出しのリッスンが開始するはずです。 
 
-2. デバイスが接続され、メソッドの呼び出しのために待機しています。.NET **TriggerReboot** アプリを実行して、シミュレート対象デバイスのアプリで reboot メソッドを呼び出します。 **TriggerReboot** プロジェクトを右クリックし、**[デバッグ]**、**[新しいインスタンスを開始]** を選択します。 "Rebooting!"\(再起動中\) というメッセージが **SimulatedManagedDevice** コンソールに出力されます。また、デバイスのレポートされたプロパティ (最終再起動時間など) が **TriggerReboot** コンソールに出力されます。
+2. デバイスが接続され、メソッドの呼び出しのために待機しています .NET **TriggerReboot** アプリを実行して、シミュレート対象デバイスのアプリで reboot メソッドを呼び出します。 **TriggerReboot** プロジェクトを右クリックし、**[デバッグ]**、**[新しいインスタンスを開始]** を選択します。 "Rebooting!"\(再起動中\) というメッセージが **SimulatedManagedDevice** コンソールに出力されます。また、デバイスのレポートされたプロパティ (最終再起動時間など) が **TriggerReboot** コンソールに出力されます。
    
     ![サービスとデバイス アプリの実行][img-combinedrun]
 

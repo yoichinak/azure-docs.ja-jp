@@ -7,16 +7,17 @@ manager: douge
 assetId: 5fff1301-5469-4d97-be88-c85c30f837c1
 ms.prod: visual-studio-dev15
 ms.technology: vs-azure
-ms.workload: azure
+ms.custom: vs-azure
+ms.workload: azure-vs
 ms.topic: conceptual
 ms.date: 11/11/2016
 ms.author: ghogen
-ms.openlocfilehash: 866575a483e705e1c972a0b56d98f26e9cf0c631
-ms.sourcegitcommit: fa493b66552af11260db48d89e3ddfcdcb5e3152
+ms.openlocfilehash: dac5425f72ff57e412be664e1bc0c84aee3dec1f
+ms.sourcegitcommit: 30c7f9994cf6fcdfb580616ea8d6d251364c0cd1
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/23/2018
-ms.locfileid: "31798123"
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "42140171"
 ---
 # <a name="using-windows-powershell-scripts-to-publish-to-dev-and-test-environments"></a>Windows PowerShell スクリプトを使用した開発環境およびテスト環境の発行
 
@@ -36,7 +37,7 @@ Azure 開発のために、Visual Studio で PowerShell を使用するための
 
 ## <a name="generating-the-publish-scripts"></a>発行スクリプトの生成
 
-[こちらの手順](virtual-machines/windows/classic/web-app-visual-studio.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)に従って新しいプロジェクトを作成するときに、Web サイトをホストする仮想マシンの発行スクリプトを生成できます。 [Azure App Service の Web アプリの発行スクリプトを生成](app-service/app-service-web-get-started-dotnet.md)することもできます。
+[こちらの手順](virtual-machines/windows/classic/web-app-visual-studio.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)に従って新しいプロジェクトを作成するときに、Web サイトをホストする仮想マシンの発行スクリプトを生成できます。 [Azure App Service の Web アプリの発行スクリプトを生成](app-service/scripts/app-service-powershell-deploy-github.md)することもできます。
 
 ## <a name="scripts-that-visual-studio-generates"></a>Visual Studio によって生成されるスクリプト
 
@@ -143,7 +144,7 @@ JSON ファイルは **[構成]** フォルダーに作成されます。この�
 
 JSON 構成を編集して、発行スクリプトの実行時の動作を変更できます。 `cloudService` セクションと `virtualMachine` セクションは必須ですが、`databases` セクションは不要であれば削除できます。 Visual Studio によって生成される既定の構成ファイルに含まれる空のプロパティは省略可能です。既定の構成ファイルで値が指定されているプロパティは必須です。
 
-Azure に運用サイトが 1 つだけ存在するのでなく、複数のデプロイ環境 (スロット) を持つ Web サイトがある場合は、JSON 構成ファイルの Web サイト名にスロット名を含めることができます。 たとえば、**mysite** という名前の Web サイトがあり、そのスロットが **test** という名前の場合、URI は `mysite-test.cloudapp.net` になります。ただし、構成ファイルで使用する正しい名前は mysite(test) です。 これが可能なのは、サブスクリプションに Web サイトとスロットが既に存在している場合に限られます。 存在していない場合は、スロットを指定せずにスクリプトを実行して Web サイトを作成し、[Azure Portal](https://portal.azure.com/) でスロットを作成してから、変更した Web サイト名でスクリプトを実行します。 Web アプリのデプロイメント スロットの詳細については、「[Azure App Service の Web アプリのステージング環境を設定する](app-service/web-sites-staged-publishing.md)」をご覧ください。
+Azure に運用サイトが 1 つだけ存在するのでなく、複数のデプロイ環境 (スロット) を持つ Web サイトがある場合は、JSON 構成ファイルの Web サイト名にスロット名を含めることができます。 たとえば、**mysite** という名前の Web サイトがあり、そのスロットが **test** という名前の場合、URI は `mysite-test.cloudapp.net` になります。ただし、構成ファイルで使用する正しい名前は mysite(test) です。 これが可能なのは、サブスクリプションに Web サイトとスロットが既に存在している場合に限られます。 存在していない場合は、スロットを指定せずにスクリプトを実行して Web サイトを作成し、[Azure Portal](https://portal.azure.com/) でスロットを作成してから、変更した Web サイト名でスクリプトを実行します。 Web アプリのデプロイ スロットの詳細については、「[Azure App Service の Web アプリのステージング環境を設定する](app-service/web-sites-staged-publishing.md)」をご覧ください。
 
 ## <a name="how-to-run-the-publish-scripts"></a>発行スクリプトの実行方法
 
@@ -180,7 +181,7 @@ Azure に運用サイトが 1 つだけ存在するのでなく、複数のデ�
     Publish-WebApplication.ps1 -Verbose –Configuration C:\Path\WebProject-WAWS-dev.json
     ```
 
-5. 次の例に示すように **Publish-WebApplication.ps1** コマンドを使用してスクリプトを起動し、Web アプリケーションを発行します。 サブスクリプション名、発行パッケージ名、仮想マシンの資格情報、データベース サーバーの資格情報など、他の引数の既定の設定を上書きする必要がある場合は、それらのパラメーターを指定します。 **–Verbose** オプションを使用すると、発行処理の進行状況の詳細が表示されます。
+5. 次の例に示すように **Publish-WebApplication.ps1** コマンドを使用してスクリプトを起動し、Web アプリケーションを発行します。 サブスクリプション名、発行パッケージ名、仮想マシンの資格情報、データベース サーバーの資格情報など、他の引数の既定の設定をオーバーライドする必要がある場合は、それらのパラメーターを指定します。 **–Verbose** オプションを使用すると、発行処理の進行状況の詳細が表示されます。
 
     ```powershell
     Publish-WebApplication.ps1 –Configuration C:\Path\WebProject-WAWS-dev-json `
@@ -309,7 +310,7 @@ Windows PowerShell コマンド プロンプトで使用できる関数のヘル
 
 **AzureWebAppPublishModule**
 
-| 関数名 | [説明] |
+| 関数名 | 説明 |
 | --- | --- |
 | Add-AzureSQLDatabase |新しい Azure SQL データベースを作成します。 |
 | Add-AzureSQLDatabases |Visual Studio によって生成される JSON 構成ファイルの値から Azure SQL データベースを作成します。 |
@@ -338,7 +339,7 @@ Windows PowerShell コマンド プロンプトで使用できる関数のヘル
 
 **Publish-WebApplication**
 
-| 関数名 | [説明] |
+| 関数名 | 説明 |
 | --- | --- |
 | New-AzureWebApplicationEnvironment |Web サイトや仮想マシンなどの Azure リソースを作成します。 |
 | New-WebDeployPackage |この関数は実装されていません。 この関数にコマンドを追加すると、プロジェクトをビルドできます。 |

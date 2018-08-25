@@ -4,20 +4,20 @@ description: mongoimport と mongorestore を使用して、MongoDB 用 API ア�
 keywords: mongoimport, mongorestore
 services: cosmos-db
 author: SnehaGunda
-manager: kfile
+manager: slyons
 ms.service: cosmos-db
 ms.component: cosmosdb-mongo
 ms.devlang: na
 ms.topic: tutorial
 ms.date: 05/07/2018
-ms.author: sngun
+ms.author: sclyon
 ms.custom: mvc
-ms.openlocfilehash: cacda277082f62c9d98a7459cb5dbf74375bfd87
-ms.sourcegitcommit: 6116082991b98c8ee7a3ab0927cf588c3972eeaa
+ms.openlocfilehash: ffb15c3a608cb7b7be275913cf9dec84e655334a
+ms.sourcegitcommit: 387d7edd387a478db181ca639db8a8e43d0d75f7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/05/2018
-ms.locfileid: "34795348"
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "41920722"
 ---
 # <a name="azure-cosmos-db-import-mongodb-data"></a>Azure Cosmos DB: MongoDB データをインポートする 
 
@@ -45,8 +45,8 @@ MongoDB からデータをインポートしており、Azure Cosmos DB SQL API 
 ## <a name="find-your-connection-string-information-host-port-username-and-password"></a>接続文字列情報 (ホスト、ポート、ユーザー名、およびパスワード) を見つける
 
 1. [Azure Portal](https://portal.azure.com) の左側のウィンドウで、**[Azure Cosmos DB]** エントリをクリックします。
-2. **[サブスクリプション]** ウィンドウで、自分のアカウント名を選択します。
-3. **[接続文字列]** ブレードで、**[接続文字列]** をクリックします。
+1. **[サブスクリプション]** ウィンドウで、自分のアカウント名を選択します。
+1. **[接続文字列]** ブレードで、**[接続文字列]** をクリックします。
 
    右側のウィンドウに、自分のアカウントに正常に接続するために必要なすべての情報が表示されます。
 
@@ -82,7 +82,7 @@ MongoDB 用 API アカウントにデータを復元するには、次のテン�
         
     * 既定では、Azure Cosmos DB は、毎秒 1,000 要求ユニット (RU/秒) で新しい MongoDB コレクションをプロビジョニングします。 mongoimport、mongorestore、または mongomirror を使用して移行を開始する前に、[Azure Portal](https://portal.azure.com) または MongoDB ドライバーとツールからすべてのコレクションを事前に作成してください。 コレクションが 10 GB を超える場合は、適切なシャード キーを使用して[シャード/パーティション コレクション](partition-data.md)を作成してください。
 
-    * [Azure Portal](https://portal.azure.com) では、コレクションのスループットを 1,000 RU/秒 (単一パーティションのコレクションの場合) または 2,500 RU/秒 (移行のためだけにシャード化されたコレクションの場合) から引き上げます。 スループットが高くなるほど、スロットルを回避し、移行に要する時間を短縮できます。 時間単位で課金される Azure Cosmos DB では、移行直後にスループットを低くすることでコストを削減できます。
+    * [Azure Portal](https://portal.azure.com) では、コレクションのスループットを 1,000 RU/秒 (単一パーティションのコレクションの場合) または 2,500 RU/秒 (移行のためだけにシャード化されたコレクションの場合) から引き上げます。 スループットが高くなるほど、レート制限を回避し、移行に要する時間を短縮できます。 時間単位で課金される Azure Cosmos DB では、移行直後にスループットを低くすることでコストを削減できます。
 
     * コレクション レベルでの RU/秒 のプロビジョニングに加えて、親データベース レベルの一連のコレクションの RU/秒 のプロビジョニングも行う場合があります。 これを行うには、データベースとコレクションの事前作成と、各コレクションのシャード キーの定義が必要です。
 
@@ -102,7 +102,7 @@ MongoDB 用 API アカウントにデータを復元するには、次のテン�
         }
         ```
 
-2. 1 回のドキュメントの書き込みに対するおおよその RU 請求金額を計算します。
+1. 1 回のドキュメントの書き込みに対するおおよその RU 請求金額を計算します。
 
     a. MongoDB シェルを使用して Azure Cosmos DB MongoDB データベースに接続します。 手順については、「[Connect a MongoDB application to Azure Cosmos DB (Azure Cosmos DB への MongoDB アプリケーションの接続)](connect-mongodb-account.md)」を参照してください。
     
@@ -125,7 +125,7 @@ MongoDB 用 API アカウントにデータを復元するには、次のテン�
         
     d. 要求の使用量を書き留めます。
     
-3. マシンから Azure Cosmos DB クラウド サービスまでの待ち時間を決定します。
+1. マシンから Azure Cosmos DB クラウド サービスまでの待ち時間を決定します。
     
     a. MongoDB シェルで ```setVerboseShell(true)``` コマンドを使用して、詳細ログ記録を有効にします。
     
@@ -135,9 +135,9 @@ MongoDB 用 API アカウントにデータを復元するには、次のテン�
         Fetched 1 record(s) in 100(ms)
         ```
         
-4. 移行前に挿入したドキュメントを削除して、重複するドキュメントがないことを確認します。 ドキュメントを削除するには、```db.coll.remove({})``` コマンドを使用します。
+1. 移行前に挿入したドキュメントを削除して、重複するドキュメントがないことを確認します。 ドキュメントを削除するには、```db.coll.remove({})``` コマンドを使用します。
 
-5. *batchSize* と *numInsertionWorkers* の概算値を計算します。
+1. *batchSize* と *numInsertionWorkers* の概算値を計算します。
 
     * *batchSize* については、プロビジョニングされた RU の総数を、手順 3. の 1 回のドキュメント書き込みで消費された RU 数で除算します。
     
@@ -157,7 +157,7 @@ MongoDB 用 API アカウントにデータを復元するには、次のテン�
     
     *numInsertionWorkers = (10,000 RU x 0.1) / (24 x 10 RU) = 4.1666*
 
-6. 最後の移行コマンドを実行します。
+1. 最後の移行コマンドを実行します。
 
    ```
    mongoimport.exe --host comsosdb-mongodb-account.documents.azure.com:10255 -u comsosdb-mongodb-account -p wzRJCyjtLPNuhm53yTwaefawuiefhbauwebhfuabweifbiauweb2YVdl2ZFNZNv8IU89LqFVm5U0bw== --ssl --sslAllowInvalidCertificates --jsonArray --db dabasename --collection collectionName --file "C:\sample.json" --numInsertionWorkers 4 --batchSize 24

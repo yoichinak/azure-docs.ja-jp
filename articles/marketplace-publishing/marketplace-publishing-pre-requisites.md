@@ -3,8 +3,8 @@ title: Azure Marketplace 向けプランを作成するための技術以外の�
 description: 他のユーザーが購入できるプランを作成して、Azure Marketplace にデプロイするための要件を理解します。
 services: marketplace-publishing
 documentationcenter: ''
-author: msmbaldwin
-manager: mbaldwin
+author: HannibalSII
+manager: hascipio
 editor: ''
 ms.assetid: 3dae463b-8f48-4f52-8fa8-4e3975f09f43
 ms.service: marketplace
@@ -13,13 +13,13 @@ ms.topic: article
 ms.tgt_pltfrm: Azure
 ms.workload: na
 ms.date: 08/18/2016
-ms.author: mbaldwin
-ms.openlocfilehash: 5c30e62bf345843fe83b3f17b728e1a937d19ce3
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.author: hascipio
+ms.openlocfilehash: 4f86d444a2f2b97fd8605d480db358813bc39fd3
+ms.sourcegitcommit: d16b7d22dddef6da8b6cfdf412b1a668ab436c1f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/16/2018
-ms.locfileid: "29940043"
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39714191"
 ---
 # <a name="general-prerequisites-for-creating-an-offer-for-the-azure-marketplace"></a>Azure Marketplace 向けプラン作成の一般的な前提条件
 プランの作成プロセスに必要な、ビジネス処理中心の一般的な前提条件を理解します。
@@ -27,8 +27,10 @@ ms.locfileid: "29940043"
 ## <a name="ensure-that-you-are-registered-as-a-seller-with-microsoft"></a>Microsoft 販売者として登録されていることを確認します。
 Microsoft で販売者アカウントを登録する方法の詳細な手順については、「 [アカウントの作成および登録](marketplace-publishing-accounts-creation-registration.md)」を参照してください。
 
-* **デベロッパー センターで会社が既に販売者として登録されており、新しいプランを作成する必要がある場合は** 、デベロッパー センター登録で使用した電子メール ID で発行ポータルにログインします。 この手順により、デベロッパー センターと発行ポータルが相互に関連付けられます。
-* **デベロッパー センターで会社が既に販売者として登録されており、既存のプランを編集する必要がある場合は、** 管理者アカウントか、発行ポータルで共同管理者として追加されているアカウントを使用して、発行ポータルにログインします。 共同管理者アカウントを追加する手順は次のとおりです。
+* 
+  **デベロッパー センターで会社が既に販売者として登録されており、新しいプランを作成する必要がある場合は** 、デベロッパー センター登録で使用した電子メール ID で発行ポータルにログインします。 この手順により、デベロッパー センターと発行ポータルが相互に関連付けられます。
+* 
+  **デベロッパー センターで会社が既に販売者として登録されており、既存のプランを編集する必要がある場合は、** 管理者アカウントか、発行ポータルで共同管理者として追加されているアカウントを使用して、発行ポータルにログインします。 共同管理者アカウントを追加する手順は次のとおりです。
 
 ## <a name="steps-to-add-a-co-admin-in-the-publishing-portal"></a>発行ポータルで共同管理者を追加する手順
 発行ポータルの管理者が、アプリケーションで作業している会社の他のメンバーを、発行ポータルの共同管理者として後で追加できます。 **管理者である必要があります** 。
@@ -59,14 +61,14 @@ Microsoft で販売者アカウントを登録する方法の詳細な手順に�
     ![図](media/marketplace-publishing-pre-requisites/imgDeleteAdmin_03.png)
 
 > [!IMPORTANT]
-> 無料プランのみを発行する予定 (またはライセンス持ち込み) であれば、会社の税金や銀行情報を入力する必要はありません。
+> 無料オファーのみを発行する予定 (またはライセンス持ち込み) であれば、会社の税金や銀行情報を入力する必要はありません。
 > 
 > プラン作成を開始するには、会社の登録を完了する必要があります。 ただし、会社が Microsoft デベロッパー アカウントで税金と銀行情報を入力している途中でも、開発者は [発行ポータル](https://publish.windowsazure.com)で仮想マシン イメージの作成を開始し、それらのイメージの認定取得、および Azure ステージング環境でのテストを実行できます。 販売者アカウントの承認が必要になるのは、プランを Azure Marketplace に発行する最後の手順のみです。
 > 
 > 
 
 ## <a name="acquire-an-azure-pay-as-you-go-subscription"></a>Azure の "従量課金制" サブスクリプションを取得する
-これは、VM イメージを作成して、それらのイメージを [Azure Marketplace](https://azure.microsoft.com/marketplace/) に渡すために使用するサブスクリプションです。 既存のサブスクリプションがない場合は、https://account.windowsazure.com/signup?offer=ms-azr-0003p でサインアップしてください。
+これは、VM イメージを作成して、それらのイメージを [Azure Marketplace](https://azure.microsoft.com/marketplace/) に渡すために使用するサブスクリプションです。 既存のサブスクリプションがない場合は、 https://account.windowsazure.com/signup?offer=ms-azr-0003p でサインアップしてください。
 
 ## <a name="sell-from-countries"></a>「販売元」の国
 > [!WARNING]
@@ -81,5 +83,6 @@ Microsoft で販売者アカウントを登録する方法の詳細な手順に�
 * [ソリューション テンプレートの技術的な前提条件](marketplace-publishing-solution-template-creation-prerequisites.md)
 
 ## <a name="see-also"></a>関連項目
-* [Microsoft Azure Marketplace へのプランの発行方法](marketplace-publishing-getting-started.md)
+* 
+  [概要: Azure Marketplace へのプランの発行方法](marketplace-publishing-getting-started.md)
 

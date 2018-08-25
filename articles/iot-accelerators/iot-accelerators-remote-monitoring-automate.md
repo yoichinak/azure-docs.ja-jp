@@ -1,68 +1,55 @@
 ---
-title: リモート監視ソリューションでのデバイス検出に関する問題 - Azure | Microsoft Docs
+title: Azure ベースのリモート監視ソリューションでデバイスの問題を検出するチュートリアル | Microsoft Docs
 description: このチュートリアルでは、ルールとアクションを使用して、リモート監視ソリューションでしきい値に基づくデバイスの問題を自動的に検出する方法を示します。
 author: dominicbetts
 manager: timlt
 ms.author: dobett
 ms.service: iot-accelerators
-services: iot-suite
-ms.date: 05/01/2018
-ms.topic: conceptual
-ms.openlocfilehash: df1ba7909c64e8ccc24bcf3584bd28b2629f49ff
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+services: iot-accelerators
+ms.date: 07/19/2018
+ms.topic: tutorial
+ms.custom: mvc
+ms.openlocfilehash: d94f8d38ef771bd5ab03f4d3cef25233c33e7546
+ms.sourcegitcommit: 068fc623c1bb7fb767919c4882280cad8bc33e3a
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34627315"
+ms.lasthandoff: 07/27/2018
+ms.locfileid: "39282619"
 ---
-# <a name="detect-issues-using-threshold-based-rules"></a>しきい値に基づくルールを使用して問題を検出する
+# <a name="tutorial-detect-issues-with-devices-connected-to-your-monitoring-solution"></a>チュートリアル: 監視ソリューションに接続されているデバイスの問題の検出
 
-このチュートリアルでは、リモート監視ソリューションのルール エンジンの機能を示します。 これらの機能を紹介するために、このチュートリアルでは Contoso IoT アプリケーションのシナリオを使用します。
+このチュートリアルでは、リモート監視ソリューション アクセラレータを構成して、接続されている IoT デバイスの問題を検出します。 デバイスの問題を検出するには、ソリューションのダッシュボードでアラートを生成するルールを追加します。
 
-Contoso には、**Chiller** デバイスによって報告される圧力が 250 PSI を超える場合に重大アラートを生成するルールがあります。 運用者であるあなたは、初期の圧力の急上昇を探すことで、問題のあるセンサーを搭載している可能性のある **Chiller** デバイスを特定する必要があります。 これらのデバイスを特定するため、圧力が 150 PSI を超えた場合に警告を生成するルールを作成します。
+このチュートリアルでは、シミュレートされた冷却装置を使用して、ルールとアラートを紹介します。 冷却装置は Contoso という組織によって管理され、リモート監視ソリューション アクセラレータに接続されています。 Contoso には、冷却装置の圧力が 298 PSI を超える場合に重大アラートを生成するルールが既に存在します。 Contoso の運用者として、初期の圧力の急上昇を探すことで、問題のあるセンサーを搭載している可能性のある冷却装置を特定する必要があります。 このような装置を特定するために、冷却装置の圧力が 150 PSI を超えたときに警告のアラートを生成するルールを追加します。
 
-さらに、過去 5 分間で **Chiller** デバイスの平均湿度が 80% を超え、過去 5 分間で **Chiller** デバイスの温度が華氏 75 度を超えたときに重大アラートがトリガーされる必要があるとも言われました。
+また、直近の 5 分間にわたって冷却装置の平均湿度が 80% を超え、温度が華氏 75 度を超えたときに重大なアラートを生成するルールを作成するよう依頼を受けています。
 
-このチュートリアルで学習する内容は次のとおりです。
+このチュートリアルでは、次のことを行いました。
 
 >[!div class="checklist"]
 > * ソリューション内のルールを表示する
-> * 新しいルールの作成
-> * 複数の条件で新しいルールを作成する
+> * 規則を作成する
+> * 複数の条件でルールを作成する
 > * 既存のルールを編集する
-> * 規則を削除する
+> * ルールのオンとオフを切り替える
 
-## <a name="prerequisites"></a>前提条件
+Azure サブスクリプションをお持ちでない場合は、開始する前に [無料アカウント](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) を作成してください。
 
-このチュートリアルを実行するには、お使いの Azure サブスクリプションにリモート監視ソリューションのインスタンスをデプロイしておく必要があります。
+[!INCLUDE [iot-accelerators-tutorial-prereqs](../../includes/iot-accelerators-tutorial-prereqs.md)]
 
-まだリモート監視ソリューションをデプロイしていない場合は、「[リモート監視ソリューション アクセラレータをデプロイする](iot-accelerators-remote-monitoring-deploy.md)」チュートリアルを実行する必要があります。
+## <a name="review-the-existing-rules"></a>既存のルールを確認する
 
-## <a name="view-the-rules-in-your-solution"></a>ソリューション内のルールを表示する
+ソリューション アクセラレータの **[ルール]** ページには、現在のすべてのルールの一覧が表示されます。
 
-ソリューションの **[ルール]** ページには、現在のすべてのルールの一覧が表示されます。
+[![[ルール] ページ](./media/iot-accelerators-remote-monitoring-automate/rulesactions_v2-inline.png)](./media/iot-accelerators-remote-monitoring-automate/rulesactions_v2-expanded.png#lightbox)
 
-![ルールとアクション ページ](./media/iot-accelerators-remote-monitoring-automate/rulesactions_v2.png)
+冷却装置に適用されるルールだけを表示するには、フィルターを適用します。 一覧でルールを選択すると、詳細情報の表示と編集ができます。
 
-**Chiller** デバイスに適用されるルールだけを表示するには、フィルターを適用します。
+[![ルールの詳細を表示する](./media/iot-accelerators-remote-monitoring-automate/rulesactionsdetail_v2-inline.png)](./media/iot-accelerators-remote-monitoring-automate/rulesactionsdetail_v2-expanded.png#lightbox)
 
-![ルールの一覧をフィルター処理する](./media/iot-accelerators-remote-monitoring-automate/rulesactionsfilter_v2.png)
+## <a name="create-a-rule"></a>規則を作成する
 
-一覧でルールを選択すると、詳細情報の表示と編集ができます。
-
-![ルールの詳細を表示する](./media/iot-accelerators-remote-monitoring-automate/rulesactionsdetail_v2.png)
-
-1 つまたは複数のルールを無効化、有効化、または削除するには、一覧で複数のルールを選択します。
-
-![複数のルールを選択する](./media/iot-accelerators-remote-monitoring-automate/rulesactionsmultiselect_v2.png)
-
-## <a name="create-a-new-rule"></a>新しいルールの作成
-
-**Chiller** デバイスの圧力が 150 PSI を超えるときに警告を生成する新しいルールを追加するには、**[新しい規則]** を選択します。
-
-![ルールを作成する](./media/iot-accelerators-remote-monitoring-automate/rulesactionsnewrule_v2.png)
-
-次の値を使用してルールを作成します。
+冷却装置の圧力が 150 PSI を超えるときに警告を生成する新しいルールを作成するには、**[新しいルール]** をクリックします。 次の値を使用してルールを作成します。
 
 | Setting          | 値                                 |
 | ---------------- | ------------------------------------- |
@@ -75,17 +62,17 @@ Contoso には、**Chiller** デバイスによって報告される圧力が 25
 | 条件 1 値    | 150                               |
 | 重大度レベル  | 警告                               |
 
-新しいルールを保存するには、**[適用]** を選択します。
+[![警告ルールを作成する](./media/iot-accelerators-remote-monitoring-automate/rulesactionsnewrule_v2-inline.png)](./media/iot-accelerators-remote-monitoring-automate/rulesactionsnewrule_v2-expanded.png#lightbox)
 
-**[ルール]** ページまたは、**[ダッシュボード]** ページでルールがトリガーされた時間を表示できます。
+新しいルールを保存するには、**[適用]** をクリックします。
 
-## <a name="create-a-new-rule-with-multiple-conditions"></a>複数の条件で新しいルールを作成する
+**[ルール]** ページまたは、**[ダッシュボード]** ページでルールがトリガーされた時間を確認できます。
 
-過去 5 分間で **Chiller** デバイスの平均湿度が 80% を超え、過去 5 分間で **Chiller** デバイスの温度が華氏 75 度を超えたときに重大アラートを生成する複数の条件がある新しいルールを作成するには、**[新しい規則]** を選択します。
+[![警告ルールがトリガーされた時間](./media/iot-accelerators-remote-monitoring-automate/warningruletriggered-inline.png)](./media/iot-accelerators-remote-monitoring-automate/warningruletriggered-expanded.png#lightbox)
 
-![複数のルールを作成する](./media/iot-accelerators-remote-monitoring-automate/rulesactionsnewrule_mult_v2.png)
+## <a name="create-an-advanced-rule"></a>高度なルールを作成する
 
-次の値を使用してルールを作成します。
+直近の 5 分間にわたって冷却装置の平均湿度が 80% を超え、温度が華氏 75 度を超えたときに重大なアラートを生成する、複数の条件を持つルールを作成するには、**[新しいルール]** をクリックします。 次の値を使用してルールを作成します。
 
 | Setting          | 値                                 |
 | ---------------- | ------------------------------------- |
@@ -96,14 +83,12 @@ Contoso には、**Chiller** デバイスによって報告される圧力が 25
 | 期間      | 5                                     |
 | 条件 1 フィールド| 湿度                              |
 | 条件 1 演算子 | より大きい                      |
-| 条件 1 値    | 80                               |
+| 条件 1 値    | 80                                |
 | 重大度レベル  | 重大                              |
 
-2 つ目の条件を追加するには、[+ 条件の追加] をクリックします。
+[![複数の条件を持つルールを作成する: パート 1](./media/iot-accelerators-remote-monitoring-automate/rulesactionsnewrule_mult_v2-inline.png)](./media/iot-accelerators-remote-monitoring-automate/rulesactionsnewrule_mult_v2-expanded.png#lightbox)
 
-![条件 2 を作成する](./media/iot-accelerators-remote-monitoring-automate/rulesactionsnewrule_mult_cond2_v2.png)
-
-新しい条件で次の値を使用します。
+2 つ目の条件を追加するには、[+ 条件の追加] をクリックします。 新しい条件で次の値を使用します。
 
 | Setting          | 値                                 |
 | ---------------- | ------------------------------------- |
@@ -111,45 +96,33 @@ Contoso には、**Chiller** デバイスによって報告される圧力が 25
 | 条件 2 演算子 | より大きい                      |
 | 条件 2 値    | 75                                |
 
-新しいルールを保存するには、**[適用]** を選択します。
+[![複数の条件を持つルールを作成する: パート 2](./media/iot-accelerators-remote-monitoring-automate/rulesactionsnewrule_mult_cond2_v2-inline.png)](./media/iot-accelerators-remote-monitoring-automate/rulesactionsnewrule_mult_cond2_v2-expanded.png#lightbox)
 
-**[ルール]** ページまたは、**[ダッシュボード]** ページでルールがトリガーされた時間を表示できます。
+新しいルールを保存するには、**[適用]** をクリックします。
+
+**[ルール]** ページまたは、**[ダッシュボード]** ページでルールがトリガーされた時間を確認できます。
+
+[![複数の条件を持つルールがトリガーされた時間](./media/iot-accelerators-remote-monitoring-automate/criticalruletriggered-inline.png)](./media/iot-accelerators-remote-monitoring-automate/criticalruletriggered-expanded.png#lightbox)
 
 ## <a name="edit-an-existing-rule"></a>既存のルールを編集する
 
-既存のルールを変更するには、ルールの一覧で選択します。
+既存のルールを変更するには、ルールの一覧から対象のルールを選択し、**[編集]** をクリックします。
 
-![ルールの編集](./media/iot-accelerators-remote-monitoring-automate/rulesactionsedit_v2.png)
+[![ルールを編集する](./media/iot-accelerators-remote-monitoring-automate/rulesactionsedit_v2-inline.png)](./media/iot-accelerators-remote-monitoring-automate/rulesactionsedit_v2-expanded.png#lightbox)
 
-<!--## Disable a rule
+## <a name="disable-a-rule"></a>ルールを無効にする
 
-To temporarily switch off a rule, you can disable it in the list of rules. Choose the rule to disable, and then choose **Disable**. The **Status** of the rule in the list changes to indicate the rule is now disabled. You can re-enable a rule that you previously disabled using the same procedure.
+一時的にルールをオフに切り替えるには、ルールの一覧で無効にできます。 無効にするルールを選択し、**[無効にする]** を選択します。 一覧のルールの **[ステータス]** が、ルールが無効化されたことを示す状態に変わります。 同じ手順を使用して、以前無効にしたルールを再度有効にすることができます。
 
-![Disable rule](./media/iot-accelerators-remote-monitoring-automate/rulesactionsdisable.png)
+[![ルールを無効にする](./media/iot-accelerators-remote-monitoring-automate/rulesactionsdisable-inline.png)](./media/iot-accelerators-remote-monitoring-automate/rulesactionsdisable-expanded.png#lightbox)
 
-You can enable and disable multiple rules at the same time if you select multiple rules in the list.-->
+一覧で複数のルールを選択して、複数のルールを同時に有効または無効にすることができます。
 
-<!--## Delete a rule
-
-To permanently delete a rule, choose the rule in the list of rules and then choose **Delete**.
-
-You can delete multiple rules at the same time if you select multiple rules in the list.-->
+[!INCLUDE [iot-accelerators-tutorial-cleanup](../../includes/iot-accelerators-tutorial-cleanup.md)]
 
 ## <a name="next-steps"></a>次の手順
 
-このチュートリアルでは、次の方法について説明しました。
+このチュートリアルでは、リモート監視ソリューション アクセラレータの **[ルール]** ページを使用して、ソリューション内でアラートをトリガーするルールを作成および管理する方法について説明しました。 ソリューション アクセラレータを使用して接続されているデバイスを管理および構成する方法について学習するには、次のチュートリアルに進んでください。
 
-<!-- Repeat task list from intro -->
->[!div class="checklist"]
-> * ソリューション内のルールを表示する
-> * 新しいルールの作成
-> * 既存のルールを編集する
-> * 規則を削除する
-
-しきい値ベースのルールを使用して問題を検出する方法について説明したので、次に推奨される手順を以下に示します。
-
-* [デバイスの管理と構成を行う](iot-accelerators-remote-monitoring-manage.md)。
-* [トラブルシューティングを行ってデバイスの問題を修復する](iot-accelerators-remote-monitoring-maintain.md)。
-* [シミュレートされたデバイスを使用してソリューションをテストする](iot-accelerators-remote-monitoring-test.md)。
-
-<!-- Next tutorials in the sequence -->
+> [!div class="nextstepaction"]
+> [監視ソリューションに接続されているデバイスの構成および管理](iot-accelerators-remote-monitoring-manage.md)

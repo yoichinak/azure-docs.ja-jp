@@ -10,12 +10,12 @@ ms.devlang: dotnet
 ms.topic: reference
 ms.date: 05/21/2018
 ms.author: maquaran
-ms.openlocfilehash: a2770b9349dac8caa8e0611d77522ab56ca1bf07
-ms.sourcegitcommit: 6116082991b98c8ee7a3ab0927cf588c3972eeaa
+ms.openlocfilehash: f47b847b3a356540e5f366235713b8f99aea3404
+ms.sourcegitcommit: 5a7f13ac706264a45538f6baeb8cf8f30c662f8f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/05/2018
-ms.locfileid: "34798865"
+ms.lasthandoff: 06/29/2018
+ms.locfileid: "37113719"
 ---
 # <a name="net-change-feed-processor-sdk-download-and-release-notes"></a>.NET Change Feed Processor SDK: ダウンロードおよびリリース ノート
 > [!div class="op_single_selector"]
@@ -41,7 +41,46 @@ ms.locfileid: "34798865"
 
 ## <a name="release-notes"></a>リリース ノート
 
-### <a name="stable-builds"></a>安定したビルド
+### <a name="v2-builds"></a>v2 のビルド
+
+### <a name="a-name204204"></a><a name="2.0.4"/>2.0.4
+* GA SDK
+
+### <a name="a-name203-prerelease203-prerelease"></a><a name="2.0.3-prerelease"/>2.0.3-prerelease
+* 次の問題が修正されました。
+  * パーティション分割が発生すると、分割前に修正されたドキュメントの処理が重複する可能性があります。
+  * リース コレクションにリースが存在しない場合、GetEstimatedRemainingWork API は 0 を返しました。
+
+* 次の例外が公開されました。 IPartitionProcessor を実装する拡張機能では、次の例外をスローすることができます。
+  * Microsoft.Azure.Documents.ChangeFeedProcessor.Exceptions.LeaseLostException。 
+  * Microsoft.Azure.Documents.ChangeFeedProcessor.Exceptions.PartitionException。 
+  * Microsoft.Azure.Documents.ChangeFeedProcessor.Exceptions.PartitionNotFoundException。
+  * Microsoft.Azure.Documents.ChangeFeedProcessor.Exceptions.PartitionSplitException。 
+
+### <a name="a-name202-prerelease202-prerelease"></a><a name="2.0.2-prerelease"/>2.0.2-prerelease
+* マイナーな API の変更:
+  * 古いとマークされた ChangeFeedProcessorOptions.IsAutoCheckpointEnabled を削除しました。
+
+### <a name="a-name201-prerelease201-prerelease"></a><a name="2.0.1-prerelease"/>2.0.1-prerelease
+* 安定性の向上:
+  * リース ストアの初期化の処理が改善しました。 リース ストアが空の場合、プロセッサの 1 つのインスタンスだけがそれを初期化でき、他は待機します。
+  * リースの更新または解放の安定性と効率が向上しました。 1 つのパーティションのリースの更新と解放は、他のパーティションの更新から独立しています。 v1 では、すべてのパーティションに対して順番に行われていました。
+* 新しい v2 API:
+  * プロセッサーの柔軟な構築に対応したビルダー パターン: ChangeFeedProcessorBuilder クラス。
+    * 任意の組み合わせのパラメーターを取得できます。
+    * 監視用の DocumentClient インスタンスとリース コレクションの両方またはいずれかを取得できます (v1 では利用できません)。
+  * IChangeFeedObserver.ProcessChangesAsync で CancellationToken を取得できるようになりました。
+  * IRemainingWorkEstimator - 残存する作業見積もりツールは、プロセッサとは個別に使用できます。
+  * 新しい拡張性ポイント:
+    * IParitionLoadBalancingStrategy - プロセッサのインスタンス間でパーティションのカスタム負荷分散に使用します。
+    * ILease、ILeaseManager - カスタムのリース管理に使用します。
+    * IPartitionProcessor - パーティション上にあるカスタム処理の変更に使用します。
+* ログの記録 - [LibLog](https://github.com/damianh/LibLog) ライブラリを使用します。
+* v1 API との 100% の下位互換性
+* 新しいコード ベース。
+* [SQL .NET SDK](sql-api-sdk-dotnet.md) バージョン 1.21.1 以降と互換性があります。
+
+### <a name="v1-builds"></a>v1 のビルド
 
 ### <a name="a-name133133"></a><a name="1.3.3"/>1.3.3
 * ログが追加されました。
@@ -73,30 +112,6 @@ ms.locfileid: "34798865"
 * GA SDK
 * [SQL .NET SDK](sql-api-sdk-dotnet.md) バージョン 1.14.1 以降と互換性があります。
 
-### <a name="pre-release-builds"></a>プレリリース ビルド
-
-### <a name="a-name202-prerelease202-prerelease"></a><a name="2.0.2-prerelease"/>2.0.2-prerelease
-* マイナーな API の変更:
-  * 古いとマークされた ChangeFeedProcessorOptions.IsAutoCheckpointEnabled を削除しました。
-
-### <a name="a-name201-prerelease201-prerelease"></a><a name="2.0.1-prerelease"/>2.0.1-prerelease
-* 安定性の向上:
-  * リース ストアの初期化の処理が改善しました。 リース ストアが空の場合、プロセッサの 1 つのインスタンスだけがそれを初期化でき、他は待機します。
-  * リースの更新または解放の安定性と効率が向上しました。 1 つのパーティションのリースの更新と解放は、他のパーティションの更新から独立しています。 v1 では、すべてのパーティションに対して順番に行われていました。
-* 新しい v2 API:
-  * プロセッサーの柔軟な構築に対応したビルダー パターン: ChangeFeedProcessorBuilder クラス。
-    * 任意の組み合わせのパラメーターを取得できます。
-    * 監視用の DocumentClient インスタンスとリース コレクションの両方またはいずれかを取得できます (v1 では利用できません)。
-  * IChangeFeedObserver.ProcessChangesAsync で CancellationToken を取得できるようになりました。
-  * IRemainingWorkEstimator - 残存する作業見積もりツールは、プロセッサとは個別に使用できます。
-  * 新しい拡張性ポイント:
-    * IParitionLoadBalancingStrategy - プロセッサのインスタンス間でパーティションのカスタム負荷分散に使用します。
-    * ILease、ILeaseManager - カスタムのリース管理に使用します。
-    * IPartitionProcessor - パーティション上にあるカスタム処理の変更に使用します。
-* ログの記録 - [LibLog](https://github.com/damianh/LibLog) ライブラリを使用します。
-* v1 API との 100% の下位互換性
-* 新しいコード ベース。
-* [SQL .NET SDK](sql-api-sdk-dotnet.md) バージョン 1.21.1 以降と互換性があります。
 
 ## <a name="release--retirement-dates"></a>リリース日と提供終了日
 Microsoft は、新しい/サポートされるバージョンに速やかに移行する目的で、SDK の提供終了を少なくともその **12 か月** 前に通知します。

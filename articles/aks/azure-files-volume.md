@@ -2,19 +2,19 @@
 title: AKS で Azure Files を使用する
 description: AKS での Azure ディスクの使用
 services: container-service
-author: neilpeterson
+author: iainfoulds
 manager: jeconnoc
 ms.service: container-service
 ms.topic: article
 ms.date: 03/08/2018
-ms.author: nepeters
+ms.author: iainfou
 ms.custom: mvc
-ms.openlocfilehash: e0e62d37fbcc8f296deaee8e0f6658c0f72321ad
-ms.sourcegitcommit: d98d99567d0383bb8d7cbe2d767ec15ebf2daeb2
+ms.openlocfilehash: b35d0e33009f76e0b2d6f90c52c98ce5f317792d
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/10/2018
-ms.locfileid: "33934616"
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39436762"
 ---
 # <a name="volumes-with-azure-files"></a>Azure Files を使用するボリューム
 
@@ -52,7 +52,7 @@ STORAGE_KEY=$(az storage account keys list --resource-group $AKS_PERS_RESOURCE_G
 
 # Echo storage account name and key
 echo Storage account name: $AKS_PERS_STORAGE_ACCOUNT_NAME
-echo Storgae account key: $STORAGE_KEY
+echo Storage account key: $STORAGE_KEY
 ```
 
 ## <a name="create-kubernetes-secret"></a>Kubernetes シークレットの作成
@@ -111,7 +111,7 @@ Azure Files を使用した Kubernetes ボリュームについて、さらに�
 [kubernetes-volumes]: https://kubernetes.io/docs/concepts/storage/volumes/
 
 <!-- LINKS - internal -->
-[az-group-create]: /cli/azure/group#az_group_create
-[az-storage-create]: /cli/azure/storage/account#az_storage_account_create
-[az-storage-key-list]: /cli/azure/storage/account/keys#az_storage_account_keys_list
-[az-storage-share-create]: /cli/azure/storage/share#az_storage_share_create
+[az-group-create]: /cli/azure/group#az-group-create
+[az-storage-create]: /cli/azure/storage/account#az-storage-account-create
+[az-storage-key-list]: /cli/azure/storage/account/keys#az-storage-account-keys-list
+[az-storage-share-create]: /cli/azure/storage/share#az-storage-share-create

@@ -15,12 +15,12 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 01/19/2018
-ms.openlocfilehash: 63f079f6c8e584ff3a89503104060daf056763ed
-ms.sourcegitcommit: 944d16bc74de29fb2643b0576a20cbd7e437cef2
+ms.openlocfilehash: 7a90a8f05082e2c0731f9f112d3e56ecaf4ea55b
+ms.sourcegitcommit: d4c076beea3a8d9e09c9d2f4a63428dc72dd9806
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/07/2018
-ms.locfileid: "34836302"
+ms.lasthandoff: 08/01/2018
+ms.locfileid: "39398803"
 ---
 # <a name="use-the-sample-datasets-in-azure-machine-learning-studio"></a>Azure Machine Learning Studio におけるサンプル データセットの使用
 [top]: #machine-learning-sample-datasets
@@ -147,7 +147,7 @@ KDD Cup 2009 顧客間関係の予測に関する課題のラベル (<a href="ht
 <tr>
   <td>CRM データセットの共有</td>
   <td>
-このデータは、KDD Cup 2009 顧客関係の予測に関する課題から取得しています (<a href="http://www.sigkdd.org/kdd-cup-2009-customer-relationship-prediction - orange_small_train.data.zip">orange_small_train.data.zip</a>)。
+このデータは、KDD Cup 2009 顧客関係の予測に関する課題から取得しています (<a href="http://www.sigkdd.org/site/2009/files/orange_small_train.data.zip">orange_small_train.data.zip</a>)。
 <p></p>
 データセットには、French Telecom company Orange の顧客 50,000 人のデータが含まれます。 各顧客には匿名化された特徴が 230 あり、その中の 190 が数値で、40 がカテゴリです。 特徴はきわめて疎です。
   </td>
@@ -308,7 +308,7 @@ Twitter のツイートで評価された映画に関する情報として、IMD
 <p></p>
 <b>関連の研究:</b> Sterling, D.、Buntine, W. (年度不明)。 UCI Machine Learning リポジトリ <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>。 カリフォルニア州アーバイン: カリフォルニア大学、情報・コンピューター サイエンス学部
 <p></p>
-鉄鋼グレードの有用なガイドは、<a href="http://www.outokumpu.com/SiteCollectionDocuments/Outokumpu-steel-grades-properties-global-standards.pdf">http://www.outokumpu.com/SiteCollectionDocuments/Outokumpu-steel-grades-properties-global-standards.pdf</a>
+鉄鋼グレードの有用なガイドは、<a href="https://otk-sitecore-prod-v2-cdn.azureedge.net/-/media/from-sharepoint/documents/product/outokumpu-steel-grades-properties-global-standards.pdf">https://otk-sitecore-prod-v2-cdn.azureedge.net/-/media/from-sharepoint/documents/product/outokumpu-steel-grades-properties-global-standards.pdf</a>
    にあります。</td>
 </tr>
 
@@ -333,7 +333,7 @@ Twitter のツイートで評価された映画に関する情報として、IMD
 <tr>
   <td>天候データセット</td>
   <td>
-NOAA の 1 時間ごとの陸上の気象観測 (<a href="http://cdo.ncdc.noaa.gov/qclcd_ascii/, merged data from 201304 to 201310">2013 年 4 月から 2013 年 10 月までのデータをマージ</a>)。
+NOAA の 1 時間ごとの陸上の気象観測 (<a href="http://az754797.vo.msecnd.net/data/WeatherDataset.csv">2013 年 4 月から 2013 年 10 月までのデータをマージ</a>)。
 <p></p>
 気象データには、2013 年 4 月から 10 月までの期間の航空気象観測所での観測が含まれます。 Azure Machine Learning Studio にアップロードする前に、データセットは次のように処理されています。
 <ul>
@@ -403,7 +403,7 @@ RCV1-V2 Reuters ニュース データセット内のニュース記事のトピ
 <tr>
   <td><a href="https://azuremlsampleexperiments.blob.core.windows.net/datasets/student_performance.txt">student_performance.txt</a></td>
   <td>
-このデータは、KDD Cup 2010 学生の成績評価に関する課題 (<a href="http://www.kdd.org/kdd-cup-2010-student-performance-evaluation">学生の成績評価</a>) から取得しています。 使用されるデータは、Algebra_2008_2009 トレーニング セット (Stamper, J.、Niculescu-Mizil, A.、Ritter, S.、Gordon, G.J.、Koedinger, K.R. (2010)、 Algebra I 2008-2009 です。 KDD Cup 2010 データ マイニングの学習課題のデータセットは、 <a href="http://pslcdatashop.web.cmu.edu/KDDCup/downloads.jsp">downloads.jsp</a> または <a href="http://www.kdd.org/sites/default/files/kddcup/site/2010/files/algebra_2008_2009.zip">algebra_2008_2009.zip</a> にあります。
+このデータは、KDD Cup 2010 学生の成績評価に関する課題 (<a href="http://www.kdd.org/kdd-cup/view/kdd-cup-2010-student-performance-evaluation">学生の成績評価</a>) から取得しています。 使用されるデータは、Algebra_2008_2009 トレーニング セット (Stamper, J.、Niculescu-Mizil, A.、Ritter, S.、Gordon, G.J.、Koedinger, K.R. (2010)、 Algebra I 2008-2009 です。 KDD Cup 2010 データ マイニングの学習課題のデータセットは、 <a href="http://pslcdatashop.web.cmu.edu/KDDCup/downloads.jsp">downloads.jsp</a> にあります。
 <p></p>
 データセットは、Azure Blob Storage にダウンロードされ、格納されています (<a href="https://azuremlsampleexperiments.blob.core.windows.net/datasets/student_performance.txt">student_performance.txt</a>)。データセットには、学生のチュータリング システムのログ ファイルが含まれます。 提供される特徴には、問題 ID とその簡潔な説明、学生 ID、タイムスタンプ、学生が問題を正しい方法で解くまでにかかった回数があります。 元のデータセットには、8,900,000 件のレコードが含まれますが、このデータセットは、最初の 100,000 行にダウンサンプリングされています。 このデータセットには、23 個のタブで区切られた、さまざまなタイプ (数値、カテゴリ、およびタイムスタンプ) の列が含まれます。
   </td>

@@ -14,12 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/15/2017
 ms.author: jeedes
-ms.openlocfilehash: 6928242f39e079af0238b21f6e06c2afbb4eca22
-ms.sourcegitcommit: 16ddc345abd6e10a7a3714f12780958f60d339b6
+ms.openlocfilehash: 4927421afeddc337856c027b3ed32539f4f8c1fc
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36219406"
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39441699"
 ---
 # <a name="tutorial-azure-active-directory-integration-with-cornerstone-ondemand"></a>チュートリアル: Azure Active Directory と Cornerstone OnDemand の統合
 
@@ -52,7 +52,7 @@ Cornerstone OnDemand と Azure AD の統合を構成するには、次のもの�
 このチュートリアルでは、テスト環境で Azure AD のシングル サインオンをテストします。 このチュートリアルで説明するシナリオは、主に次の 2 つの要素で構成されています。
 
 1. ギャラリーからの Cornerstone OnDemand の追加
-2. Azure AD シングル サインオンの構成とテスト
+1. Azure AD シングル サインオンの構成とテスト
 
 ## <a name="adding-cornerstone-ondemand-from-the-gallery"></a>ギャラリーからの Cornerstone OnDemand の追加
 Azure AD への Cornerstone OnDemand の統合を構成するには、ギャラリーから管理対象 SaaS アプリの一覧に Cornerstone OnDemand を追加する必要があります。
@@ -63,19 +63,19 @@ Azure AD への Cornerstone OnDemand の統合を構成するには、ギャラ�
 
     ![Active Directory][1]
 
-2. **[エンタープライズ アプリケーション]** に移動します。 次に、**[すべてのアプリケーション]** に移動します。
+1. **[エンタープライズ アプリケーション]** に移動します。 次に、**[すべてのアプリケーション]** に移動します。
 
     ![[アプリケーション]][2]
 
-3. 新しいアプリケーションを追加するには、ダイアログの上部にある **[新しいアプリケーション]** をクリックします。
+1. 新しいアプリケーションを追加するには、ダイアログの上部にある **[新しいアプリケーション]** をクリックします。
 
     ![[アプリケーション]][3]
 
-4. 検索ボックスに、「**Cornerstone OnDemand**」と入力します。
+1. 検索ボックスに、「**Cornerstone OnDemand**」と入力します。
 
     ![Azure AD のテスト ユーザーの作成](./media/cornerstone-ondemand-tutorial/tutorial_cornerstoneondemand_search.png)
 
-5. 結果ウィンドウで **[Cornerstone OnDemand]** を選択し、**[追加]** をクリックしてアプリケーションを追加します。
+1. 結果ウィンドウで **[Cornerstone OnDemand]** を選択し、**[追加]** をクリックしてアプリケーションを追加します。
 
     ![Azure AD のテスト ユーザーの作成](./media/cornerstone-ondemand-tutorial/tutorial_cornerstoneondemand_addfromgallery.png)
 
@@ -89,10 +89,10 @@ Cornerstone OnDemand で、Azure AD の **[ユーザー名]** の値を **[Usern
 Cornerstone OnDemand で Azure AD のシングル サインオンを構成してテストするには、次の構成要素を完了する必要があります。
 
 1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - ユーザーがこの機能を使用できるようにします。
-2. **[Azure AD のテスト ユーザーの作成](#creating-an-azure-ad-test-user)** - Britta Simon で Azure AD のシングル サインオンをテストします。
-3. **[Cornerstone OnDemand テスト ユーザーの作成](#creating-a-cornerstone-ondemand-test-user)** - Cornerstone OnDemand で Britta Simon に対応するユーザーを作成し、Azure AD の Britta Simon にリンクさせます。
-4. **[Azure AD テスト ユーザーの割り当て](#assigning-the-azure-ad-test-user)** - Britta Simon が Azure AD のシングル サインオンを使用できるようにします。
-5. **[シングル サインオンのテスト](#testing-single-sign-on)** - 構成が機能するかどうかを確認します。
+1. **[Azure AD のテスト ユーザーの作成](#creating-an-azure-ad-test-user)** - Britta Simon で Azure AD のシングル サインオンをテストします。
+1. **[Cornerstone OnDemand テスト ユーザーの作成](#creating-a-cornerstone-ondemand-test-user)** - Cornerstone OnDemand で Britta Simon に対応するユーザーを作成し、Azure AD の Britta Simon にリンクさせます。
+1. **[Azure AD テスト ユーザーの割り当て](#assigning-the-azure-ad-test-user)** - Britta Simon が Azure AD のシングル サインオンを使用できるようにします。
+1. **[シングル サインオンのテスト](#testing-single-sign-on)** - 構成が機能するかどうかを確認します。
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Azure AD シングル サインオンの構成
 
@@ -102,15 +102,15 @@ Cornerstone OnDemand で Azure AD のシングル サインオンを構成して
 
 1. Azure Portal の **Cornerstone OnDemand**  アプリケーション統合ページで、**[シングル サインオン]** をクリックします。
 
-    ![[Configure Single Sign-On]][4]
+    ![Configure single sign-on][4]
 
-2. **[シングル サインオン]** ダイアログで、**[モード]** として **[SAML ベースのサインオン]** を選択し、シングル サインオンを有効にします。
+1. **[シングル サインオン]** ダイアログで、**[モード]** として **[SAML ベースのサインオン]** を選択し、シングル サインオンを有効にします。
 
-    ![[Configure Single Sign-On]](./media/cornerstone-ondemand-tutorial/tutorial_cornerstoneondemand_samlbase.png)
+    ![Configure single sign-on](./media/cornerstone-ondemand-tutorial/tutorial_cornerstoneondemand_samlbase.png)
 
-3. **[Cornerstone OnDemand のドメインと URL]** セクションで、次の手順を実行します。
+1. **[Cornerstone OnDemand のドメインと URL]** セクションで、次の手順を実行します。
 
-    ![[Configure Single Sign-On]](./media/cornerstone-ondemand-tutorial/tutorial_cornerstoneondemand_url.png)
+    ![Configure single sign-on](./media/cornerstone-ondemand-tutorial/tutorial_cornerstoneondemand_url.png)
 
     a. **[サインオン URL]** ボックスに、`https://<company>.csod.com` のパターンを使用して URL を入力します。
 
@@ -119,19 +119,19 @@ Cornerstone OnDemand で Azure AD のシングル サインオンを構成して
     > [!NOTE] 
     > これらは実際の値ではありません。 実際のサインオン URL と識別子でこれらの値を更新してください。 これらの値を取得するには、[Cornerstone OnDemand クライアント サポート チーム](mailTo:moreinfo@csod.com)に問い合わせてください。
 
-4. **[SAML 署名証明書]** セクションで、**[証明書 (Base64)]** をクリックし、コンピューターに証明書ファイルを保存します。
+1. **[SAML 署名証明書]** セクションで、**[証明書 (Base64)]** をクリックし、コンピューターに証明書ファイルを保存します。
 
-    ![[Configure Single Sign-On]](./media/cornerstone-ondemand-tutorial/tutorial_cornerstoneondemand_certificate.png) 
+    ![Configure single sign-on](./media/cornerstone-ondemand-tutorial/tutorial_cornerstoneondemand_certificate.png) 
 
-5. **[保存]** ボタンをクリックします。
+1. **[保存]** ボタンをクリックします。
 
-    ![[Configure Single Sign-On]](./media/cornerstone-ondemand-tutorial/tutorial_general_400.png)
+    ![Configure single sign-on](./media/cornerstone-ondemand-tutorial/tutorial_general_400.png)
 
-6. **[Cornerstone OnDemand Configuration]\(Cornerstone OnDemand 構成\)** セクションで **[Configure Cornerstone OnDemand]\(Cornerstone OnDemand の構成\)** をクリックし、**[サインオンの構成]** ウィンドウを開きます。 **[クイック リファレンス]** セクションから**サインアウト URL と SAML シングル サインオン サービス URL** をコピーします。
+1. **[Cornerstone OnDemand Configuration]\(Cornerstone OnDemand 構成\)** セクションで **[Configure Cornerstone OnDemand]\(Cornerstone OnDemand の構成\)** をクリックし、**[サインオンの構成]** ウィンドウを開きます。 **[クイック リファレンス]** セクションから**サインアウト URL と SAML シングル サインオン サービス URL** をコピーします。
 
-    ![[Configure Single Sign-On]](./media/cornerstone-ondemand-tutorial/tutorial_cornerstoneondemand_configure.png) 
+    ![Configure single sign-on](./media/cornerstone-ondemand-tutorial/tutorial_cornerstoneondemand_configure.png) 
 
-7. **Cornerstone OnDemand** 側にシングル サインオンを構成するには、ダウンロードされた**証明書**、**サインアウト URL**、および **SAML シングル サインオン サービス URL** を [Cornerstone OnDemand サポート チーム](mailTo:moreinfo@csod.com)に送信する必要があります。 サポート チームはこれを設定して、SAML SSO 接続が両方の側で正しく設定されるようにします。
+1. **Cornerstone OnDemand** 側にシングル サインオンを構成するには、ダウンロードされた**証明書**、**サインアウト URL**、および **SAML シングル サインオン サービス URL** を [Cornerstone OnDemand サポート チーム](mailTo:moreinfo@csod.com)に送信する必要があります。 サポート チームはこれを設定して、SAML SSO 接続が両方の側で正しく設定されるようにします。
 
 ### <a name="creating-an-azure-ad-test-user"></a>Azure AD のテスト ユーザーの作成
 このセクションの目的は、Azure Portal で Britta Simon というテスト ユーザーを作成することです。
@@ -144,15 +144,15 @@ Cornerstone OnDemand で Azure AD のシングル サインオンを構成して
 
     ![Azure AD のテスト ユーザーの作成](./media/cornerstone-ondemand-tutorial/create_aaduser_01.png)
 
-2. **[ユーザーとグループ]** に移動し、**[すべてのユーザー]** をクリックして、ユーザーの一覧を表示します。
+1. **[ユーザーとグループ]** に移動し、**[すべてのユーザー]** をクリックして、ユーザーの一覧を表示します。
 
     ![Azure AD のテスト ユーザーの作成](./media/cornerstone-ondemand-tutorial/create_aaduser_02.png) 
 
-3. ダイアログの上部にある **[追加]** をクリックして、**[ユーザー]** ダイアログを開きます。
+1. ダイアログの上部にある **[追加]** をクリックして、**[ユーザー]** ダイアログを開きます。
 
     ![Azure AD のテスト ユーザーの作成](./media/cornerstone-ondemand-tutorial/create_aaduser_03.png)
 
-4. **[ユーザー]** ダイアログ ページで、次の手順を実行します。
+1. **[ユーザー]** ダイアログ ページで、次の手順を実行します。
 
     ![Azure AD のテスト ユーザーの作成](./media/cornerstone-ondemand-tutorial/create_aaduser_04.png) 
 
@@ -187,30 +187,30 @@ Cornerstone OnDemand で Azure AD のシングル サインオンを構成して
 
     ![ユーザーの割り当て][201] 
 
-2. アプリケーション一覧で **[Cornerstone OnDemand]** を選択します。
+1. アプリケーション一覧で **[Cornerstone OnDemand]** を選択します。
 
-    ![[Configure Single Sign-On]](./media/cornerstone-ondemand-tutorial/tutorial_cornerstoneondemand_app.png) 
+    ![Configure single sign-on](./media/cornerstone-ondemand-tutorial/tutorial_cornerstoneondemand_app.png) 
 
-3. 左側のメニューで **[ユーザーとグループ]** をクリックします。
+1. 左側のメニューで **[ユーザーとグループ]** をクリックします。
 
     ![ユーザーの割り当て][202] 
 
-4. **[追加]** ボタンをクリックします。 次に、**[割り当ての追加]** ダイアログで **[ユーザーとグループ]** を選択します。
+1. **[追加]** ボタンをクリックします。 次に、**[割り当ての追加]** ダイアログで **[ユーザーとグループ]** を選択します。
 
     ![ユーザーの割り当て][203]
 
-5. **[ユーザーとグループ]** ダイアログで、ユーザーの一覧から **[Britta Simon]** を選択します。
+1. **[ユーザーとグループ]** ダイアログで、ユーザーの一覧から **[Britta Simon]** を選択します。
 
-6. **[ユーザーとグループ]** ダイアログで **[選択]** をクリックします。
+1. **[ユーザーとグループ]** ダイアログで **[選択]** をクリックします。
 
-7. **[割り当ての追加]** ダイアログで **[割り当て]** ボタンをクリックします。
+1. **[割り当ての追加]** ダイアログで **[割り当て]** ボタンをクリックします。
     
 ### <a name="testing-single-sign-on"></a>シングル サインオンのテスト
 
 このセクションでは、アクセス パネルを使用して Azure AD のシングル サインオン構成をテストします。
 
 アクセス パネルで [Cornerstone OnDemand] タイルをクリックすると、自動的に Cornerstone OnDemand アプリケーションにサインオンします。
-アクセス パネルの詳細については、[アクセス パネルの概要](../active-directory-saas-access-panel-introduction.md)に関する記事を参照してください。 
+アクセス パネルの詳細については、[アクセス パネルの概要](../user-help/active-directory-saas-access-panel-introduction.md)に関する記事を参照してください。 
 
 ## <a name="additional-resources"></a>その他のリソース
 

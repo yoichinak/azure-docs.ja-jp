@@ -1,17 +1,17 @@
 ---
 title: Azure Site Recovery でプロセス サーバーを管理する | Microsoft Docs
 description: この記事では、Azure Site Recovery で VMware VM および物理サーバーのレプリケーションのために設定されたプロセス サーバーを管理する方法について説明します。
-author: AnoopVasudavan
+author: Rajeswari-Mamilla
 ms.service: site-recovery
 ms.topic: conceptual
-ms.date: 06/20/2018
-ms.author: anoopkv
-ms.openlocfilehash: d1f880a5ec9f0343891999ef3bad11279cb0cfe6
-ms.sourcegitcommit: d8ffb4a8cef3c6df8ab049a4540fc5e0fa7476ba
+ms.date: 07/21/2018
+ms.author: ramamill
+ms.openlocfilehash: f8368aab1bc979492143d77a191a31afef754c4c
+ms.sourcegitcommit: 248c2a76b0ab8c3b883326422e33c61bd2735c6c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/20/2018
-ms.locfileid: "36285532"
+ms.lasthandoff: 07/23/2018
+ms.locfileid: "39213012"
 ---
 # <a name="manage-process-servers"></a>プロセス サーバーの管理
 

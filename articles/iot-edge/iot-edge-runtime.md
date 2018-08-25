@@ -4,18 +4,18 @@ description: Azure IoT Edge ランタイムの概要、およびそのエッジ 
 author: kgremban
 manager: timlt
 ms.author: kgremban
-ms.date: 02/15/2018
+ms.date: 06/05/2018
 ms.topic: conceptual
 ms.service: iot-edge
 services: iot-edge
-ms.openlocfilehash: 4c44713d6b58edd3a18b0d20992d31dec7377fa7
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: 36750a4d907da1d4fa029aca0ecc503db7e82d81
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34632076"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39526094"
 ---
-# <a name="understand-the-azure-iot-edge-runtime-and-its-architecture---preview"></a>Azure IoT Edge ランタイムとそのアーキテクチャについて - プレビュー
+# <a name="understand-the-azure-iot-edge-runtime-and-its-architecture"></a>Azure IoT Edge ランタイムとそのアーキテクチャの概要
 
 IoT Edge ランタイムは、プログラムの集合体で、IoT Edge デバイスと認識されるためには、デバイスにインストールする必要があります。 これらの IoT Edge ランタイムで構成されるコンポーネントを使用することにより、IoT Edge デバイスは、エッジで実行するコードを受信し、結果を通信できます。 
 
@@ -40,12 +40,12 @@ Edge ハブと Edge エージェントは、いずれも、IoT Edge デバイス
 Edge ハブでは、Azure IoT Edge ランタイムを構成する 2 つのモジュールの 1 つです。 Edge ハブは、IoT Hub と同じプロトコル エンドポイントを公開することで IoT Hub のためのローカル プロキシとして動作します。 この整合性により、クライアント (デバイスまたはモジュール) は、IoT Hub と同じように IoT Edge ランタイムに接続できます。 
 
 >[!NOTE]
-> パブリック プレビューでは、Edge Hub は MQTT を使用して接続するクライアントのみサポートします。
+>Edge ハブでは、MQTT または AMQP を使用して接続するクライアントがサポートされます。 HTTP を使用するクライアントはサポートされません。 
 
 Edge ハブは、ローカルで実行される完全バージョンの IoT Hub ではありません。 Edge ハブは、いくつかの機能を IoT Hub をサイレントにデリゲートします。 たとえば、Edge ハブは、デバイスがはじめて接続を試みたとき、IoT Hub に認証要求を送信します。 初めて接続を確立した後は、セキュリティ情報は Edge ハブによってローカルでキャッシュされます。 そのデバイスからのその後の接続は、クラウドへの認証なしに許可されます。 
 
 >[!NOTE]
-> パブリック プレビューでは、デバイスを認証するたびに、ランタイムに接続する必要があります。
+>デバイスの認証を試みるたびに、ランタイムの接続が必要です。
 
 IoT Edge ソリューションが使用する帯域幅を減らすために、Edge ハブは、クラウドへの実際の接続数を最適化します。 Edge ハブは、モジュールまたはリーフ デバイスなどのクライアントからの論理接続を取得し、クラウドへの 1 つの物理接続に統合します。 ソリューションの他の部分は、このプロセスの詳細を認識する必要がありません。 クライアントは、すべて、共通の接続を使って接続しているにもかかわらず、クラウドにそれぞれ独自に接続していると認識します。 
 
@@ -65,7 +65,7 @@ Edge Hub を使用することで、モジュール間の通信が容易にな�
 データを Edge ハブに送信するために、モジュールは、SendEventAsync メソッドを呼び出します。 最初の引数は、どの出力にメッセージを送信するかを指定します。 次の疑似コードは、output1 にメッセージを送信します。
 
    ```csharp
-   DeviceClient client = new DeviceClient.CreateFromConnectionString(moduleConnectionString, settings); 
+   ModuleClient client = new ModuleClient.CreateFromEnvironmentAsync(transportSettings); 
    await client.OpenAsync(); 
    await client.SendEventAsync(“output1”, message); 
    ```
@@ -90,7 +90,7 @@ Edge エージェントの実行を開始するには、azure-iot-edge-runtime-c
 
 モジュール ディクショナリ内の各項目には、モジュールに関する特定の情報が含まれており、モジュールのライフ サイクルを制御するために、Edge エージェントによって使用されます。 重要なプロパティを次に示します。 
 
-* **settings.image** – Edge エージェントがモジュールを起動するために使用するコンテナー イメージ。 イメージがパスワードで保護されている場合は、コンテナー レジストリの資格情報を Edge エージェントに設定する必要があります。 Edge エージェントを設定するには、次のコマンドを使用します。`azure-iot-edge-runtime-ctl.py –configure`
+* **settings.image** – Edge エージェントがモジュールを起動するために使用するコンテナー イメージ。 イメージがパスワードで保護されている場合は、コンテナー レジストリの資格情報を Edge エージェントに設定する必要があります。 Edge エージェントを構成するには、`config.yaml` ファイルを更新します。 Linux では、次のコマンドを使用します: `sudo nano /etc/iotedge/config.yaml`
 * **settings.createOptions** – モジュールのコンテナーを起動したときに、Docker デーモンに直接渡される文字列。 このプロパティで Docker オプションを追加することにより、ポート転送またはモジュール コンテナーへのボリュームのマウントなどの詳細オプションを設定できます。  
 * **status** – Edge エージェントがモジュールに設定する状態。 大部分のユーザーが Edge を使ってデバイス上のすべてのモジュールをただちに起動する必要があるため、この値は、通常、*実行中*に設定されます。 また、モジュールの初期状態を停止中に指定し、後で Edge エージェントを起動するよう指定することができます。 Edge エージェントは、報告されたプロパティで、クラウドに各モジュールの状態を報告します。 期待されるプロパティと報告されたプロパティの間に差がある場合は、デバイスの動作が不適切であることを示しています。 次の状態がサポートされています。
    * ダウンロード中
@@ -114,7 +114,7 @@ IoT Edge エージェントは、ランタイム応答を IoT ハブに送信し
 
 ### <a name="security"></a>セキュリティ
 
-IoT Edge エージェントは、IoT Edge デバイスのセキュリティ上、重要な役割を果たします。 たとえば、起動前のモジュール イメージの検証などの操作を実行します。 これらの機能は、V2 機能の一般提供時に追加されます。 
+IoT Edge エージェントは、IoT Edge デバイスのセキュリティ上、重要な役割を果たします。 たとえば、起動前のモジュール イメージの検証などの操作を実行します。 これらの機能は、一般提供時に追加されます。 
 
 <!-- For more information about the Azure IoT Edge security framework, see []. -->
 

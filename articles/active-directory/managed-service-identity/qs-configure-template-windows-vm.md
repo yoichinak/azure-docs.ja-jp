@@ -1,6 +1,6 @@
 ---
-title: テンプレートを使用して Azure VM で MSI を構成する方法
-description: Azure Resource Manager テンプレートを使用して、Azure VM で管理対象サービス ID (MSI) を構成する方法をステップ バイ ステップで説明します。
+title: テンプレートを使用して Azure VM でマネージド サービス ID を構成する方法
+description: Azure Resource Manager テンプレートを使用して、Azure VM でマネージド サービス ID を構成する方法をステップ バイ ステップで説明します。
 services: active-directory
 documentationcenter: ''
 author: daveba
@@ -9,17 +9,17 @@ editor: ''
 ms.service: active-directory
 ms.component: msi
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 09/14/2017
 ms.author: daveba
-ms.openlocfilehash: 05859187a5734d982b750e287c3ecd375ed1da2f
-ms.sourcegitcommit: 59fffec8043c3da2fcf31ca5036a55bbd62e519c
+ms.openlocfilehash: 79b499f8063e5c15f76d89182955cbd90fb1039f
+ms.sourcegitcommit: 4de6a8671c445fae31f760385710f17d504228f8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/04/2018
-ms.locfileid: "34723747"
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39629312"
 ---
 # <a name="configure-a-vm-managed-service-identity-by-using-a-template"></a>テンプレートを使用して VM 管理対象サービス ID (MSI) を構成する
 
@@ -31,8 +31,12 @@ ms.locfileid: "34723747"
 
 ## <a name="prerequisites"></a>前提条件
 
-- マネージド サービス ID の基本についてご不明な点がある場合は、[管理対象のサービス ID の概要](overview.md)に関するページを参照してください。 **[システム割り当て ID とユーザー割り当て ID の違い](overview.md#how-does-it-work)を確認してください**。
+- MSI の基本的な事柄については、[管理対象のサービス ID の概要](overview.md)に関するページを参照してください。 **[システム割り当て ID とユーザー割り当て ID の違い](overview.md#how-does-it-work)を確認してください**。
 - まだ Azure アカウントを持っていない場合は、[無料のアカウントにサインアップ](https://azure.microsoft.com/free/)してから先に進んでください。
+- この記事の管理操作を実行するアカウントには、次のロールの割り当てが必要です。
+    - VM を作成して、システム割り当てマネージド ID またはユーザー割り当てマネージド ID を有効化したり、Azure VM から削除したりするための[仮想マシン共同作成者](/azure/role-based-access-control/built-in-roles#virtual-machine-contributor)。
+    - ユーザー割り当て ID を作成するための[マネージド ID 共同作成者](/azure/role-based-access-control/built-in-roles#managed-identity-contributor)ロール。
+    - ユーザー割り当て ID を VM に割り当てたり、VM から削除したりするための[マネージド ID オペレーター](/azure/role-based-access-control/built-in-roles#managed-identity-operator) ロール。
 
 ## <a name="azure-resource-manager-templates"></a>Azure Resource Manager のテンプレート
 
@@ -43,7 +47,7 @@ Azure portal とスクリプトを使う場合と同じように、[Azure Resour
    - ローカルの [JSON エディター (VS Code など)](../../azure-resource-manager/resource-manager-create-first-template.md) を使用してから、PowerShell または CLI を使用してアップロードおよびデプロイします。
    - Visual Studio の [Azure リソース グループ プロジェクト](../../azure-resource-manager/vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)を使用して、テンプレートを作成およびデプロイします。  
 
-選択するオプションにかかわらず、初めてのデプロイ時も再デプロイ時もテンプレートの構文は同じです。 新規または既存の VM での、システムまたはユーザー割り当て ID の有効化も同じように行われます。 また、既定では Azure Resource Manager は、デプロイに対して[増分更新](../../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments)を実行します。
+選択するオプションにかかわらず、初めてのデプロイ時も再デプロイ時もテンプレートの構文は同じです。 新規または既存の VM での、システムまたはユーザー割り当て ID の有効化も同じように行われます。 また、既定では Azure Resource Manager は、デプロイに対して[増分更新](../../azure-resource-manager/deployment-modes.md)を実行します。
 
 ## <a name="system-assigned-identity"></a>システム割り当て ID
 
@@ -51,7 +55,7 @@ Azure portal とスクリプトを使う場合と同じように、[Azure Resour
 
 ### <a name="enable-system-assigned-identity-during-creation-of-an-azure-vm-or-on-an-existing-vm"></a>Azure VM の作成中に、または既存の VM でシステム割り当て ID を有効にする
 
-1. Azure にローカルでサインインする場合も、Azure Portal を使用してサインインする場合も、VM が含まれる Azure サブスクリプションに関連付けられているアカウントを使用します。 また、お使いのアカウントが、「仮想マシンの共同作業者」などのVM 上の書き込みアクセス許可が提供されるロールに属すようにします。
+1. Azure にローカルでサインインする場合も、Azure Portal を使用してサインインする場合も、VM が含まれる Azure サブスクリプションに関連付けられているアカウントを使用します。
 
 2. テンプレートをエディターに読み込んだら、`resources` セクション内で関心のある `Microsoft.Compute/virtualMachines` リソースを探します。 使用するエディターや、編集しているテンプレートが新しいデプロイと既存のデプロイのどちらであるかによって、実際の表示は次のスクリーンショットと多少異なる場合があります。
 
@@ -59,7 +63,7 @@ Azure portal とスクリプトを使う場合と同じように、[Azure Resour
    > この例は、`vmName`、`storageAccountName`、`nicName` などの変数がテンプレートで定義されていることを前提としています。
    >
 
-   ![テンプレートのスクリーンショット - VM を見つける](../media/msi-qs-configure-template-windows-vm/template-file-before.png) 
+   ![テンプレートのスクリーンショット - VM を見つける](../managed-service-identity/media/msi-qs-configure-template-windows-vm/template-file-before.png) 
 
 3. システム割り当て ID を有効にするには、`"identity"` プロパティを `"type": "Microsoft.Compute/virtualMachines"` プロパティと同じレベルで追加します。 次の構文を使用します。
 
@@ -69,7 +73,7 @@ Azure portal とスクリプトを使う場合と同じように、[Azure Resour
    },
    ```
 
-4. (オプション) VM MSI 拡張機能を `resources` 要素として追加します。 Azure Instance Metadata Service (IMDS) の ID エンドポイントを使ってトークンを取得することもできるため、このステップは省略可能です。  次の構文を使用します。
+4. (省略可能) VM マネージド サービス ID 拡張機能を `resources` 要素として追加します。 Azure Instance Metadata Service (IMDS) の ID エンドポイントを使ってトークンを取得することもできるため、このステップは省略可能です。  次の構文を使用します。
 
    >[!NOTE] 
    > 次の例では、Windows VM の拡張機能 (`ManagedIdentityExtensionForWindows`) がデプロイ済みであることを前提としています。 `"name"` 要素と `"type"` 要素については、代わりに `ManagedIdentityExtensionForLinux` を使用して Linux 用に構成することもできます。
@@ -99,18 +103,70 @@ Azure portal とスクリプトを使う場合と同じように、[Azure Resour
 
 5. 完了すると、テンプレートは以下の例のようになります。
 
-   ![テンプレート更新後のスクリーンショット](../media/msi-qs-configure-template-windows-vm/template-file-after.png)
+   ![テンプレート更新後のスクリーンショット](../managed-service-identity/media/msi-qs-configure-template-windows-vm/template-file-after.png)
+
+### <a name="assign-a-role-the-vms-system-assigned-identity"></a>ロールに VM のシステム割り当て ID を割り当てる
+
+ご利用の VM でシステム割り当て ID を有効にしたら、作成先となったリソース グループへの**閲覧者**アクセス許可などのロールを付与することができます。
+
+1. Azure にローカルでサインインする場合も、Azure Portal を使用してサインインする場合も、VM が含まれる Azure サブスクリプションに関連付けられているアカウントを使用します。
+ 
+2. テンプレートを[エディター](#azure-resource-manager-templates)に読み込み、以下の情報を追加して、それが作成されたリソース グループへの**閲覧者**アクセス許可をご利用の VM に付与します。  テンプレートの構造は、選択したデプロイ モデルとエディターに応じて異なる場合があります。
+   
+   `parameters` セクションの下に、以下を追加します。
+
+    ```JSON
+    "builtInRoleType": {
+          "type": "string",
+          "defaultValue": "Reader"
+        },
+        "rbacGuid": {
+          "type": "string"
+        }
+    ```
+
+    `variables` セクションの下に、以下を追加します。
+
+    ```JSON
+    "Reader": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'acdd72a7-3385-48ef-bd42-f606fba81ae7')]"
+    ```
+
+    `resources` セクションの下に、以下を追加します。
+
+    ```JSON
+    {
+        "apiVersion": "2017-09-01",
+         "type": "Microsoft.Authorization/roleAssignments",
+         "name": "[parameters('rbacGuid')]",
+         "properties": {
+                "roleDefinitionId": "[variables(parameters('builtInRoleType'))]",
+                "principalId": "[reference(variables('vmResourceId'), '2017-12-01', 'Full').identity.principalId]",
+                "scope": "[resourceGroup().id]"
+          },
+          "dependsOn": [
+                "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]"
+            ]
+    }
+    ```
 
 ### <a name="disable-a-system-assigned-identity-from-an-azure-vm"></a>Azure VM でシステム割り当て ID を無効にする
 
-> [!NOTE]
-> VM からの MSI の無効化は現在サポートされていません。 現時点では、システム割り当て ID とユーザー割り当て ID の使用を切り替えることができます。
-
 MSI が不要になった VM がある場合は、次のようにします。
 
-1. Azure にローカルでサインインする場合も、Azure Portal を使用してサインインする場合も、VM が含まれる Azure サブスクリプションに関連付けられているアカウントを使用します。 また、お使いのアカウントが、「仮想マシンの共同作業者」などのVM 上の書き込みアクセス許可が提供されるロールに属すようにします。
+1. Azure にローカルでサインインする場合も、Azure Portal を使用してサインインする場合も、VM が含まれる Azure サブスクリプションに関連付けられているアカウントを使用します。
 
-2. ID の種類を `UserAssigned` に変更します。
+2. テンプレートを[エディター](#azure-resource-manager-templates)に読み込み、`resources` セクション内で関心のある `Microsoft.Compute/virtualMachines` リソースを探します。 システム割り当て ID のみを持つ VM がある場合は、ID の種類を `None` に変更して、無効にすることができます。  VM がシステム割り当て ID とユーザー割り当て ID の両方を持っている場合は、ID の種類から `SystemAssigned` を削除し、ユーザー割り当て ID の `identityIds` 配列と共に `UserAssigned` を保持します。  次の例は、ユーザー割り当て ID がない VM からシステム割り当て ID を削除する方法を示しています。
+   
+   ```JSON
+    {
+      "apiVersion": "2017-12-01",
+      "type": "Microsoft.Compute/virtualMachines",
+      "name": "[parameters('vmName')]",
+      "location": "[resourceGroup().location]",
+      "identity": { 
+          "type": "None"
+    }
+   ```
 
 ## <a name="user-assigned-identity"></a>ユーザー割り当て ID
 
@@ -121,7 +177,11 @@ MSI が不要になった VM がある場合は、次のようにします。
 
  ### <a name="assign-a-user-assigned-identity-to-an-azure-vm"></a>ユーザー割り当て ID を Azure VM に割り当てる
 
-1. ユーザー割り当て ID を VM に割り当てるには、`resources` 要素で、次のエントリを追加します。  `<USERASSIGNEDIDENTITY>` を作成したユーザー割り当て ID の名前と置き換えてください。
+1. ユーザー割り当て ID を VM に割り当てるには、`resources` 要素で、次のエントリを追加します。  `<USERASSIGNEDIDENTITY>` は、作成したユーザー割り当て ID の名前に置き換えてください。
+   
+   > [!Important]
+   > 次の例の `<USERASSIGNEDIDENTITYNAME>` 値は、変数に格納される必要があります。  また、Resource Manager テンプレートで仮想マシンにユーザー割り当ての ID を割り当てる現在サポートされている実装では、API バージョンは次の例のバージョンと一致している必要があります。
+    
     ```json
     {
         "apiVersion": "2017-12-01",
@@ -131,7 +191,7 @@ MSI が不要になった VM がある場合は、次のようにします。
         "identity": {
             "type": "userAssigned",
             "identityIds": [
-                "[resourceID('Micrososft.ManagedIdentity/userAssignedIdentities/',variables('<USERASSIGNEDIDENTITYNAME>'))]"
+                "[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/',variables('<USERASSIGNEDIDENTITYNAME>'))]"
             ]
         },
     ```
@@ -162,8 +222,30 @@ MSI が不要になった VM がある場合は、次のようにします。
 
       ![ユーザー割り当て ID のスクリーンショット](./media/qs-configure-template-windows-vm/qs-configure-template-windows-vm-ua-final.PNG)
 
+### <a name="remove-user-assigned-identity-from-an-azure-vm"></a>Azure VM からユーザー割り当て ID を削除する
+
+MSI が不要になった VM がある場合は、次のようにします。
+
+1. Azure にローカルでサインインする場合も、Azure Portal を使用してサインインする場合も、VM が含まれる Azure サブスクリプションに関連付けられているアカウントを使用します。
+
+2. テンプレートを[エディター](#azure-resource-manager-templates)に読み込み、`resources` セクション内で関心のある `Microsoft.Compute/virtualMachines` リソースを探します。 ユーザー割り当て ID のみを持つ VM がある場合は、ID の種類を `None` に変更して、無効にすることができます。  VM にシステム割り当て ID とユーザー割り当て ID の両方が与えられている場合は、ユーザー割り当て ID の `identityIds` 配列と共に ID の種類から `UserAssigned` を削除します。
+    
+   VM からユーザー割り当て ID を 1 つ削除するには、`identityIds` 配列からそれを削除します。
+   
+   次の例は、システム割り当て ID がない VM からユーザー割り当て ID をすべて削除する方法を示しています。
+   
+   ```JSON
+    {
+      "apiVersion": "2017-12-01",
+      "type": "Microsoft.Compute/virtualMachines",
+      "name": "[parameters('vmName')]",
+      "location": "[resourceGroup().location]",
+      "identity": { 
+          "type": "None"
+    }
+   ```
 
 ## <a name="related-content"></a>関連コンテンツ
 
-- MSI について詳しくは、[管理対象サービスの概要](overview.md)に関するページをご覧ください。
+- マネージド サービス ID の詳細については、[マネージド サービス ID](overview.md) に関するページを参照してください。
 

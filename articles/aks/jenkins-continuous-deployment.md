@@ -2,19 +2,19 @@
 title: Azure Kubernetes Service での Kubernetes に対する Jenkins の継続的デプロイ
 description: Jenkins で継続的デプロイ プロセスを自動化し、Azure Kubernetes Service で Kubernetes 上のコンテナー化されたアプリをデプロイおよびアップグレードする方法
 services: container-service
-author: neilpeterson
+author: iainfoulds
 manager: jeconnoc
 ms.service: container-service
 ms.topic: article
 ms.date: 03/26/2018
-ms.author: nepeters
+ms.author: iainfou
 ms.custom: mvc
-ms.openlocfilehash: 376d3b916c4e01ea6111e6c1db63e976dd1ea320
-ms.sourcegitcommit: c52123364e2ba086722bc860f2972642115316ef
+ms.openlocfilehash: a1a6799bc049fea829f8e32d12705e26e3a41dc0
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/11/2018
-ms.locfileid: "34069342"
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39425760"
 ---
 # <a name="continuous-deployment-with-jenkins-and-azure-kubernetes-service"></a>Jenkins と Azure Kubernetes Service を使った継続的デプロイ
 
@@ -149,6 +149,9 @@ azure-vote-front   10.0.34.242   13.90.150.118   80:30676/TCP   2m
 
 次のコマンドを実行し、スクリプトをダウンロードして実行します。 次の URL は、スクリプトの内容の確認にも使うことができます。
 
+> [!WARNING]
+> このサンプル スクリプトの目的は、Azure VM で実行される Jenkins 環境の迅速なプロビジョニングを示すことです。 それは、Azure カスタム スクリプト拡張機能を使用して VM を構成した後、必要な資格情報を表示します。 *~/.kube/config* が Jenkins VM にコピーされます。
+
 ```console
 curl https://raw.githubusercontent.com/Azure-Samples/azure-voting-app-redis/master/jenkins-tutorial/deploy-jenkins-vm.sh > azure-jenkins.sh
 sh azure-jenkins.sh
@@ -263,12 +266,11 @@ kubectl set image deployment/azure-vote-front azure-vote-front=$WEB_IMAGE_NAME -
 次に、すべてのコミットで新しいビルドがトリガーされるように、Jenkins ビルド サーバーにアプリケーション リポジトリをフックします。
 
 1. フォークされた GitHub リポジトリを参照します。
-2. **[Settings]** を選択して、左側の **[Integrations & services]** を選択します。
-3. **[Add Service]\(サービスの追加\)** を選び、フィルター ボックスに「`Jenkins (GitHub plugin)`」と入力して、プラグインを選びます。
-4. Jenkins フック URL に、「`http://<publicIp:8080>/github-webhook/`」と入力します。`publicIp` は、Jenkins サーバーの IP アドレスです。 末尾のスラッシュ (/) を含めていることを確認します。
-5. [Add service]\(サービスの追加\) を選びます。
+2. **[Settings]\(設定\)** を選択して、左側の **[Integrations & services]\(統合とサービス\)** を選択します。
+3. **[Add webhook]\(Webhook の追加\)** を選択します。 *[Payload URL]\(ペイロード URL\)* に、「`http://<publicIp:8080>/github-webhook/`」と入力します。`publicIp` は、Jenkins サーバーの IP アドレスです。 末尾のスラッシュ (/) を含めていることを確認します。 他の規定値 ([Content type]\(コンテンツの種類\) と *push* イベントでトリガー) は既定値のままにします。
+4. **[Add webhook]\(Webhook の追加\)** を選択します。
 
-![GitHub webhook](media/aks-jenkins/webhook.png)
+    ![GitHub webhook](media/aks-jenkins/webhook.png)
 
 ## <a name="test-cicd-process-end-to-end"></a>CI/CD プロセスをエンド ツー エンドでテストする
 
@@ -303,9 +305,9 @@ SHOWHOST = 'false'
 [kubernetes-service]: https://kubernetes.io/docs/concepts/services-networking/service/
 
 <!-- LINKS - internal -->
-[az-acr-list]: /cli/azure/acr#az_acr_list
+[az-acr-list]: /cli/azure/acr#az-acr-list
 [acr-authentication]: ../container-registry/container-registry-auth-aks.md
 [acr-quickstart]: ../container-registry/container-registry-get-started-azure-cli.md
-[aks-credentials]: /cli/azure/aks#az_aks_get_credentials
+[aks-credentials]: /cli/azure/aks#az-aks-get-credentials
 [aks-quickstart]: kubernetes-walkthrough.md
 [azure-cli-install]: /cli/azure/install-azure-cli

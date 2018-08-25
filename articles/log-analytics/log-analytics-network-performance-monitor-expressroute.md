@@ -1,6 +1,6 @@
 ---
 title: Azure Log Analytics のネットワーク パフォーマンス モニター ソリューション | Microsoft Docs
-description: Network Performance Monitor の ExpressRoute Manager 機能を使って、ブランチ オフィスと Azure 間のエンド ツー エンド接続とパフォーマンスを Azure ExpressRoute 経由で監視します。
+description: Network Performance Monitor の ExpressRoute モニター機能を使用して、ブランチ オフィスと Azure の間のエンド ツー エンド接続とパフォーマンスを Azure ExpressRoute 経由で監視します。
 services: log-analytics
 documentationcenter: ''
 author: abshamsft
@@ -11,19 +11,20 @@ ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 02/20/2018
 ms.author: abshamsft
-ms.openlocfilehash: d97e380f83cc4e5e5a2d9686a7ac8426967f4b93
-ms.sourcegitcommit: ea5193f0729e85e2ddb11bb6d4516958510fd14c
+ms.component: na
+ms.openlocfilehash: 27169193a468d98be879164b80e63fffde419002
+ms.sourcegitcommit: 0a84b090d4c2fb57af3876c26a1f97aac12015c5
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/21/2018
-ms.locfileid: "36302201"
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38633351"
 ---
-# <a name="expressroute-manager"></a>ExpressRoute Manager
+# <a name="expressroute-monitor"></a>ExpressRoute モニター
 
-[Network Performance Monitor](log-analytics-network-performance-monitor.md) の Azure ExpressRoute Manager 機能を使って、ブランチ オフィスと Azure 間のエンド ツー エンド接続とパフォーマンスを Azure ExpressRoute 経由で監視することができます。 主な利点は次のとおりです。 
+[Network Performance Monitor](log-analytics-network-performance-monitor.md) の Azure ExpressRoute モニター機能を使用して、ブランチ オフィスと Azure の間のエンド ツー エンド接続とパフォーマンスを Azure ExpressRoute 経由で監視できます。 主な利点は次のとおりです。 
 
 - サブスクリプションに関連付けられている ExpressRoute 回線の自動検出。
 - ExpressRoute の帯域幅使用率、回線での損失と待ち時間、ピアリングと Azure Virtual Network のレベルの追跡。

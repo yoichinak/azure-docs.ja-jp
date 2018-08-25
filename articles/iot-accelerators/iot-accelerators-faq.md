@@ -8,12 +8,12 @@ services: iot-accelerators
 ms.topic: conceptual
 ms.date: 02/15/2018
 ms.author: dobett
-ms.openlocfilehash: decae2fee0d040d0857950bec507df173e2820b9
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: c5621d5e16e31104ee28cc521386a5c0ca290a8b
+ms.sourcegitcommit: bf522c6af890984e8b7bd7d633208cb88f62a841
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34627161"
+ms.lasthandoff: 07/20/2018
+ms.locfileid: "39187701"
 ---
 # <a name="frequently-asked-questions-for-iot-solution-accelerators"></a>IoT ソリューション アクセラレータに関してよく寄せられる質問
 
@@ -86,7 +86,7 @@ DevKit デバイスを使用する場合は、[IoT DevKit SDK](https://github.co
 
 IoT ソリューション アクセラレータの他の機能についても学習できます。
 
-* [リモート監視ソリューション アクセラレータの機能について知る](iot-accelerators-remote-monitoring-explore.md)
+* [リモート監視ソリューション アクセラレータの機能について知る](quickstart-remote-monitoring-deploy.md)
 * [予測メンテナンスのソリューション アクセラレータの概要](iot-accelerators-predictive-overview.md)
-* [接続済みファクトリ ソリューション アクセラレータの概要](iot-accelerators-connected-factory-overview.md)
-* [徹底的な IoT セキュリティ](securing-iot-ground-up.md)
+* [接続済みファクトリ ソリューション アクセラレータの展開](quickstart-connected-factory-deploy.md)
+* [徹底的な IoT セキュリティ](/azure/iot-fundamentals/iot-security-ground-up)

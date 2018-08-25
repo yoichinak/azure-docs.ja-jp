@@ -3,19 +3,18 @@ title: Azure Data Lake Storage Gen2 プレビュー ストレージ アカウン
 description: Azure portal、Azure PowerShell、または Azure CLI を使用して、Data Lake Storage Gen2 プレビューにアクセスできる新しいストレージ アカウントを作成する方法をすばやく学習します
 services: storage
 author: jamesbak
-manager: twooley
 ms.component: data-lake-storage-gen2
 ms.custom: mvc
 ms.service: storage
 ms.topic: quickstart
 ms.date: 06/27/2018
 ms.author: jamesbak
-ms.openlocfilehash: aafb86e7ebc99ea48e09b34b58682c983fe9f293
-ms.sourcegitcommit: f06925d15cfe1b3872c22497577ea745ca9a4881
+ms.openlocfilehash: 9d60b85051ff6e24c64f074ccd4fad055ba47ae8
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/27/2018
-ms.locfileid: "37063107"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39523582"
 ---
 # <a name="quickstart-create-an-azure-data-lake-storage-gen2-preview-storage-account"></a>クイック スタート: Azure Data Lake Storage Gen2 プレビュー ストレージ アカウントを作成する
 
@@ -50,7 +49,7 @@ Azure Cloud Shell は、Azure Portal 内で直接実行できる無料の Bash �
 
 ### <a name="install-the-cli-locally"></a>CLI をローカルにインストールする
 
-Azure CLI はローカルにインストールして使用することもできます。 このクイックスタートでは、Azure CLI バージョン 2.0.4 以降を実行している必要があります。 バージョンを確認するには、`az --version` を実行します。 インストールまたはアップグレードする必要がある場合は、「[Azure CLI 2.0 のインストール](/cli/azure/install-azure-cli)」を参照してください。
+Azure CLI はローカルにインストールして使用することもできます。 このクイック スタートでは、Azure CLI バージョン 2.0.38 以降を実行している必要があります。 バージョンを確認するには、`az --version` を実行します。 インストールまたはアップグレードする必要がある場合は、「[Azure CLI 2.0 のインストール](/cli/azure/install-azure-cli)」を参照してください。
 
 ## <a name="overview-of-creating-an-azure-data-lake-storage-gen2-account"></a>Azure Data Lake Storage Gen2 アカウント作成の概要
 
@@ -115,6 +114,15 @@ Azure Portal を使用してリソース グループを削除するには:
 2. 削除するリソース グループを見つけて、一覧の右側にある **[詳細]** ボタン (**...**) を右クリックします。
 3. **[リソース グループの削除]** を選択し、確認します。
 
+
+## <a name="upgrade-your-powershell-module"></a>PowerShell モジュールのアップグレード
+
+PowerShell を使用して Data Lake Storage Gen2 と対話するには、お使いのモジュールをプレビュー バージョンにアップグレードする必要があります。
+
+そのためには、管理者特権の PowerShell を開いて次のコマンドを入力します。`Install-Module AzureRM.Storage –Repository PSGallery -RequiredVersion 5.0.4-preview –AllowPrerelease –AllowClobber –Force `
+
+その後、シェルを再起動してください。
+
 ## <a name="create-an-account-using-powershell"></a>PowerShell を使用してアカウントを作成する
 
 `Login-AzureRmAccount` コマンドで Azure サブスクリプションにログインし、画面上の指示に従って認証を行います。
@@ -151,7 +159,7 @@ New-AzureRmStorageAccount -ResourceGroupName $resourceGroup `
   -Location $location `
   -SkuName Standard_LRS `
   -Kind StorageV2 
-  -HierarchialNamespace $True
+  -EnableHierarchicalNamespace $True
 ```
 
 ### <a name="clean-up-resources"></a>リソースのクリーンアップ
@@ -162,6 +170,12 @@ New-AzureRmStorageAccount -ResourceGroupName $resourceGroup `
 Remove-AzureRmResourceGroup -Name $resourceGroup
 ```
 
+## <a name="upgrade-your-cli-module"></a>CLI モジュールのアップグレード
+
+CLI を使用して Data Lake Storage Gen2 と対話するには、お使いのシェルに拡張機能を追加する必要があります。
+
+具体的には、Cloud Shell またはローカル シェルを使用し、次のコマンドを入力してください。`az extension add --name storage-preview`
+
 ## <a name="create-an-account-using-azure-cli"></a>Azure CLI を使用してアカウントを作成する 
 
 Azure Cloud Shell を起動するには、[Azure Portal](https://portal.azure.com) にログインします。
@@ -171,6 +185,7 @@ CLI のローカル インストールにログインするには、ログイン
 ```cli
 az login
 ```
+
 ### <a name="create-a-resource-group"></a>リソース グループの作成
 
 Azure CLI で新しいリソース グループを作成するには、[az group create](/cli/azure/group#az_group_create) コマンドを使用します。 

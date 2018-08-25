@@ -1,25 +1,19 @@
 ---
-title: Azure HDInsight で ScaleR と SparkR を使用する | Microsoft Docs
+title: Azure HDInsight で ScaleR と SparkR を使用する
 description: HDInsight 上で ML Services と共に ScaleR と SparkR を使用する
 services: hdinsight
-documentationcenter: ''
-author: bradsev
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: 5a76f897-02e8-4437-8f2b-4fb12225854a
+author: jasonwhowell
+ms.author: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
 ms.topic: conceptual
 ms.date: 06/19/2017
-ms.author: bradsev
-ms.openlocfilehash: 34d923cdf2dd96412996c766632ae42aac576e8c
-ms.sourcegitcommit: f06925d15cfe1b3872c22497577ea745ca9a4881
+ms.openlocfilehash: 38b7808f880bb346aeddbe87e5fb17499708d092
+ms.sourcegitcommit: 1f0587f29dc1e5aef1502f4f15d5a2079d7683e9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/27/2018
-ms.locfileid: "37061480"
+ms.lasthandoff: 08/07/2018
+ms.locfileid: "39599080"
 ---
 # <a name="combine-scaler-and-sparkr-in-hdinsight"></a>HDInsight で ScaleR と SparkR を組み合わせる
 
@@ -273,7 +267,7 @@ weatherDF <- rename(weatherDF,
 
 ## <a name="joining-the-weather-and-airline-data"></a>気象データと航空データの結合
 
-今度は、SparkR の [join()](https://docs.databricks.com/spark/latest/sparkr/functions/join.html) 関数を使い、出発空港 (AirportID) と出発時刻 (datetime) で航空データと気象データの左外部結合を実行します。 対応する気象データがなくても、外部結合を使用することですべての航空データ レコードを維持することができます。 結合後、不要な列を除去し、維持する列については名前を変更して、結合処理によって追加された受信 DataFrame プレフィックスを削除します。
+今度は、SparkR の [join()](https://docs.databricks.com/spark/1.6/sparkr/functions/join.html#join) 関数を使い、出発空港 (AirportID) と出発時刻 (datetime) で航空データと気象データの左外部結合を実行します。 対応する気象データがなくても、外部結合を使用することですべての航空データ レコードを維持することができます。 結合後、不要な列を除去し、維持する列については名前を変更して、結合処理によって追加された受信 DataFrame プレフィックスを削除します。
 
 ```
 logmsg('Join airline data with weather at Origin Airport')

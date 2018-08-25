@@ -6,14 +6,14 @@ author: nsoneji
 manager: garavd
 ms.service: site-recovery
 ms.topic: article
-ms.date: 02/14/2018
+ms.date: 07/06/2018
 ms.author: nisoneji
-ms.openlocfilehash: 31461e70e81f0f48a8d67e31b98cfae2dd627a54
-ms.sourcegitcommit: d1f35f71e6b1cbeee79b06bfc3a7d0914ac57275
+ms.openlocfilehash: d5b3bf62999c197c437e55a66ee6ba935bdc6ea8
+ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/22/2018
-ms.locfileid: "29466828"
+ms.lasthandoff: 08/02/2018
+ms.locfileid: "39428532"
 ---
 # <a name="cost-estimation-report-by-azure-site-recovery-deployment-planner"></a>Azure Site Recovery Deployment Planner のコスト見積もりレポート 
 
@@ -39,9 +39,9 @@ Azure Site Recovery を使用して適合 VM を保護する場合に、スト�
 **[Azure storage cost per Month/Year]\(月/年単位の Azure Storage コスト\)**: Premium ストレージと Standard ストレージに関して、レプリケーションと DR ドリルで生じる合計ストレージ コストが表示されます。
 
 ## <a name="detailed-cost-analysis"></a>Detailed cost analysis (詳細コスト分析)
-Azure のコンピューティング、ストレージ、ネットワークの料金は Azure リージョンによって異なります。 サブスクリプションやそれに関連付けられているプランに基づき、ターゲット Azure リージョンと通貨を指定して、最新の Azure 料金に関するコスト見積もりレポートを生成することができます。 既定では、Azure リージョンに "米国西部 2" が、通貨には米ドル (USD) が使用されます。 その他のリージョンや通貨を使用した場合、次回サブスクリプション ID、プラン ID、ターゲット リージョン、通貨を指定せずにレポートを生成すると、前回使用したターゲット リージョンと通貨に基づく料金がコスト見積もりに使用されます。
+Azure のコンピューティング、ストレージ、ネットワークの料金は Azure リージョンによって異なります。 サブスクリプションやそれに関連付けられているオファーに基づき、ターゲット Azure リージョンと通貨を指定して、最新の Azure 料金に関するコスト見積もりレポートを生成することができます。 既定では、Azure リージョンに "米国西部 2" が、通貨には米ドル (USD) が使用されます。 その他のリージョンや通貨を使用した場合、次回サブスクリプション ID、オファー ID、ターゲット リージョン、通貨を指定せずにレポートを生成すると、前回使用したターゲット リージョンと通貨に基づく料金がコスト見積もりに使用されます。
 
-このセクションには、レポート生成に使用されたサブスクリプション ID とプラン ID が表示されます。 使用しなかった場合は、何も表示されません。
+このセクションには、レポート生成に使用されたサブスクリプション ID とオファー ID が表示されます。 使用しなかった場合は、何も表示されません。
 
 レポート全体のうち、灰色でマークされたセルは読み取り専用です。 白色のセルは、必要に応じて変更できます。
 
@@ -90,7 +90,8 @@ Azure の料金総額に対して何らかの割引を受ける資格のある A
 このテーブルには、Windows VM の数と非 Windows VM の数、さらに、それぞれの DR ドリルのコンピューティング コストが表示されます。
 
 ### <a name="settings"></a>設定 
-**[Using Managed disk]\(管理ディスクの使用\)**: DR ドリル時に管理ディスクが使用されているかどうかを指定する設定です。 既定値は **[はい]** です。 **-UseManagedDisks** を **[No]\(いいえ\)** に設定した場合、非管理対象ディスクの料金がコスト計算に使用されます。
+
+  **[Using Managed disk]\(管理ディスクの使用\)**: DR ドリル時にマネージド ディスクが使用されているかどうかを指定する設定です。 既定値は **[はい]** です。 **-UseManagedDisks** を **[No]\(いいえ\)** に設定した場合、非管理対象ディスクの料金がコスト計算に使用されます。
 
 **[Currency]\(通貨\)**: レポートの生成に使用される通貨。
 
@@ -105,7 +106,7 @@ VM を手動で追加するには、次の手順に従います。
 
 1. **[Insert row]\(行の挿入\)** を選択して**開始**行と**終了**行の間に新しい行を挿入します。
 
-2. 適切な VM サイズとその構成に合った VM 数に基づいて、次の各列の情報を入力します。 
+1. 適切な VM サイズとその構成に合った VM 数に基づいて、次の各列の情報を入力します。 
 
     a. **[Number of VMs]\(VM の数\)**
 
@@ -125,9 +126,9 @@ VM を手動で追加するには、次の手順に従います。
 
     i. **Azure Hybrid 利用特典**
 
-3. **[Number of DR-Drills in a year]\(年間 DR ドリル数\)**、**[Each DR-Drill duration (Days)]\(各 DR ドリル期間 (日数)\)**、**[Data redundancy]\(データの冗長性\)**、**[Azure Hybrid Use Benefit]\(Azure ハイブリッド使用特典\)** に関しては、**[Apply to all]\(すべてに適用\)** を選択すると、テーブル内のすべての VM に同じ値を適用することができます。
+1. **[Number of DR-Drills in a year]\(年間 DR ドリル数\)**、**[Each DR-Drill duration (Days)]\(各 DR ドリル期間 (日数)\)**、**[Data redundancy]\(データの冗長性\)**、**[Azure Hybrid Use Benefit]\(Azure ハイブリッド使用特典\)** に関しては、**[Apply to all]\(すべてに適用\)** を選択すると、テーブル内のすべての VM に同じ値を適用することができます。
 
-4. **[Re-calculate cost]\(コストを再計算\)** を選択してコストを更新します。
+1. **[Re-calculate cost]\(コストを再計算\)** を選択してコストを更新します。
 
 **[VM Name]\(VM 名\)**: VM の名前。
 

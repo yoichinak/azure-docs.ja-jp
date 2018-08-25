@@ -2,19 +2,19 @@
 title: Azure イベント ハブを作成する | Microsoft Docs
 description: Azure Portal を使用して Azure Event Hubs 名前空間とイベント ハブを作成します
 services: event-hubs
-author: sethmanheim
+author: ShubhaVijayasarathy
 manager: timlt
 ms.service: event-hubs
 ms.devlang: na
 ms.topic: article
-ms.date: 05/29/2017
-ms.author: sethm
-ms.openlocfilehash: 9b466d4e727c1511ca2318c0da3ec2807a965a5d
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.date: 08/16/2018
+ms.author: shvija
+ms.openlocfilehash: 5b468e1758d752cd3001c85b328d064369429499
+ms.sourcegitcommit: f057c10ae4f26a768e97f2cb3f3faca9ed23ff1b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34625544"
+ms.lasthandoff: 08/17/2018
+ms.locfileid: "42146256"
 ---
 # <a name="create-an-event-hubs-namespace-and-an-event-hub-using-the-azure-portal"></a>Azure Portal を使用して Event Hubs 名前空間とイベント ハブを作成する
 

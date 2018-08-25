@@ -3,18 +3,17 @@ title: Azure Data Lake Storage Gen2 プレビューの階層構造の名前空�
 description: Azure Data Lake Storage Gen2 プレビューの階層構造の名前空間の概念を説明します。
 services: storage
 author: jamesbak
-manager: twooley
 ms.service: storage
 ms.topic: article
 ms.date: 06/27/2018
 ms.author: jamesbak
 ms.component: data-lake-storage-gen2
-ms.openlocfilehash: f7c3820624a4ef27e2ece4d902f2c033b6a6f48f
-ms.sourcegitcommit: f06925d15cfe1b3872c22497577ea745ca9a4881
+ms.openlocfilehash: 44eec21f4687d2df64c59d41cdb02c6ef2268f82
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/27/2018
-ms.locfileid: "37061222"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39528699"
 ---
 # <a name="azure-data-lake-storage-gen2-preview-hierarchical-namespace"></a>Azure Data Lake Storage Gen2 プレビューの階層構造の名前空間
 
@@ -27,7 +26,7 @@ Azure Data Lake Storage Gen2 プレビューは、オブジェクト ストレ�
 
 BLOB データに対する階層構造の名前空間が実装されたファイル システムには、以下のような利点があります。
 
-- **アトミック ディレクトリ操作:** オブジェクト ストアでは、ディレクトリ階層を模倣するために、パスの区切りを示すスラッシュ (/) をオブジェクト名に埋め込むという規則が採用されています。 この規則は、オブジェクトを編成する場合は十分に役立ちますが、ディレクトリの移動、名前変更、削除などの操作を行う場合は役立ちません。 アプリケーションは、実際のディレクトリなしに、何百万もの個々の BLOB を処理して、ディレクトリ レベルのタスクを達成する必要があります。 一方、階層構造の名前空間は、単一のエントリ (親ディレクトリ) を更新して、これらのタスクを処理します。 
+- **アトミック ディレクトリ操作:** オブジェクト ストアでは、ディレクトリ階層を模倣するために、パスの区切りを示すスラッシュ (/) をオブジェクト名に埋め込むという規則が採用されています。 この規則は、オブジェクトを編成する場合は役立ちますが、ディレクトリの移動、名前変更、削除などの操作を行う場合は役立ちません。 アプリケーションは、実際のディレクトリなしに、何百万もの個々の BLOB を処理して、ディレクトリ レベルのタスクを達成する必要があります。 一方、階層構造の名前空間は、単一のエントリ (親ディレクトリ) を更新して、これらのタスクを処理します。 
 
     多くのビッグ データ分析フレームワークでは、この効果的な最適化が特に重要です。 多くの場合、Hive や Spark などのツールは、一時的な場所に出力を書き込み、ジョブの最後にその場所の名前を変更します。 階層構造の名前空間がないと、その名前変更に要する時間が、分析プロセス自体より長くなることが多くなります。 ジョブの待ち時間が短いほど、分析ワークロードの総保有コスト (TCO) が抑えられます。
 

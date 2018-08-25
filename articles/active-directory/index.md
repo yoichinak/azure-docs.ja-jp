@@ -10,14 +10,14 @@ ms.service: active-directory
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: landing-page
-ms.date: 04/13/2018
-ms.author: carolz
-ms.openlocfilehash: 04b2853729296d158fee77d96a807972bd4f92e5
-ms.sourcegitcommit: e34afd967d66aea62e34d912a040c4622a737acb
+ms.date: 08/16/2018
+ms.author: mtillman
+ms.openlocfilehash: 9496896e3d841e4857ea17987fb230adb4f0edb1
+ms.sourcegitcommit: 30c7f9994cf6fcdfb580616ea8d6d251364c0cd1
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/26/2018
-ms.locfileid: "36946042"
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "41927266"
 ---
 # <a name="azure-active-directory-documentation"></a>Azure Active Directory のドキュメント
 
@@ -31,10 +31,11 @@ Azure Active Directory (Azure AD) は、マルチテナントに対応したク�
                     <div class="cardText">
                         <h3>基礎</h3>
                         <p>
-                        <a href="/azure/active-directory/active-directory-whatis">Azure AD とは</a><br/>
-                        <a href="/azure/active-directory/understand-azure-identity-solutions">ID ソリューション</a><br/>
-                        <a href="/azure/active-directory/get-started-azure-ad">作業開始</a><br/>
-                        <a href="/azure/active-directory/whats-new">新機能</a>
+                        <a href="/azure/active-directory/fundamentals/active-directory-whatis">Azure AD とは</a><br/>
+                        <a href="/azure/active-directory/fundamentals/understand-azure-identity-solutions">ID ソリューション</a><br/>
+                        <a href="/azure/active-directory/fundamentals/get-started-azure-ad">はじめに</a><br/>
+                        <a href="/azure/active-directory/fundamentals/whats-new">新機能</a><br/>
+                        <a href="/azure/active-directory/fundamentals/active-directory-deployment-plans">Azure AD のデプロイ計画</a>
                         </p>
                     </div>
                 </div>
@@ -46,7 +47,7 @@ Azure Active Directory (Azure AD) は、マルチテナントに対応したク�
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>エンタープライズ ユーザー</h3>
+                        <h3><a href="/azure/active-directory/users-groups-roles/index">エンタープライズ ユーザー</a></h3>
                         <p>
                         <a href="/azure/active-directory/add-users-azure-active-directory">ユーザー</a><br/>
                         <a href="/azure/active-directory/active-directory-manage-groups">グループ</a><br/>
@@ -79,10 +80,10 @@ Azure Active Directory (Azure AD) は、マルチテナントに対応したク�
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>認証</h3>
+                        <h3>Authentication</h3>
                         <p>
-                        <a href="/azure/active-directory/active-directory-passwords-overview">パスワード</a><br/>
-                        <a href="/azure/active-directory/active-directory-hybrid-identity-design-considerations-multifactor-auth-requirements">多要素認証</a><br/>
+                        <a href="/azure/active-directory/authentication/concept-sspr-howitworks">パスワード</a><br/>
+                        <a href="/azure/active-directory/authentication/concept-mfa-howitworks">多要素認証</a><br/>
                         <a href="/azure/active-directory/active-directory-azureadjoin-passport">Windows Hello</a><br/>
                         <a href="/azure/active-directory/active-directory-certificate-based-authentication-get-started">証明書ベースの認証</a>
                         </p>
@@ -99,8 +100,8 @@ Azure Active Directory (Azure AD) は、マルチテナントに対応したク�
                         <h3>保護</h3>
                         <p>
                         <a href="/azure/active-directory/active-directory-identityprotection">ID 保護</a><br/>
-                        <a href="/azure/active-directory/active-directory-conditional-access-azure-portal">条件付きアクセス</a><br/>
-                        <a href="/azure/active-directory/active-directory-privileged-identity-management-configure?toc=%2fazure%2factive-directory%2fprivileged-identity-management%2ftoc.json">Privileged Identity Management</a>
+                        <a href="/azure/active-directory/conditional-access/index">条件付きアクセス</a><br/>
+                        <a href="/azure/active-directory/privileged-identity-management/pim-configure">Privileged Identity Management</a>
                         </p>
                     </div>
                 </div>
@@ -149,6 +150,7 @@ Azure Active Directory (Azure AD) は、マルチテナントに対応したク�
                         <p>
                         <a href="/azure/active-directory/develop/active-directory-authentication-scenarios">認証の基本</a><br/>
                         <a href="/azure/active-directory/develop/active-directory-integrating-applications">アプリの統合</a><br/>
+  
                         <a href="/azure/active-directory/managed-service-identity/overview">管理対象 ID</a><br/>
                         <a href="/azure/active-directory/develop/active-directory-code-samples">コード サンプル</a>
                         </p>

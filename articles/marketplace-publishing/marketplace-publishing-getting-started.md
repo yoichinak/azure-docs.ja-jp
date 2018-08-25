@@ -3,8 +3,8 @@ title: プランを作成して Marketplace にデプロイする方法の概要
 description: Microsoft 認定開発者として、仮想マシン イメージ、テンプレート、データ サービス、または開発者向けサービスを作成して Azure Marketplace にデプロイするために必要な手順を理解します
 services: marketplace-publishing
 documentationcenter: ''
-author: msmbaldwin
-manager: mbaldwin
+author: HannibalSII
+manager: hascipio
 editor: ''
 ms.assetid: 5343bd26-c6e4-4589-85b7-4a2c00bba8ab
 ms.service: marketplace
@@ -13,13 +13,13 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/05/2017
-ms.author: mbaldwin
-ms.openlocfilehash: 02df78de48c8466f3488ef5f8346e1852b4e3ded
-ms.sourcegitcommit: 8aab1aab0135fad24987a311b42a1c25a839e9f3
+ms.author: hascipio
+ms.openlocfilehash: 82580fbab68eab28a2027cd277213f1fb2a76e07
+ms.sourcegitcommit: d16b7d22dddef6da8b6cfdf412b1a668ab436c1f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/16/2018
-ms.locfileid: "29943175"
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39716003"
 ---
 > [!NOTE]
 > このドキュメントは最新ではなく、情報は正確ではありません。 代わりに Azure Marketplace の[販売者ガイド](https://docs.microsoft.com/azure/marketplace/seller-guide/cloud-partner-portal-seller-guide)にアクセスして、Azure Marketplace へのプランの発行についてのガイダンスをご覧ください。
@@ -68,9 +68,11 @@ Microsoft アカウントを [Microsoft 開発者アカウント](marketplace-pu
 
 2. プランを作成します。
 
-    a. [仮想マシン](marketplace-publishing-vm-image-creation.md) プランを作成します。
+    a. 
+  [仮想マシン](marketplace-publishing-vm-image-creation.md) プランを作成します。
 
-    b. [ソリューション テンプレート](marketplace-publishing-solution-template-creation.md) プランを作成します。
+    b. 
+  [ソリューション テンプレート](marketplace-publishing-solution-template-creation.md) プランを作成します。
 
 3. プランの[マーケティング コンテンツ](marketplace-publishing-push-to-staging.md)を作成します。
 
@@ -92,12 +94,17 @@ Microsoft アカウントを [Microsoft 開発者アカウント](marketplace-pu
 
 ## <a name="manage-your-solution"></a>ソリューションを管理する
 以下のリソースを参照してソリューションを管理します。
-* [仮想マシン プランの作成後ガイドを読む](marketplace-publishing-vm-image-post-publishing.md)
-* [プランまたは SKU の技術面以外の詳細を更新する](marketplace-publishing-vm-image-post-publishing.md#update-the-nontechnical-details-of-an-offer-or-a-sku)
-* [プランまたは SKU の技術面の詳細を更新する](marketplace-publishing-vm-image-post-publishing.md#update-the-technical-details-of-a-sku)
-* [表示されているプランに新しい SKU を追加する](marketplace-publishing-vm-image-post-publishing.md#add-a-new-sku-under-a-listed-offer)
+* 
+  [仮想マシン プランの作成後ガイドを読む](marketplace-publishing-vm-image-post-publishing.md)
+* 
+  [プランまたは SKU の技術面以外の詳細を更新する](marketplace-publishing-vm-image-post-publishing.md#update-the-nontechnical-details-of-an-offer-or-a-sku)
+* 
+  [プランまたは SKU の技術面の詳細を更新する](marketplace-publishing-vm-image-post-publishing.md#update-the-technical-details-of-a-sku)
+* 
+  [表示されているプランに新しい SKU を追加する](marketplace-publishing-vm-image-post-publishing.md#add-a-new-sku-under-a-listed-offer)
 * [表示されている SKU のデータ ディスク数を変更する](marketplace-publishing-vm-image-post-publishing.md#change-the-data-disk-count-for-a-listed-sku)
-* [表示されているプランを Marketplace から削除する](marketplace-publishing-vm-image-post-publishing.md)
+* 
+  [表示されているプランを Marketplace から削除する](marketplace-publishing-vm-image-post-publishing.md)
 * [表示されている SKU を Marketplace から削除する](marketplace-publishing-vm-image-post-publishing.md#delete-a-listed-sku-from-the-marketplace)
 * [表示されている SKU の現在のバージョンを Marketplace から削除する](marketplace-publishing-vm-image-post-publishing.md#delete-the-current-version-of-a-listed-sku-from-the-marketplace)
 * [表示価格を運用時の値に戻す](marketplace-publishing-vm-image-post-publishing.md#revert-the-listing-price-to-production-values)

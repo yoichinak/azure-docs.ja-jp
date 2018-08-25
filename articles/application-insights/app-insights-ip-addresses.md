@@ -11,14 +11,14 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: conceptual
-ms.date: 05/09/2018
+ms.date: 07/23/2018
 ms.author: mbullwin
-ms.openlocfilehash: 2e537f0a9b3e796f8dc2ac04d210a23fc558687b
-ms.sourcegitcommit: 0fa8b4622322b3d3003e760f364992f7f7e5d6a9
+ms.openlocfilehash: 724cdb82f601805ffd93f1afd0c27983cc1ef96b
+ms.sourcegitcommit: e3d5de6d784eb6a8268bd6d51f10b265e0619e47
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/27/2018
-ms.locfileid: "37025370"
+ms.lasthandoff: 08/01/2018
+ms.locfileid: "39389475"
 ---
 # <a name="ip-addresses-used-by-application-insights-and-log-analytics"></a>Application Insights および Log Analytics によって使用される IP アドレス
 [Azure Application Insights](app-insights-overview.md) サービスは、多くの IP アドレスを使用します。 監視しているアプリがファイアウォールの背後でホストされている場合は、これらのアドレスを確認する必要があります。
@@ -28,12 +28,17 @@ ms.locfileid: "37025370"
 > 
 > 
 
+> [!TIP]
+> https://github.com/MicrosoftDocs/azure-docs/commits/master/articles/application-insights/app-insights-ip-addresses.md.atom をお気に入りの RSS/ATOM リーダーに追加してこのページを RSS フィードとしてサブスクライブすると、最新の変更に関する通知を受け取ることができます。
+> 
+> 
+
 ## <a name="outgoing-ports"></a>送信ポート
 Application Insights SDK や Status Monitor がポータルにデータを送信できるように、サーバーのファイアウォールでいくつかの送信ポートを開く必要があります。
 
 | 目的 | URL | IP | ポート |
 | --- | --- | --- | --- |
-| テレメトリ |dc.services.visualstudio.com<br/>dc.applicationinsights.microsoft.com |40.114.241.141<br/>104.45.136.42<br/>40.84.189.107<br/>168.63.242.221<br/>52.167.221.184<br/>52.169.64.244 |443 |
+| テレメトリ |dc.services.visualstudio.com<br/>dc.applicationinsights.microsoft.com |40.114.241.141<br/>104.45.136.42<br/>40.84.189.107<br/>168.63.242.221<br/>52.167.221.184<br/>52.169.64.244<br/>40.85.218.175<br/>104.211.92.54<br/>52.175.198.74 | 443 |
 | ライブ メトリック ストリーム |rt.services.visualstudio.com<br/>rt.applicationinsights.microsoft.com |23.96.28.38<br/>13.92.40.198 |443 |
 
 ## <a name="status-monitor"></a>Status Monitor
@@ -76,6 +81,10 @@ France Central
 52.143.140.246
 52.143.140.247
 52.143.140.249
+40.89.137.100
+40.89.142.126
+40.89.131.237
+40.89.136.180
 East Asia
 13.75.121.122
 23.99.115.153
@@ -92,6 +101,10 @@ North Europe
 52.169.14.11
 52.169.237.149
 52.178.183.105
+40.112.90.148
+40.112.94.212
+104.46.15.57
+40.115.125.114
 Japan East
 52.243.33.33
 52.243.33.141
@@ -106,6 +119,10 @@ West Europe
 52.178.109.190
 52.178.111.139
 52.233.166.221
+23.100.10.236
+23.100.6.155
+52.232.113.84
+51.144.113.219
 UK South
 51.140.79.229
 51.140.84.172
@@ -116,6 +133,10 @@ UK West
 51.141.32.101
 51.141.35.167
 51.141.54.177
+51.140.240.239
+51.140.205.236
+51.140.245.132
+51.140.203.56
 Southeast Asia
 52.187.29.7
 52.187.179.17
@@ -134,6 +155,14 @@ West US
 40.118.131.182
 40.83.189.192
 40.83.215.122
+104.42.39.222
+104.42.145.220
+104.42.60.160
+104.42.248.11
+40.83.163.29
+104.42.195.57
+40.78.19.163
+40.78.23.43
 Central US
 52.165.130.58
 52.173.142.229
@@ -143,6 +172,12 @@ Central US
 52.173.244.190
 52.173.36.222
 52.176.1.226
+104.43.251.84
+40.113.236.73
+40.113.230.234
+40.113.195.109
+104.43.215.218
+104.43.240.112
 North Central US
 23.96.247.139
 23.96.249.113
@@ -156,6 +191,10 @@ North Central US
 52.237.156.14
 52.237.157.218
 52.237.157.37
+65.52.205.196
+23.100.75.146
+65.52.63.179
+157.55.143.58
 South Central US
 104.210.145.106
 13.84.176.24
@@ -167,6 +206,10 @@ South Central US
 52.171.141.253
 52.171.57.172
 52.171.58.140
+40.124.36.120
+104.210.216.32
+104.215.75.92
+104.215.77.186
 East US
 13.82.218.95
 13.90.96.71
@@ -178,6 +221,12 @@ East US
 52.170.38.79
 52.170.80.61
 52.179.9.26
+104.41.133.69
+137.117.103.13
+40.114.75.45
+40.121.8.31
+168.62.41.234
+168.62.168.66
 
 ```  
 

@@ -12,14 +12,14 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/22/2018
+ms.date: 07/06/2018
 ms.author: ponatara
-ms.openlocfilehash: b117525a4851dee5366aeda77c8aaefd1fdde375
-ms.sourcegitcommit: fbba5027fa76674b64294f47baef85b669de04b7
+ms.openlocfilehash: 45d366842416ddfa7b0153a1d075ee6de58e45a1
+ms.sourcegitcommit: 248c2a76b0ab8c3b883326422e33c61bd2735c6c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/24/2018
-ms.locfileid: "29559708"
+ms.lasthandoff: 07/23/2018
+ms.locfileid: "39213635"
 ---
 # <a name="replicate-a-multi-tier-citrix-xenapp-and-xendesktop-deployment-using-azure-site-recovery"></a>Azure Site Recovery を使用して多層 XenApp および Citrix XenDesktop デプロイをレプリケートします
 
@@ -182,7 +182,7 @@ XenApp コンポーネント VM のレプリケーションを有効にしたら
 
 
    >[!NOTE]
-   >必要に応じて、[その場所](https://github.com/Azure/azure-quickstart-templates/blob/>master/asr-automation-recovery/scripts)のスクリプトを使用して、フェールオーバーされた仮想マシンの新しい IP アドレスで DNS を更新するか、フェールオーバーされた仮想マシンでロード バランサーをアタッチできます。
+   >必要に応じて、[その場所](https://github.com/Azure/azure-quickstart-templates/tree/master/asr-automation-recovery/scripts)のスクリプトを使用して、フェールオーバーされた仮想マシンの新しい IP アドレスで DNS を更新するか、フェールオーバーされた仮想マシンでロード バランサーをアタッチできます。
 
 
 ## <a name="doing-a-test-failover"></a>テスト フェールオーバーの実行

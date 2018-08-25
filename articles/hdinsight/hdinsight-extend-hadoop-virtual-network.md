@@ -1,26 +1,19 @@
 ---
-title: Virtual Network - Azure を使用した HDInsight の拡張 | Microsoft Docs
+title: Virtual Network を使用した HDInsight の拡張 - Azure
 description: Azure Virtual Network を使用して HDInsight を他のクラウド リソースまたはデータ センター内のリソースに接続する方法について説明します。
 services: hdinsight
-documentationcenter: ''
-author: Blackmist
-manager: cgronlun
-editor: cgronlun
-ms.assetid: 37b9b600-d7f8-4cb1-a04a-0b3a827c6dcc
+author: jasonwhowell
+ms.author: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
-ms.devlang: na
 ms.topic: conceptual
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 02/21/2018
-ms.author: larryfr
-ms.openlocfilehash: 9ad7a35864f8e8a1aa95f0b54174a792f069ba18
-ms.sourcegitcommit: 59fffec8043c3da2fcf31ca5036a55bbd62e519c
+ms.date: 07/26/2018
+ms.openlocfilehash: 659c33ec0e989003e68b5165fab70f50c607868c
+ms.sourcegitcommit: 1f0587f29dc1e5aef1502f4f15d5a2079d7683e9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/04/2018
-ms.locfileid: "34700708"
+ms.lasthandoff: 08/07/2018
+ms.locfileid: "39591883"
 ---
 # <a name="extend-azure-hdinsight-using-an-azure-virtual-network"></a>Azure Virtual Network を使用した Azure HDInsight の拡張
 
@@ -73,7 +66,7 @@ ms.locfileid: "34700708"
 
 3. 仮想ネットワークの送受信トラフィックを制限するために、ネットワーク セキュリティ グループ、ユーザー定義のルート、Virtual Network Appliances を使用していますか。
 
-    マネージ サービスとして、HDInsight は Azure データ センターの複数の IP アドレスに制限なくアクセスできる必要があります。 これらの IP アドレスとの通信を可能にするために、既存のネットワーク セキュリティ グループやユーザー定義のルートを更新してください。
+    マネージド サービスとして、HDInsight は Azure データ センターの複数の IP アドレスに制限なくアクセスできる必要があります。 これらの IP アドレスとの通信を可能にするために、既存のネットワーク セキュリティ グループやユーザー定義のルートを更新してください。
 
     HDInsight では、さまざまなポートを使用する複数のサービスをホストします。 これらのポートへのトラフィックはブロックしないでください。 仮想アプライアンスのファイアウォールの通過を許可するポートの一覧については、「[セキュリティ](#security)」のセクションをご覧ください。
 
@@ -224,7 +217,7 @@ Azure Virtual Network のネットワーク トラフィックは次のメソッ
 
 * **ネットワーク仮想アプライアンス**は、ファイアウォールやルーターなどのデバイスの機能をレプリケートします。 詳細については、「[ネットワーク アプライアンス](https://azure.microsoft.com/solutions/network-appliances)」をご覧ください。
 
-マネージ サービスとして、HDInsight は Azure クラウドの正常性と管理サービスに制限なくアクセスできる必要があります。 NSG と UDR を使用する場合は、これらのサービスが HDInsight と通信できることを確認する必要があります。
+マネージド サービスとして、HDInsight は Azure クラウドの正常性と管理サービスに制限なくアクセスできる必要があります。 NSG と UDR を使用する場合は、これらのサービスが HDInsight と通信できることを確認する必要があります。
 
 HDInsight では、いくつかのポート上のサービスを公開します。 仮想アプライアンスのファイアウォールを使用する場合は、これらのサービスで使用されるポートのトラフィックを許可する必要があります。 詳細については、「必須ポート」のセクションをご覧ください。
 
@@ -290,6 +283,7 @@ HDInsight では、いくつかのポート上のサービスを公開します�
     | ドイツ | ドイツ中部 | 51.4.146.68</br>51.4.146.80 | 443 | 受信 |
     | &nbsp; | ドイツ北東部 | 51.5.150.132</br>51.5.144.101 | 443 | 受信 |
     | インド | インド中部 | 52.172.153.209</br>52.172.152.49 | 443 | 受信 |
+    | &nbsp; | インド南部 | 104.211.223.67<br/>104.211.216.210 | 443 | 受信 |
     | 日本 | 東日本 | 13.78.125.90</br>13.78.89.60 | 443 | 受信 |
     | &nbsp; | 西日本 | 40.74.125.69</br>138.91.29.150 | 443 | 受信 |
     | 韓国 | 韓国中部 | 52.231.39.142</br>52.231.36.209 | 433 | 受信 |

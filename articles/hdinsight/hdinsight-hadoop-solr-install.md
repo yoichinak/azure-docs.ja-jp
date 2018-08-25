@@ -1,25 +1,20 @@
 ---
-title: スクリプト アクションを使用して Hadoop クラスターに Solr をインストールする - Azure | Microsoft Docs
+title: スクリプト アクションを使用して Hadoop クラスターに Solr をインストールする - Azure
 description: Script Action を使って HDInsight クラスターを Solr でカスタマイズする方法について説明します。
 services: hdinsight
-documentationcenter: ''
-author: nitinme
-manager: jhubbard
-editor: cgronlun
-tags: azure-portal
-ms.assetid: b1e6f338-8ac1-4b38-bbb5-2f7388b9de3b
+author: jasonwhowell
+editor: jasonwhowell
 ms.service: hdinsight
-ms.devlang: na
 ms.topic: conceptual
 ms.date: 02/05/2016
-ms.author: nitinme
+ms.author: jasonh
 ROBOTS: NOINDEX
-ms.openlocfilehash: caabe0fea6286c9439e8929b054d771868dcb6f1
-ms.sourcegitcommit: 96089449d17548263691d40e4f1e8f9557561197
+ms.openlocfilehash: d9c2742081ec83a52f7029814acd7b04a2f0fdb7
+ms.sourcegitcommit: 1f0587f29dc1e5aef1502f4f15d5a2079d7683e9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/17/2018
-ms.locfileid: "34272150"
+ms.lasthandoff: 08/07/2018
+ms.locfileid: "39595666"
 ---
 # <a name="install-and-use-solr-on-windows-based-hdinsight-clusters"></a>Windows ベースの HDInsight クラスターに Solr をインストールして使用する
 
@@ -149,21 +144,27 @@ ms.locfileid: "34272150"
            http://localhost:8983/solr/replication?command=backup
 
        次のように、応答が表示されます。
-
-           <?xml version="1.0" encoding="UTF-8"?>
-           <response>
+            
+      ```xml
+      <?xml version="1.0" encoding="UTF-8"?>
+          <response>
              <lst name="responseHeader">
                <int name="status">0</int>
                <int name="QTime">9</int>
              </lst>
-             <str name="status">OK</str>
-           </response>
-   2. リモート セッションで、{SOLR_HOME}\{Collection}\data に移動します。 サンプル スクリプトを通じて作成したクラスターの場合、この部分は **C:\apps\dist\solr-4.7.2\example\solr\collection1\data** となります。 この場所には、**snapshot.* timestamp*** のような名前でスナップショット フォルダーが作成されています。
+            <str name="status">OK</str>
+          </response>
+      ```
+      
+   2. リモート セッションで、{SOLR_HOME}\{Collection}\data に移動します。 サンプル スクリプトを使用して作成されたクラスターの場合は、`C:\apps\dist\solr-4.7.2\example\solr\collection1\data` となります。 この場所には、**snapshot.* timestamp*** のような名前でスナップショット フォルダーが作成されています。
+   
    3. スナップショット フォルダーを zip 圧縮して Azure BLOB ストレージにアップロードします。 Hadoop コマンド ラインで、次のコマンドを使用して、スナップショット フォルダーの場所に移動します。
 
-             hadoop fs -CopyFromLocal snapshot._timestamp_.zip /example/data
+      ```
+      hadoop fs -CopyFromLocal snapshot._timestamp_.zip /example/data
+      ```
 
-       このコマンドは、クラスターに関連付けられている既定のストレージ アカウント内のコンテナーの下にある /example/data/ にスナップショットをコピーします。
+   このコマンドは、クラスターに関連付けられている既定のストレージ アカウント内のコンテナーの下にある /example/data/ にスナップショットをコピーします。
 
 ## <a name="install-solr-using-aure-powershell"></a>Aure PowerShell を使用して Solr をインストールする
 「[スクリプト アクションを使用して HDInsight クラスターをカスタマイズする](hdinsight-hadoop-customize-cluster.md#call-scripts-using-azure-powershell)」を参照してください。  このサンプルでは、Azure PowerShell を使用して Spark をインストールする方法を示します。 スクリプトをカスタマイズして、[https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1](https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1) を使用する必要があります。

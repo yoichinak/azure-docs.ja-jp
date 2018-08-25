@@ -1,9 +1,9 @@
 ---
 title: Azure Stack の DNS | Microsoft Docs
-description: Azure Stack の DNS の使用
+description: Azure Stack での DNS の使用
 services: azure-stack
 documentationcenter: ''
-author: mattbriggs
+author: sethmanheim
 manager: femila
 ms.assetid: ''
 ms.service: azure-stack
@@ -11,23 +11,23 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/15/2018
-ms.author: mabrigg
-ms.openlocfilehash: 4e854a2751ce366e3ca3a353487f2c972401c248
-ms.sourcegitcommit: eb75f177fc59d90b1b667afcfe64ac51936e2638
+ms.date: 08/15/2018
+ms.author: sethm
+ms.openlocfilehash: acb8b262256031ae8615180e0f55c98cb56b538d
+ms.sourcegitcommit: d2f2356d8fe7845860b6cf6b6545f2a5036a3dd6
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/16/2018
-ms.locfileid: "34196527"
+ms.lasthandoff: 08/16/2018
+ms.locfileid: "41946516"
 ---
-# <a name="using-dns-in-azure-stack"></a>Azure Stack の DNS の使用
+# <a name="using-dns-in-azure-stack"></a>Azure Stack での DNS の使用
 
 *適用先: Azure Stack 統合システムと Azure Stack 開発キット*
 
 Azure Stack はドメイン ネーム システム (DNS) 機能に対応しています。
 
 * DNS ホスト名の解決
-* API を使用し、DNS のゾーンとレコードを作成し、管理する
+* API を使用して DNS のゾーンとレコードを作成し、管理する
 
 ## <a name="support-for-dns-hostname-resolution"></a>DNS ホスト名解決のサポート
 
@@ -35,7 +35,7 @@ Azure Stack はドメイン ネーム システム (DNS) 機能に対応して�
 
 たとえば、ドメイン名ラベルとして **contoso** を使用したパブリック IP リソースをローカルの Azure Stack の場所に作成した場合、[完全修飾ドメイン名](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) (FQDN) である **contoso.local.cloudapp.azurestack.external** は、このリソースのパブリック IP アドレスに解決されます。 この FQDN を使用して、Azure Stack 内のパブリック IP アドレスをポイントするカスタム ドメイン CNAME レコードを作成できます。
 
-名前の解決については、[DNS 解決](https://docs.microsoft.com/en-us/azure/dns/dns-for-azure-services?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)に関する記事を参照してください。
+名前の解決については、[DNS 解決](https://docs.microsoft.com/azure/dns/dns-for-azure-services?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)に関する記事を参照してください。
 
 > [!IMPORTANT]
 > 作成した各ドメイン名ラベルは、Azure Stack の場所内で一意である必要があります。
@@ -48,13 +48,13 @@ Azure Stack はドメイン ネーム システム (DNS) 機能に対応して�
 
 Web アプリケーションからの要求を処理するロード バランサーがあり、 その背後では、ある Web サイトが 1 つ以上の仮想マシン上で実行されているとします。 この負荷分散された Web サイトには、IP アドレスではなく、DNS 名でアクセスできます。
 
-## <a name="create-and-manage-dns-zones-and-records-using-the-api"></a>API を使用し、DNS のゾーンとレコードを作成し、管理する
+## <a name="create-and-manage-dns-zones-and-records-using-the-api"></a>API を使用して DNS のゾーンとレコードを作成し、管理する
 
 Azure Stack 内に DNS ゾーンとレコードを作成して管理することができます。
 
 Azure Stack は、Azure の DNS API と同じ API を使用して、Azure と同じような DNS サービスを提供します。  Azure Stack DNS でドメインをホストすることで、同じ資格情報、API、ツールを使用して DNS レコードを管理できます。 他の Azure サービスと同じ請求とサポートも使用できます。
 
-Azure Stack DNS のインフラストラクチャは Azure のインフラストラクチャよりもコンパクトです。 Azure Stack デプロイのサイズと場所は、DNS のスコープ、規模、パフォーマンスに影響を与えます。 また、パフォーマンス、可用性、グローバル配布、高可用性 (HA) などは、デプロイに応じて変わってきます。
+Azure Stack DNS のインフラストラクチャは Azure のインフラストラクチャよりもコンパクトです。 Azure Stack デプロイのサイズと場所は、DNS のスコープ、規模、パフォーマンスに影響を与えます。 また、これはパフォーマンス、可用性、グローバル配布、高可用性がデプロイに応じて変化する可能性があることを意味します。
 
 ## <a name="comparison-with-azure-dns"></a>Azure DNS との比較
 

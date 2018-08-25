@@ -2,24 +2,18 @@
 title: Azure Storage メトリックの移行 | Microsoft Docs
 description: 従来のメトリックを Azure Monitor によって管理される新しいメトリックに移行する方法について説明します。
 services: storage
-documentationcenter: na
 author: fhryo-msft
-manager: cbrooks
-editor: fhryo-msft
-ms.assetid: ''
 ms.service: storage
-ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: storage
 ms.date: 03/30/2018
 ms.author: fryu
-ms.openlocfilehash: c64061aee94e8c08a3f6bcae78cffca0b4172d97
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.component: common
+ms.openlocfilehash: fc11e29b03df617c4b5bb6f4fbb43cd478001d42
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34650674"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39521423"
 ---
 # <a name="azure-storage-metrics-migration"></a>Azure Storage メトリックの移行
 
@@ -118,7 +112,7 @@ Azure Storage では、従来のメトリック値を収集し、集計して、
 
 ### <a name="is-new-metric-data-stored-in-the-same-storage-account-by-default"></a>既定では、新しいメトリック データは同じストレージ アカウントに格納されますか?
 
-いいえ。 メトリック データをストレージ アカウントにアーカイブするには、[Azure Monitor Diagnostic Setting API](https://docs.microsoft.com/en-us/rest/api/monitor/diagnosticsettings/createorupdate) を使用します。
+いいえ。 メトリック データをストレージ アカウントにアーカイブするには、[Azure Monitor Diagnostic Setting API](https://docs.microsoft.com/rest/api/monitor/diagnosticsettings/createorupdate) を使用します。
 
 ## <a name="next-steps"></a>次の手順
 

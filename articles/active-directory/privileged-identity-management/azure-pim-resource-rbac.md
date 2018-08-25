@@ -9,18 +9,18 @@ editor: ''
 ms.assetid: ''
 ms.service: active-directory
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.component: protection
+ms.component: pim
 ms.date: 03/30/2018
 ms.author: rolyon
-ms.openlocfilehash: f8eb574a98294b2858edd2ae36293c2857a50403
-ms.sourcegitcommit: 1b8665f1fff36a13af0cbc4c399c16f62e9884f3
+ms.openlocfilehash: 9b4980681cb3e7442211b06255d6eefd8a1b1170
+ms.sourcegitcommit: 35ceadc616f09dd3c88377a7f6f4d068e23cceec
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35261034"
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39622356"
 ---
 # <a name="pim-for-azure-resources"></a>Azure リソース向けの PIM
 
@@ -59,7 +59,7 @@ PIM はロールのアクティブ化、保留中のアクティブ化/要求の
 
 ## <a name="activate-roles"></a>ロールをアクティブ化する
 
-Azure リソースのロールをアクティブ化すると、ロールの有資格メンバーは、将来の日付/時刻でのアクティブ化をスケジュールしたり、管理者が許可した最長期間の範囲内でアクティブ化期間を指定できるという新しいエクスペリエンスが導入されます。 Azure AD ロールのアクティブ化の詳細については、[こちら](../active-directory-privileged-identity-management-how-to-activate-role.md)を参照してください。
+Azure リソースのロールをアクティブ化すると、ロールの有資格メンバーは、将来の日付/時刻でのアクティブ化をスケジュールしたり、管理者が許可した最長期間の範囲内でアクティブ化期間を指定できるという新しいエクスペリエンスが導入されます。 Azure AD ロールのアクティブ化の詳細については、[こちら](pim-how-to-activate-role.md)を参照してください。
 
 ![](media/azure-pim-resource-rbac/contributor.png)
 
@@ -156,7 +156,7 @@ Azure リソースのロールを検索および管理するには、左側の�
 
 ![](media/azure-pim-resource-rbac/owner.png)
 
-アクセス レビューの詳細については、[こちら](../active-directory-privileged-identity-management-how-to-perform-security-review.md)を参照してください
+アクセス レビューの詳細については、[こちら](pim-how-to-perform-security-review.md)を参照してください
 
 >[!NOTE]
 現時点で、レビューはサブスクリプションのリソースでのみサポートされています。
@@ -196,5 +196,5 @@ Just Enough Administration (JEA) をリソースのロール割り当てで使�
 ## <a name="next-steps"></a>次の手順
 
 - [Azure リソースの組み込みロール](../../role-based-access-control/built-in-roles.md)
-- Azure AD ロールのアクティブ化の詳細については、[こちら](../active-directory-privileged-identity-management-how-to-activate-role.md)を参照してください
+- Azure AD ロールのアクティブ化の詳細については、[こちら](pim-how-to-activate-role.md)を参照してください
 - [PIM の承認ワークフロー](azure-ad-pim-approval-workflow.md)

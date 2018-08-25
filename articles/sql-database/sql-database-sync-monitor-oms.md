@@ -1,26 +1,26 @@
 ---
-title: Log Analytics を使用した Azure SQL データ同期の監視 (プレビュー) | Microsoft Docs
-description: Log Analytics を使用して Azure SQL データ同期を監視する方法について説明します (プレビュー)
+title: Log Analytics を使用した Azure SQL データ同期の監視 | Microsoft Docs
+description: Log Analytics を使用して Azure SQL データ同期を監視する方法について説明します
 services: sql-database
 ms.date: 04/01/2018
 ms.topic: conceptual
 ms.service: sql-database
-author: douglaslMS
-ms.author: douglasl
+author: allenwux
+ms.author: xiwu
 manager: craigg
 ms.custom: data-sync
-ms.openlocfilehash: 4c684337a904fe6984e6b5cd5cf88ef8eb976cb6
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: 3bad71834d11b640bbc3577bf67c10357fad36dc
+ms.sourcegitcommit: 35ceadc616f09dd3c88377a7f6f4d068e23cceec
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34650249"
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39618312"
 ---
-# <a name="monitor-sql-data-sync-preview-with-log-analytics"></a>Log Analytics を使用した SQL データ同期 (プレビュー) の監視 
+# <a name="monitor-sql-data-sync-with-log-analytics"></a>Log Analytics による SQL データ同期の監視 
 
 SQL データ同期アクティビティ ログをチェックし、エラーおよび警告を検出するには、以前に Azure Portal で SQL データ同期を手動でチェックするか、PowerShell または REST API を使用している必要があります。 データ同期の監視エクスペリエンスを向上させるカスタム ソリューションを構成するには、この記事の手順に従ってください。 このソリューションは、シナリオに合わせてカスタマイズできます。
 
-SQL データ同期の概要については、「[Sync data across multiple cloud and on-premises databases with Azure SQL Data Sync (Preview) (Azure SQL データ同期を使用した複数のクラウドおよびオンプレミス データベースにまたがるデータの同期 (プレビュー))](sql-database-sync-data.md)」を参照してください。
+SQL データ同期の概要については、[Azure SQL データ同期を使用した複数のクラウドおよびオンプレミス データベース間でのデータの同期](sql-database-sync-data.md)に関する記事を参照してください。
 
 ## <a name="monitoring-dashboard-for-all-your-sync-groups"></a>すべての同期グループのためのダッシュボードの監視 
 
@@ -78,7 +78,7 @@ Runbook の作成の詳細については、「[初めての PowerShell Runbook]
 
 4.  **[Runbook file] (Runbook ファイル)** で、指定された `DataSyncLogPowerShellRunbook` ファイルを使用します。 **[Runbook type] (Runbook の種類)** を `PowerShell` として設定します。 この Runbook に名前を付けます。
 
-5.  **[作成]** を選択します。 これで Runbook が作成されました。
+5.  **作成**を選択します。 これで Runbook が作成されました。
 
 6.  Azure Automation アカウントで、[共有リソース] の下にある **[変数]** タブを選択します。
 
@@ -116,7 +116,7 @@ Runbook のスケジュールを設定するには:
 
 5.  **[繰り返し]** を [繰り返し] に設定し、必要な間隔を設定します。 ここ (このスクリプト) と OMS で同じ間隔を使用します。
 
-6.  **[作成]** を選択します。
+6.  **作成**を選択します。
 
 ### <a name="check-the-automation"></a>オートメーションをチェックする
 
@@ -201,8 +201,6 @@ SQL データ同期の詳細については、以下を参照してください�
 -   SQL データ同期を構成する方法を示す完全な PowerShell の例
     -   [PowerShell を使用した複数の Azure SQL データベース間の同期](scripts/sql-database-sync-data-between-sql-databases.md)
     -   [PowerShell を使用した Azure SQL Database と SQL Server オンプレミス データベース間の同期](scripts/sql-database-sync-data-between-azure-onprem.md)
-
--   [SQL データ同期 REST API ドキュメントのダウンロード](https://github.com/Microsoft/sql-server-samples/raw/master/samples/features/sql-data-sync/Data_Sync_Preview_REST_API.pdf?raw=true)
 
 SQL Database の詳細については、以下を参照してください。
 

@@ -3,23 +3,24 @@ title: Azure AD のアクセス レビューの結果を取得する | Microsoft
 description: Azure Active Directory アクセス レビューの結果を取得する方法について説明します。
 services: active-directory
 documentationcenter: ''
-author: markwahl-msft
+author: rolyon
 manager: mtillman
-editor: ''
+editor: markwahl-msft
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: get-started-article
-ms.component: compliance-reports
+ms.topic: conceptual
+ms.component: compliance
 ms.date: 06/21/2018
 ms.author: rolyon
-ms.openlocfilehash: a2d356afd33ddd2e641c6f9bc028f235623b448b
-ms.sourcegitcommit: 0fa8b4622322b3d3003e760f364992f7f7e5d6a9
+ms.reviewer: mwahl
+ms.openlocfilehash: 9d9bc029a8cf1c18991d3b298c63de66a7368797
+ms.sourcegitcommit: 35ceadc616f09dd3c88377a7f6f4d068e23cceec
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/27/2018
-ms.locfileid: "37024724"
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39617753"
 ---
 # <a name="retrieve-access-review-results"></a>アクセス レビュー結果の取得
 
@@ -54,6 +55,6 @@ ms.locfileid: "37024724"
 - [Azure AD のアクセス レビューでゲスト アクセスを管理する](active-directory-azure-ad-controls-manage-guest-access-with-access-reviews.md)
 - [Azure AD アクセス レビューに使用するプログラムとコントロールを管理する](active-directory-azure-ad-controls-manage-programs-controls.md)
 - [グループのメンバーまたはアプリケーションへのアクセスのアクセス レビューを作成する](active-directory-azure-ad-controls-create-access-review.md)
-- [Azure AD 管理者ロールに含まれるユーザーのアクセス レビューを作成する](active-directory-privileged-identity-management-how-to-start-security-review.md)
+- [Azure AD 管理者ロールに含まれるユーザーのアクセス レビューを作成する](privileged-identity-management/pim-how-to-start-security-review.md)
 
 

@@ -1,6 +1,6 @@
 ---
 title: Azure Log Analytics のネットワーク パフォーマンス モニター ソリューション | Microsoft Docs
-description: Network Performance Monitor のサービス エンドポイント マネージャー機能を使って、TCP ポートが開いている任意のエンドポイントへのネットワーク接続を監視します。
+description: Network Performance Monitor のサービス接続モニター機能を使って、TCP ポートが開いている任意のエンドポイントへのネットワーク接続を監視します。
 services: log-analytics
 documentationcenter: ''
 author: abshamsft
@@ -11,21 +11,22 @@ ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 02/20/2018
 ms.author: abshamsft
-ms.openlocfilehash: 05abd943d85fcdd709143bf7fce221dcdfb86011
-ms.sourcegitcommit: 16ddc345abd6e10a7a3714f12780958f60d339b6
+ms.component: na
+ms.openlocfilehash: 3c9352e8e4aee7817b1195c15f74503e86e597ea
+ms.sourcegitcommit: e0834ad0bad38f4fb007053a472bde918d69f6cb
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36215101"
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37434921"
 ---
-# <a name="service-endpoint-monitor"></a>サービス エンドポイント モニター
+# <a name="service-connectivity-monitor"></a>サービス接続モニター
 
-[Network Performance Monitor](log-analytics-network-performance-monitor.md) のサービス エンドポイント マネージャー機能を使って、TCP ポートが開いている任意のエンドポイントへのネットワーク接続を監視することができます。 対象となるエンドポイントには、Web サイト、SaaS アプリケーション、PaaS アプリケーション、および SQL データベースが含まれます。 
+[Network Performance Monitor](log-analytics-network-performance-monitor.md) のサービス接続モニター機能を使って、TCP ポートが開いている任意のエンドポイントへのネットワーク接続を監視することができます。 対象となるエンドポイントには、Web サイト、SaaS アプリケーション、PaaS アプリケーション、および SQL データベースが含まれます。 
 
-サービス エンドポイント モニターでは、次の機能を実行できます。 
+サービス接続モニターを使用して次の機能を実行できます。 
 
 - 複数のブランチ オフィスまたは場所からアプリケーションおよびネットワーク サービスへのネットワーク接続を監視します。 アプリケーションやネットワーク サービスには、Office 365、Dynamics CRM、内部の基幹業務アプリケーション、SQL データベースなどが含まれます。
 - 組み込みテストを使って、Office 365 および Dynamics365 エンドポイントへのネットワーク接続を監視します。 
@@ -34,7 +35,7 @@ ms.locfileid: "36215101"
 - トポロジ マップ上の各ホップの影響を受けている待機時間を表示することによって、アプリケーション パフォーマンスの低下の原因となっている可能性があるネットワーク上のホット スポットを特定します。
 
 
-![サービス エンドポイント モニター](media/log-analytics-network-performance-monitor/service-endpoint-intro.png)
+![サービス接続モニター](media/log-analytics-network-performance-monitor/service-endpoint-intro.png)
 
 
 ## <a name="configuration"></a>構成 
@@ -55,11 +56,11 @@ netsh advfirewall firewall add rule name="NPMDICMPV4TimeExceeded" protocol="icmp
 netsh advfirewall firewall add rule name="NPMDICMPV6TimeExceeded" protocol="icmpv6:3,any" dir=in action=allow 
 ```
 
-### <a name="create-service-endpoint-monitor-tests"></a>サービス エンドポイント モニター テストの作成 
+### <a name="create-service-connectivity-monitor-tests"></a>サービス接続モニター テストを作成する 
 
 サービス エンドポイントへのネットワーク接続を監視するためのテストを作成します。
 
-1. **[サービス エンドポイント モニター]** タブを選びます。
+1. **[サービス接続モニター]** タブを選択します。
 2. **[テストの追加]** を選び、テストの名前と説明を入力します。 
 3. テストの種類を選択します。<br>
 
@@ -78,19 +79,19 @@ netsh advfirewall firewall add rule name="NPMDICMPV6TimeExceeded" protocol="icmp
 10. 監視条件を選択します。 しきい値を入力して、正常性イベントの生成に関するカスタムしきい値を設定できます。 選択したネットワーク ペア/サブネットワーク ペアに対して選択したしきい値を条件の値が上回ると、正常性イベントが生成されます。 
 11. **[保存]** を選んで構成を保存します。 
 
-    ![サービス エンドポイント モニターのテスト構成](media/log-analytics-network-performance-monitor/service-endpoint-configuration.png)
+    ![サービス接続モニターのテスト構成](media/log-analytics-network-performance-monitor/service-endpoint-configuration.png)
 
 
 
 ## <a name="walkthrough"></a>チュートリアル 
 
-Network Performance Monitor のダッシュボード ビューに移動します。 作成したさまざまなテストの正常性の概要を確認するには、**[サービス エンドポイントの監視]** ページを見ます。 
+Network Performance Monitor のダッシュボード ビューに移動します。 作成したさまざまなテストの正常性の概要については、**[サービス接続の監視]** ページで確認できます。 
 
-![[サービス エンドポイント モニター] ページ](media/log-analytics-network-performance-monitor/service-endpoint-blade.png)
+![サービス接続モニター ページ](media/log-analytics-network-performance-monitor/service-endpoint-blade.png)
 
 タイルを選び、**[テスト]** ページでテストの詳細を確認します。 左側のテーブルでは、すべてのテストについて、特定の時点での正常性と、サービス応答時間、ネットワーク待機時間、およびパケット損失の値を確認できます。 過去の別の時点のスナップショットを表示するには、[ネットワーク状態の記録機能] コントロールを使います。 テーブルで調査するテストを選びます。 右側のウィンドウのグラフでは、損失、待機時間、および応答時間の値に関する過去の傾向を確認できます。 **[テストの詳細]** リンクを選ぶと、各ノードからのパフォーマンスを確認できます。
 
-![サービス エンドポイント モニターのテスト](media/log-analytics-network-performance-monitor/service-endpoint-tests.png)
+![サービス接続モニターのテスト](media/log-analytics-network-performance-monitor/service-endpoint-tests.png)
 
 **[テスト ノード]** ビューでは、各ノードからのネットワーク接続を確認できます。 パフォーマンスが低下しているノードを選びます。 これは、アプリケーションの実行速度が低下しているノードです。
 
@@ -98,15 +99,15 @@ Network Performance Monitor のダッシュボード ビューに移動します
 
 * **アプリケーションの問題:** 応答時間の急増が見られる一方、ネットワーク待機時間は一貫している場合は、ネットワークは正常に動作しており、問題の原因はアプリケーション側にあると考えられます。 
 
-    ![サービス エンドポイント モニターのアプリケーションの問題](media/log-analytics-network-performance-monitor/service-endpoint-application-issue.png)
+    ![サービス接続モニターのアプリケーションの問題](media/log-analytics-network-performance-monitor/service-endpoint-application-issue.png)
 
 * **ネットワークの問題:** 応答時間の急増に伴ってネットワーク待機時間も急増している場合、応答時間の増加は、ネットワーク待機時間の増加に起因していると考えられます。 
 
-    ![サービス エンドポイント モニターのネットワークの問題](media/log-analytics-network-performance-monitor/service-endpoint-network-issue.png)
+    ![サービス接続モニターのネットワークの問題](media/log-analytics-network-performance-monitor/service-endpoint-network-issue.png)
 
 問題の原因がネットワークであると判断した後は、**[トポロジ]** ビュー リンクを選び、トポロジ マップ上で問題のホップを確認します。 次の図に例を示します。 ノードとアプリケーション エンドポイント間の合計待機時間である 105 ミリ秒のうち、96 ミリ秒は赤で囲まれたホップに起因しています。 問題のホップを特定したら、是正措置を実行できます。 
 
-![サービス エンドポイント モニターのテスト](media/log-analytics-network-performance-monitor/service-endpoint-topology.png)
+![サービス接続モニターのテスト](media/log-analytics-network-performance-monitor/service-endpoint-topology.png)
 
 ## <a name="diagnostics"></a>診断 
 

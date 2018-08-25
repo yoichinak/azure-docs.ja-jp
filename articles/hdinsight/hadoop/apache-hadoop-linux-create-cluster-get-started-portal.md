@@ -1,25 +1,21 @@
 ---
-title: 'クイック スタート: Azure Portal を使用して Azure HDInsight で Hadoop と Hive を使用する | Microsoft Docs'
+title: 'クイック スタート: Azure portal を使用して Azure HDInsight で Hadoop と Hive を使用する '
 description: Azure Portal を使用して HDInsight クラスターを作成する方法および Hive を使用してデータを照会する方法について説明します。
 keywords: Hadoop の概要, Hadoop Linux, Hadoop クイックスタート, Hive の概要, Hive クイックスタート
 services: hdinsight
-documentationcenter: ''
-author: nitinme
-manager: cgronlun
-editor: cgronlun
-tags: azure-portal
+author: jasonwhowell
+editor: jasonwhowell
 ms.service: hdinsight
 ms.custom: hdinsightactive,hdiseo17may2017,mvc
-ms.devlang: na
 ms.topic: quickstart
 ms.date: 05/07/2018
-ms.author: nitinme
-ms.openlocfilehash: b9cf3ae3417b993cd721460484d6228daf7b283c
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.author: jasonh
+ms.openlocfilehash: 67fa5debac4039bf3ae9c3ef62418f033e2fa9c2
+ms.sourcegitcommit: 1f0587f29dc1e5aef1502f4f15d5a2079d7683e9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34627349"
+ms.lasthandoff: 08/07/2018
+ms.locfileid: "39598971"
 ---
 # <a name="quickstart-get-started-with-hadoop-and-hive-in-azure-hdinsight-using-the-azure-portal"></a>クイック スタート: Azure Portal を使用して Azure HDInsight で Hadoop と Hive を使用する
 
@@ -80,7 +76,7 @@ Azure サブスクリプションをお持ちでない場合は、開始する�
     
     |プロパティ  |説明  |
     |---------|---------|
-    |**プライマリ ストレージの種類**     | この記事では、**[Azure Storage]** を選択して、Azure Storage Blob を既定のストレージ アカウントとして使用します。 Azure Data Lake Store を既定のストレージとして使用することもできます。 |
+    |**プライマリ ストレージの種類**     | この記事では、**[Azure Storage]** を選択して、Azure Storage Blob を既定のストレージ アカウントとして使用します。 Azure Data Lake Storage を既定のストレージとして使用することもできます。 |
     |**メソッドの選択**     |  この記事では、**[個人用サブスクリプション]** を選択して、Azure サブスクリプションのストレージ アカウントを使用します。 他のサブスクリプションのストレージ アカウントを使用するには、**[アクセス キー]** を選択し、そのアカウントのアクセス キーを指定します。 |
     |**Create a new storage account \(新しいストレージ アカウントの作成\)**     | ストレージ アカウントの名前を入力します。|
 
@@ -90,7 +86,7 @@ Azure サブスクリプションをお持ちでない場合は、開始する�
 
     ![HDInsight Linux の使用。クラスターの概要](./media/apache-hadoop-linux-create-cluster-get-started-portal/hdinsight-linux-get-started-portal-summary.png "HDInsight Linux の使用。クラスターの概要")
       
-4. **[作成]** を選択します。 ポータルのダッシュボードに、**[Submitting deployment for HDInsight]\(HDInsight にデプロイを送信しています\)** という新しいタイルが表示されます。 クラスターの作成には約 20 分かかります。
+4. **作成**を選択します。 ポータルのダッシュボードに、**[Submitting deployment for HDInsight]\(HDInsight にデプロイを送信しています\)** という新しいタイルが表示されます。 クラスターの作成には約 20 分かかります。
 
     ![HDInsight Linux の使用。リソース グループ](./media/apache-hadoop-linux-create-cluster-get-started-portal/deployment-progress-tile.png "Azure HDInsight クラスター リソース グループ")
 
@@ -177,6 +173,7 @@ HDInsight クラスターの作成で問題が発生した場合は、「[アク
 実際のデータを使用する準備が整っていて、HDInsight のデータの格納方法や HDInsight にデータを取り込む方法を確認する場合は、以下の記事を参照してください。
 
 * HDInsight で Azure Storage を使用する方法の詳細については、[HDInsight での Azure Storage の使用](../hdinsight-hadoop-use-blob-storage.md)に関するページを参照してください。
+* Data Lake Storage で HDInsight クラスターを作成する方法について詳しくは、「[クイック スタート: HDInsight のクラスターを設定する](../../storage/data-lake-storage/quickstart-create-connect-hdi-cluster.md)」をご覧ください。
 * データを HDInsight にアップロードする方法については、[データを HDInsight にアップロードする方法](../hdinsight-upload-data.md)に関する記事を参照してください。
 
 HDInsight でデータを分析する方法の詳細については、次の記事を参照してください。

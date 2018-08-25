@@ -8,15 +8,15 @@ ms.reviewer: carlrab, srbozovi
 ms.service: sql-database
 ms.custom: managed instance
 ms.topic: tutorial
-ms.date: 06/07/2018
+ms.date: 07/06/2018
 ms.author: bonova
 manager: craigg
-ms.openlocfilehash: c6f397c2cfcfd9fbd4a5cc8f70a99f4abc86ba21
-ms.sourcegitcommit: 3c3488fb16a3c3287c3e1cd11435174711e92126
+ms.openlocfilehash: 5dd8b1f662f1ae6d6502743c6d976db4b58e962f
+ms.sourcegitcommit: 4ea0cea46d8b607acd7d128e1fd4a23454aa43ee
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/08/2018
-ms.locfileid: "34850680"
+ms.lasthandoff: 08/15/2018
+ms.locfileid: "41921038"
 ---
 # <a name="restore-a-database-backup-to-an-azure-sql-database-managed-instance"></a>Azure SQL Database マネージド インスタンスにデータベース バックアップを復元する
 
@@ -29,7 +29,7 @@ ms.locfileid: "34850680"
 
 ## <a name="prerequisites"></a>前提条件
 
-このチュートリアルでは、[Azure SQL Database マネージド インスタンスの作成](sql-database-managed-instance-create-tutorial-portal.md)に関するチュートリアルで作成したリソースを出発点として使用します。
+このチュートリアルでは、[Azure SQL Database マネージド インスタンスの作成](sql-database-managed-instance-get-started.md)に関するチュートリアルで作成したリソースを出発点として使用します。
 
 ## <a name="download-the-wide-world-importers---standard-backup-file"></a>Wide World Importers - 標準のバックアップ ファイルをダウンロードする
 
@@ -58,11 +58,11 @@ Internet Explorer を使用して、URL アドレス ボックスに https://git
    |**パフォーマンス**|Standard または Premium|磁気ドライブまたは SSD|
    |**レプリケーション**|ローカル冗長ストレージ||
    |\*\*アクセス層 (既定)|クールまたはホット||
-   |**安全な転送が必須**|無効||
+   |**安全な転送が必須**|Disabled||
    |**サブスクリプション**|該当するサブスクリプション|サブスクリプションの詳細については、[サブスクリプション](https://account.windowsazure.com/Subscriptions)に関するページを参照してください。|
    |**[リソース グループ]**|以前の手順で作成したリソース グループ|| 
    |**場所**|以前の手順で選択した場所||
-   |**仮想ネットワーク**|無効||
+   |**仮想ネットワーク**|Disabled||
 
 4. **Create** をクリックしてください。
 
@@ -129,7 +129,7 @@ SSMS で、以下の手順を使用して、バックアップ ファイルか�
       , SECRET = '<shared_access_signature_key_with_removed_first_?_symbol>' 
    ```
 
-    ![資格情報](./media/sql-database-managed-instance-tutorial/credential.png)
+    ![credential](./media/sql-database-managed-instance-tutorial/credential.png)
 
 3. 次のスクリプトを使用して、SAS 資格情報とバックアップが有効であることを確認します。コンテナーの URL にバックアップ ファイルを指定します。
 
@@ -140,7 +140,7 @@ SSMS で、以下の手順を使用して、バックアップ ファイルか�
 
     ![ファイル一覧](./media/sql-database-managed-instance-tutorial/file-list.png)
 
-4. 次のスクリプトを使用して、バックアップ ファイルから Adventure Works 2012 データベースを復元します。コンテナーの URL にバックアップ ファイルを指定します。
+4. 次のスクリプトを使用して、バックアップ ファイルから Wide World Importers データベースを復元します。コンテナーの URL にバックアップ ファイルを指定します。
 
    ```sql
    RESTORE DATABASE [Wide World Importers] FROM URL =

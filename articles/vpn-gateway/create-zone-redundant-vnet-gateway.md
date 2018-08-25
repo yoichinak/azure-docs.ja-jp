@@ -7,14 +7,14 @@ author: cherylmc
 Customer intent: As someone with a basic network background, I want to understand how to create zone-redundant gateways.
 ms.service: vpn-gateway
 ms.topic: article
-ms.date: 06/25/2018
+ms.date: 07/09/2018
 ms.author: cherylmc
-ms.openlocfilehash: a08c0f772965ddb2b40ac1ced1f26ade4cba3197
-ms.sourcegitcommit: 0fa8b4622322b3d3003e760f364992f7f7e5d6a9
+ms.openlocfilehash: fa349555a5effd41ca519cbd5a29005203d79543
+ms.sourcegitcommit: a1e1b5c15cfd7a38192d63ab8ee3c2c55a42f59c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/27/2018
-ms.locfileid: "37017034"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37952557"
 ---
 # <a name="create-a-zone-redundant-virtual-network-gateway-in-azure-availability-zones---preview"></a>Azure Availability Zones にゾーン冗長仮想ネットワーク ゲートウェイを作成する - プレビュー
 
@@ -177,7 +177,7 @@ $getvnet | Set-AzureRmVirtualNetwork
 **Standard** PublicIpaddress SKU を使用してパブリック IP アドレスを要求し、ゾーンは指定しません。 この場合、作成される Standard パブリック IP アドレスはゾーン冗長パブリック IP となります。   
 
 ```azurepowershell-interactive
-$pip1 = New-AzureRmPublicIpAddress -ResourceGroup $RG1 -Location $Location1 -Name $GwIP1 -AllocationMethod Dynamic -Sku Standard
+$pip1 = New-AzureRmPublicIpAddress -ResourceGroup $RG1 -Location $Location1 -Name $GwIP1 -AllocationMethod Static -Sku Standard
 ```
 
 ### <a name="ipzonalgw"></a>ゾーン ゲートウェイの場合
@@ -185,7 +185,7 @@ $pip1 = New-AzureRmPublicIpAddress -ResourceGroup $RG1 -Location $Location1 -Nam
 **Standard** PublicIpaddress SKU を使用してパブリック IP アドレスを要求し、 ゾーン (1、2、または 3) を指定します。 すべてのゲートウェイ インスタンスがこのゾーンにデプロイされます。
 
 ```azurepowershell-interactive
-$pip1 = New-AzureRmPublicIpAddress -ResourceGroup $RG1 -Location $Location1 -Name $GwIP1 -AllocationMethod Dynamic -Sku Standard -Zone 1
+$pip1 = New-AzureRmPublicIpAddress -ResourceGroup $RG1 -Location $Location1 -Name $GwIP1 -AllocationMethod Static -Sku Standard -Zone 1
 ```
 
 ### <a name="ipregionalgw"></a>リージョン ゲートウェイの場合
@@ -206,10 +206,6 @@ $gwipconf1 = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GwIPConf1 -Subnet $
 ## <a name="gwconfig"></a>7.ゲートウェイを作成する
 
 仮想ネットワーク ゲートウェイを作成します。
-
->[!NOTE]
->現時点では、ゲートウェイの SKU を指定することはできません。 SKU は自動的に既定値に設定され、ExpressRoute の場合は ErGw1AZ、VPN Gateway の場合は VpnGw1AZ となります。
->
 
 ### <a name="for-expressroute"></a>ExpressRoute の場合
 
@@ -236,6 +232,10 @@ New-AzureRmVirtualNetworkGateway -ResourceGroup $RG1 -Location $Location1 -Name 
 ### <a name="what-will-change-when-i-enroll"></a>登録すると何が変わりますか。
 
 お客様の観点からは、プレビュー中に、ゾーン冗長性を備えたゲートウェイをデプロイできるようになります。 つまり、すべてのゲートウェイ インスタンスが複数の Azure Availability Zones にわたってデプロイされ、それぞれの Availability Zone が別々の障害ドメインおよび更新ドメインとなります。 これにより、ゲートウェイの信頼性、可用性、およびゾーン障害に対する回復性が向上します。
+
+### <a name="can-i-use-the-azure-portal"></a>Azure Portal を使用することはできますか。
+
+はい。プレビュー版の Azure Portal を使用することができます。 ただし、引き続き PowerShell を使用して登録する必要があります。そうしないと、プレビュー期間中にポータルを使用することはできません。
 
 ### <a name="what-regions-are-available-for-the-preview"></a>このプレビューではどのようなリージョンを利用できますか。
 

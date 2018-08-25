@@ -14,12 +14,12 @@ ms.workload: na
 ms.date: 05/14/2018
 ms.author: dobett
 ms.custom: mvc
-ms.openlocfilehash: 42be14569215af7ee98a540c2a86cef2b2a028e4
-ms.sourcegitcommit: 150a40d8ba2beaf9e22b6feff414f8298a8ef868
+ms.openlocfilehash: 3d0f24331243c22fa356de7778a89185df2cde4e
+ms.sourcegitcommit: d0ea925701e72755d0b62a903d4334a3980f2149
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/27/2018
-ms.locfileid: "37033884"
+ms.lasthandoff: 08/09/2018
+ms.locfileid: "40003212"
 ---
 <!-- **TODO** Update publish config with repo paths before publishing! -->
 
@@ -73,7 +73,7 @@ az extension add --name azure-cli-iot-ext
 az group create --name tutorial-iot-hub-rg --location $location
 
 # Create your free-tier IoT Hub. You can only have one free IoT Hub per subscription:
-az iot hub create --name $hubname --location $location --resource-group tutorial-iot-hub-rg --sku S1
+az iot hub create --name $hubname --location $location --resource-group tutorial-iot-hub-rg --sku F1
 
 # Make a note of the service connection string, you need it later:
 az iot hub show-connection-string --hub-name $hubname -o table
@@ -103,7 +103,7 @@ az iot hub device-identity show-connection-string --device-id MyTwinDevice --hub
 
 必要なプロパティを受信するシミュレートされたデバイス サンプル コードを表示するには、ダウンロードしたサンプル Node.js プロジェクトの **iot-hub/Tutorials/DeviceTwins** フォルダーに移動します。 次にテキスト エディターで SimulatedDevice.js ファイルを開きます。
 
-以下のセクションでは、バックエンド アプリケーションから送信される必要なプロパティの変更に反応する、シミュレートされたデバイスで実行されるコードについて説明します。
+次のセクションでは、バックエンド アプリケーションから送信される必要なプロパティの変更に反応する、シミュレートされたデバイスで実行されるコードについて説明します。
 
 ### <a name="retrieve-the-device-twin-object"></a>デバイス ツイン オブジェクトを取得する
 

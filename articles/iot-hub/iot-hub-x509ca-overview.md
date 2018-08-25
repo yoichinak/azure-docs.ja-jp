@@ -8,12 +8,12 @@ services: iot-hub
 ms.topic: conceptual
 ms.date: 09/18/2017
 ms.author: eustacea
-ms.openlocfilehash: 690a58a939e6866bfcdf80d05e52d7bfc7fd3586
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: b5028010953b9dbe2386c30e6fa05cc4a94cb971
+ms.sourcegitcommit: bf522c6af890984e8b7bd7d633208cb88f62a841
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34635605"
+ms.lasthandoff: 07/20/2018
+ms.locfileid: "39185494"
 ---
 # <a name="device-authentication-using-x509-ca-certificates"></a>X.509 CA 証明書を使用したデバイス認証
 
@@ -30,7 +30,7 @@ X.509 CA 機能により、証明機関 (CA) を使用した IoT Hub に対す�
 
 ## <a name="prerequisite"></a>前提条件
 
-X.509 CA 機能を使用するには、IoT Hub アカウントを持っている必要があります。  まだ持っていない場合は、[IoT Hub インスタンスの作成方法](iot-hub-csharp-csharp-getstarted.md)を参照してください。
+X.509 CA 機能を使用するには、IoT Hub アカウントを持っている必要があります。  まだ持っていない場合は、[IoT Hub インスタンスの作成方法](quickstart-send-telemetry-dotnet.md)を参照してください。
 
 ## <a name="how-to-get-an-x509-ca-certificate"></a>X.509 CA 証明書の入手方法
 
@@ -42,7 +42,7 @@ X.509 CA 証明書は、各デバイスの証明書チェーンの最上位に�
 
 X.509 CA 証明書の入手方法に関係なく、必ずその対応する秘密キー シークレットを保存し、常に保護されている状態にしておいてください。  これは、X.509 CA 認証で信頼を構築するために必須です。 
 
-[自己署名 CA 証明書の作成](iot-hub-security-x509-create-certificates.md#createcerts)方法を参照してください。これは、この機能の説明全体で実験用にご利用いただけます。
+[自己署名 CA 証明書の作成](https://github.com/Azure/azure-iot-sdk-c/blob/master/tools/CACertificates/CACertificateOverview.md)方法を参照してください。これは、この機能の説明全体で実験用にご利用いただけます。
 
 ## <a name="sign-devices-into-the-certificate-chain-of-trust"></a>デバイスに署名して証明書の信頼チェーンに入れる
 
@@ -50,7 +50,7 @@ X.509 CA 証明書の所有者は、中間 CA に暗号で署名できます。�
 
 ![img-generic-cert-chain-of-trust](./media/generic-cert-chain-of-trust.png)
 
-デバイスの署名時に行う証明書チェーンの作成方法については、[ここ](iot-hub-security-x509-create-certificates.md#createcertchain)を参照してください。
+デバイスの署名時に行う証明書チェーンの作成方法については、[ここ](https://github.com/Azure/azure-iot-sdk-c/blob/master/tools/CACertificates/CACertificateOverview.md)を参照してください。
 
 ## <a name="how-to-register-the-x509-ca-certificate-to-iot-hub"></a>X.509 CA 証明書を IoT Hub に登録する方法
 

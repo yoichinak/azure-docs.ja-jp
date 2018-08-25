@@ -5,17 +5,17 @@ services: active-directory-b2c
 author: davidmu1
 manager: mtillman
 ms.service: active-directory
-ms.topic: article
+ms.topic: conceptual
 ms.workload: identity
 ms.date: 08/04/2017
 ms.author: davidmu
 ms.component: B2C
-ms.openlocfilehash: 4828bf2f0faa596c8222c3a36dc3d38ec1b3bd1a
-ms.sourcegitcommit: 59fffec8043c3da2fcf31ca5036a55bbd62e519c
+ms.openlocfilehash: 1697830f699c9cd50548bcfcdd038348db314020
+ms.sourcegitcommit: f606248b31182cc559b21e79778c9397127e54df
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/04/2018
-ms.locfileid: "34709820"
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38969661"
 ---
 # <a name="accessing-azure-ad-b2c-audit-logs"></a>Azure AD B2C 監査ログへのアクセス
 
@@ -57,13 +57,13 @@ Azure Active Directory B2C (Azure AD B2C) は、B2C リソース、発行され�
     ![監査ログ - カテゴリ](./media/active-directory-b2c-reference-audit-logs/audit-logs-portal-category.png)
 
 過去 7 日間にわたってログに記録されたアクティビティの一覧が表示されます。 
-- **[Activity Resource Type](アクティビティのリソースの種類)** ドロップダウン ボックスを使用して、前述したアクティビティの種類でフィルター処理します
+- **アクティビティのリソースの種類** ドロップダウン ボックスを使用して、前述したアクティビティの種類でフィルター処理します
 - **[日付の範囲]** ドロップダウン ボックスを使用して、表示されるアクティビティの日付の範囲をフィルター処理します
 - 一覧の特定の行をクリックすると、右側のコンテキスト ボックスに、そのアクティビティに関連付けられている追加の属性が表示されます
 - **[ダウンロード]** をクリックし、アクティビティを csv ファイルとしてダウンロードします
 
 ##<a name="accessing-audit-logs-through-the-azure-ad-reporting-api"></a>Azure AD Reporting API を使用した監査ログへのアクセス
-監査ログは、Azure Active Directory の他のアクティビティと同じパイプラインに発行されるため、[Azure Active Directory Reporting API](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-reporting-api-audit-reference) を使用してアクセスできます。 
+監査ログは、Azure Active Directory の他のアクティビティと同じパイプラインに発行されるため、[Azure Active Directory Reporting API](https://docs.microsoft.com/azure/active-directory/active-directory-reporting-api-audit-reference) を使用してアクセスできます。 
 
 ###<a name="prerequisites"></a>前提条件
 Azure AD Reporting API に対する認証を行うには、まずアプリケーションを登録する必要があります。 必ず、[Azure AD Reporting API にアクセスするための前提条件](https://azure.microsoft.com/documentation/articles/active-directory-reporting-api-getting-started/)の手順に従ってください。

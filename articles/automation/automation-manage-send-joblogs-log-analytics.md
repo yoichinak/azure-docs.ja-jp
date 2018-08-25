@@ -1,6 +1,6 @@
 ---
 title: Log Analytics に Azure Automation のジョブ データを転送する
-description: この記事では、ジョブの状態と Runbook ジョブ ストリームを Azure Log Analytics に送信して、詳細な情報の入手ときめ細かい管理を実現する方法について説明します。
+description: この記事では、ジョブの状態と Runbook ジョブ ストリームを Azure Log Analytics に送信して、追加の分析情報や補助的な管理を提供する方法について説明します。
 services: automation
 ms.service: automation
 ms.component: process-automation
@@ -9,12 +9,12 @@ ms.author: gwallace
 ms.date: 06/12/2018
 ms.topic: conceptual
 manager: carmonm
-ms.openlocfilehash: c51c79b85f5277496a3b8f80fe2487136a9fcbc1
-ms.sourcegitcommit: 16ddc345abd6e10a7a3714f12780958f60d339b6
+ms.openlocfilehash: 12628b5a552b864784d780e5f2adc00aac579911
+ms.sourcegitcommit: 248c2a76b0ab8c3b883326422e33c61bd2735c6c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36228616"
+ms.lasthandoff: 07/23/2018
+ms.locfileid: "39215035"
 ---
 # <a name="forward-job-status-and-job-streams-from-automation-to-log-analytics"></a>Automation から Log Analytics へのジョブの状態とジョブ ストリームの転送
 Automation からは、Runbook ジョブの状態とジョブ ストリームを Log Analytics ワークスペースに送信できます。 ジョブ ログとジョブ ストリームは、Azure Portal または PowerShell を使用してジョブごとに表示できます。これを使用して、簡単な調査を行うことができます。 Log Analytics では、次のことが可能になりました。
@@ -37,14 +37,14 @@ Azure Automation アカウントの ResourceId を調べるには、次の Power
 
 ```powershell-interactive
 # Find the ResourceId for the Automation Account
-Find-AzureRmResource -ResourceType "Microsoft.Automation/automationAccounts"
+Get-AzureRmResource -ResourceType "Microsoft.Automation/automationAccounts"
 ```
 
 Log Analytics ワークスペースの ResourceId を調べるには、次の PowerShell を実行します。
 
 ```powershell-interactive
 # Find the ResourceId for the Log Analytics workspace
-Find-AzureRmResource -ResourceType "Microsoft.OperationalInsights/workspaces"
+Get-AzureRmResource -ResourceType "Microsoft.OperationalInsights/workspaces"
 ```
 
 複数の Automation アカウントまたはワークスペースがある場合、前のコマンドの出力内で、構成する必要がある "*名前*" を見つけ、*ResourceId* 用にその値をコピーします。
@@ -83,7 +83,7 @@ Get-AzureRmDiagnosticSetting -ResourceId $automationAccountId
 Azure Automation の診断から、Log Analytics に 2 種類のレコードが作成され、タグ **AzureDiagnostics** が付けられます。 次のクエリでは、Log Analytics にアップグレードされたクエリ言語が使用されています。 従来のクエリ言語と新しい Azure Log Analytics クエリ言語でよく使用されるクエリの比較については、「[Legacy to new Azure Log Analytics Query Language cheat sheet (従来のクエリ言語と新しい Azure Log Analytics クエリ言語の比較チート シート)](https://docs.loganalytics.io/docs/Learn/References/Legacy-to-new-to-Azure-Log-Analytics-Language)」を参照してください。
 
 ### <a name="job-logs"></a>ジョブ ログ
-| プロパティ | 説明 |
+| プロパティ | [説明] |
 | --- | --- |
 | TimeGenerated |Runbook ジョブが実行された日付と時刻。 |
 | RunbookName_s |Runbook の名前。 |
@@ -105,7 +105,7 @@ Azure Automation の診断から、Log Analytics に 2 種類のレコードが�
 
 
 ### <a name="job-streams"></a>ジョブ ストリーム
-| プロパティ | 説明 |
+| プロパティ | [説明] |
 | --- | --- |
 | TimeGenerated |Runbook ジョブが実行された日付と時刻。 |
 | RunbookName_s |Runbook の名前。 |

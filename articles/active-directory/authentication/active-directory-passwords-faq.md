@@ -4,18 +4,18 @@ description: Azure AD セルフサービスのパスワード リセットにつ
 services: active-directory
 ms.service: active-directory
 ms.component: authentication
-ms.topic: article
-ms.date: 01/11/2018
+ms.topic: conceptual
+ms.date: 07/11/2018
 ms.author: joflore
 author: MicrosoftGuyJFlo
 manager: mtillman
 ms.reviewer: sahenry
-ms.openlocfilehash: 7f54877f9218cbb0c2ac8cca86c580b7f1aa6c83
-ms.sourcegitcommit: 870d372785ffa8ca46346f4dfe215f245931dae1
+ms.openlocfilehash: 92f9732adadc4eb580d89f8a43cf76177450aeb7
+ms.sourcegitcommit: 1478591671a0d5f73e75aa3fb1143e59f4b04e6a
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/08/2018
-ms.locfileid: "33869752"
+ms.lasthandoff: 07/19/2018
+ms.locfileid: "39160744"
 ---
 # <a name="password-management-frequently-asked-questions"></a>パスワード管理に関するよく寄せられる質問 (FAQ)
 
@@ -115,7 +115,7 @@ ms.locfileid: "33869752"
   >
 * **Q: パスワードをリセットするためにアクセスする場所を、どのようにユーザーに案内すればよいですか。**
 
-  > **A:** [SSPR のデプロイ](howto-sspr-deployment.md#email-based-rollout)に関する記事に記載されている提案をいくつか試します。
+  > **A:** [SSPR のデプロイ](howto-sspr-deployment.md#sample-communication)に関する記事に記載されている提案をいくつか試します。
   >
   >
 * **Q: モバイル デバイスからこのページを使用できますか。**
@@ -170,7 +170,7 @@ ms.locfileid: "33869752"
   >
 * **Q: リセットの場合はユーザーにセキュリティの質問の使用を要求するようにポリシーを構成しましたが、Azure 管理者に対する設定は異なっているようです。**
 
-  > **A:** これは正しい動作です。 Microsoft では、任意の Azure 管理者ロールに強力な既定の 2 ゲート パスワードのリセット ポリシーを適用します。 これにより、管理者はセキュリティの質問を使用できなくなります。 このポリシーについて詳しくは、「[Azure Active Directory のパスワード ポリシーと制限](concept-sspr-policy.md#administrator-password-policy-differences)」をご覧ください。
+  > **A:** これは正しい動作です。 Microsoft では、任意の Azure 管理者ロールに強力な既定の 2 ゲート パスワードのリセット ポリシーを適用します。 これにより、管理者はセキュリティの質問を使用できなくなります。 このポリシーについて詳しくは、「[Azure Active Directory のパスワード ポリシーと制限](concept-sspr-policy.md)」をご覧ください。
   >
   >
 * **Q: リセットに必要な質問の最大数を超える数の質問をユーザーが登録した場合、セキュリティの質問はリセット時にどのように選択されますか。**
@@ -274,15 +274,15 @@ ms.locfileid: "33869752"
   >
 * **Q: パスワード ライトバックはセキュリティで保護されていますか。ハッキングされないようにするにはどうすればよいですか。**
 
-  > **A:** はい。パスワード ライトバックはセキュリティで保護されています。 パスワード ライトバック サービスによって実装される 4 層のセキュリティについて詳しくは、「[パスワード ライトバックの概要](howto-sspr-writeback.md)」記事の「[パスワード ライトバックのセキュリティ モデル](howto-sspr-writeback.md#password-writeback-security-model)」セクションをご覧ください。
+  > **A:** はい。パスワード ライトバックはセキュリティで保護されています。 パスワード ライトバック サービスによって実装される多層セキュリティについて詳しくは、[パスワード ライトバックの概要](howto-sspr-writeback.md)の記事の[パスワード ライトバックのセキュリティ モデル](concept-sspr-writeback.md#password-writeback-security)に関するセクションをご覧ください。
   >
   >
 
-## <a name="next-steps"></a>次のステップ
+## <a name="next-steps"></a>次の手順
 
 * [SSPR のロールアウトを正常に完了する方法](howto-sspr-deployment.md)
-* [パスワードのリセットまたは変更](../active-directory-passwords-update-your-own-password.md)
-* [セルフサービスのパスワード リセットのための登録](../active-directory-passwords-reset-register.md)
+* [パスワードのリセットまたは変更](../user-help/active-directory-passwords-update-your-own-password.md)
+* [セルフサービスのパスワード リセットのための登録](../user-help/active-directory-passwords-reset-register.md)
 * [ライセンスに関する質問](concept-sspr-licensing.md)
 * [SSPR が使用するデータと、ユーザー用に事前設定が必要なデータ](howto-sspr-authenticationdata.md)
 * [ユーザーが使用できる認証方法](concept-sspr-howitworks.md#authentication-methods)

@@ -8,17 +8,17 @@ services: iot-hub
 ms.topic: conceptual
 ms.date: 04/01/2018
 ms.author: dobett
-ms.openlocfilehash: 9521bd47db9676c70993c535f1207b3519123353
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: f2a95ac879dd2d6b1af3d50e1be53efac26331c4
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34633317"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39525554"
 ---
 # <a name="reference---iot-hub-quotas-and-throttling"></a>参照 - IoT Hub のクォータと調整
 
 ## <a name="quotas-and-throttling"></a>クォータと調整
-各 Azure サブスクリプションに最大 10 個の IoT Hub と最大 1 個の Free ハブを割り当てることができます。
+各 Azure サブスクリプションに最大 50 個の IoT Hub と最大 1 個の Free ハブを割り当てることができます。
 
 各 IoT Hub は、特定のレベルのユニット数でプロビジョニングされます。 詳細については、「[Azure IoT Hub の価格][lnk-pricing]」を参照してください。 レベルとユニット数により、送信できるメッセージの1 日あたりの最大クォータが決定されます。
 
@@ -43,7 +43,7 @@ ms.locfileid: "34633317"
 | ツイン (デバイスとモジュール) の読み取り<sup>1</sup> | 10/秒 | 10/秒または 1/秒/ユニット以上 | 50/秒/ユニット |
 | ツインの更新 (デバイスとモジュール)<sup>1</sup> | 10/秒 | 10/秒または 1/秒/ユニット以上 | 50/秒/ユニット |
 | ジョブの操作<sup>1</sup> <br/> (作成、更新、一覧表示、削除) | 1.67/sec/unit (100/分/単位) | 1.67/sec/unit (100/分/単位) | 83.33/sec/unit (5000/分/単位) |
-| Jobs デバイスごとのジョブの操作のスループット<sup>1</sup> | 10/秒 | 10/秒または 1/秒/ユニット以上 | 50/秒/ユニット |
+| ジョブ デバイス操作<sup>1</sup> <br/> (ツインの更新、ダイレクト メソッドの呼び出し) | 10/秒 | 10/秒または 1/秒/ユニット以上 | 50/秒/ユニット |
 | 構成と Edge の展開<sup>1</sup> <br/> (作成、更新、一覧表示、削除) | 0.33/秒/単位 (20/分/単位) | 0.33/秒/単位 (20/分/単位) | 0.33/秒/単位 (20/分/単位) |
 
 
@@ -64,7 +64,7 @@ IoT Hub スロットルの動作の詳細については、ブログ投稿「[Io
 
 IoT Hub により、その他の運用上の制限が適用されます。
 
-| 操作 | 制限 |
+| Operation | 制限 |
 | --------- | ----- |
 | ファイルのアップロード URI | 1 つのストレージ アカウントに対して 10000 個の SAS URI を一度に提供できます。 <br/> デバイスあたり 10 個の SAS URI を一度に提供できます。 |
 | ジョブ<sup>1</sup> | ジョブ履歴は、最大で 30 日間保持されます。 <br/> 同時ジョブの最大数は 1 (Free および S1)、5 (S2)、10 (S3) です。 |

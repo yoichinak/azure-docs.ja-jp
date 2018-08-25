@@ -35,7 +35,7 @@
       href: policy-samples.md
 - name: 概念
   items:
-    - name: セキュリティ
+    - name: セキュリティ グループ
       href: security-overview.md
     - name: ルーティング
       href: virtual-networks-udr-overview.md
@@ -69,10 +69,10 @@
       items:
         - name: ネットワーク セキュリティ グループ
           items:
+            - name: Azure PowerShell
+              href: tutorial-filter-network-traffic-powershell.md
             - name: Azure CLI
               href: tutorial-filter-network-traffic-cli.md
-            - name: Azure ポータル
-              href: virtual-networks-create-nsg-arm-pportal.md
         - name: ルート テーブル
           items:
             - name: Azure PowerShell
@@ -137,6 +137,9 @@
                   href: create-vm-accelerated-networking-powershell.md
                 - name: Azure CLI
                   href: create-vm-accelerated-networking-cli.md
+                  items:
+                    - name: セットアップ DPDK
+                      href: setup-dpdk.md
             - name: 仮想マシンのネットワーク スループット
               href: virtual-machine-network-throughput.md
         - name: 接続のシナリオ
@@ -201,7 +204,7 @@
       items:
         - name: ネットワーク セキュリティ グループ
           href: diagnose-network-traffic-filter-problem.md
-        - name: ルート
+        - name: Routes
           href: diagnose-network-routing-problem.md
         - name: スループットのテスト
           href: virtual-network-bandwidth-testing.md
@@ -211,6 +214,8 @@
           href: virtual-network-troubleshoot-connectivity-problem-between-vms.md
         - name: SMTP バナー チェック用の PTR の構成
           href: create-ptr-for-smtp-service.md
+        - name: 仮想アプライアンスに関するトラブルシューティングのチェックリスト
+          href: virtual-network-troubleshoot-nva.md
     - name: クラシック
       items:
         - name: 仮想ネットワークの作成と管理

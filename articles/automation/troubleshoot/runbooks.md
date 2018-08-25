@@ -4,16 +4,16 @@ description: Azure Automation Runbook のエラーをトラブルシューティ
 services: automation
 author: georgewallace
 ms.author: gwallace
-ms.date: 06/19/2018
+ms.date: 07/13/2018
 ms.topic: conceptual
 ms.service: automation
 manager: carmonm
-ms.openlocfilehash: bb340b8439927f191bc4a22f385d85d4e21b1cdb
-ms.sourcegitcommit: f06925d15cfe1b3872c22497577ea745ca9a4881
+ms.openlocfilehash: 53b35fbdc469639b1fdc09293e05247bcc5d8c31
+ms.sourcegitcommit: d16b7d22dddef6da8b6cfdf412b1a668ab436c1f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/27/2018
-ms.locfileid: "37064532"
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39714487"
 ---
 # <a name="troubleshoot-errors-with-runbooks"></a>Runbook のエラーをトラブルシューティングする
 
@@ -43,13 +43,37 @@ Unknown_user_type: Unknown User Type
 
    ```powershell
    $Cred = Get-Credential  
-   #Using Azure Service Management   
+   #Using Azure Service Management
    Add-AzureAccount –Credential $Cred  
    #Using Azure Resource Manager  
    Connect-AzureRmAccount –Credential $Cred
    ```
 
 3. ローカルで認証に失敗した場合、Azure Active Directory 資格情報が正しく設定されていないことになります。 Azure Active Directory アカウントを正しく設定する方法については、「 [Authenticating to Azure using Azure Active Directory](https://azure.microsoft.com/blog/azure-automation-authenticating-to-azure-using-azure-active-directory/) 」 (Azure Active Directory を使用して Azure を認証する) というブログ投稿を参照してください。  
+
+4. 一時的なエラーと思われる場合は、認証をより強固にするために認証ルーチンに再試行ロジックを追加してみてください。
+
+   ```powershell
+   # Get the connection "AzureRunAsConnection"
+   $connectionName = "AzureRunAsConnection"
+   $servicePrincipalConnection = Get-AutomationConnection -Name $connectionName
+
+   $logonAttempt = 0
+   $logonResult = $False
+
+   while(!($connectionResult) -And ($logonAttempt -le 10))
+   {
+   $LogonAttempt++
+   # Logging in to Azure...
+   $connectionResult = Connect-AzureRmAccount `
+      -ServicePrincipal `
+      -TenantId $servicePrincipalConnection.TenantId `
+      -ApplicationId $servicePrincipalConnection.ApplicationId `
+      -CertificateThumbprint $servicePrincipalConnection.CertificateThumbprint
+
+   Start-Sleep -Seconds 30
+   }
+   ```
 
 ### <a name="unable-to-find-subscription"></a>シナリオ: Azure サブスクリプションが見つからない
 
@@ -61,7 +85,7 @@ Unknown_user_type: Unknown User Type
 The subscription named <subscription name> cannot be found.
 ```
 
-#### <a name="error"></a>エラー
+#### <a name="error"></a>Error
 
 このエラーは、サブスクリプション名が無効な場合、またはサブスクリプションの詳細を取得しようとしている Azure Active Directory ユーザーがサブスクリプションの管理者として構成されていない場合に発生します。
 
@@ -94,6 +118,51 @@ Azure アカウントに多要素認証を設定している場合、Azure に�
 Azure クラシック デプロイ モデルのコマンドレットで証明書を使用する方法については、[証明書を作成し、追加して Azure サービスを管理する](http://blogs.technet.com/b/orchestrator/archive/2014/04/11/managing-azure-services-with-the-microsoft-azure-automation-preview-service.aspx)方法に関するページを参照してください。 Azure Resource Manager コマンドレットでサービス プリンシパルを使用する方法については、[Azure ポータルでサービス プリンシパルを作成する](../../azure-resource-manager/resource-group-create-service-principal-portal.md)方法に関する記事と [Azure Resource Manager でサービス プリンシパルを認証する](../../azure-resource-manager/resource-group-authenticate-service-principal.md)方法に関する記事を参照してください。
 
 ## <a name="common-errors-when-working-with-runbooks"></a>Runbook の使用時に発生する一般的なエラー
+
+### <a name="task-was-cancelled"></a>シナリオ: "タスクが取り消されました" というエラーで Runbook が失敗する
+
+#### <a name="issue"></a>問題
+
+Runbook が、次の例のようなエラーで失敗します。
+
+```
+Exception: A task was canceled.
+```
+
+#### <a name="cause"></a>原因
+
+以前のバージョンの Azure モジュールを使用すると、このエラーが発生する可能性があります。
+
+#### <a name="resolution"></a>解決策
+
+このエラーは、Azure モジュールを最新のバージョンに更新すると解決できます。
+
+Automation アカウントで、**[モジュール]** をクリックし、**[Azure モジュールの更新]** をクリックします。 この更新には、失敗した Runbook の再実行を完了してから約 15 分かかります。
+
+### <a name="not-recognized-as-cmdlet"></a>シナリオ: 不足しているコマンドレットにより、Runbook が失敗する
+
+#### <a name="issue"></a>問題
+
+Runbook が、次の例のようなエラーで失敗します。
+
+```
+The term 'Connect-AzureRmAccount' is not recognized as the name of a cmdlet, function, script file, or operable program.  Check the spelling of the name, or if the path was included verify that the path is correct and try again.
+```
+
+#### <a name="cause"></a>原因
+
+このエラーは次の理由で発生する可能性があります。
+
+1. コマンドレットを含むモジュールが、Automation アカウントにインポートされていない
+2. コマンドレットを含むモジュールはインポートされているが、最新ではない
+
+#### <a name="resolution"></a>解決策
+
+このエラーは、次のタスクのいずれかを実行して解決できる場合があります。
+
+モジュールが Azure モジュールの場合、Automation アカウントでモジュールを更新する方法について、「[Azure Automation の Azure PowerShell モジュールを更新する方法](../automation-update-azure-modules.md)」を参照してください。
+
+個別のモジュールの場合、Automation アカウントにモジュールがインポートされていることを確認します。
 
 ### <a name="job-attempted-3-times"></a>シナリオ: Runbook ジョブの開始を 3 回試行したが、開始できない
 
@@ -204,6 +273,20 @@ Runbook ジョブがエラーで失敗します。
 #### <a name="resolution"></a>解決策
 
 この問題を回避するための解決策では、ワークフローでのチェックポイントを使用します。 詳細については、「[PowerShell ワークフローについての説明](../automation-powershell-workflow.md#checkpoints)」をご覧ください。 "フェア シェア" およびチェックポイントの詳細については、ブログ記事「[Using Checkpoints in Runbooks](https://azure.microsoft.com/blog/azure-automation-reliable-fault-tolerant-runbook-execution-using-checkpoints/)」(Runbook でのチェックポイントの使用) を参照してください。
+
+### <a name="long-running-runbook"></a>シナリオ: 実行時間の長い Runbook が完了しない
+
+#### <a name="issue"></a>問題
+
+これは Azure Automation 内のプロセスの "フェア シェア" 監視のための Azure サンドボックスでの設計による動作です。3 時間以上実行している Runbook は自動的に中断されます。
+
+#### <a name="cause"></a>原因
+
+Runbook が、Azure サンドボックスのフェア シェアによって許可されている 3 時間の制限を超えて実行しました
+
+#### <a name="resolution"></a>解決策
+
+推奨される解決策は、[Hybrid Runbook Worker](../automation-hrw-run-runbooks.md) で Runbook を実行することです。 Hybrid Worker には、Azure サンドボックスのような[フェア シェア](../automation-runbook-execution.md#fair-share)による 3 時間の Runbook 制限はありません。
 
 ## <a name="common-errors-when-importing-modules"></a>モジュールのインポート時に発生する一般的なエラー
 

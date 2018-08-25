@@ -13,23 +13,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/17/2018
 ms.author: spelluru
-ms.openlocfilehash: 311e58f01fac6d7786992b3c11e4b1b7c02ca838
-ms.sourcegitcommit: ea5193f0729e85e2ddb11bb6d4516958510fd14c
+ms.openlocfilehash: 48056d6e2988dd674351aca83526032175c355b6
+ms.sourcegitcommit: 248c2a76b0ab8c3b883326422e33c61bd2735c6c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/21/2018
-ms.locfileid: "36304123"
+ms.lasthandoff: 07/23/2018
+ms.locfileid: "39214395"
 ---
 # <a name="manage-classroom-labs-in-azure-lab-services"></a>Azure Lab Services でクラスルーム ラボを管理する 
 この記事では、クラスルーム ラボの作成と構成、すべてのクラスルーム ラボの表示、またはラボの削除を実行する方法を説明します。
 
 ## <a name="prerequisites"></a>前提条件
-ラボ アカウントでクラスルーム ラボを設定するには、ラボ アカウントにおける**ラボの作成者**ロールのメンバーであることが必要です。 ラボの作成者ロールには、ラボ所有者が「[ユーザーをラボの作成者ロールに追加する](tutorial-setup-lab-account.md#add-a-user-to-the-lab-creator-role)」の記事の手順に従ってユーザーを追加できます。
+ラボ アカウントでクラスルーム ラボを設定するには、ラボ アカウントにおける**ラボの作成者**ロールのメンバーであることが必要です。 ラボ アカウントを作成するために使用したアカウントは、このロールに自動的に追加されます。 ラボの作成者ロールには、ラボ所有者が「[ユーザーをラボの作成者ロールに追加する](tutorial-setup-lab-account.md#add-a-user-to-the-lab-creator-role)」の記事の手順に従って他のユーザーを追加できます。
 
 ## <a name="create-a-classroom-lab"></a>クラスルーム ラボを作成する
 
 1. [Azure Lab Services Web サイト](https://labs.azure.com)に移動します。
-2. **[New Lab]\(新しいラボ\)** ウィンドウで、次のようにします。 
+2. **[サインイン]** を選択して、資格情報を入力します。 Azure Lab Services では、組織アカウントと Microsoft アカウントがサポートされています。
+3. **[New Lab]\(新しいラボ\)** ウィンドウで、次のようにします。 
     1. クラスルーム ラボの**名前**を指定します。 
     2. クラスルームで使う仮想マシンの**サイズ**を選びます。
     3. 仮想マシンの作成に使用する **[イメージ]** を選択します。
@@ -86,8 +87,8 @@ ms.locfileid: "36304123"
 2. 次に、**[発行]** ボタンをクリックします。 作成する VM の数 (ラボへのアクセスが許可されるユーザーと同数) によっては、このプロセスにしばらく時間がかかる場合があります。
     
     > [!IMPORTANT]
-    > テンプレートがパブリックに利用できるようになった後で、そのアクセスをプライベートに変更することはできません。 
-4. **[仮想マシン]** ページに切り替えて、**[未割り当て]** 状態の仮想マシンが 5 つ表示されていることを確認します。 これらの VM は、まだ学生に割り当てられていません。 
+    > いったん発行したテンプレートの発行を取り消すことはできません。 
+4. **[仮想マシン]** ページに切り替えて、**[未割り当て]** 状態の仮想マシンが表示されていることを確認します。 これらの VM は、まだ学生に割り当てられていません。 
 
     ![仮想マシン](../media/tutorial-setup-classroom-lab/virtual-machines.png)
 5. VM が作成されるまで待ちます。 その状態が **[停止]** になっている必要があります。 このページで、学生の VM の起動、VM への接続、VM の停止、VM の削除を実行できます。 VM は、このページから自分で起動できるほか、学生に起動してもらうこともできます。 

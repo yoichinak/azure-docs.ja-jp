@@ -8,12 +8,12 @@ ms.date: 04/29/2018
 ms.topic: conceptual
 ms.service: iot-accelerators
 services: iot-accelerators
-ms.openlocfilehash: 3bd29e348fd067c12def8ca36fbdc1d7e35b2874
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: a918866ff5e206ea4d2dedde2711424924a478fe
+ms.sourcegitcommit: bf522c6af890984e8b7bd7d633208cb88f62a841
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34627588"
+ms.lasthandoff: 07/20/2018
+ms.locfileid: "39188070"
 ---
 # <a name="integrate-the-remote-monitoring-solution-with-azure-data-lake-store"></a>リモート監視ソリューションを Azure Data Lake Store と統合する
 
@@ -25,7 +25,7 @@ ms.locfileid: "34627588"
 
 このハウツー記事を完了するには、以下が必要です。
 
-* [リモート監視ソリューション アクセラレータをデプロイする](iot-accelerators-remote-monitoring-deploy.md)
+* [リモート監視ソリューション アクセラレータをデプロイする](quickstart-remote-monitoring-deploy.md)
   * リモート監視ソリューションは、この記事で使用される IoT Hub と Azure Stream Analytics ジョブを Azure サブスクリプション内にデプロイします。
 * [Azure Data Lake Store をデプロイする](../data-lake-store/data-lake-store-get-started-portal.md)
   * Data Lake Store は、リモート監視ソリューションと同じリージョンにデプロイする必要があります。
@@ -180,4 +180,4 @@ Azure Stream Analytics では、SQL に似たクエリ言語を使用して、�
 
 ## <a name="next-steps"></a>次の手順
 
-Azure Data Lake Analytics を使用して、Data Lake Store データセットに関するビッグ データ分析を実行できます。 詳細については、「[Azure Data Lake Analytics のドキュメント](https://docs.microsoft.com/en-us/azure/data-lake-analytics)」を参照してください。
+Azure Data Lake Analytics を使用して、Data Lake Store データセットに関するビッグ データ分析を実行できます。 詳細については、「[Azure Data Lake Analytics のドキュメント](https://docs.microsoft.com/azure/data-lake-analytics)」を参照してください。

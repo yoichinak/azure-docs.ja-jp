@@ -8,12 +8,12 @@ services: iot-fundamentals
 ms.topic: overview
 ms.date: 05/18/2018
 ms.author: bryanla
-ms.openlocfilehash: 685de6a3cfe0e3f5a2ea82da831247d7b4144fea
-ms.sourcegitcommit: 266fe4c2216c0420e415d733cd3abbf94994533d
+ms.openlocfilehash: ed96181606e2db4102aa609973ade9ecbfde6c90
+ms.sourcegitcommit: bf522c6af890984e8b7bd7d633208cb88f62a841
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2018
-ms.locfileid: "34636207"
+ms.lasthandoff: 07/20/2018
+ms.locfileid: "39187276"
 ---
 # <a name="introduction-to-azure-and-the-internet-of-things"></a>Azure とモノのインターネットの概要
 
@@ -172,11 +172,11 @@ IoT の最も困難な部分であるセキュリティを解決する
 [lnk-iot-edge-land]: /azure/iot-edge/index.yml
 [lnk-iot-hub-land]: /azure/iot-hub/index.md
 [lnk-iot-maps-land]: /azure/maps/index.yml
-[lnk-iot-sa-land]: ../iot-accelerators/index.md
+[lnk-iot-sa-land]: ../iot-accelerators/index.yml
 [lnk-iot-tsi-land]: /azure/time-series-insights/index.yml
 
 [lnk-iot-hub]: ../iot-hub/about-iot-hub.md
-[lnk-iot-sa]: ../iot-accelerators/iot-accelerators-what-are-solution-accelerators.md
+[lnk-iot-sa]: ../iot-accelerators/about-iot-accelerators.md
 [lnk-machinelearning]: http://azure.microsoft.com/documentation/services/machine-learning/
 [lnk-protocol-gateway]:  ../iot-hub/iot-hub-protocol-gateway.md
 [lnk-refarch]: https://aka.ms/iotrefarchitecture

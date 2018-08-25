@@ -3,7 +3,7 @@ title: Azure Functions のトリガーとバインド
 description: Azure Functions で、トリガーとバインドを使用してコード実行をオンライン イベントおよびクラウドベース サービスに接続する方法について説明します。
 services: functions
 documentationcenter: na
-author: tdykstra
+author: ggailey777
 manager: cfowler
 editor: ''
 tags: ''
@@ -14,13 +14,13 @@ ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/24/2018
-ms.author: tdykstra
-ms.openlocfilehash: 5e7e6608003b365d5516ca2e94a51c0710ad1125
-ms.sourcegitcommit: f06925d15cfe1b3872c22497577ea745ca9a4881
+ms.author: glenga
+ms.openlocfilehash: 85b7248c9b4c61e29ce3c29b9432f94934255819
+ms.sourcegitcommit: 30fd606162804fe8ceaccbca057a6d3f8c4dd56d
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/27/2018
-ms.locfileid: "37061355"
+ms.lasthandoff: 07/30/2018
+ms.locfileid: "39346604"
 ---
 # <a name="azure-functions-triggers-and-bindings-concepts"></a>Azure Functions でのトリガーとバインドの概念
 
@@ -32,67 +32,11 @@ ms.locfileid: "37061355"
 
 入出力*バインド*によって、コード内からデータに接続する宣言型の方法が提供されます。 バインドは省略可能で、関数は複数の入出力バインドを持つことができます。 
 
-トリガーとバインドを使用すると、操作するサービスの詳細をハードコードする必要がなくなります。 関数は、関数パラメーターでデータ (キュー メッセージの内容など) を受信します。 関数の戻り値、`out` パラメーター、または[コレクター オブジェクト](functions-reference-csharp.md#writing-multiple-output-values)を使用して、(たとえば、キュー メッセージを作成するために) データを送信します。
+トリガーとバインドを使用すると、操作するサービスの詳細をハードコードする必要がなくなります。 関数は、関数パラメーターでデータ (キュー メッセージの内容など) を受信します。 関数の戻り値を使用して、(たとえば、キュー メッセージを作成するために) データを送信します。 C# と C# スクリプトでは、`out` パラメーターや[コレクター オブジェクト](functions-reference-csharp.md#writing-multiple-output-values)を使用してデータを送信できます。
 
 Azure Portal を使用して関数を開発する場合、トリガーとバインドは *function.json* ファイルに構成されます。 ポータルではこの構成のために UI が提供されますが、**詳細エディター**に切り替えることで直接ファイルを編集できます。
 
 Visual Studio を使用してクラス ライブラリを作成して関数を開発する場合は、メソッドとパラメーターを属性で修飾してトリガーとバインドを構成します。
-
-## <a name="supported-bindings"></a>サポートされるバインディング
-
-[!INCLUDE [Full bindings table](../../includes/functions-bindings.md)]
-
-どのバインディングがプレビューでどのバインディングが実稼働環境で承認されているかについては、[サポートされている言語](supported-languages.md)に関する記事をご覧ください。
-
-## <a name="register-binding-extensions"></a>バインディング拡張機能を登録する
-
-一部の開発環境では、明示的に使用するバインディングを*登録する*必要があります。 バインディング拡張機能は NuGet パッケージで提供されます。また、拡張機能を登録するにはパッケージをインストールします。 次の表に、バインディング拡張機能を登録するタイミングと方法を示します。
-
-|開発環境 |登録<br/> (Functions 1.x)  |登録<br/> (Functions 2.x)  |
-|---------|---------|---------|
-|Azure ポータル|自動|[プロンプトで自動](#azure-portal-development)|
-|Azure Functions Core Tools を使用するローカル|自動|[Core Tools CLI コマンドを使用](#local-development-azure-functions-core-tools)|
-|Visual Studio 2017 を使用する C# クラス ライブラリ|[NuGet ツールを使用](#c-class-library-with-visual-studio-2017)|[NuGet ツールを使用](#c-class-library-with-visual-studio-2017)|
-|Visual Studio Code を使用する C# クラス ライブラリ|該当なし|[.NET Core CLI を使用](#c-class-library-with-visual-studio-code)|
-
-次のバインドの種類は、HTTP、タイマー、および Azure Storage (Blob、キュー、およびテーブル) のすべてのバージョンと環境に自動登録されているため、明示的な登録を必要としない例外です。 
-
-### <a name="azure-portal-development"></a>Azure Portal 開発
-
-関数を作成するか、またはバインディングを追加する場合に、トリガーまたはバインディングの拡張機能が登録を必要とするときは、プロンプトが表示されます。 **[インストール]** をクリックして拡張機能を登録することで、プロンプトに応答します。 従量課金プランで、インストールには最大 10 分かかる可能性があります。
-
-各拡張機能は、特定の関数アプリごとに 1 回だけインストールする必要があります。 
-
-### <a name="local-development-azure-functions-core-tools"></a>ローカル開発の Azure Functions Core Tools
-
-[!INCLUDE [functions-core-tools-install-extension](../../includes/functions-core-tools-install-extension.md)]
-
-<a name="local-csharp"></a>
-### <a name="c-class-library-with-visual-studio-2017"></a>Visual Studio 2017 を使用する C# クラス ライブラリ
-
-**Visual Studio 2017** では、次の例に示すように [Install-Package](https://docs.microsoft.com/nuget/tools/ps-ref-install-package) コマンドを使用して、Package Manager Console からパッケージをインストールできます。
-
-```powershell
-Install-Package Microsoft.Azure.WebJobs.ServiceBus --Version <target_version>
-```
-
-特定のバインディングに使用するパッケージ名は、該当のバインディングのリファレンス記事に示されています。 たとえば、[Service Bus バインディングのリファレンス記事にある「パッケージ」セクション](functions-bindings-service-bus.md#packages---functions-1x)を参照してください。
-
-例の中の `<target_version>` を `3.0.0-beta5` などの特定のバージョンのパッケージに置き換えます。 有効なバージョンは、[NuGet.org](https://nuget.org) の個々のパッケージ ページに記載されています。Functions ランタイム 1.x または 2.x に対応する主要なバージョンは、バインデイングのリファレンス記事に示されています。
-
-### <a name="c-class-library-with-visual-studio-code"></a>Visual Studio Code を使用する C# クラス ライブラリ
-
-**Visual Studio Code** では、次の例のように、.NET Core CLI の [dotnet add package](https://docs.microsoft.com/dotnet/core/tools/dotnet-add-package) コマンドを使用してコマンド プロンプトからパッケージをインストールできます。
-
-```terminal
-dotnet add package Microsoft.Azure.WebJobs.ServiceBus --version <target_version>
-```
-
-.NET Core CLI は、Azure Functions 2.x 開発のみに使用できます。
-
-特定のバインディングに使用するパッケージ名は、該当のバインディングのリファレンス記事に示されています。 たとえば、[Service Bus バインディングのリファレンス記事にある「パッケージ」セクション](functions-bindings-service-bus.md#packages---functions-1x)を参照してください。
-
-例の中の `<target_version>` を `3.0.0-beta5` などの特定のバージョンのパッケージに置き換えます。 有効なバージョンは、[NuGet.org](https://nuget.org) の個々のパッケージ ページに記載されています。Functions ランタイム 1.x または 2.x に対応する主要なバージョンは、バインデイングのリファレンス記事に示されています。
 
 ## <a name="example-trigger-and-binding"></a>トリガーとバインディングの例
 
@@ -203,6 +147,66 @@ function generateRandomId() {
  }
 ```
 
+## <a name="supported-bindings"></a>サポートされるバインディング
+
+[!INCLUDE [Full bindings table](../../includes/functions-bindings.md)]
+
+どのバインディングがプレビューでどのバインディングが実稼働環境で承認されているかについては、[サポートされている言語](supported-languages.md)に関する記事をご覧ください。
+
+## <a name="register-binding-extensions"></a>バインディング拡張機能を登録する
+
+一部の開発環境では、明示的に使用するバインディングを*登録する*必要があります。 バインディング拡張機能は NuGet パッケージで提供されます。また、拡張機能を登録するにはパッケージをインストールします。 次の表に、バインディング拡張機能を登録するタイミングと方法を示します。
+
+|開発環境 |登録<br/> (Functions 1.x)  |登録<br/> (Functions 2.x)  |
+|---------|---------|---------|
+|Azure ポータル|自動|[プロンプトで自動](#azure-portal-development)|
+|Azure Functions Core Tools を使用するローカル|自動|[Core Tools CLI コマンドを使用](#local-development-azure-functions-core-tools)|
+|Visual Studio 2017 を使用する C# クラス ライブラリ|[NuGet ツールを使用](#c-class-library-with-visual-studio-2017)|[NuGet ツールを使用](#c-class-library-with-visual-studio-2017)|
+|Visual Studio Code を使用する C# クラス ライブラリ|該当なし|[.NET Core CLI を使用](#c-class-library-with-visual-studio-code)|
+
+次のバインドの種類は、HTTP、タイマー、および Azure Storage (Blob、キュー、およびテーブル) のすべてのバージョンと環境に自動登録されているため、明示的な登録を必要としない例外です。 
+
+### <a name="azure-portal-development"></a>Azure Portal 開発
+
+このセクションは Functions 2.x にのみ適用されます。 バインディングの拡張機能は、Functions 1.x に明示的に登録する必要はありません。
+
+関数を作成するか、またはバインディングを追加する場合に、トリガーまたはバインディングの拡張機能が登録を必要とするときは、プロンプトが表示されます。 **[インストール]** をクリックして拡張機能を登録することで、プロンプトに応答します。 従量課金プランで、インストールには最大 10 分かかる可能性があります。
+
+各拡張機能は、特定の関数アプリごとに 1 回だけインストールする必要があります。 
+
+### <a name="local-development-azure-functions-core-tools"></a>ローカル開発の Azure Functions Core Tools
+
+このセクションは Functions 2.x にのみ適用されます。 バインディングの拡張機能は、Functions 1.x に明示的に登録する必要はありません。
+
+[!INCLUDE [functions-core-tools-install-extension](../../includes/functions-core-tools-install-extension.md)]
+
+<a name="local-csharp"></a>
+### <a name="c-class-library-with-visual-studio-2017"></a>Visual Studio 2017 を使用する C# クラス ライブラリ
+
+**Visual Studio 2017** では、次の例に示すように [Install-Package](https://docs.microsoft.com/nuget/tools/ps-ref-install-package) コマンドを使用して、Package Manager Console からパッケージをインストールできます。
+
+```powershell
+Install-Package Microsoft.Azure.WebJobs.ServiceBus --Version <target_version>
+```
+
+特定のバインディングに使用するパッケージ名は、該当のバインディングのリファレンス記事に示されています。 たとえば、[Service Bus バインディングのリファレンス記事にある「パッケージ」セクション](functions-bindings-service-bus.md#packages---functions-1x)を参照してください。
+
+例の中の `<target_version>` を `3.0.0-beta5` などの特定のバージョンのパッケージに置き換えます。 有効なバージョンは、[NuGet.org](https://nuget.org) の個々のパッケージ ページに記載されています。Functions ランタイム 1.x または 2.x に対応する主要なバージョンは、バインデイングのリファレンス記事に示されています。
+
+### <a name="c-class-library-with-visual-studio-code"></a>Visual Studio Code を使用する C# クラス ライブラリ
+
+**Visual Studio Code** では、次の例のように、.NET Core CLI の [dotnet add package](https://docs.microsoft.com/dotnet/core/tools/dotnet-add-package) コマンドを使用してコマンド プロンプトからパッケージをインストールできます。
+
+```terminal
+dotnet add package Microsoft.Azure.WebJobs.ServiceBus --version <target_version>
+```
+
+.NET Core CLI は、Azure Functions 2.x 開発のみに使用できます。
+
+特定のバインディングに使用するパッケージ名は、該当のバインディングのリファレンス記事に示されています。 たとえば、[Service Bus バインディングのリファレンス記事にある「パッケージ」セクション](functions-bindings-service-bus.md#packages---functions-1x)を参照してください。
+
+例の中の `<target_version>` を `3.0.0-beta5` などの特定のバージョンのパッケージに置き換えます。 有効なバージョンは、[NuGet.org](https://nuget.org) の個々のパッケージ ページに記載されています。Functions ランタイム 1.x または 2.x に対応する主要なバージョンは、バインデイングのリファレンス記事に示されています。
+
 ## <a name="binding-direction"></a>バインドの方向
 
 すべてのトリガーとバインドには、*function.json* ファイルに `direction` プロパティがあります。
@@ -220,9 +224,11 @@ function generateRandomId() {
 * C# クラス ライブラリでは、メソッド戻り値に出力バインディング属性を適用します。
 * その他の言語では、*function.json* 内の `name` プロパティを `$return` に設定します。
 
-複数の項目を書き込む必要がある場合は、戻り値の代わりに[コレクター オブジェクト](functions-reference-csharp.md#writing-multiple-output-values)を使用します。 複数の出力バインディングが存在する場合は、そのうちの 1 つにのみ戻り値を使用します。
+複数の出力バインディングが存在する場合は、そのうちの 1 つにのみ戻り値を使用します。
 
-言語固有の例をご覧ください。
+C# と C# スクリプトでは、`out` パラメーターや[コレクター オブジェクト](functions-reference-csharp.md#writing-multiple-output-values)を使用してデータを出力バインディングに送信できます。
+
+言語固有の戻り値の使用例を次に示します。
 
 * [C#](#c-example)
 * [C# スクリプト (.csx)](#c-script-example)
@@ -526,7 +532,7 @@ public static void Run(
       "name": "blobContents",
       "type": "blob",
       "direction": "in",
-      "path": "strings/{BlobName.FileName}.{BlobName.Extension}",
+      "path": "strings/{BlobName}",
       "connection": "AzureWebJobsStorage"
     },
     {
@@ -548,11 +554,13 @@ public class BlobInfo
     public string BlobName { get; set; }
 }
   
-public static HttpResponseMessage Run(HttpRequestMessage req, BlobInfo info, string blobContents)
+public static HttpResponseMessage Run(HttpRequestMessage req, BlobInfo info, string blobContents, TraceWriter log)
 {
     if (blobContents == null) {
         return req.CreateResponse(HttpStatusCode.NotFound);
     } 
+
+    log.Info($"Processing: {info.BlobName}");
 
     return req.CreateResponse(HttpStatusCode.OK, new {
         data = $"{blobContents}"

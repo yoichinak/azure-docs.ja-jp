@@ -7,19 +7,19 @@ author: rolyon
 manager: mtillman
 ms.service: active-directory
 ms.devlang: na
-ms.topic: how-to
+ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.component: protection
+ms.component: pim
 ms.date: 03/27/2018
 ms.author: rolyon
 ms.custom: pim
-ms.openlocfilehash: 628ee70f7eb59673d4229441e3c4242e1ef8e0d3
-ms.sourcegitcommit: 4e36ef0edff463c1edc51bce7832e75760248f82
+ms.openlocfilehash: d7a9c0090d3bfaaf1161b6255c4c0b659c77d692
+ms.sourcegitcommit: 35ceadc616f09dd3c88377a7f6f4d068e23cceec
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/08/2018
-ms.locfileid: "35234274"
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39620282"
 ---
 # <a name="enable-subscription-management-in-your-tenant"></a>テナントのサブスクリプション管理を有効にする
 

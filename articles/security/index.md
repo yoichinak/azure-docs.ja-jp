@@ -2,8 +2,8 @@
 title: Azure のセキュリティに関するドキュメント | Microsoft Docs
 description: Azure のすべての要素にセキュリティが統合されています。 Azure は、グローバル セキュリティ インテリジェンス、高度な顧客向けコントロール、安全で堅牢なインフラストラクチャのたまものである比類の無いセキュリティ上の利点を提供します。 この強力な組み合わせにより、アプリケーションとデータの保護、コンプライアンスに関する取り組みの支援、あらゆる規模の組織に適したコスト効果の高いセキュリティの提供が可能になります。
 services: security
-author: czeumault
-manager: carolz
+author: arob98
+manager: angrobe
 layout: LandingPage
 ms.assetid: ''
 ms.service: security
@@ -11,13 +11,13 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: landing-page
 ms.date: 03/30/2018
-ms.author: carolz
-ms.openlocfilehash: ceabc623963acd469a2e4694cb412828dc511100
-ms.sourcegitcommit: 5a7f13ac706264a45538f6baeb8cf8f30c662f8f
+ms.author: angrobe
+ms.openlocfilehash: 7a457512b9fcaa8d0e895cdec6f973cd6614f82d
+ms.sourcegitcommit: 3f8f973f095f6f878aa3e2383db0d296365a4b18
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/29/2018
-ms.locfileid: "37113794"
+ms.lasthandoff: 08/20/2018
+ms.locfileid: "41927049"
 ---
 # <a name="azure-security-documentation"></a>Azure のセキュリティのドキュメント
 
@@ -178,7 +178,7 @@ Azure のすべての要素にセキュリティが統合されています。 A
                                 <a class="barLink" href="/azure/security/azure-threat-detection">Azure の高度な脅威の検出</a>
                             </li>
                             <li style="list-style: none;">
-                                <a class="barLink" href="/azure/security/azure-network-security">Azure のネットワーク セキュリティ</a>
+                                <a class="barLink" href="/azure/security/abstract-azure-network-security">Azure のネットワーク セキュリティ</a>
                             </li>
                         </ul>
                     </div>
@@ -445,7 +445,7 @@ Azure のすべての要素にセキュリティが統合されています。 A
         </a>
     </li>
     <li style="list-style: none;">
-        <a href="/azure/information-protection/understand-explore/what-is-information-protection">
+        <a href="/azure/information-protection/what-is-information-protection">
             <div class="cardSize">
                 <div class="cardPadding">
                     <div class="card" style="min-height: 0;padding-bottom: 24px; text-align: center;">

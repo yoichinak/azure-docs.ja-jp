@@ -2,27 +2,22 @@
 title: Azure Files のデプロイ方法 | Microsoft Docs
 description: Azure Files をデプロイする方法を開始から終了まで説明します。
 services: storage
-documentationcenter: ''
 author: wmgries
-manager: aungoo
-editor: tamram
-ms.assetid: 297f3a14-6b3a-48b0-9da4-db5907827fb5
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
 ms.date: 05/22/2018
 ms.author: wgries
-ms.openlocfilehash: 38a0e64bf958ef6aebac41136ffcb9c213cc7ec0
-ms.sourcegitcommit: 150a40d8ba2beaf9e22b6feff414f8298a8ef868
+ms.component: files
+ms.openlocfilehash: d2e09c837597dfd15e6258cbd0100762b098eedf
+ms.sourcegitcommit: 9819e9782be4a943534829d5b77cf60dea4290a2
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/27/2018
-ms.locfileid: "37029783"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39523487"
 ---
 # <a name="how-to-deploy-azure-files"></a>Azure Files のデプロイ方法
-[Azure Files](storage-files-introduction.md) はクラウドで、業界標準の SMB プロトコルを介してアクセスできる、完全に管理されたファイル共有を提供します。 この記事では、実際に組織内で Azure Files をデプロイする方法を示します。
+
+  [Azure Files](storage-files-introduction.md) はクラウドで、業界標準の SMB プロトコルを介してアクセスできる、フル マネージドのファイル共有を提供します。 この記事では、実際に組織内で Azure Files をデプロイする方法を示します。
 
 この記事の手順を進める前に、[Azure Files のデプロイの計画](storage-files-planning.md)を読むことを強くお勧めします。
 
@@ -35,8 +30,8 @@ ms.locfileid: "37029783"
 ## <a name="transfer-data-into-azure-files"></a>Azure Files へのデータ転送
 新しい Azure ファイル共有に、オンプレミスに保存されているファイル共有などの既存のファイル共有を移行したい場合があります。 このセクションでは、[計画ガイド](storage-files-planning.md#data-transfer-method)に記載されているいくつかの一般的な方法を使用して、Azure ファイル共有にデータを移行する方法を示します
 
-### <a name="azure-file-sync-preview"></a>Azure ファイル同期 (プレビュー)
-Azure ファイル同期 (プレビュー) を使用すると、オンプレミスのファイル サーバーの柔軟性、パフォーマンス、互換性を損なわずに Azure Files で組織のファイル共有を一元化できます。 これは、Windows Server を Azure ファイル共有のクイック キャッシュに変換することで行います。 Windows Server で使用可能な任意のプロトコル (SMB、NFS、FTPS など) を使用してデータにローカル アクセスすることができ、世界中に必要な数だけキャッシュを持つことができます。
+### <a name="azure-file-sync"></a>Azure File Sync
+Azure ファイル同期を使用すると、オンプレミスのファイル サーバーの柔軟性、パフォーマンス、互換性を損なわずに Azure Files で組織のファイル共有を一元化できます。 これは、Windows Server を Azure ファイル共有のクイック キャッシュに変換することで行います。 Windows Server で使用可能な任意のプロトコル (SMB、NFS、FTPS など) を使用してデータにローカル アクセスすることができ、世界中に必要な数だけキャッシュを持つことができます。
 
 Azure File Sync は、この同期メカニズムを長期的に利用する必要がない場合でも、Azure ファイル共有にデータを移行するために使用されることがあります。 Azure File Sync を使用して Azure ファイル共有にデータを転送する方法について詳しくは、[Azure ファイル同期のデプロイの計画](storage-sync-files-planning.md)と [Azure ファイル同期をデプロイする方法](storage-sync-files-deployment-guide.md)に関する記事をご覧ください。
 

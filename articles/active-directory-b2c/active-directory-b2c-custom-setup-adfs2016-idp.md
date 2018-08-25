@@ -6,16 +6,16 @@ author: davidmu1
 manager: mtillman
 ms.service: active-directory
 ms.workload: identity
-ms.topic: article
+ms.topic: conceptual
 ms.date: 08/04/2017
 ms.author: davidmu
 ms.component: B2C
-ms.openlocfilehash: 06b70e48398fd720b6c87cc4575b7a7973f5bce5
-ms.sourcegitcommit: 6116082991b98c8ee7a3ab0927cf588c3972eeaa
+ms.openlocfilehash: a81baae553bbf9c58d42372e25e90cd7588f2952
+ms.sourcegitcommit: 86cb3855e1368e5a74f21fdd71684c78a1f907ac
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/05/2018
-ms.locfileid: "34709191"
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37445077"
 ---
 # <a name="azure-active-directory-b2c-add-adfs-as-a-saml-identity-provider-using-custom-policies"></a>Azure Active Directory B2C: カスタム ポリシーを使って ADFS を SAML ID プロバイダーとして追加する
 
@@ -95,7 +95,7 @@ ADFS アカウントでのフェデレーションには、アプリケーショ
 4.  **[オプション]** には **[アップロード]** を使用します。
 5.  **[名前]** には `ADFSSamlCert` を使用します。  
     プレフィックス `B2C_1A_` が自動的に追加される場合があります。
-6.  [ファイルのアップロード] で、**秘密キーを備えた証明書の .pfx ファイルを選択します。 注: この証明書 (秘密キーを備えている) は、ADFS 証明書利用者に発行され使用されているものと同一にする必要があります。
+6.  [ファイルのアップロード] で、\*\*秘密キーを備えた証明書の .pfx ファイルを選択します。 注: この証明書 (秘密キーを備えている) は、ADFS 証明書利用者に発行され使用されているものと同一にする必要があります。
 ![ポリシー キーをアップロードする](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-cert.png)
 7.  **[作成]**
 8.  キー `B2C_1A_ADFSSamlCert` を作成したことを確認します。
