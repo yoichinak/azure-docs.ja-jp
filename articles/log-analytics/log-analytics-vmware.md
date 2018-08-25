@@ -15,21 +15,12 @@ ms.topic: conceptual
 ms.date: 05/04/2018
 ms.author: magoedte
 ms.component: na
-<<<<<<< HEAD
 ms.openlocfilehash: 6ba37a026a3c8f50fa47b0775a2ad49ee75f2769
 ms.sourcegitcommit: 1d850f6cae47261eacdb7604a9f17edc6626ae4b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
 ms.lasthandoff: 08/02/2018
 ms.locfileid: "39424649"
-=======
-ms.openlocfilehash: a538b23e829e309c10e745beef4fc8512c3294de
-ms.sourcegitcommit: 5892c4e1fe65282929230abadf617c0be8953fd9
-ms.translationtype: HT
-ms.contentlocale: ja-JP
-ms.lasthandoff: 06/29/2018
-ms.locfileid: "37131429"
->>>>>>> 80697358fa87c3788dfc3c6516c1c9318d97f2f5
 ---
 # <a name="vmware-monitoring-preview-solution-in-log-analytics"></a>Log Analytics の VMware の監視 (プレビュー) ソリューション
 
