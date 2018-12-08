@@ -143,7 +143,7 @@ Log Analytics は約 5 分おきに各カスタム ログから新しいエン�
 | クエリ | 説明 |
 |:--- |:--- |
 | MyApp_CL |MyApp_CL という名前のカスタム ログからのすべてのイベント |
-| MyApp_CL &#124。ここで Severity_CF=="error" |MyApp_CL という名前のカスタム ログに含まれ、*Severity_CF* という名前のカスタム フィールドの値が *error* になっているすべてのイベント。 |
+| MyApp_CL &#124; where Severity_CF=="error" |MyApp_CL という名前のカスタム ログに含まれ、*Severity_CF* という名前のカスタム フィールドの値が *error* になっているすべてのイベント。 |
 
 
 ## <a name="sample-walkthrough-of-adding-a-custom-log"></a>カスタム ログ追加のサンプル チュートリアル
