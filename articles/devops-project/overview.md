@@ -57,7 +57,7 @@ DevOps Projects を使用して、次のようなことができます。
 
 DevOps Projects を使用した後は、Azure portal 上の DevOps Projects ダッシュボードから一元的に、すべてのリソースを削除することもできます。
 
-## <a name="devops-projects-and-azure-devops-integration"></a>DevOps Projects と Azure DevOps 統合
+## <a name="devops-projects-and-azure-devops-integration"></a>DevOps Projects と Azure DevOps の統合
 
 DevOps Projects では、Azure DevOps の機能が利用されています。 DevOps Projects によって、Azure Pipelines で CI/CD パイプラインをセットアップするために必要なすべての作業が自動化されます。 新規または既存の Azure DevOps 組織に Git リポジトリが作成され、サンプル アプリケーションまたは既存のコードが新しい Git リポジトリにコミットされます。  
 
@@ -68,7 +68,7 @@ DevOps Projects では、Azure DevOps の機能が利用されています。 De
 DevOps Projects を作成した後は、次のことができます。
 
 * ビルドとリリースのパイプラインをカスタマイズします
-* プル要求を使ってコードのフローを管理し、高い品質を維持します
+* Pull request を使ってコードのフローを管理し、高い品質を維持します
 * コードをマージして品質の水準を引き上げる前に、各コミットをテストしてビルドします
 * アプリケーションと共にバックログと問題を追跡します
 

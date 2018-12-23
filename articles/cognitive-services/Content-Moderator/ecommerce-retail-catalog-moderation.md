@@ -10,12 +10,12 @@ ms.component: content-moderator
 ms.topic: tutorial
 ms.date: 09/25/2017
 ms.author: sajagtap
-ms.openlocfilehash: 0bd61c3f1a4f660076be4e87bb5443302e5dc013
-ms.sourcegitcommit: 6361a3d20ac1b902d22119b640909c3a002185b3
+ms.openlocfilehash: 285590435a7e3c31d45d5d154d4e430ed3252838
+ms.sourcegitcommit: 1c1f258c6f32d6280677f899c4bb90b73eac3f2e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "49363996"
+ms.lasthandoff: 12/11/2018
+ms.locfileid: "53256232"
 ---
 # <a name="tutorial-ecommerce-catalog-moderation-with-machine-learning"></a>チュートリアル: 機械学習による e コマース カタログのモデレーション
 
@@ -249,4 +249,4 @@ Content Moderator にサインアップしてチームを作成する方法に�
 
 ## <a name="next-steps"></a>次の手順
 
-Github の[プロジェクト ソース ファイル](https://github.com/MicrosoftContentModerator/samples-eCommerceCatalogModeration)を使用して、チュートリアルを構築し、拡張します。
+GitHub の[プロジェクト ソース ファイル](https://github.com/MicrosoftContentModerator/samples-eCommerceCatalogModeration)を使用して、チュートリアルを構築し、拡張します。

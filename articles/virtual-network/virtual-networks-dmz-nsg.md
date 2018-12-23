@@ -327,7 +327,7 @@ ms.locfileid: "49457291"
 
 ## <a name="references"></a>参照
 ### <a name="azure-resource-manager-template"></a>Azure Resource Manager テンプレート
-この例では、Microsoft によって管理され、コミュニティに公開されている Github リポジトリ上の定義済み Azure Resource Manager テンプレートを使用しています。 このテンプレートは、Github から直接デプロイすることもできるほか、ダウンロードしてニーズに合わせて変更することもできます。 
+この例では、Microsoft によって管理され、コミュニティに公開されている GitHub リポジトリ上の定義済み Azure Resource Manager テンプレートを使用しています。 このテンプレートは、GitHub から直接デプロイすることもできるほか、ダウンロードしてニーズに合わせて変更することもできます。 
 
 メイン テンプレートは "azuredeploy.json" という名前のファイル内にあります。 PowerShell または CLI を使用して (関連付けられた "azuredeploy.parameters.json" ファイルとともに) このテンプレートを送信して、デプロイすることができます。 最も簡単な方法は、GitHub の README.md ページにある [Deploy to Azure] (Azure にデプロイ) ボタンを使用することです。
 
