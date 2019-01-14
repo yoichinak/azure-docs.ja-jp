@@ -16,12 +16,12 @@ ms.topic: article
 ms.date: 12/12/2017
 ms.author: manayar
 ms.custom: na
-ms.openlocfilehash: 40af55e48e0097f1ad6cb52a76b78fab40c2074c
-ms.sourcegitcommit: 5aed7f6c948abcce87884d62f3ba098245245196
+ms.openlocfilehash: 1bba25d0b7fd6bbe4efeb9c2164fc663b22bed11
+ms.sourcegitcommit: 78ec955e8cdbfa01b0fa9bdd99659b3f64932bba
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52447182"
+ms.lasthandoff: 12/10/2018
+ms.locfileid: "53139369"
 ---
 # <a name="azure-virtual-machine-scale-sets-faqs"></a>Azure Virtual Machine Scale Sets の FAQ
 
@@ -31,7 +31,7 @@ Azure における仮想マシン スケール セットについてよく寄せ
 
 **Q.** Scale Sets には何個の VM を設定できますか?
 
-**A.** スケール セットには、プラットフォーム イメージに基づいて 0 ～ 1,000 個の VM、またはカスタム イメージに基づいて 0 ～ 300 個の VM を含めることができます。
+**A.** スケール セットには、プラットフォーム イメージに基づいて 0 から 1,000 個の VM、またはカスタム イメージに基づいて 0 から 600 個の VM を含めることができます。
 
 **Q.** Scale Sets 内でデータ ディスクはサポートされていますか?
 
@@ -277,7 +277,7 @@ keyData | [はい] | String | Base64 でエンコードされた SSH 公開キ�
  
 ### <a name="when-i-run-update-azurermvmss-after-adding-more-than-one-certificate-from-the-same-key-vault-i-see-the-following-message"></a>同じキー コンテナーから複数の証明書を追加した後に `Update-AzureRmVmss` を実行すると、次のメッセージが表示されます。
  
->"Update-AzureRmVmss: リスト secret の中でインスタンス /subscriptions/<my-subscription-id>/resourceGroups/internal-rg-dev/providers/Microsoft.KeyVault/vaults/internal-keyvault-dev が繰り返されていますが、これは許可されていません"。
+>"Update-AzureRmVmss:リスト secret の中でインスタンス /subscriptions/<my-subscription-id>/resourceGroups/internal-rg-dev/providers/Microsoft.KeyVault/vaults/internal-keyvault-dev が繰り返されていますが、これは許可されていません。"
  
 既存のソース コンテナーの新しいコンテナー証明書ではなく、同じコンテナーを再度追加しようとすると、このメッセージが表示されることがあります。 シークレットを二重に追加しようとすると、`Add-AzureRmVmssSecret` コマンドが正しく動作しません。
  
@@ -392,7 +392,7 @@ Base64 文字列として証明書を渡す動作をエミュレートするに�
 はい。 Azure Quickstart テンプレートで、いくつかのサンプル MSI テンプレートを確認できます。 Linux: [https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-msi-linux](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-msi-linux)。 Windows: [https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-msi-windows](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-msi-windows)。
 
 
-## <a name="extensions"></a>拡張機能
+## <a name="extensions"></a>Extensions
 
 ### <a name="how-do-i-delete-a-virtual-machine-scale-set-extension"></a>仮想マシン スケール セットの拡張機能を削除する方法を教えてください。
 
@@ -510,7 +510,7 @@ Add-AzureRmVmssExtension -VirtualMachineScaleSet $VMSS -Name "IaaSAntimalware" -
 Update-AzureRmVmss -ResourceGroupName $rgname -Name $vmssname -VirtualMachineScaleSet $VMSS 
 ```
 
-### <a name="i-need-to-execute-a-custom-script-thats-hosted-in-a-private-storage-account-the-script-runs-successfully-when-the-storage-is-public-but-when-i-try-to-use-a-shared-access-signature-sas-it-fails-this-message-is-displayed-missing-mandatory-parameters-for-valid-shared-access-signature-linksas-works-fine-from-my-local-browser"></a>プライベート ストレージ アカウントでホストされているカスタム スクリプトを実行する必要があります。 ストレージがパブリックのときは正常に実行されますが、Shared Access Signature (SAS) を使用しようとすると失敗します。 "有効な Shared Access Signature で必須のパラメーターがありません" というメッセージが表示されます。 Link+SAS は、ローカル ブラウザーから正常に動作しています。
+### <a name="i-need-to-execute-a-custom-script-thats-hosted-in-a-private-storage-account-the-script-runs-successfully-when-the-storage-is-public-but-when-i-try-to-use-a-shared-access-signature-sas-it-fails-this-message-is-displayed-missing-mandatory-parameters-for-valid-shared-access-signature-linksas-works-fine-from-my-local-browser"></a>プライベート ストレージ アカウントでホストされているカスタム スクリプトを実行する必要があります。 ストレージがパブリックのときは正常に実行されますが、Shared Access Signature (SAS) を使用しようとすると失敗します。 次のメッセージが表示されます。"有効な Shared Access Signature で必須のパラメーターがありません" Link+SAS は、ローカル ブラウザーから正常に動作しています。
 
 プライベート ストレージ アカウントでホストされているカスタム スクリプトを実行するには、ストレージ アカウント キーとストレージ アカウント名を使用して保護された設定を構成します。 詳細については、「[Windows でのカスタムのスクリプト拡張機能](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-extensions-customscript/#template-example-for-a-windows-vm-with-protected-settings)」を参照してください。
 
@@ -559,7 +559,7 @@ Update-AzureRmVmss -ResourceGroupName $rgname -Name $vmssname -VirtualMachineSca
 
 ### <a name="how-do-i-do-a-vip-swap-for-virtual-machine-scale-sets-in-the-same-subscription-and-same-region"></a>同じサブスクリプションで同じリージョンの仮想マシン スケール セットの VIP スワップを実行するにはどうすればよいですか。
 
-2 つの仮想マシン スケール セットと Azure Load Balancer フロントエンドがあり、それらが同じサブスクリプションおよびリージョンにある場合、それぞれのパブリック IP アドレスの割り当てを解除し、もう一方に割り当てることができます。 例については、「[VIP Swap: Blue-green deployment in Azure Resource Manager (VIP スワップ: Azure Resource Manager での Blue-green デプロイ)](https://msftstack.wordpress.com/2017/02/24/vip-swap-blue-green-deployment-in-azure-resource-manager/)」を参照してください。 しかし、この場合、リソースの割り当て解除/割り当てがネットワーク レベルで行われるため、遅延が生じます。 高速なオプションは、Azure Application Gateway と 2 つのバックエンド プールおよびルーティング規則を使うものです。 または、[Azure App Service](https://azure.microsoft.com/services/app-service/) でアプリケーションをホストすることもできます。このサービスでは、ステージング スロットと運用スロット間のすばやい切り替えをサポートしています。
+2 つの仮想マシン スケール セットと Azure Load Balancer フロントエンドがあり、それらが同じサブスクリプションおよびリージョンにある場合、それぞれのパブリック IP アドレスの割り当てを解除し、もう一方に割り当てることができます。 例については、「[VIP Swap:Blue-green deployment in Azure Resource Manager](https://msftstack.wordpress.com/2017/02/24/vip-swap-blue-green-deployment-in-azure-resource-manager/)」(VIP スワップ: Azure Resource Manager での Blue-green デプロイ) をご覧ください。 しかし、この場合、リソースの割り当て解除/割り当てがネットワーク レベルで行われるため、遅延が生じます。 高速なオプションは、Azure Application Gateway と 2 つのバックエンド プールおよびルーティング規則を使うものです。 または、[Azure App Service](https://azure.microsoft.com/services/app-service/) でアプリケーションをホストすることもできます。このサービスでは、ステージング スロットと運用スロット間のすばやい切り替えをサポートしています。
  
 ### <a name="how-do-i-specify-a-range-of-private-ip-addresses-to-use-for-static-private-ip-address-allocation"></a>静的プライベート IP アドレスの割り当て用に、プライベート IP アドレスの範囲を指定するにはどうすればよいですか。
 
@@ -573,7 +573,7 @@ IP アドレスは指定したサブネットから選択されます。
 
 ### <a name="how-do-i-add-the-ip-address-of-the-first-vm-in-a-virtual-machine-scale-set-to-the-output-of-a-template"></a>仮想マシン スケール セットの最初の VM の IP アドレスをテンプレートの出力に追加するにはどうすればよいですか。
 
-仮想マシン スケール セットの最初の VM の IP アドレスをテンプレートの出力に追加する方法については、「[Azure Resource Manager: Get VMSS's private IPs](http://stackoverflow.com/questions/42790392/arm-get-vmsss-private-ips)」(Azure Resource Manager: VMSS のプライベート IP を取得する) を参照してください。
+仮想マシン スケール セットの最初の VM の IP アドレスをテンプレートの出力に追加する方法については、「[Azure Resource Manager:Get virtual machine scale sets private IPs](http://stackoverflow.com/questions/42790392/arm-get-vmsss-private-ips)」(Azure Resource Manager: 仮想マシン スケール セットのプライベート IP を取得する) をご覧ください。
 
 ### <a name="can-i-use-scale-sets-with-accelerated-networking"></a>高速ネットワークでスケール セットを使用できますか?
 
@@ -746,7 +746,7 @@ Azure portal の Log Analytics ワークスペースに、必要な workspaceId 
 
 いいえ。仮想マシン スケール セットの VM にそれぞれ異なる拡張機能の引数を渡すことはできません。 ただし、拡張機能は、それが実行される VM の一意のプロパティ (マシン名など) に基づいて動作することができます。 また、拡張機能から http://169.254.169.254 でインスタンスのメタデータを照会して、VM についての詳細情報を取得することもできます。
 
-### <a name="why-are-there-gaps-between-my-virtual-machine-scale-set-vm-machine-names-and-vm-ids-for-example-0-1-3"></a>仮想マシン スケール セット VM のマシン名や VM ID に欠落があるのはなぜですか  (0、1、3... など)?
+### <a name="why-are-there-gaps-between-my-virtual-machine-scale-set-vm-machine-names-and-vm-ids-for-example-0-1-3"></a>仮想マシン スケール セット VM のマシン名や VM ID に欠落があるのはなぜですか  例: 0、1、3...
 
 仮想マシン スケール セット VM のマシン名や VM ID に欠落があるのは、仮想マシン スケール セットの**過剰プロビジョニング** プロパティが既定値の **true** に設定されているためです。 過剰プロビジョニングが **true** の場合、要求した数よりも多くの VM が作成されます。 その後、余分な VM が削除されます。 この場合、連続した名前付けと連続した NAT (ネットワーク アドレス変換) 規則が失われる代わりに、デプロイの信頼性が向上します。 
 

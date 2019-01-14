@@ -1,5 +1,5 @@
 ---
-title: Azure でのアプリの復元
+title: バックアップからの復元 - Azure App Service
 description: スナップショットからアプリを復元する方法について説明します。
 services: app-service
 documentationcenter: ''
@@ -13,17 +13,18 @@ ms.tgt_pltfrm: multiple
 ms.topic: article
 ms.date: 04/04/2018
 ms.author: aelnably;nicking
-ms.openlocfilehash: e1ae8fcc30323c865aa96937f43054515f293394
-ms.sourcegitcommit: e221d1a2e0fb245610a6dd886e7e74c362f06467
+ms.custom: seodec18
+ms.openlocfilehash: ab1ae63352e66da557cad49bf5f320b577055877
+ms.sourcegitcommit: 549070d281bb2b5bf282bc7d46f6feab337ef248
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/07/2018
-ms.locfileid: "33766664"
+ms.lasthandoff: 12/21/2018
+ms.locfileid: "53726563"
 ---
 # <a name="restore-an-app-in-azure-from-a-snapshot"></a>Azure でスナップショットからアプリケーションを復元する
-この記事では、[Azure App Service](../app-service/app-service-web-overview.md) でスナップショットからアプリを復元する方法について説明します。 アプリのスナップショットの 1 つに基づいて、アプリを以前の状態に復元することができます。 スナップショットのバックアップを有効にする必要はありません。データ復旧の目的で、すべてのアプリのスナップショットが自動的に保存されます。
+この記事では、[Azure App Service](../app-service/overview.md) でスナップショットからアプリを復元する方法について説明します。 アプリのスナップショットの 1 つに基づいて、アプリを以前の状態に復元することができます。 スナップショットのバックアップを有効にする必要はありません。データ復旧の目的で、すべてのアプリのスナップショットが自動的に保存されます。
 
-スナップショットは増分シャドウ コピーであり、通常の[バックアップ](web-sites-backup.md)よりも優れている利点がいくつかあります。
+スナップショットは増分シャドウ コピーであり、通常の[バックアップ](manage-backup.md)よりも優れている利点がいくつかあります。
 - ファイル ロックによるファイル コピーエラーがありません。
 - ストレージ サイズの制限がありません。
 - 構成が必要ありません。

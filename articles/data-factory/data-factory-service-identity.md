@@ -8,16 +8,15 @@ editor: ''
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: conceptual
-ms.date: 08/17/2018
+ms.date: 11/28/2018
 ms.author: jingwang
-ms.openlocfilehash: db0bc0cb64c0b6d7df9319c8d2c5850a27e767a1
-ms.sourcegitcommit: 609c85e433150e7c27abd3b373d56ee9cf95179a
+ms.openlocfilehash: a42f5f441dd63f8d6a7f5bd1cfdf0452d025816e
+ms.sourcegitcommit: 25936232821e1e5a88843136044eb71e28911928
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/03/2018
-ms.locfileid: "48249215"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54017686"
 ---
 # <a name="azure-data-factory-service-identity"></a>Azure Data Factory サービス ID
 
@@ -30,7 +29,8 @@ ms.locfileid: "48249215"
 Data Factory サービス ID は、次の機能に役立ちます。
 
 - [Azure Key Vault に資格情報を格納する](store-credentials-in-key-vault.md)。この場合、データ ファクトリ サービス ID は Azure Key Vault の認証に使われます。
-- [Azure Blob Storage](connector-azure-blob-storage.md)、[Azure Data Lake Storage Gen1](connector-azure-data-lake-store.md)、[Azure SQL Database](connector-azure-sql-database.md)、[Azure SQL Data Warehouse](connector-azure-sql-data-warehouse.md) を含むコネクタ。
+- [Azure Blob Storage](connector-azure-blob-storage.md)、[Azure Data Lake Storage Gen1](connector-azure-data-lake-store.md)、[Azure Data Lake Storage Gen2](connector-azure-data-lake-storage.md)、[Azure SQL Database](connector-azure-sql-database.md)、および [Azure SQL Data Warehouse](connector-azure-sql-data-warehouse.md) を含むコネクタ。
+- [Web アクティビティ](control-flow-web-activity.md)。
 
 ## <a name="generate-service-identity"></a>サービス ID の生成
 
@@ -44,6 +44,7 @@ Data Factory サービス ID は、次の機能に役立ちます。
 
 - [PowerShell を使用したサービス ID の生成](#generate-service-identity-using-powershell)
 - [REST API を使用したサービス ID の生成](#generate-service-identity-using-rest-api)
+- [Azure Resource Manager テンプレートを使用してサービス ID を生成する](#generate-service-identity-using-azure-resource-manager-template)
 - [SDK を使用したサービス ID の生成](#generate-service-identity-using-sdk)
 
 >[!NOTE]
@@ -75,7 +76,7 @@ ProvisioningState : Succeeded
 PATCH https://management.azure.com/subscriptions/<subsID>/resourceGroups/<resourceGroupName>/providers/Microsoft.DataFactory/factories/<data factory name>?api-version=2017-09-01-preview
 ```
 
-**要求本文**: "identity": { "type": "SystemAssigned" } を追加します。
+**要求本文**: add "identity": { "type":"SystemAssigned" } を追加します。
 
 ```json
 {
@@ -92,7 +93,7 @@ PATCH https://management.azure.com/subscriptions/<subsID>/resourceGroups/<resour
 
 ```json
 {
-    "name": "ADFV2DemoFactory",
+    "name": "<dataFactoryName>",
     "tags": {},
     "properties": {
         "provisioningState": "Succeeded",
@@ -107,7 +108,27 @@ PATCH https://management.azure.com/subscriptions/<subsID>/resourceGroups/<resour
     },
     "id": "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.DataFactory/factories/ADFV2DemoFactory",
     "type": "Microsoft.DataFactory/factories",
-    "location": "EastUS"
+    "location": "<region>"
+}
+```
+
+### <a name="generate-service-identity-using-an-azure-resource-manager-template"></a>Azure Resource Manager テンプレートを使用してサービス ID を生成する
+
+**テンプレート**: add "identity": { "type":"SystemAssigned" } を追加します。
+
+```json
+{
+    "contentVersion": "1.0.0.0",
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "resources": [{
+        "name": "<dataFactoryName>",
+        "apiVersion": "2018-06-01",
+        "type": "Microsoft.DataFactory/factories",
+        "location": "<region>",
+        "identity": {
+            "type": "SystemAssigned"
+        }
+    }]
 }
 ```
 

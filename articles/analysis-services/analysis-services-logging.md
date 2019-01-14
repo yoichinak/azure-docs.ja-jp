@@ -5,19 +5,19 @@ author: minewiskan
 manager: kfile
 ms.service: azure-analysis-services
 ms.topic: conceptual
-ms.date: 10/18/2018
+ms.date: 12/06/2018
 ms.author: owend
 ms.reviewer: minewiskan
-ms.openlocfilehash: a8d6080b573cbad1004166f28a3e6596560241be
-ms.sourcegitcommit: 707bb4016e365723bc4ce59f32f3713edd387b39
+ms.openlocfilehash: f2e0767e78119b224f7be9256ab7050deca37e32
+ms.sourcegitcommit: 71ee622bdba6e24db4d7ce92107b1ef1a4fa2600
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/19/2018
-ms.locfileid: "49426517"
+ms.lasthandoff: 12/17/2018
+ms.locfileid: "53546982"
 ---
 # <a name="setup-diagnostic-logging"></a>診断ログのセットアップ
 
-Analysis Services ソリューションの重要な部分は、サーバーのパフォーマンスを監視することです。 [Azure リソースの診断ログ](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)を使用すると、監視および [Azure Storage](https://azure.microsoft.com/services/storage/) にログを送信したり、それらを [Azure Event Hubs](https://azure.microsoft.com/services/event-hubs/) にストリーミング配信したり、[Log Analytics](https://azure.microsoft.com/services/log-analytics/) ([Azure](https://www.microsoft.com/cloud-platform/operations-management-suite) のサービス) にエクスポートしたりすることができます。 
+Analysis Services ソリューションの重要な部分は、サーバーのパフォーマンスを監視することです。 [Azure リソースの診断ログ](../azure-monitor/platform/diagnostic-logs-overview.md)を使用すると、監視および [Azure Storage](https://azure.microsoft.com/services/storage/) にログを送信したり、それらを [Azure Event Hubs](https://azure.microsoft.com/services/event-hubs/) にストリーミング配信したり、[Log Analytics](https://azure.microsoft.com/services/log-analytics/) ([Azure](https://www.microsoft.com/cloud-platform/operations-management-suite) のサービス) にエクスポートしたりすることができます。 
 
 ![Storage、Event Hubs、または Log Analytics への診断ログ](./media/analysis-services-logging/aas-logging-overview.png)
 
@@ -82,7 +82,7 @@ Analysis Services ソリューションの重要な部分は、サーバーの�
 
     * **[ストレージ アカウントへのアーカイブ]**。 このオプションを使用するには、接続先として既存のストレージ アカウントが必要です。 「[ストレージ アカウントを作成する](../storage/common/storage-create-storage-account.md)」を参照してください。 指示に従って、Resource Manager の汎用アカウントを作成し、ポータルのこのページに戻ってストレージ アカウントを選択します。 新しく作成されたストレージ アカウントがドロップダウン メニューに表示されるまでには、数分かかる場合があります。
     * **イベント ハブにストリーミングします**。 このオプションを使用するには、既存の Event Hubs 名前空間と接続先のイベント ハブが必要です。 詳細については、「[Azure Portal を使用して Event Hubs 名前空間とイベント ハブを作成する](../event-hubs/event-hubs-create.md)」をご覧ください。 Portal でこのページに戻り、Event Hubs 名前空間とポリシー名を選択します。
-    * **[Log Analytics への送信]**。 このオプションを使用するには、既存のワークスペースを使用するか、ポータルで[新しいワークスペースを作成する](../log-analytics/log-analytics-quick-collect-azurevm.md#create-a-workspace)手順に従って新しい Log Analytics ワークスペースを作成します。 Log Analytics でログを表示する方法については、「[Azure Cosmos DB 診断ログ](#view-in-loganalytics)」を参照してください。
+    * **[Log Analytics への送信]**。 このオプションを使用するには、既存のワークスペースを使用するか、ポータルで[新しいワークスペースを作成する](../azure-monitor/learn/quick-collect-azurevm.md#create-a-workspace)手順に従って新しい Log Analytics ワークスペースを作成します。 Log Analytics でログを表示する方法については、この記事の「[Log Analytics ログを表示する](#view-logs-in-log-analytics)」を参照してください。
 
     * **エンジン**。 xEvents をログ記録するには、このオプションを選択します。 ストレージ アカウントにアーカイブする場合、診断ログのリテンション期間を選択できます。 リテンション期間が過ぎると、ログは自動的に削除されます。
     * **サービス**。 サービス レベル イベントをログ記録するには、このオプションを選択します。 ストレージ アカウントにアーカイブする場合、診断ログのリテンション期間を選択できます。 リテンション期間が過ぎると、ログは自動的に削除されます。
@@ -136,11 +136,11 @@ PowerShell を使用してメトリックと診断のロギングを有効にす
 
 ### <a name="rest-api"></a>REST API
 
-[Azure Monitor REST API を使用して診断設定を変更する](https://msdn.microsoft.com/library/azure/dn931931.aspx)方法を学習します。 
+[Azure Monitor REST API を使用して診断設定を変更する](https://docs.microsoft.com/rest/api/monitor/)方法を学習します。 
 
 ### <a name="resource-manager-template"></a>Resource Manager テンプレート
 
-[Resource Manager テンプレートを使用してリソースの作成時に診断設定を有効にする](../monitoring-and-diagnostics/monitoring-enable-diagnostic-logs-using-template.md)方法を学習します。 
+[Resource Manager テンプレートを使用してリソースの作成時に診断設定を有効にする](../azure-monitor/platform/diagnostic-logs-stream-template.md)方法を学習します。 
 
 ## <a name="manage-your-logs"></a>ログを管理する
 
@@ -304,6 +304,6 @@ Set-AzureRmDiagnosticSetting -ResourceId $account.ResourceId`
 
 ## <a name="next-steps"></a>次の手順
 
-[Azure リソースの診断ログ](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)についてさらに詳しく学習します。
+[Azure リソースの診断ログ](../azure-monitor/platform/diagnostic-logs-overview.md)についてさらに詳しく学習します。
 
 PowerShell ヘルプの「[Set-AzureRmDiagnosticSetting](https://docs.microsoft.com/powershell/module/azurerm.insights/Set-AzureRmDiagnosticSetting)」を参照してください。

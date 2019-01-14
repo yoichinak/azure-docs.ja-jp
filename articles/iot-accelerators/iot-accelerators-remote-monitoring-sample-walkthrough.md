@@ -8,12 +8,12 @@ services: iot-accelerators
 ms.topic: conceptual
 ms.date: 10/26/2018
 ms.author: dobett
-ms.openlocfilehash: f0f43826c50679cb3de88aef466795cbb9e9e76f
-ms.sourcegitcommit: 0f54b9dbcf82346417ad69cbef266bc7804a5f0e
+ms.openlocfilehash: 2b6cb711bf0cd2f0ec7f5633bbb36ebaeb203690
+ms.sourcegitcommit: 4eeeb520acf8b2419bcc73d8fcc81a075b81663a
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/26/2018
-ms.locfileid: "50139494"
+ms.lasthandoff: 12/19/2018
+ms.locfileid: "53605536"
 ---
 # <a name="remote-monitoring-solution-accelerator-overview"></a>リモート監視ソリューション アクセラレータの概要
 
@@ -24,6 +24,11 @@ ms.locfileid: "50139494"
 * ソリューションの問題のトラブルシューティングを行う。
 * 独自の要件を満たすためにソリューションをカスタマイズする方法を計画する。
 * Azure サービスを利用する独自の IoT ソリューションを設計する。
+
+リモート監視ソリューション アクセラレータのコードは GitHub で入手できます:
+
+* [.NET](https://github.com/Azure/azure-iot-pcs-remote-monitoring-dotnet)
+* [Java](https://github.com/Azure/azure-iot-pcs-remote-monitoring-java)
 
 ## <a name="logical-architecture"></a>論理アーキテクチャ
 
@@ -36,7 +41,7 @@ ms.locfileid: "50139494"
 クラウドのアーキテクチャは、Microsoft がはじめてソリューション アクセラレータをリリースした当時から進化し続けてきました。 [マイクロサービス](https://azure.microsoft.com/blog/microservices-an-application-revolution-powered-by-the-cloud/)は、開発速度を犠牲にすることなく、拡張性と柔軟性を達成できることが実証された方法として登場してきました。 Microsoft のサービスは、このアーキテクチャ パターンを内部的に使用し、優れた信頼性とスケーラビリティの成果を出しています。 最新のソリューション アクセラレータには、これらの成果が取り込まれているため、その成果を活用できます。
 
 > [!TIP]
-> マイクロサービス アーキテクチャの詳細については、「[.NET Application Architecture (.NET アプリケーション アーキテクチャ)](https://www.microsoft.com/net/learn/architecture)」および「[Microservices: An application revolution powered by the cloud. (マイクロサービス: クラウドによって実現されるアプリケーションの革命)](https://azure.microsoft.com/blog/microservices-an-application-revolution-powered-by-the-cloud/)」を参照してください。
+> マイクロサービス アーキテクチャの詳細については、「[.NET Application Architecture (.NET アプリケーション アーキテクチャ)](https://www.microsoft.com/net/learn/architecture)」および「[Microservices:An application revolution powered by the cloud. (マイクロサービス: クラウドによって実現されるアプリケーションの革命)](https://azure.microsoft.com/blog/microservices-an-application-revolution-powered-by-the-cloud/)」を参照してください。
 
 ## <a name="device-connectivity"></a>デバイスの接続性
 
@@ -130,7 +135,7 @@ ASA ジョブは、Time Series Insights に接続されたデバイスからの�
 
 ### <a name="authentication-and-authorization-microservice"></a>認証および承認マイクロサービス
 
-[認証および承認マイクロサービス](https://github.com/Azure/remote-monitoring-services-dotnet/tree/master/auth)は、ソリューション アクセラレータにアクセスする権限を持つユーザーを管理します。 ユーザー管理は、[OpenId Connect](http://openid.net/connect/) をサポートする任意の ID サービス プロバイダーを使用して行うことができます。
+[認証および承認マイクロサービス](https://github.com/Azure/remote-monitoring-services-dotnet/tree/master/auth)は、ソリューション アクセラレータにアクセスする権限を持つユーザーを管理します。 ユーザー管理は、[OpenId Connect](https://openid.net/connect/) をサポートする任意の ID サービス プロバイダーを使用して行うことができます。
 
 ### <a name="azure-active-directory"></a>Azure Active Directory
 

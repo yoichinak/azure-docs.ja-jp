@@ -1,5 +1,5 @@
 ---
-title: Azure でのアプリのスケールアップ | Microsoft Docs
+title: 機能と容量のスケール アップ - Azure App Service |Microsoft Docs
 description: Azure App Service のアプリをスケールアップして容量と機能を追加する方法について説明します。
 services: app-service
 documentationcenter: ''
@@ -14,12 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2016
 ms.author: cephalin
-ms.openlocfilehash: 79450cdd0928304c3b98cf13f8aaca7a1bf11d33
-ms.sourcegitcommit: a3a0f42a166e2e71fa2ffe081f38a8bd8b1aeb7b
+ms.custom: seodec18
+ms.openlocfilehash: 98d3d1f6fc0f2f30196f360811808579dfbab312
+ms.sourcegitcommit: 549070d281bb2b5bf282bc7d46f6feab337ef248
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/01/2018
-ms.locfileid: "43381937"
+ms.lasthandoff: 12/21/2018
+ms.locfileid: "53727481"
 ---
 # <a name="scale-up-an-app-in-azure"></a>Azure でのアプリのスケールアップ
 
@@ -29,11 +30,11 @@ ms.locfileid: "43381937"
 
 この記事では、Azure App Service でアプリのスケールを変更する方法について説明します。 スケーリングには、スケールアップとスケールアウトという 2 つのワークフローがあり、この記事ではスケールアップ ワークフローについて説明します。
 
-* [スケールアップ](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling): CPU、メモリ、ディスク領域を増やしたり、専用の仮想マシン (VM)、カスタム ドメインと証明書、ステージング スロット、自動スケールのような拡張機能を追加したりします。 スケールアップするには、アプリが属している App Service プランの価格レベルを変更します。
-* [スケールアウト](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling): アプリを実行する VM インスタンスの数を増やします。
+* [スケールアップ](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling):CPU、メモリ、ディスク領域を増やしたり、専用の仮想マシン (VM)、カスタム ドメインと証明書、ステージング スロット、自動スケールのような拡張機能を追加したりします。 スケールアップするには、アプリが属している App Service プランの価格レベルを変更します。
+* [スケールアウト](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling):アプリを実行する VM インスタンスの数を増やします。
   価格レベルに応じて、20 個までのインスタンスにスケールアウトすることができます。 [Isolated](environment/intro.md) レベルの **App Service Environment** では、スケールアウト カウントが 100 インスタンスに増えます。 スケールアウトの詳細については、「[手動または自動によるインスタンス数のスケール変更](../monitoring-and-diagnostics/insights-how-to-scale.md)」を参照してください。 あらかじめ定義されている規則とスケジュールに基づいて、インスタンス数を自動的に変更する自動スケールの使い方が説明されています。
 
-スケール設定は適用に数秒を要するのみで、 [App Service プラン](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)に含まれるすべてのアプリに反映されます。
+スケール設定は適用に数秒を要するのみで、 [App Service プラン](../app-service/overview-hosting-plans.md)に含まれるすべてのアプリに反映されます。
 コードを変更したりアプリケーションを再デプロイしたりする必要はありません。
 
 App Service の個々のプランの価格と機能の詳細については、 [App Service の価格の詳細](https://azure.microsoft.com/pricing/details/web-sites/)に関するページを参照してください。  
@@ -98,7 +99,7 @@ Azure SQL Database や Azure Storage などの他のサービスにアプリが�
   
     [Microsoft Azure の仮想マシンおよびクラウド サービスのサイズ][vmsizes]
   
-* スケーラブルで回復力に優れたアーキテクチャの構築など、Azure App Service のベスト プラクティスについては、 [Azure App Service Web Apps のベスト プラクティス](https://azure.microsoft.com/blog/best-practices-windows-azure-websites-waws/)に関するページを参照してください。
+* スケーラブルで回復力に優れたアーキテクチャの構築など、Azure App Service のベスト プラクティスについては、[Azure App Service Web Apps のベスト プラクティス](https://azure.microsoft.com/blog/best-practices-windows-azure-websites-waws/)に関するページを参照してください。
 * App Service アプリのスケーリングに関するビデオについては、以下のリソースを参照してください。
   
   * [Azure Websites のスケールを設定するタイミング - Stefan Schackow 共演](https://azure.microsoft.com/resources/videos/azure-web-sites-free-vs-standard-scaling/)
@@ -107,7 +108,7 @@ Azure SQL Database や Azure Storage などの他のサービスにアプリが�
 
 <!-- LINKS -->
 [vmsizes]:https://azure.microsoft.com/pricing/details/app-service/
-[SQLaccountsbilling]:http://go.microsoft.com/fwlink/?LinkId=234930
+[SQLaccountsbilling]:https://go.microsoft.com/fwlink/?LinkId=234930
 [azuresubscriptions]:https://account.windowsazure.com/subscriptions
 [portal]: https://portal.azure.com/
 

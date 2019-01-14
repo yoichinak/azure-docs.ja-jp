@@ -6,14 +6,14 @@ author: sujayt
 manager: rochakm
 ms.service: site-recovery
 ms.topic: conceptual
-ms.date: 07/22/2018
+ms.date: 11/27/2018
 ms.author: sutalasi
-ms.openlocfilehash: 46f5f73293875cd89036eb615e7bd81188bc4c67
-ms.sourcegitcommit: 6e09760197a91be564ad60ffd3d6f48a241e083b
+ms.openlocfilehash: d4be7b9c7774163aed8c0efb3414dbd6a794cf7f
+ms.sourcegitcommit: 11d8ce8cd720a1ec6ca130e118489c6459e04114
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50210263"
+ms.lasthandoff: 12/04/2018
+ms.locfileid: "52847798"
 ---
 # <a name="set-up-disaster-recovery-for-sql-server"></a>SQL Server のためにディザスター リカバリーを設定する 
 
@@ -26,9 +26,9 @@ ms.locfileid: "50210263"
 
 多くのワークロードは SQL Server を基盤として使用します。これは SharePoint、Dynamics、SAP などのアプリと統合して、データ サービスを実装できます。  SQL Server は次のさまざまな方法でデプロイできます。
 
-* **スタンドアロンの SQL Server**: SQL Server とすべてのデータベースは、1 つのマシン (物理または仮想) にホストされます。 仮想化する場合、ローカルの高可用性のためにホストのクラスタリングを使用します。 ゲストレベルの高可用性は実装されません。
-* **SQL Server フェールオーバー クラスタリング インスタンス (Always On FCI)**: Windows フェールオーバー クラスターに、共有ディスクが使用された SQL Server インスタンスを実行する複数のノードを構成します。 ノードが停止した場合、クラスターは SQL Server を別のインスタンスにフェールオーバーできます。 通常、この設定はプライマリ サイトに高可用性を実装するために使用されます。 このデプロイメントでは、共有ストレージ層の障害や停止は保護されません。 共有ディスクは、iSCSI、ファイバー チャネル、または共有 VHDX を使用して実装できます。
-* **SQL Always ON 可用性グループ**: 複数のノードをシェアード ナッシング クラスターに設定します。このクラスターでは、同期レプリケーションと自動フェールオーバーを設定した可用性グループに SQL Server データベースを構成します。
+* **スタンドアロンの SQL Server**: SQL Server とすべてのデータベースは、1 つのマシン (物理または仮想) 上でホストされます。 仮想化する場合、ローカルの高可用性のためにホストのクラスタリングを使用します。 ゲストレベルの高可用性は実装されません。
+* **SQL Server フェールオーバー クラスタリング インスタンス (Always On FCI)**: Windows フェールオーバー クラスター内には、共有ディスクを使用してインスタンス化された SQL Server を実行する 2 つ以上のノードが構成されます。 ノードが停止した場合、クラスターは SQL Server を別のインスタンスにフェールオーバーできます。 通常、この設定はプライマリ サイトに高可用性を実装するために使用されます。 このデプロイメントでは、共有ストレージ層の障害や停止は保護されません。 共有ディスクは、iSCSI、ファイバー チャネル、または共有 VHDX を使用して実装できます。
+* **SQL Always On 可用性グループ**: 2 つ以上のノードがシェアード ナッシング クラスター内に設定されます。この場合、SQL Server データベースは、同期レプリケーションと自動フェールオーバーを使用して可用性グループ内に構成されます。
 
  この記事では、次に示すネイティブの SQL ディザスター リカバリー テクノロジを活用して、データベースを リモート サイトに復旧します。
 
@@ -42,10 +42,10 @@ Site Recovery は、次の表のように SQL Server を保護できます。
 
 **シナリオ** | **セカンダリ サイトへ** | **Azure へ**
 --- | --- | ---
-**Hyper-V** | [はい] | [はい]
-**VMware** | [はい] | [はい]
-**物理サーバー** | [はい] | [はい]
-**Azure**|該当なし| [はい]
+**Hyper-V** | はい | はい
+**VMware** | はい | はい
+**物理サーバー** | はい | はい
+**Azure**|NA| はい
 
 ### <a name="supported-sql-server-versions"></a>サポートされる SQL Server のバージョン
 これらの SQL Server バージョンは、サポートされるシナリオに対応しています。

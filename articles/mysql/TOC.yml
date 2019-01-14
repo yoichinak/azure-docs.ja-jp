@@ -40,6 +40,8 @@ items:
       href: tutorial-design-database-using-portal.md
     - name: Azure CLI
       href: tutorial-design-database-using-cli.md
+    - name: Azure Resource Manager テンプレート
+      href: tutorial-provision-mysql-server-using-Azure-Resource-Manager-templates.md
   - name: 2 - Web アプリの作成
     items:
     - name: Wordpress - ポータル
@@ -194,6 +196,8 @@ items:
     href: /cli/azure/mysql
   - name: REST API
     href: /rest/api/mysql
+  - name: Resource Manager テンプレート
+    href: /azure/templates/microsoft.dbformysql/allversions
   - name: データイン レプリケーションのストアド プロシージャ
     href: reference-data-in-stored-procedures.md
 - name: リソース
@@ -234,9 +238,9 @@ items:
     href: partners-migration-mysql.md
   - name: データベース移行ガイド
     href: https://datamigration.microsoft.com/
-ms.openlocfilehash: 4bb7ab9d3944d958c1975663a7334d385f8cd9ed
-ms.sourcegitcommit: 345b96d564256bcd3115910e93220c4e4cf827b3
+ms.openlocfilehash: c825a777affaabf6db04307de9c0f96efafc3d27
+ms.sourcegitcommit: 63b996e9dc7cade181e83e13046a5006b275638d
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52496355"
+ms.lasthandoff: 01/10/2019
+ms.locfileid: "54191736"

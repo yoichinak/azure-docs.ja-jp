@@ -11,12 +11,12 @@ ms.topic: article
 ms.workload: na
 ms.date: 04/05/2018
 ms.author: danlep
-ms.openlocfilehash: 885deca5efbd72b3d641c8c94837851340d752b9
-ms.sourcegitcommit: 32d218f5bd74f1cd106f4248115985df631d0a8c
+ms.openlocfilehash: e80eaf8e2ab1cf001e06aac1b5f23c7714c9013b
+ms.sourcegitcommit: 818d3e89821d101406c3fe68e0e6efa8907072e7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/24/2018
-ms.locfileid: "46957831"
+ms.lasthandoff: 01/09/2019
+ms.locfileid: "54117013"
 ---
 # <a name="monitor-batch-solutions"></a>Batch ソリューションの監視
 
@@ -26,7 +26,7 @@ Azure リソースの監視に使用できる Azure のコンポーネントと�
 
 ## <a name="subscription-level-monitoring"></a>サブスクリプション レベルの監視
 
-Batch アカウントを含むサブスクリプション レベルでは、[Azure アクティビティ ログ](../monitoring-and-diagnostics/monitoring-overview-activity-logs.md)によって[いくつかのカテゴリ](../monitoring-and-diagnostics/monitoring-overview-activity-logs.md#categories-in-the-activity-log)の運用イベント データが収集されます。
+Batch アカウントを含むサブスクリプション レベルでは、[Azure アクティビティ ログ](../azure-monitor/platform/activity-logs-overview.md)によって[いくつかのカテゴリ](../azure-monitor/platform/activity-logs-overview.md#categories-in-the-activity-log)の運用イベント データが収集されます。
 
 具体的に Batch アカウントでは、アクティビティ ログによってアカウントの作成と削除やキー管理に関連するイベントが収集されます。
 
@@ -34,7 +34,7 @@ Batch アカウントを含むサブスクリプション レベルでは、[Azu
 
 ## <a name="batch-account-level-monitoring"></a>Batch アカウント レベルの監視
 
-[Azure Monitor](../azure-monitor/overview.md) の機能を使用して各 Batch アカウントを監視します。 Azure Monitor は、Batch アカウントのレベルをスコープとして、プール、ジョブ、タスクなどのリソースの[メトリック](../monitoring/monitoring-data-collection.md#metrics)と、必要に応じて[診断ログ](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)を収集します。 このデータを手動またはプログラムによって収集および利用して、Batch アカウント内のアクティビティを監視し、問題を診断します。 詳しくは、「[Batch ソリューションの診断の評価と監視のログ イベント](batch-diagnostics.md)」をご覧ください。
+[Azure Monitor](../azure-monitor/overview.md) の機能を使用して各 Batch アカウントを監視します。 Azure Monitor は、Batch アカウントのレベルをスコープとして、プール、ジョブ、タスクなどのリソースの[メトリック](../azure-monitor/platform/data-collection.md#metrics)と、必要に応じて[診断ログ](../azure-monitor/platform/diagnostic-logs-overview.md)を収集します。 このデータを手動またはプログラムによって収集および利用して、Batch アカウント内のアクティビティを監視し、問題を診断します。 詳しくは、「[Batch ソリューションの診断の評価と監視のログ イベント](batch-diagnostics.md)」をご覧ください。
  
 > [!NOTE]
 > メトリックは、既定では追加の構成なしで Batch アカウントで利用でき、30 日間のローリング履歴があります。 Batch アカウントの診断ログを有効化する必要があり、診断ログ データの格納または処理には追加のコストが生じる可能性があります。 
@@ -55,7 +55,7 @@ Batch アプリケーションでは、Batch API を使用して、ジョブ、�
 
 ## <a name="vm-performance-counters-and-application-monitoring"></a>VM パフォーマンス カウンターおよびアプリケーションの監視
 
-* [Application Insights](../application-insights/app-insights-overview.md) は、Batch のジョブとタスクの可用性、パフォーマンス、使用状況をプログラムで監視するために使用できる Azure サービスです。 コンピューティング ノード (VM) からのパフォーマンス カウンターと VM からのタスクに関するカスタム情報を簡単に取得できます。 
+* [Application Insights](../azure-monitor/app/app-insights-overview.md) は、Batch のジョブとタスクの可用性、パフォーマンス、使用状況をプログラムで監視するために使用できる Azure サービスです。 コンピューティング ノード (VM) からのパフォーマンス カウンターと VM からのタスクに関するカスタム情報を簡単に取得できます。 
 
   例については、[Application Insights による Batch .NET アプリケーションの監視とデバッグ](monitor-application-insights.md)に関する記事と付随する[コード サンプル](https://github.com/Azure/azure-batch-samples/tree/master/CSharp/ArticleProjects/ApplicationInsights)をご覧ください。
 

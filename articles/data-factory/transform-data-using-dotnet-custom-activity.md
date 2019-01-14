@@ -10,14 +10,14 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: conceptual
-ms.date: 10/18/2018
+ms.date: 11/26/2018
 ms.author: douglasl
-ms.openlocfilehash: 77e5d6c278436a1fc192421c9867106409389a66
-ms.sourcegitcommit: 55952b90dc3935a8ea8baeaae9692dbb9bedb47f
+ms.openlocfilehash: bfacad5064862f8ff20fc33b2b242c00ec416661
+ms.sourcegitcommit: da69285e86d23c471838b5242d4bdca512e73853
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48888223"
+ms.lasthandoff: 01/03/2019
+ms.locfileid: "54000365"
 ---
 # <a name="use-custom-activities-in-an-azure-data-factory-pipeline"></a>Azure Data Factory パイプラインでカスタム アクティビティを使用する
 > [!div class="op_single_selector" title1="Select the version of Data Factory service you are using:"]
@@ -104,10 +104,12 @@ Azure Batch サービスを初めて利用する場合は、次の記事をご�
 | type                  | カスタム アクティビティの場合、アクティビティの種類は **Custom** です。 | [はい]      |
 | linkedServiceName     | Azure Batch にリンクされたサービス。 このリンクされたサービスの詳細については、[計算のリンクされたサービス](compute-linked-services.md)に関する記事をご覧ください。  | [はい]      |
 | コマンド               | 実行されるカスタム アプリケーションのコマンド。 アプリケーションが Azure Batch プール ノードで既に使用可能な場合は、resourceLinkedService と folderPath を省略できます。 たとえば、Windows バッチ プール ノードでネイティブでサポートされている `cmd /c dir` をコマンドとして指定できます。 | [はい]      |
-| resourceLinkedService | カスタム アプリケーションが格納されているストレージ アカウントへの Azure Storage のリンクされたサービス。 | いいえ        |
-| folderPath            | カスタム アプリケーションとそのすべての依存関係のフォルダーのパス。<br/><br/>依存関係ファイルをサブフォルダーに置いている場合 (つまり、*folderPath* の下のフォルダー階層構造内に置いている場合)、現在の動作では、ファイルが Azure Batch にコピーされるときに、フォルダー構造がフラット化されます。 つまり、すべてのファイルは、サブフォルダーを使用せず、1 つのフォルダーにコピーされます。 この問題を回避するには、ファイルを圧縮し、圧縮されたファイルをコピーした後、目的の場所でカスタム コードと共に解凍することを検討してください。 | いいえ        |
+| resourceLinkedService | カスタム アプリケーションが格納されているストレージ アカウントへの Azure Storage のリンクされたサービス。 | いいえ&#42;       |
+| folderPath            | カスタム アプリケーションとそのすべての依存関係のフォルダーのパス。<br/><br/>依存関係ファイルをサブフォルダーに置いている場合 (つまり、*folderPath* の下のフォルダー階層構造内に置いている場合)、現在の動作では、ファイルが Azure Batch にコピーされるときに、フォルダー構造がフラット化されます。 つまり、すべてのファイルは、サブフォルダーを使用せず、1 つのフォルダーにコピーされます。 この問題を回避するには、ファイルを圧縮し、圧縮されたファイルをコピーした後、目的の場所でカスタム コードと共に解凍することを検討してください。 | いいえ&#42;       |
 | referenceObjects      | 既存のリンクされたサービスとデータセットの配列。 カスタム コードが Data Factory のリソースを参照できるように、参照されているリンクされたサービスとデータセットが JSON 形式でカスタム アプリケーションに渡されます。 | いいえ        |
 | extendedProperties    | カスタム コードが追加のプロパティを参照できるように、JSON 形式でカスタム アプリケーションに渡すことができるユーザー定義プロパティ。 | いいえ        |
+
+&#42; プロパティ `resourceLinkedService` と `folderPath` は、一緒に指定するか省略する必要があります。
 
 ## <a name="custom-activity-permissions"></a>カスタム アクティビティのアクセス許可
 
@@ -278,8 +280,8 @@ namespace SampleApp
   Activity Output section:
   "exitcode": 0
   "outputs": [
-    "https://shengcstorbatch.blob.core.windows.net/adfjobs/<GUID>/output/stdout.txt",
-    "https://shengcstorbatch.blob.core.windows.net/adfjobs/<GUID>/output/stderr.txt"
+    "https://<container>.blob.core.windows.net/adfjobs/<GUID>/output/stdout.txt",
+    "https://<container>.blob.core.windows.net/adfjobs/<GUID>/output/stderr.txt"
   ]
   "effectiveIntegrationRuntime": "DefaultIntegrationRuntime (East US)"
   Activity Error section:
@@ -292,7 +294,11 @@ namespace SampleApp
 
   > [!IMPORTANT]
   > - activity.json、linkedServices.json、datasets.json は、Batch タスクのランタイム フォルダーに格納されます。 この例では、activity.json、linkedServices.json、datasets.json は、"https://adfv2storage.blob.core.windows.net/adfjobs/<GUID>/runtime/" パスに格納されています。 必要に応じて、パスを個別にクリーンアップする必要があります。 
-  > - リンクされたサービスでセルフホステッド統合ランタイムを使用している場合、顧客が定義したプライベート ネットワーク環境内に資格情報を保持できるように、セルフホステッド統合ランタイムによってキーやパスワードなどの機密情報が暗号化されます。 この場合、カスタム アプリケーション コードから一部の機密フィールドを参照したときにフィールドが見つからない可能性があります。 必要に応じて、リンクされたサービスの参照を使用するのではなく、extendedProperties で SecureString を使用してください。 
+  > - セルフホステッド統合ランタイムを使用しているリンクされたサービスでは、顧客が定義したプライベート ネットワーク環境内に資格情報を保持できるように、セルフホステッド統合ランタイムによってキーやパスワードなどの機密情報が暗号化されます。 この場合、カスタム アプリケーション コードから一部の機密フィールドを参照したときにフィールドが見つからない可能性があります。 必要に応じて、リンクされたサービスの参照を使用するのではなく、extendedProperties で SecureString を使用してください。 
+
+## <a name="pass-outputs-to-another-activity"></a>別のアクティビティに出力を渡す
+
+カスタム アクティビティ内のコードから Azure Data Factory にカスタム値を送信して戻すことができます。 そのためには、アプリケーションからの `outputs.json` にそれを書き込みます。 Data Factory では、`outputs.json` の内容がコピーされて、`customOutput` プロパティの値としてアクティビティの出力に追加されます。 (サイズの制限は 2 MBです。)ダウンストリーム アクティビティで `outputs.json` の内容を使用する場合は、式 `@activity('<MyCustomActivity>').output.customOutput` を使用して値を取得できます。
 
 ## <a name="retrieve-securestring-outputs"></a>SecureString 出力の取得
 
@@ -349,7 +355,7 @@ Data Factory バージョン 1 の記事「[Azure Data Factory パイプライ�
 ## <a name="auto-scaling-of-azure-batch"></a>Azure Batch の自動スケール
 **自動スケール** 機能で、Azure Batch プールを作成することもできます。 たとえば、専用 VM 数が 0 の Azure Batch プールと、保留中のタスクの数に基づく自動スケールの数式を作成できます。 
 
-ここでのサンプル数式では次の動作が行われます。プールが最初に作成されるとき、1 つの VM から始まります。 $PendingTasks メトリックにより、実行中 + アクティブ (キューに登録済み) 状態のタスク数が定義されます。  この数式により、最後の 180 秒間の保留タスク平均数が判明し、TargetDedicated が適宜設定されます。 それにより、TargetDedicated が 25 台の仮想マシンを超えることはありません。 そのため、新しいタスクが送信されると、プールが自動的に増加します。タスクが完了すると、VM は 1 台ずつ解放され、自動スケールにより VM が減らされます。 startingNumberOfVMs と maxNumberofVMs はニーズに合わせて調整できます。
+このサンプル式は、次の動作を実現します。プールが最初に作成された場合、1 つの VM から開始されます。 $PendingTasks メトリックにより、実行中 + アクティブ (キューに登録済み) 状態のタスク数が定義されます。  この数式により、最後の 180 秒間の保留タスク平均数が判明し、TargetDedicated が適宜設定されます。 それにより、TargetDedicated が 25 台の仮想マシンを超えることはありません。 そのため、新しいタスクが送信されると、プールが自動的に増加します。タスクが完了すると、VM は 1 台ずつ解放され、自動スケールにより VM が減らされます。 startingNumberOfVMs と maxNumberofVMs はニーズに合わせて調整できます。
 
 自動スケールの数式:
 

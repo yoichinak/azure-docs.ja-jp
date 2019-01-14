@@ -1,20 +1,17 @@
 ---
-title: サーバーレス データベース コンピューティング - Azure Functions と Azure Cosmos DB | Microsoft Docs
+title: サーバーレス データベース コンピューティング - Azure Functions と Azure Cosmos DB
 description: Azure Cosmos DB と Azure Functions の両方を使用して、イベント ドリブンのサーバーレス コンピューティング アプリケーションを作成する方法について説明します。
-services: cosmos-db
 author: SnehaGunda
-manager: kfile
 ms.service: cosmos-db
-ms.devlang: na
 ms.topic: conceptual
 ms.date: 03/26/2018
 ms.author: sngun
-ms.openlocfilehash: 39b071c258a7aab3f8f0287ef2ce581a8f1b333e
-ms.sourcegitcommit: 1f9e1c563245f2a6dcc40ff398d20510dd88fd92
+ms.openlocfilehash: ff202c85f20adce173a375987a5f2250fda565b2
+ms.sourcegitcommit: 8330a262abaddaafd4acb04016b68486fba5835b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/14/2018
-ms.locfileid: "51623157"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54041188"
 ---
 # <a name="serverless-database-computing-using-azure-cosmos-db-and-azure-functions"></a>Azure Cosmos DB と Azure Functions を使用したサーバーレス データベース コンピューティング
 
@@ -31,7 +28,7 @@ Azure Cosmos DB と Azure Functions を使用して、次の方法でデータ�
 * **出力バインディング**を使用して、関数を Azure Cosmos DB コンテナーにバインドします。 関数が完了すると、出力バインディングはコンテナーにデータを書き込みます。
 
 > [!NOTE]
-> 現在のところ、Azure Cosmos DB トリガー、入力バインディング、および出力バインディングは、SQL API で使用する場合にのみサポートされます。 他のすべての Azure Cosmos DB API については、MongoDB API、Cassandra API、Gremlin API、Table API など、API 用の静的クライアントを使用して関数からデータベースにアクセスする必要があります。
+> 現在のところ、Azure Cosmos DB トリガー、入力バインディング、および出力バインディングは、SQL API で使用する場合にのみサポートされます。 他のすべての Azure Cosmos DB API については、API 用の静的クライアントを使用して関数からデータベースにアクセスする必要があります。
 
 
 次の各図は、これら 3 つの統合を示しています。 
@@ -122,9 +119,9 @@ Azure Portal と Visual Studio 2017 では、Azure Cosmos DB と Azure Functions
 
 Azure Functions には、スケーラブルなユニットの作業や、オンデマンドで実行できるロジックの簡潔な部分を作成する機能があります。インフラストラクチャをプロビジョニングまたは管理する必要はありません。 Azure Functions を使用すると、Azure Cosmos DB データベースの変更に反応する本格的なアプリケーションを作成する必要はありません。特定のタスクのために小さな再利用可能な関数を作成できます。 また、HTTP 要求または適時のトリガーなどのイベントに応答して、Azure Functions への入力または出力として Azure Cosmos DB データを使用することもできます。
 
-Azure Cosmos DB は、サーバーなしのコンピューティング アーキテクチャに推奨されるデータベースです。その理由は次のとおりです。
+Azure Cosmos DB は、サーバーレス コンピューティング アーキテクチャに推奨されるデータベースです。その理由は次のとおりです。
 
-* **すべてのデータにすぐにアクセス**: Azure Cosmos DB の既定では、すべてのデータの[インデックスが自動的に作成され](indexing-policies.md)、それらのインデックスをすぐに使用できるため、格納されているすべての値に対するアクセス権を細かくすることができます。 つまり、データベースに対して新しい項目のクエリ、更新、追加をいつでも実行し、Azure Functions 経由ですぐにアクセスできます。
+* **すべてのデータにすぐにアクセス**:Azure Cosmos DB の既定では、すべてのデータの[インデックスが自動的に作成され](index-policy.md)、それらのインデックスをすぐに使用できるため、格納されているすべての値に対するアクセス権を細かくすることができます。 つまり、データベースに対して新しい項目のクエリ、更新、追加をいつでも実行し、Azure Functions 経由ですぐにアクセスできます。
 
 * **スキーマレス**。 Azure Cosmos DB はスキーマレスです。そのため、Azure Functions からすべてのデータ出力を一意に処理できます。 この "すべてを処理する" アプローチによって、すべてを Azure Cosmos DB に出力する多様な関数を簡単に作成できます。
 

@@ -1,5 +1,5 @@
 ---
-title: Azure Search のアナライザー | Microsoft Docs
+title: 言語処理とテキスト処理のためのアナライザー - Azure Search
 description: インデックスの検索可能なテキスト フィールドにアナライザーを割り当てて、既定の標準 Lucene をカスタムの定義済みの代替または言語固有の代替と置換します。
 services: search
 ms.service: search
@@ -8,14 +8,15 @@ ms.date: 09/11/2017
 ms.author: heidist
 manager: cgronlun
 author: HeidiSteen
-ms.openlocfilehash: 68ce4fa5536f21d6d66245a9383a4b58c42febff
-ms.sourcegitcommit: 4eddd89f8f2406f9605d1a46796caf188c458f64
+ms.custom: seodec2018
+ms.openlocfilehash: 868658062a6407dce901b455cc92f95008df798c
+ms.sourcegitcommit: c94cf3840db42f099b4dc858cd0c77c4e3e4c436
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/11/2018
-ms.locfileid: "49116372"
+ms.lasthandoff: 12/19/2018
+ms.locfileid: "53631944"
 ---
-# <a name="analyzers-in-azure-search"></a>Azure Search のアナライザー
+# <a name="analyzers-for-text-processing-in-azure-search"></a>Azure Search でのテキスト処理のためのアナライザー
 
 *アナライザー*は、クエリ文字列内のテキストとインデックス付きドキュメントを処理する[フル テキスト検索](search-lucene-query-architecture.md)のコンポーネントです。 分析中は、次の変換が一般的です。
 
@@ -75,14 +76,14 @@ Azure Search では、追加の `indexAnalyzer` および `searchAnalyzer` フ�
 
 ### <a name="compare-english-analyzers"></a>英語のアナライザーの比較
 
-[Search Analyzer Demo](http://alice.unearth.ai/) はサードパーティ製のデモ アプリです。標準 Lucene アナライザー、Lucene の英語アナライザー、Microsoft の英語自然言語プロセッサの比較が横並びに表示されます。 インデックスは固定です。よくあるストーリーのテキストが含まれています。 検索用語を入力するごとに、隣接するウィンドウに各アナライザーの結果が表示され、同じ文字列を各アナライザーがどのように処理するかを把握できます。 
+[Search Analyzer Demo](https://alice.unearth.ai/) はサードパーティ製のデモ アプリです。標準 Lucene アナライザー、Lucene の英語アナライザー、Microsoft の英語自然言語プロセッサの比較が横並びに表示されます。 インデックスは固定です。よくあるストーリーのテキストが含まれています。 検索用語を入力するごとに、隣接するウィンドウに各アナライザーの結果が表示され、同じ文字列を各アナライザーがどのように処理するかを把握できます。 
 
 ## <a name="examples"></a>例
 
 いくつかの主なシナリオについて、アナライザーの定義例を示します。
 
 <a name="Example1"></a>
-### <a name="example-1-custom-options"></a>例 1: カスタム オプション
+### <a name="example-1-custom-options"></a>例 1:カスタム オプション
 
 この例では、カスタム オプションを使用してアナライザー定義を示しています。 文字フィルター、トークナイザー、トークン フィルターのオム オプションは、名前付きコンストラクトとは別に指定され、アナライザー定義で参照されます。 定義済みの要素はそのまま使用され、単純に名前で参照されます。
 
@@ -149,7 +150,7 @@ Azure Search では、追加の `indexAnalyzer` および `searchAnalyzer` フ�
 ~~~~
 
 <a name="Example2"></a>
-### <a name="example-2-override-the-default-analyzer"></a>例 2: 既定のアナライザーをオーバーライドする
+### <a name="example-2-override-the-default-analyzer"></a>例 2:既定のアナライザーをオーバーライドする
 
 標準アナライザーが既定です。 たとえば、既定のアナライザーを、パターン アナライザーなど、別の定義済みアナライザーで置き換えるとします。 カスタム オプションを設定していない場合、フィールド定義で名前を使用して指定する必要があります。
 
@@ -181,7 +182,7 @@ Azure Search では、追加の `indexAnalyzer` および `searchAnalyzer` フ�
 ~~~~
 
 <a name="Example3"></a>
-### <a name="example-3-different-analyzers-for-indexing-and-search-operations"></a>例 3: インデックス作成と検索操作に別のアナライザーを指定する
+### <a name="example-3-different-analyzers-for-indexing-and-search-operations"></a>例 3:インデックス作成と検索操作に別のアナライザーを指定する
 
 API には、インデックス作成と検索に別のアナライザーを指定するための追加のインデックス属性が含まれています。 ペアとして `searchAnalyzer` 属性と `indexAnalyzer` 属性を指定して、1 つの `analyzer` 属性を置き換える必要があります。
 
@@ -208,7 +209,7 @@ API には、インデックス作成と検索に別のアナライザーを指�
 ~~~~
 
 <a name="Example4"></a>
-### <a name="example-4-language-analyzer"></a>例 4: 言語アナライザー
+### <a name="example-4-language-analyzer"></a>例 4:言語アナライザー
 
 複数言語の文字列を含むフィールドでは、言語アナライザーを使用できますが、他のフィールドは既定値のままです (または、他の定義済みまたはカスタム アナライザーを使用します)。 言語アナライザーを使用する場合、インデックス作成と検索操作の両方に使用する必要があります。 言語アナライザーを使用するフィールドでは、インデックス作成と検索に別のアナライザーを使用することはできません。
 
@@ -243,13 +244,13 @@ API には、インデックス作成と検索に別のアナライザーを指�
 
 + 包括的な説明については、「[Azure Search のフルテキスト検索のしくみ](search-lucene-query-architecture.md)」を参照してください。 この記事では、例を使って、表面上は直感的ではないと思われるような動作について説明しています。
 
-+ [Search Documents](https://docs.microsoft.com/rest/api/searchservice/search-documents#examples) の例に関するセクションや[単純なクエリ構文](https://docs.microsoft.com/rest/api/searchservice/simple-query-syntax-in-azure-search)で紹介されているさまざまなクエリ構文をポータルの Search エクスプローラーで試します。
++ [Search Documents](https://docs.microsoft.com/rest/api/searchservice/search-documents#bkmk_examples) の例に関するセクションや[単純なクエリ構文](https://docs.microsoft.com/rest/api/searchservice/simple-query-syntax-in-azure-search)で紹介されているさまざまなクエリ構文をポータルの Search エクスプローラーで試します。
 
 + [言語に固有の字句解析器](https://docs.microsoft.com/rest/api/searchservice/language-support)を適用する方法について書かれた記事を参照します。
 
 + 個々のフィールドに対して最小限の処理または特殊な処理を適用するための[カスタム アナライザーを構成](https://docs.microsoft.com/rest/api/searchservice/custom-analyzers-in-azure-search)します。
 
-+ このデモ Web サイトで隣接する列の[標準と英語のアナライザーを比較](http://alice.unearth.ai/)します。 
++ このデモ Web サイトで隣接する列の[標準と英語のアナライザーを比較](https://alice.unearth.ai/)します。 
 
 ## <a name="see-also"></a>関連項目
 

@@ -8,12 +8,12 @@ ms.topic: article
 ms.date: 09/06/2018
 ms.author: jeffpatt
 ms.component: files
-ms.openlocfilehash: 507bbc9013d8b02084b639f8d9fac0c7d97503f4
-ms.sourcegitcommit: 00dd50f9528ff6a049a3c5f4abb2f691bf0b355a
+ms.openlocfilehash: c9e31bdc2b526c442b4ac62d98725254a38e5967
+ms.sourcegitcommit: 295babdcfe86b7a3074fd5b65350c8c11a49f2f1
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/05/2018
-ms.locfileid: "51014280"
+ms.lasthandoff: 12/27/2018
+ms.locfileid: "53794551"
 ---
 # <a name="troubleshoot-azure-file-sync"></a>Azure File Sync のトラブルシューティング
 Azure File Sync を使用すると、オンプレミスのファイル サーバーの柔軟性、パフォーマンス、互換性を維持したまま Azure Files で組織のファイル共有を一元化できます。 Azure File Sync により、ご利用の Windows Server が Azure ファイル共有の高速キャッシュに変わります。 SMB、NFS、FTPS など、Windows Server 上で利用できるあらゆるプロトコルを使用して、データにローカルにアクセスできます。 キャッシュは、世界中にいくつでも必要に応じて設置することができます。
@@ -23,6 +23,8 @@ Azure File Sync を使用すると、オンプレミスのファイル サーバ
 1. [Azure Storage フォーラム](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazuredata)。
 2. [Azure Files UserVoice](https://feedback.azure.com/forums/217298-storage/category/180670-files)。
 3. Microsoft サポート。 新しいサポート要求を作成するには、Azure Portal の **[ヘルプ]** タブで、**[ヘルプとサポート]** ボタンを選択し、**[新しいサポート要求]** を選択します。
+
+[!INCLUDE [updated-for-az](../../../includes/updated-for-az.md)]
 
 ## <a name="im-having-an-issue-with-azure-file-sync-on-my-server-sync-cloud-tiering-etc-should-i-remove-and-recreate-my-server-endpoint"></a>サーバーで Azure File Sync に関する問題 (同期、クラウド階層化など)が発生しています。 サーバー エンドポイントを削除して再作成する必要がありますか。
 [!INCLUDE [storage-sync-files-remove-server-endpoint](../../../includes/storage-sync-files-remove-server-endpoint.md)]
@@ -38,9 +40,9 @@ StorageSyncAgent.msi /l*v AFSInstaller.log
 installer.log をレビューして、インストールが失敗した原因を特定します。
 
 <a id="agent-installation-on-DC"></a>**Active Directory ドメイン コントローラーにエージェントをインストールできない**  
-同期エージェントを Active Directory ドメイン コントローラーにインストールしようとしたが、PDC ロール所有者が Windows Server 2008R2 (またはそれより前のバージョン) に存在する場合は、同期エージェントのインストールが失敗するという問題が発生することがあります。
+同期エージェントを Active Directory ドメイン コントローラーにインストールしようとしたが、PDC ロール所有者が Windows Server 2008 R2 (またはそれより前のバージョン) に存在する場合は、同期エージェントのインストールが失敗するという問題が発生することがあります。
 
-この問題を解決するには、Windows Server 2012R2 以降を実行している別のドメイン コントローラーに PDC ロールを転送してから、同期エージェントをインストールします。
+この問題を解決するには、Windows Server 2012 R2 以降を実行している別のドメイン コントローラーに PDC ロールを転送してから、同期エージェントをインストールします。
 
 <a id="server-registration-missing"></a>**Azure Portal の [登録済みサーバー] にサーバーが表示されない**  
 サーバーがストレージ同期サービスの **[登録済みサーバー]** に表示されない場合:
@@ -48,7 +50,7 @@ installer.log をレビューして、インストールが失敗した原因を
 2. ファイル エクスプローラーを開き、ストレージ同期エージェントのインストール ディレクトリ (既定の場所は C:\Program Files\Azure\StorageSyncAgent) に移動します。 
 3. ServerRegistration.exe を実行し、ストレージ同期サービスにサーバーを登録するウィザードを完了します。
 
-<a id="server-already-registered"></a>**Azure File Sync エージェントのインストール中に [サーバー登録] ダイアログに「このサーバーは既に登録されています」というメッセージが表示される** 
+<a id="server-already-registered"></a>**Azure File Sync エージェントのインストール中に [サーバー登録] に"このサーバーは既に登録されています" というメッセージが表示される** 
 
 !["server is already registered" (このサーバーは既に登録されています) エラー メッセージが表示された [サーバーの登録] ダイアログのスクリーンショット](media/storage-sync-files-troubleshoot/server-registration-1.png)
 
@@ -68,7 +70,7 @@ Reset-StorageSyncServer
 このエラーは、サーバーの登録中に **Enhanced Internet Explorer Security** ポリシーが有効になった場合に発生します。 **Enhanced Internet Explorer Security** ポリシーを適切に無効にする方法の詳細については、「[Azure File Sync で使用する Windows Server の準備](storage-sync-files-deployment-guide.md#prepare-windows-server-to-use-with-azure-file-sync)」および[Azure File Sync のデプロイ方法](storage-sync-files-deployment-guide.md)に関する記事をご覧ください。
 
 ## <a name="sync-group-management"></a>同期グループ管理
-<a id="cloud-endpoint-using-share"></a>**クラウド エンドポイントの作成が "The specified Azure FileShare is already in use by a different CloudEndpoint"\(指定された Azure ファイル共有は別の CloudEndpoint で既に使用されています\) というエラーで失敗する**  
+<a id="cloud-endpoint-using-share"></a>**クラウド エンドポイントの作成が "The specified Azure FileShare is already in use by a different CloudEndpoint (指定された Azure ファイル共有は別の CloudEndpoint で既に使用されています)" というエラーで失敗する**  
 この問題は、Azure ファイル共有が別のクラウド エンドポイントによって既に使用されている場合に発生します。 
 
 このメッセージが表示されたときに、Azure ファイル共有が現在クラウド エンドポイントで使用されていない場合は、次の手順を完了して、Azure ファイル共有上の Azure File Sync メタデータをクリアします。
@@ -80,31 +82,32 @@ Reset-StorageSyncServer
 2. Azure ファイル共有を右クリックし、**[メタデータの編集]** を選択します。
 3. **[SyncService]** を右クリックし、**[削除]** を選択します。
 
-<a id="cloud-endpoint-authfailed"></a>**クラウド エンドポイントの作成が "AuthorizationFailed" エラーで失敗する**  
+<a id="cloud-endpoint-authfailed"></a>**クラウド エンドポイントの作成が "AuthorizationFailed" というエラーで失敗する**  
 この問題は、ユーザー アカウントがクラウド エンドポイントを作成するための十分な権限を持っていない場合に発生します。 
 
 クラウド エンドポイントを作成するには、次の Microsoft 承認アクセス許可を持つユーザー アカウントが必要です。  
-* 読み取り: ロール定義の取得
-* 書き込み: カスタムのロール定義の作成または更新
-* 読み取り: ロール割り当ての取得
-* 書き込み: ロール割り当ての作成
+* 読み取り:ロール定義の取得
+* 書き込み:カスタムのロール定義の作成または更新
+* 読み取り:Get role assignment
+* 書き込み:ロール割り当ての作成
 
 次の組み込みロールには、必要な Microsoft 承認アクセス許可が付与されています。  
 * Owner
 * User Access Administrator
 
 現在のユーザー アカウントのロールに必要なアクセス許可が付与されているかどうかを確認するには:  
-1. Azure ポータルで、**[リソース グループ]** を選択します。
+1. Azure portal で、**[リソース グループ]** を選択します。
 2. ストレージ アカウントのあるリソース グループを選択し、**[アクセス制御 (IAM)]** を選択します。
-3. ユーザー アカウントに割り当てる **[ロール]** (所有者や共同作成者など) を選択します。
-4. **[リソース プロバイダー]** 一覧で、**[Microsoft 承認]** を選択します。 
+3. **[ロールの割り当て]** タブを選択します。
+4. ユーザー アカウントに割り当てる **[ロール]** (所有者や共同作成者など) を選択します。
+5. **[リソース プロバイダー]** 一覧で、**[Microsoft 承認]** を選択します。 
     * **[ロールの割り当て]** のアクセス許可が **[読み取り]** と **[書き込み]** になっている必要があります。
     * **[ロール定義]** のアクセス許可が **[読み取り]** と **[書き込み]** になっている必要があります。
 
 <a id="server-endpoint-createjobfailed"></a>**サーバー エンドポイントの作成が "MgmtServerJobFailed" (エラー コード: -2134375898) というエラーで失敗する**  
 この問題は、サーバー エンドポイントのパスがシステム ボリューム上にあり、クラウドの階層化が有効な場合に発生します。 システム ボリュームでは、クラウドの階層化はサポートされていません。 システム ボリュームにサーバー エンドポイントを作成するには、サーバー エンドポイントを作成するときにクラウドの階層化を無効にします。
 
-<a id="server-endpoint-deletejobexpired"></a>**サーバー エンドポイントの削除が "MgmtServerJobExpired" エラーで失敗する**                
+<a id="server-endpoint-deletejobexpired"></a>**サーバー エンドポイントの削除が "MgmtServerJobExpired" というエラーで失敗する**                
 この問題は、サーバーがオフラインの場合、またはネットワークに接続できない場合に発生します。 サーバーを使用できなくなったら、ポータルでサーバーの登録を解除します。これで、サーバー エンドポイントが削除されます。 サーバー エンドポイントを削除するには、[Azure File Sync 使用したサーバーの登録解除](storage-sync-files-server-registration.md#unregister-the-server-with-storage-sync-service)に関するセクションで説明されている手順を実行します。
 
 <a id="server-endpoint-provisioningfailed"></a>**[サーバー エンドポイントのプロパティ] ページが開かない、またはクラウドの階層化ポリシーを更新できない**  
@@ -131,7 +134,7 @@ Set-AzureRmStorageSyncServerEndpoint `
 
 この問題を解決するには、次の手順を実行します。
 
-1. サーバーでタスク マネージャーを開き、ストレージ同期モニター (AzureStorageSyncMonitor.exe) プロセスが実行されていることを確認します。 プロセスが実行されていない場合は、最初にサーバーの再起動を試みます。 サーバーを再起動しても問題が解決しない場合は、Azure File Sync エージェントをバージョン [3.3.0.0]( https://support.microsoft.com/help/4457484/update-rollup-for-azure-file-sync-agent-september-2018) にアップグレードします (現在インストールされていない場合)。
+1. サーバーでタスク マネージャーを開き、ストレージ同期モニター (AzureStorageSyncMonitor.exe) プロセスが実行されていることを確認します。 プロセスが実行されていない場合は、最初にサーバーの再起動を試みます。 サーバーを再起動しても問題が解決しない場合は、Azure File Sync [エージェントのバージョン](https://docs.microsoft.com/azure/storage/files/storage-files-release-notes)を最新のものにアップグレードします。
 2. ファイアウォールとプロキシの設定が正しく構成されていることを確認します。
     - サーバーがファイアウォールの背後にある場合は、送信ポート 443 が許可されていることを確認します。 ファイアウォールで特定のドメインへのトラフィックが制限されている場合は、ファイアウォールの[ドキュメント](https://docs.microsoft.com/azure/storage/files/storage-sync-files-firewall-and-proxy#firewall)に記載されているドメインにアクセスできることを確認します。
     - サーバーがプロキシの背後にある場合は、プロキシの[ドキュメント](https://docs.microsoft.com/azure/storage/files/storage-sync-files-firewall-and-proxy#proxy)に記載されている手順に従って、コンピューター全体またはアプリ固有のプロキシ設定を構成します。
@@ -239,7 +242,7 @@ Azure ファイル共有内で直接変更を加えた場合、Azure File Sync �
 
 #### <a name="troubleshooting-per-filedirectory-sync-errors"></a>ファイル/ディレクトリ単位の同期エラーのトラブルシューティング
 **ItemResults log - 項目単位の同期エラー**  
-| HRESULT | HRESULT (10 進値) | エラー文字列 | 問題 | 修復 |
+| HRESULT | HRESULT (10 進値) | エラー文字列 | 問題 | Remediation |
 |---------|-------------------|--------------|-------|-------------|
 | 0x80c80065 | -2134376347 | ECS_E_DATA_TRANSFER_BLOCKED | 同期中にファイルで永続的なエラーが発生しました。ファイルの同期は 1 日に 1 回しか試行されません。 基になっているエラーは、前のイベント ログで確認できます。 | エージェント R2 (2.0) 以降では、このエラーではなく元のエラーが表示されます。 最新のエージェントにアップグレードして基になっているエラーを確認するか、前のイベント ログを参照して元のエラーの原因を調べます。 |
 | 0x7b | 123 | ERROR_INVALID_NAME | ファイルまたはディレクトリの名前が無効です。 | 問題のファイルまたはディレクトリの名前を変更します。 [Azure のファイル命名ガイドライン](https://docs.microsoft.com/rest/api/storageservices/naming-and-referencing-shares--directories--files--and-metadata#directory-and-file-names)と、下に示すサポートされていない文字の一覧を参照してください。 |
@@ -467,20 +470,25 @@ Azure ファイル共有が削除されている場合は、新しいファイ�
 | **エラー文字列** | ECS_E_SERVER_CREDENTIAL_NEEDED |
 | **修復が必要か** | [はい] |
 
-このエラーは一般に、サーバーの時刻が正しくないか、認証に使用される証明書が期限切れであるとことが原因で発生します。 サーバーの時刻が正しい場合は、次の手順を実行して期限切れの証明書を削除し (期限切れである場合)、サーバーの登録状態をリセットします。
+このエラーは、次のことが原因で発生する場合があります。
 
-1. [証明書] MMC スナップインを開き、[コンピューター アカウント] を選択して、[証明書 (ローカル コンピューター)]\[個人]\[証明書] に移動します。
-2. 期限切れの場合はクライアント認証証明書を削除し、[証明書] MMC スナップインを閉じます。
-3. Regedit を開き、レジストリ内の ServerSetting キー (HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Azure\StorageSync\ServerSetting) を削除します。
-4. Azure Portal で、ストレージ同期サービスの [登録済みサーバー] セクションに移動します。 証明書が期限切れになったサーバーを右クリックして、[サーバーの登録解除] をクリックします。
-5. サーバーで、次の PowerShell コマンドを実行します。
+- サーバー時刻が正しくない
+- サーバー エンドポイントの削除に失敗した
+- 認証に使用される証明書の有効期限が切れている。 
+    証明書の有効期限が切れているかどうかを確認するには、次の手順を実行します。  
+    1. [証明書] MMC スナップインを開き、[コンピューター アカウント] を選択して、[証明書 (ローカル コンピューター)]\[個人]\[証明書] に移動します。
+    2. クライアント認証証明書の有効期限が切れていないか確認します。
+
+サーバー時刻が正しい場合は、次の手順を実行して問題を解決してください。
+
+1. Azure File Sync エージェント バージョン 4.0.1.0 以降がインストールされていることを確認します。
+2. サーバーで、次の PowerShell コマンドを実行します。
 
     ```PowerShell
-    Import-Module "C:\Program Files\Azure\StorageSyncAgent\StorageSync.Management.ServerCmdlets.dll"
-    Reset-StorageSyncServer
+    Import-Module "C:\Program Files\Azure\StorageSyncAgent\StorageSync.Management.PowerShell.Cmdlets.dll"
+    Login-AzureRmStorageSync -SubscriptionID <guid> -TenantID <guid>
+    Reset-AzureRmStorageSyncServerCertificate -SubscriptionId <guid> -ResourceGroupName <string> -StorageSyncServiceName <string>
     ```
-
-6. ServerRegistration.exe (既定の場所は C:\Program Files\Azure\StorageSyncAgent) を実行して、サーバーを再登録します。
 
 <a id="-1906441711"></a><a id="-2134375654"></a><a id="doesnt-have-enough-free-space"></a>**サーバー エンドポイントが配置されているボリュームのディスク領域が少なくなっています。**  
 | | |
@@ -564,14 +572,14 @@ Azure ファイル共有が削除されている場合は、新しいファイ�
 
 ### <a name="common-troubleshooting-steps"></a>一般的なトラブルシューティング手順
 <a id="troubleshoot-storage-account"></a>**ストレージ アカウントが存在することを確認します。**  
-# <a name="portaltabportal"></a>[ポータル](#tab/portal)
+# <a name="portaltabazure-portal"></a>[ポータル](#tab/azure-portal)
 1. ストレージ同期サービス内で同期グループに移動します。
 2. 同期グループ内でクラウド エンドポイントを選択します。
 3. 開いているウィンドウ内の Azure ファイル共有名をメモします。
 4. リンクされているストレージ アカウントを選択します。 このリンクが失敗する場合は、参照されているストレージ アカウントが削除されています。
     ![ストレージ アカウントへのリンクが表示されたクラウド エンドポイントの詳細ウィンドウを示すスクリーンショット](media/storage-sync-files-troubleshoot/file-share-inaccessible-1.png)
 
-# <a name="powershelltabpowershell"></a>[PowerShell](#tab/powershell)
+# <a name="powershelltabazure-powershell"></a>[PowerShell](#tab/azure-powershell)
 ```PowerShell
 # Variables for you to populate based on your configuration
 $agentPath = "C:\Program Files\Azure\StorageSyncAgent"
@@ -585,20 +593,20 @@ Import-Module "$agentPath\StorageSync.Management.PowerShell.Cmdlets.dll"
 
 # Log into the Azure account and put the returned account information
 # in a reference variable.
-$acctInfo = Connect-AzureRmAccount
+$acctInfo = Connect-AzAccount
 
 # this variable stores your subscription ID 
 # get the subscription ID by logging onto the Azure portal
 $subID = $acctInfo.Context.Subscription.Id
 
 # this variable holds your Azure Active Directory tenant ID
-# use Login-AzureRMAccount to get the ID from that context
+# use Login-AzAccount to get the ID from that context
 $tenantID = $acctInfo.Context.Tenant.Id
 
 # Check to ensure Azure File Sync is available in the selected Azure
 # region.
 $regions = [System.String[]]@()
-Get-AzureRmLocation | ForEach-Object { 
+Get-AzLocation | ForEach-Object { 
     if ($_.Providers -contains "Microsoft.StorageSync") { 
         $regions += $_.Location 
     } 
@@ -611,7 +619,7 @@ if ($regions -notcontains $region) {
 
 # Check to ensure resource group exists and create it if doesn't
 $resourceGroups = [System.String[]]@()
-Get-AzureRmResourceGroup | ForEach-Object { 
+Get-AzResourceGroup | ForEach-Object { 
     $resourceGroups += $_.ResourceGroupName 
 }
 
@@ -658,7 +666,7 @@ $cloudEndpoint = Get-AzureRmStorageSyncCloudEndpoint `
     -SyncGroupName $syncGroup
 
 # Get reference to storage account
-$storageAccount = Get-AzureRmStorageAccount -ResourceGroupName $resourceGroup | Where-Object { 
+$storageAccount = Get-AzStorageAccount -ResourceGroupName $resourceGroup | Where-Object { 
     $_.Id -eq $cloudEndpoint.StorageAccountResourceId
 }
 
@@ -669,12 +677,12 @@ if ($storageAccount -eq $null) {
 ---
 
 <a id="troubleshoot-network-rules"></a>**ストレージ アカウントにネットワーク ルールが含まれていないことを確認します。**  
-# <a name="portaltabportal"></a>[ポータル](#tab/portal)
+# <a name="portaltabazure-portal"></a>[ポータル](#tab/azure-portal)
 1. ストレージ アカウントにサインインし、ストレージ アカウントの左側にある **[Firewalls and virtual networks]\(ファイアウォールと仮想ネットワーク\)** を選択します。
 2. ストレージ アカウント内で、**[Allow access from all networks]\(すべてのネットワークからのアクセスを許可する\)** オプション ボタンがオンになっている必要があります。
     ![ストレージ アカウントのファイアウォールとネットワーク ルールが無効になっていることを示すスクリーンショット](media/storage-sync-files-troubleshoot/file-share-inaccessible-2.png)
 
-# <a name="powershelltabpowershell"></a>[PowerShell](#tab/powershell)
+# <a name="powershelltabazure-powershell"></a>[PowerShell](#tab/azure-powershell)
 ```PowerShell
 if ($storageAccount.NetworkRuleSet.DefaultAction -ne 
     [Microsoft.Azure.Commands.Management.Storage.Models.PSNetWorkRuleDefaultActionEnum]::Allow) {
@@ -685,12 +693,12 @@ if ($storageAccount.NetworkRuleSet.DefaultAction -ne
 ---
 
 <a id="troubleshoot-azure-file-share"></a>**Azure ファイル共有が存在することを確認します。**  
-# <a name="portaltabportal"></a>[ポータル](#tab/portal)
+# <a name="portaltabazure-portal"></a>[ポータル](#tab/azure-portal)
 1. 左側の目次で **[概要]** をクリックして、ストレージ アカウントのメイン ページに戻ります。
 2. **[ファイル]** を選択して、ファイル共有の一覧を表示します。
 3. クラウド エンドポイントによって参照されているファイル共有 (上の手順 1 でメモしたもの) がファイル共有の一覧に表示されていることを確認します。
 
-# <a name="powershelltabpowershell"></a>[PowerShell](#tab/powershell)
+# <a name="powershelltabazure-powershell"></a>[PowerShell](#tab/azure-powershell)
 ```PowerShell
 $fileShare = Get-AzureStorageShare -Context $storageAccount.Context | Where-Object {
     $_.Name -eq $cloudEndpoint.StorageAccountShareName -and
@@ -704,9 +712,10 @@ if ($fileShare -eq $null) {
 ---
 
 <a id="troubleshoot-rbac"></a>**Azure File Sync がストレージ アカウントへのアクセス権を持っていることを確認します。**  
-# <a name="portaltabportal"></a>[ポータル](#tab/portal)
-1. 左側の目次で **[アクセス制御 (IAM)]** をクリックして、ストレージ アカウントへのアクセス権を持つユーザーとアプリケーション (*サービス プリンシパル*) の一覧に移動します。
-2. 一覧に、**[Hybrid File Sync Service]\(ハイブリッド ファイル同期サービス\)** が **[Reader and Data Access]\(閲覧者とデータ アクセス\)** ロールで表示されていることを確認します。 
+# <a name="portaltabazure-portal"></a>[ポータル](#tab/azure-portal)
+1. 左側の目次で **[アクセス制御 (IAM)]** をクリックします。
+1. **[ロールの割り当て]** タブをクリックして、ストレージ アカウントにアクセスできるユーザーとアプリケーション (*サービス プリンシパル*) を一覧表示します。
+1. 一覧に、**[Hybrid File Sync Service]\(ハイブリッド ファイル同期サービス\)** が **[Reader and Data Access]\(閲覧者とデータ アクセス\)** ロールで表示されていることを確認します。 
 
     ![ストレージ アカウントのアクセス制御タブに表示された Hybrid File Sync Service サービス プリンシパルのスクリーンショット](media/storage-sync-files-troubleshoot/file-share-inaccessible-3.png)
 
@@ -716,10 +725,10 @@ if ($fileShare -eq $null) {
     - **[ロール]** フィールドで、**[閲覧者とデータ アクセス]** を選択します。
     - **[選択]** フィールドに「**Hybrid File Sync Service**」と入力してロールを選択し、**[保存]** をクリックします。
 
-# <a name="powershelltabpowershell"></a>[PowerShell](#tab/powershell)
+# <a name="powershelltabazure-powershell"></a>[PowerShell](#tab/azure-powershell)
 ```PowerShell    
 $foundSyncPrincipal = $false
-Get-AzureRmRoleAssignment -Scope $storageAccount.Id | ForEach-Object { 
+Get-AzRoleAssignment -Scope $storageAccount.Id | ForEach-Object { 
     if ($_.DisplayName -eq "Hybrid File Sync Service") {
         $foundSyncPrincipal = $true
         if ($_.RoleDefinitionName -ne "Reader and Data Access") {

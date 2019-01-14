@@ -1,5 +1,5 @@
 ---
-title: Azure App Service on Linux の FAQ | Microsoft Docs
+title: App Service on Linux の FAQ - Azure | Microsoft Docs
 description: Azure App Service on Linux の FAQ
 keywords: Azure App Service、Web アプリ、FAQ、Linux、OSS、コンテナー用の Web アプリ、複数コンテナー、マルチコンテナー
 services: app-service
@@ -15,12 +15,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/30/2018
 ms.author: yili
-ms.openlocfilehash: 94e61cf5bf4f629dfd776cf9ea2ae54233e91dc6
-ms.sourcegitcommit: 6135cd9a0dae9755c5ec33b8201ba3e0d5f7b5a1
+ms.custom: seodec18
+ms.openlocfilehash: cdda4b0951edd0d1471113c48a4082dfa7407211
+ms.sourcegitcommit: 549070d281bb2b5bf282bc7d46f6feab337ef248
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/31/2018
-ms.locfileid: "50417584"
+ms.lasthandoff: 12/21/2018
+ms.locfileid: "53719084"
 ---
 # <a name="azure-app-service-on-linux-faq"></a>Azure App Service on Linux の FAQ
 
@@ -74,9 +75,9 @@ Node.js の場合は、PM2 構成ファイルまたはスクリプト ファイ�
 
 Linux Web アプリに対して Git デプロイが失敗する場合は、以下のいずれかのオプションを選択してアプリケーション コードをデプロイします。
 
-- 継続的配信 (プレビュー) 機能を使用する: アプリのソース コードを、Azure DevOps の Git リポジトリか GitHub リポジトリに格納して、Azure の継続的配信を使用できます。 詳しくは、[Linux Web アプリに対して継続的配信を構成する方法](https://blogs.msdn.microsoft.com/devops/2017/05/10/use-azure-portal-to-setup-continuous-delivery-for-web-app-on-linux/)に関するページをご覧ください。
+- 継続的配信 (プレビュー) 機能を使用する:アプリのソース コードを、Azure DevOps の Git リポジトリか GitHub リポジトリに格納して、Azure の継続的配信を使用できます。 詳しくは、[Linux Web アプリに対して継続的配信を構成する方法](https://blogs.msdn.microsoft.com/devops/2017/05/10/use-azure-portal-to-setup-continuous-delivery-for-web-app-on-linux/)に関するページをご覧ください。
 
-- [ZIP デプロイ API](https://github.com/projectkudu/kudu/wiki/Deploying-from-a-zip-file) を使用する: この API を使用するには、[Web アプリに SSH で接続](https://docs.microsoft.com/azure/app-service/containers/app-service-linux-ssh-support#making-a-client-connection)し、コードをデプロイするフォルダーに移動します。 次のコードを実行します。
+- [ZIP デプロイ API](https://github.com/projectkudu/kudu/wiki/Deploying-from-a-zip-file) を使用する:この API を使用するには、[Web アプリに SSH で接続](https://docs.microsoft.com/azure/app-service/containers/app-service-linux-ssh-support#making-a-client-connection)し、コードをデプロイするフォルダーに移動します。 次のコードを実行します。
 
    ```bash
    curl -X POST -u <user> --data-binary @<zipfile> https://{your-sitename}.scm.azurewebsites.net/api/zipdeploy
@@ -193,5 +194,5 @@ image: <server-name>.azurecr.io/<image-name>:<tag>
 ## <a name="next-steps"></a>次の手順
 
 - [Azure App Service on Linux とは](app-service-linux-intro.md)
-- [Azure App Service でステージング環境を設定する](../../app-service/web-sites-staged-publishing.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json)
+- [Azure App Service でステージング環境を設定する](../../app-service/deploy-staging-slots.md?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json)
 - [Web App for Containers での継続的デプロイ](./app-service-linux-ci-cd.md)

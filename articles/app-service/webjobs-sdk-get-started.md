@@ -13,12 +13,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 04/27/2018
 ms.author: glenga
-ms.openlocfilehash: 034f182cc282f50eb3a4a1de05331f42957f49fe
-ms.sourcegitcommit: edacc2024b78d9c7450aaf7c50095807acf25fb6
+ms.openlocfilehash: 913b23946f70500ace7ab7e4ff7b5cd2858492fc
+ms.sourcegitcommit: 818d3e89821d101406c3fe68e0e6efa8907072e7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/13/2018
-ms.locfileid: "53339809"
+ms.lasthandoff: 01/09/2019
+ms.locfileid: "54121665"
 ---
 # <a name="get-started-with-the-azure-webjobs-sdk-for-event-driven-background-processing"></a>イベント ドリブンのバックグラウンド処理で Azure WebJobs SDK の使用を開始する
 
@@ -54,7 +54,7 @@ public static void Run(
 
 ## <a name="prerequisites"></a>前提条件
 
-この記事では、[Azure アカウント](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)と [Azure App Service のアプリ](app-service-web-overview.md)に関する経験があることを想定しています。 この記事の手順を完了するには、次のことが条件となります。
+この記事では、[Azure アカウント](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)と [Azure App Service のアプリ](overview.md)に関する経験があることを想定しています。 この記事の手順を完了するには、次のことが条件となります。
 
 * **Azure 開発**ワークロードと共に [Visual Studio 2017 をインストール](https://docs.microsoft.com/visualstudio/install/)します。 Visual Studio が既にあっても、そのワークロードがない場合は、**[ツール] > [Get Tools and Features]\(ツールと機能の取得\)** を選択してワークロードを追加します。
 * [App Service アプリを作成](app-service-web-get-started-dotnet-framework.md)します。 Web ジョブをデプロイできるものが既にある場合は、新規に作成する代わりにそれを使用できます。
@@ -292,7 +292,7 @@ WebJobs SDK は、アプリ設定コレクション内で Storage の接続文�
 
 ## <a name="add-application-insights-logging"></a>Application Insights ログの追加
 
-プロジェクトを Azure で実行する場合、コンソール出力を表示して関数の実行を監視することはできません。 お勧めする監視ソリューションは [Application Insights](../application-insights/app-insights-overview.md) です。 詳しくは、「[Azure Functions を監視する](../azure-functions/functions-monitoring.md)」をご覧ください。
+プロジェクトを Azure で実行する場合、コンソール出力を表示して関数の実行を監視することはできません。 お勧めする監視ソリューションは [Application Insights](../azure-monitor/app/app-insights-overview.md) です。 詳しくは、「[Azure Functions を監視する](../azure-functions/functions-monitoring.md)」をご覧ください。
 
 ここでは、Azure にデプロイする前に次のタスクを実行して Application Insights のログ記録を設定します。
 
@@ -304,9 +304,9 @@ WebJobs SDK は、アプリ設定コレクション内で Storage の接続文�
 
 1. 使用できる App Service アプリがまだない場合は、[作成](app-service-web-get-started-dotnet-framework.md)します。
 
-1. 使用できる Application Insights リソースがまだない場合は、[作成](../application-insights/app-insights-create-new-resource.md)します。 **[アプリケーションの種類]** を **[全般]** に設定し、「**インストルメンテーション キーをコピー**」の後のセクションをスキップします。
+1. 使用できる Application Insights リソースがまだない場合は、[作成](../azure-monitor/app/create-new-resource.md )します。 **[アプリケーションの種類]** を **[全般]** に設定し、「**インストルメンテーション キーをコピー**」の後のセクションをスキップします。
 
-1. 使用する Application Insights リソースが既にある場合は、[インストルメンテーション キーをコピー](../application-insights/app-insights-create-new-resource.md#copy-the-instrumentation-key)します。
+1. 使用する Application Insights リソースが既にある場合は、[インストルメンテーション キーをコピー](../azure-monitor/app/create-new-resource.md #copy-the-instrumentation-key)します。
 
 ### <a name="configure-app-settings"></a>アプリケーションの設定の構成 
 

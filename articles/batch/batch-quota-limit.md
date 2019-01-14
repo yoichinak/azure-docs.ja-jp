@@ -1,9 +1,9 @@
 ---
-title: Azure Batch 用のサービスのクォータと制限 | Microsoft Docs
+title: サービスのクォータと制限 - Azure Batch | Microsoft Docs
 description: 既定の Azure Batch のクォータ、制限、および制約と、クォータの引き上げを要求する方法について説明します
 services: batch
 documentationcenter: ''
-author: dlepow
+author: laurenhughes
 manager: jeconnoc
 editor: ''
 ms.assetid: 28998df4-8693-431d-b6ad-974c2f8db5fb
@@ -12,15 +12,15 @@ ms.workload: big-compute
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/06/2018
-ms.author: danlep
-ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: a7d77c0a2ce334c9909a621c55866a67e036f9cb
-ms.sourcegitcommit: ba4570d778187a975645a45920d1d631139ac36e
+ms.date: 12/18/2018
+ms.author: lahugh
+ms.custom: seodec18
+ms.openlocfilehash: 5194fa73d246cee039e113207bbde277b06d7130
+ms.sourcegitcommit: 7862449050a220133e5316f0030a259b1c6e3004
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/08/2018
-ms.locfileid: "51282783"
+ms.lasthandoff: 12/22/2018
+ms.locfileid: "53753201"
 ---
 # <a name="batch-service-quotas-and-limits"></a>Batch サービスのクォータと制限
 
@@ -65,9 +65,9 @@ Batch で実稼働ワークロードを実行する予定がある場合は、1 
 | [同時実行タスク数](batch-parallel-node-tasks.md)  | ノードのコア数 x 4 |
 | [アプリケーション](batch-application-packages.md) 数 | 20 |
 | アプリケーションあたりのアプリケーション パッケージ数 | 40 |
-| タスクの最長有効期間 | 7 日間<sup>1</sup> |
+| タスクの最長有効期間 | 180 日<sup>1</sup> |
 
-<sup>1</sup> タスクの最長有効期間 (ジョブに追加されてから完了するまで) は、7 日間です。 完了したタスクは、無期限に保持されます。最長有効期間内に完了しなかったタスクのデータにはアクセスできません。
+<sup>1</sup> タスクの最長有効期間 (ジョブに追加されてから完了するまで) は、180 日間です。 完了したタスクは 7 日間保持されます。最長有効期間内に完了しなかったタスクのデータにはアクセスできません。
 
 ## <a name="view-batch-quotas"></a>Batch クォータの確認
 

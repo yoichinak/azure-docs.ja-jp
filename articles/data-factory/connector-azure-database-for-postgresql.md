@@ -9,16 +9,15 @@ ms.reviewer: douglasl
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: conceptual
-ms.date: 04/28/2018
+ms.date: 12/07/2018
 ms.author: jingwang
-ms.openlocfilehash: 1c1d9f7a4b64ea1e952b3edd9011f5dc197543d6
-ms.sourcegitcommit: 0c490934b5596204d175be89af6b45aafc7ff730
+ms.openlocfilehash: c105c64b65d50b9d6bf6477e47d08f415b3a9a31
+ms.sourcegitcommit: 25936232821e1e5a88843136044eb71e28911928
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/27/2018
-ms.locfileid: "37052683"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54018723"
 ---
 # <a name="copy-data-from-azure-database-for-postgresql-using-azure-data-factory"></a>Azure Data Factory を使用して Azure Database for PostgreSQL からデータをコピーする 
 
@@ -42,8 +41,8 @@ Azure Database for PostgreSQL のリンクされたサービスでは、次の�
 
 | プロパティ | 説明 | 必須 |
 |:--- |:--- |:--- |
-| type | type プロパティは **AzurePostgreSql** に設定する必要があります | [はい] |
-| connectionString | Azure Database for PostgreSQL に接続するための ODBC 接続文字列。 このフィールドを SecureString としてマークして Data Factory に安全に保管するか、[Azure Key Vault に格納されているシークレットを参照](store-credentials-in-key-vault.md)します。 | [はい] |
+| type | type プロパティは、次のように設定する必要があります。**AzurePostgreSql** | [はい] |
+| connectionString | Azure Database for PostgreSQL に接続するための ODBC 接続文字列。 このフィールドを SecureString としてマークして Data Factory に安全に保管するか、[Azure Key Vault に格納されているシークレットを参照](store-credentials-in-key-vault.md)します。 | はい |
 | connectVia | データ ストアに接続するために使用される[統合ランタイム](concepts-integration-runtime.md)。 Azure 統合ランタイムまたは自己ホスト型統合ランタイム (データ ストアがプライベート ネットワークにある場合) を使用できます。 指定されていない場合は、既定の Azure 統合ランタイムが使用されます。 |いいえ  |
 
 一般的な接続文字列は `Server=<server>.postgres.database.azure.com;Database=<database>;Port=<port>;UID=<username>;Password=<Password>` です。 ケースごとにさらに多くのプロパティを設定できます。
@@ -74,7 +73,12 @@ Azure Database for PostgreSQL のリンクされたサービスでは、次の�
 
 データセットを定義するために使用できるセクションとプロパティの完全な一覧については、[データセット](concepts-datasets-linked-services.md)に関する記事をご覧ください。 このセクションでは、Azure Database for PostgreSQL データセットでサポートされるプロパティの一覧を示します。
 
-Azure Database for PostgreSQL からデータをコピーするには、データセットの type プロパティを **AzurePostgreSqlTable** に設定します。 この種類のデータセットに追加の種類固有のプロパティはありません。
+Azure Database for PostgreSQL からデータをコピーするには、データセットの type プロパティを **AzurePostgreSqlTable** に設定します。 次のプロパティがサポートされています。
+
+| プロパティ | 説明 | 必須 |
+|:--- |:--- |:--- |
+| type | データセットの type プロパティは、次のように設定する必要があります。**AzurePostgreSqlTable** | [はい] |
+| tableName | テーブルの名前。 | いいえ (アクティビティ ソースの "query" が指定されている場合) |
 
 **例**
 
@@ -86,7 +90,8 @@ Azure Database for PostgreSQL からデータをコピーするには、デー�
         "linkedServiceName": {
             "referenceName": "<AzurePostgreSql linked service name>",
             "type": "LinkedServiceReference"
-        }
+        },
+        "typeProperties": {}
     }
 }
 ```
@@ -95,14 +100,14 @@ Azure Database for PostgreSQL からデータをコピーするには、デー�
 
 アクティビティの定義に利用できるセクションとプロパティの完全な一覧については、[パイプライン](concepts-pipelines-activities.md)に関する記事を参照してください。 このセクションでは、Azure Database for PostgreSQL ソースでサポートされるプロパティの一覧を示します。
 
-### <a name="azurepostgresqlsource-as-source"></a>ソースとしての AzurePostgreSqlSource
+### <a name="azure-database-for-postgresql-as-source"></a>ソースとしての Azure Database for PostgreSql
 
 Azure Database for PostgreSQL からデータをコピーするには、コピー アクティビティのソースの種類を **AzurePostgreSqlSource** に設定します。 コピー アクティビティの **source** セクションでは、次のプロパティがサポートされます。
 
 | プロパティ | 説明 | 必須 |
 |:--- |:--- |:--- |
-| type | コピー アクティビティのソースの type プロパティは **AzurePostgreSqlSource** に設定する必要があります | [はい] |
-| クエリ | カスタム SQL クエリを使用してデータを読み取ります。 たとえば、「 `"SELECT * FROM MyTable"`」のように入力します。 | [はい] |
+| type | コピー アクティビティのソースの type プロパティは、次のように設定する必要があります。**AzurePostgreSqlSource** | [はい] |
+| query | カスタム SQL クエリを使用してデータを読み取ります。 (例: `"SELECT * FROM MyTable"`)。 | いいえ (データセットの "tableName" が指定されている場合) |
 
 **例:**
 

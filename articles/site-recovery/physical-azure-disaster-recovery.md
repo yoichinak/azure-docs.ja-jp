@@ -6,14 +6,14 @@ author: rayne-wiselman
 manager: carmonm
 ms.service: site-recovery
 ms.topic: article
-ms.date: 11/27/2018
+ms.date: 12/31/2018
 ms.author: raynew
-ms.openlocfilehash: fa2f16f1a7d99a825039e2191c69642a45ff728a
-ms.sourcegitcommit: 11d8ce8cd720a1ec6ca130e118489c6459e04114
+ms.openlocfilehash: 7cd06bda16200f45d2b6aa9e20a536e62ad2c2d6
+ms.sourcegitcommit: 30d23a9d270e10bb87b6bfc13e789b9de300dc6b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/04/2018
-ms.locfileid: "52845231"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54105479"
 ---
 # <a name="set-up-disaster-recovery-to-azure-for-on-premises-physical-servers"></a>Azure にオンプレミス物理サーバーのディザスター リカバリーを設定する
 
@@ -27,8 +27,6 @@ ms.locfileid: "52845231"
 > * ソース レプリケーション環境とターゲット レプリケーション環境を設定する
 > * レプリケーション ポリシーを作成する
 > * サーバーのレプリケーションを有効にする
-
-このディザスター リカバリー シナリオの[アーキテクチャを確認](concepts-hyper-v-to-azure-architecture.md)する。
 
 ## <a name="prerequisites"></a>前提条件
 

@@ -1,5 +1,5 @@
 ---
-title: Web アプリケーション用のシークレット アプリケーション設定の安全な保存 | Microsoft Docs
+title: Web アプリケーション用のシークレット アプリケーション設定の安全な保存 - Azure Key Vault | Microsoft Docs
 description: ASP.NET Core Key Vault Provider、User Secret、または .NET 4.7.1 構成ビルダーを使用して Azure 資格情報またはサード パーティ製 API キーなどのシークレット アプリケーション設定を安全に保存する方法
 services: visualstudio
 documentationcenter: ''
@@ -10,16 +10,15 @@ ms.assetid: ''
 ms.service: ''
 ms.workload: web, azure
 ms.tgt_pltfrm: vs-getting-started
-ms.devlang: na
 ms.topic: conceptual
-ms.date: 11/09/2017
+ms.date: 01/07/2019
 ms.author: cawa
-ms.openlocfilehash: 7578950af2dafdade3c97650dfd212240053dd3b
-ms.sourcegitcommit: 1f9e1c563245f2a6dcc40ff398d20510dd88fd92
+ms.openlocfilehash: 8f3cdf366830549c3ebb9c5680ecf36d1053d1d9
+ms.sourcegitcommit: fbf0124ae39fa526fc7e7768952efe32093e3591
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/14/2018
-ms.locfileid: "51625455"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54075296"
 ---
 # <a name="securely-save-secret-application-settings-for-a-web-application"></a>Web アプリケーションのシークレット アプリケーション設定を安全に保存する
 

@@ -11,12 +11,13 @@ ms.devlang: csharp
 ms.workload: big-data
 ms.topic: conceptual
 ms.date: 03/23/2018
-ms.openlocfilehash: 6c4a99096efc95f439d6c9479cb9014957207ea6
-ms.sourcegitcommit: 4de6a8671c445fae31f760385710f17d504228f8
+ms.custom: seodec18
+ms.openlocfilehash: 07d1b7f801639ca6b4e314f13fbf564c0d525345
+ms.sourcegitcommit: b767a6a118bca386ac6de93ea38f1cc457bb3e4e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/08/2018
-ms.locfileid: "39630859"
+ms.lasthandoff: 12/18/2018
+ms.locfileid: "53555355"
 ---
 # <a name="query-data-from-the-azure-time-series-insights-environment-using-c"></a>C# を使用して Azure Time Series Insights 環境からデータを照会する
 

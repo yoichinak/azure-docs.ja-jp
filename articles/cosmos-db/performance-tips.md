@@ -1,21 +1,17 @@
 ---
-title: .NET での Azure Cosmos DB のパフォーマンスに関するヒント | Microsoft Docs
+title: .NET 用の Azure Cosmos DB のパフォーマンスに関するヒント
 description: Azure Cosmos DB データベースのパフォーマンスを向上させるクライアント構成オプションについて説明します
-keywords: データベースのパフォーマンスを向上させる方法
-services: cosmos-db
 author: SnehaGunda
-manager: kfile
 ms.service: cosmos-db
-ms.devlang: na
 ms.topic: conceptual
 ms.date: 01/24/2018
 ms.author: sngun
-ms.openlocfilehash: 3e724301d235db49ab9332dedc877d7315460ecc
-ms.sourcegitcommit: da3459aca32dcdbf6a63ae9186d2ad2ca2295893
+ms.openlocfilehash: f05935f73f385b076741d2e856af8316a74e9d2f
+ms.sourcegitcommit: 8330a262abaddaafd4acb04016b68486fba5835b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/07/2018
-ms.locfileid: "51256172"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54042497"
 ---
 # <a name="performance-tips-for-azure-cosmos-db-and-net"></a>Azure Cosmos DB と .NET のパフォーマンスに関するヒント
 
@@ -32,7 +28,7 @@ Azure Cosmos DB は、高速で柔軟性に優れた分散データベースで�
 ## <a name="networking"></a>ネットワーク
 <a id="direct-connection"></a>
 
-1. **接続ポリシー: 直接接続モードを使用する**
+1. **接続ポリシー:直接接続モードを使用する**
 
     クライアントが Azure Cosmos DB に接続する方法は、特に監視対象となるクライアント側の待機時間の観点から、パフォーマンスに重要な影響を及ぼします。 クライアントの接続ポリシーを構成する際に使用できる 2 つの主要な構成設定として、接続 "*モード*" と[接続 "*プロトコル*"](#connection-protocol) があります。  次の 2 つのモードが用意されています。
 
@@ -47,7 +43,7 @@ Azure Cosmos DB は、高速で柔軟性に優れた分散データベースで�
     * TCP
     * HTTPS
 
-    ゲートウェイ モードを使用している場合、Azure Cosmos DB はポート 443 を使用し、MongoDB API は 10250、10255、および 10256 ポートを使用します。 10250 ポートは geo レプリケーションなしで既定の MongoDB インスタンスにマップされ、10255/10256 ポートは geo レプリケーション機能付きで MongoDB インスタンスにマップされます。 直接モードで TCP を使用する場合は、Azure Cosmos DB が動的 TCP ポートを使用するため、ゲートウェイ ポートに加えてポート範囲 10000 ～ 20000 を開いておく必要があります。 これらのポートが開いていない場合に TCP を使用しようとすると、[503 サービスを利用できません] エラーが表示されます。 次の表は、さまざまな API で使用可能な接続モードと、各 API のサービス ポート ユーザーを示しています。
+    ゲートウェイ モードを使用している場合、Cosmos DB はポート 443 を使用し、MongoDB 用の Azure Cosmos DB の API を使用している場合はポート 10250、10255、および 10256 を使用します。 10250 ポートは geo レプリケーションなしで既定の MongoDB インスタンスにマップされ、10255/10256 ポートは geo レプリケーション機能付きで MongoDB インスタンスにマップされます。 直接モードで TCP を使用する場合は、Azure Cosmos DB が動的 TCP ポートを使用するため、ゲートウェイ ポートに加えてポート範囲 10000 ～ 20000 を開いておく必要があります。 これらのポートが開いていない場合に TCP を使用しようとすると、[503 サービスを利用できません] エラーが表示されます。 次の表は、さまざまな API で使用可能な接続モードと、各 API のサービス ポート ユーザーを示しています。
 
     |接続モード  |サポートされるプロトコル  |サポートされる SDK  |API/サービス ポート  |
     |---------|---------|---------|---------|
@@ -104,7 +100,7 @@ Azure Cosmos DB は、高速で柔軟性に優れた分散データベースで�
     Gateway モードを使用するときは Azure Cosmos DB の要求は HTTPS/REST を介して行われ、ホスト名または IP アドレスごとの既定の接続数の制限の対象となります。 場合によっては、Azure Cosmos DB に対する複数の同時接続をクライアント ライブラリが活かすためには、MaxConnections を 100 ～ 1000 に増やす必要があります。 .NET SDK 1.8.0 以降では、[ServicePointManager.DefaultConnectionLimit](https://msdn.microsoft.com/library/system.net.servicepointmanager.defaultconnectionlimit.aspx) の既定値は 50 です。この値を変更するには、[Documents.Client.ConnectionPolicy.MaxConnectionLimit](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.connectionpolicy.maxconnectionlimit.aspx) をより大きな値に設定します。   
 4. **パーティション分割コレクションに対する並列クエリを調整する**
 
-     SQL .NET SDK Version 1.9.0 以降では、並列クエリがサポートされています。この機能を使用すると、パーティション分割コレクションにクエリを並列的に実行できます (詳細については、「[SDK の操作](sql-api-partition-data.md#working-with-the-azure-cosmos-db-sdks)」と、関連する[コード例](https://github.com/Azure/azure-documentdb-dotnet/blob/master/samples/code-samples/Queries/Program.cs)を参照してください)。 並列クエリは、シリアル クエリよりもクエリの待機時間とスループットを向上させるように設計されています。 並列クエリには、ユーザーが要件に合わせて調整できる 2 つのパラメーターが用意されています。(a) MaxDegreeOfParallelism は、並列でクエリを実行できるパーティションの最大数を制御します。(b) MaxBufferedItemCount は、プリフェッチされる結果の数を制御します。
+     SQL .NET SDK Version 1.9.0 以降では、並列クエリがサポートされています。この機能を使用すると、パーティション分割コレクションにクエリを並列的に実行できます。 詳細については、SDK の操作に関連した[コード サンプル](https://github.com/Azure/azure-documentdb-dotnet/blob/master/samples/code-samples/Queries/Program.cs)を参照してください。 並列クエリは、シリアル クエリよりもクエリの待機時間とスループットを向上させるように設計されています。 並列クエリには、ユーザーが要件に合わせて調整できる 2 つのパラメーターが用意されています。(a) MaxDegreeOfParallelism は、並列でクエリを実行できるパーティションの最大数を制御します。(b) MaxBufferedItemCount は、プリフェッチされる結果の数を制御します。
 
     (a) "***MaxDegreeOfParallelism の調整\:***" 並列クエリは、複数のパーティションに並列にクエリを実行することによって機能します。 ただし、個々のパーティション分割されたコレクションからのデータは、クエリごとに順番に取得されます。 そのため、MaxDegreeOfParallelism をパーティションの数に設定すると、その他のすべてのシステムの条件が変わらなければ、クエリのパフォーマンスを最大にできる可能性が最大になります。 パーティションの数が不明な場合は、MaxDegreeOfParallelism に大きな数を設定できます。システムが最小値 (パーティションの数、ユーザー指定の入力) を MaxDegreeOfParallelism として選択します。
 
@@ -172,9 +168,9 @@ Azure Cosmos DB は、高速で柔軟性に優れた分散データベースで�
     collection = await client.CreateDocumentCollectionAsync(UriFactory.CreateDatabaseUri("db"), excluded);
     ```
 
-    詳細については、[Azure Cosmos DB インデックス作成ポリシー](indexing-policies.md)に関するページをご覧ください。
+    詳細については、[Azure Cosmos DB インデックス作成ポリシー](index-policy.md)に関するページをご覧ください。
 
-## <a name="throughput"></a>Throughput
+## <a name="throughput"></a>スループット
 <a id="measure-rus"></a>
 
 1. **測定と調整によって 1 秒あたりの要求ユニットの使用量を削減する**

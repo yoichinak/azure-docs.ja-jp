@@ -2,32 +2,33 @@
 title: Resource Manager でデプロイされた VM のバックアップを PowerShell を使用してデプロイおよび管理する
 description: PowerShell を使用して Azure で Resource Manager によりデプロイされた VM のバックアップをデプロイおよび管理する
 services: backup
-author: markgalioto
+author: rayne-wiselman
 manager: carmonm
 ms.service: backup
 ms.topic: conceptual
 ms.date: 10/20/2018
-ms.author: markgal
+ms.author: raynew
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 855a046425f051739f61c74b551d4ffea7b9120a
-ms.sourcegitcommit: da3459aca32dcdbf6a63ae9186d2ad2ca2295893
+ms.openlocfilehash: f2cdeea546e7153c63cb1edfbc53f3644facc4f2
+ms.sourcegitcommit: 21466e845ceab74aff3ebfd541e020e0313e43d9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/07/2018
-ms.locfileid: "51252362"
+ms.lasthandoff: 12/21/2018
+ms.locfileid: "53743903"
 ---
 # <a name="use-powershell-to-back-up-and-restore-virtual-machines"></a>PowerShell を使用して仮想マシンをバックアップし、復元する
 
-この記事では、Azure PowerShell コマンドレットを使用して Recovery Services コンテナーに Azure 仮想マシン (VM) をバックアップする方法と Recovery Services コンテナーから Azure 仮想マシンを回復する方法について説明します。 Recovery Services コンテナーは、Azure Backup サービスと Azure Site Recovery サービスでデータと資産を保護するために使用される Azure Resource Manager のリソースです。 
+この記事では、Azure PowerShell コマンドレットを使用して Recovery Services コンテナーに Azure 仮想マシン (VM) をバックアップする方法と Recovery Services コンテナーから Azure 仮想マシンを回復する方法について説明します。 Recovery Services コンテナーは、Azure Backup サービスと Azure Site Recovery サービスでデータと資産を保護するために使用される Azure Resource Manager のリソースです。
 
 > [!NOTE]
-> Azure には、リソースの作成と操作に関して 2 種類のデプロイ モデルがあります: [Resource Manager デプロイ モデルとクラシック デプロイ モデル](../azure-resource-manager/resource-manager-deployment-model.md)です。 この記事では、Resource Manager モデルで作成された VM を対象とします。
+> Azure には、リソースの作成と操作に関して 2 種類のデプロイメント モデルがあります。[Resource Manager とクラシック](../azure-resource-manager/resource-manager-deployment-model.md)です。 この記事では、Resource Manager モデルで作成された VM を対象とします。
 >
 >
 
 PowerShell を使用した VM の保護および復旧ポイントからデータの復元について説明します。
 
 ## <a name="concepts"></a>概念
+
 Azure Backup サービスに関する知識が十分でない場合は、「[Azure Backup とは](backup-introduction-to-azure-backup.md)」という記事を参照してください。 開始する前に、Azure Backup に必要な前提条件が満たされていることを確認し、現在の VM バックアップ ソリューションの制限事項を把握してください。
 
 PowerShell を効果的に使用するには、オブジェクトの階層および開始地点を理解しておく必要があります。
@@ -40,10 +41,10 @@ AzureRm.RecoveryServices.Backup PowerShell コマンドレット リファレン
 
 開始するには
 
-1. [最新バージョンの PowerShell をダウンロードします](https://docs.microsoft.com/powershell/azure/install-azurerm-ps) (バージョン 1.4.0 以降が必要)。
+1. [最新バージョンの PowerShell をダウンロードします](https://docs.microsoft.com/powershell/azure/install-azurerm-ps) (必要な最小バージョンは1.4.0 です)
 
 2. 以下のコマンドを入力して、使用可能な Azure Backup の PowerShell コマンドレットを検索します。
-   
+
     ```powershell
     Get-Command *azurermrecoveryservices*
     ```    
@@ -54,7 +55,7 @@ AzureRm.RecoveryServices.Backup PowerShell コマンドレット リファレン
 3. **Connect-AzureRmAccount** を使用して Azure アカウントにサインインします。 このコマンドレットを実行すると、アカウントの資格情報を入力する Web ページが表示されます。
 
     * または、**-Credential** パラメーターを使用して、**Connect-AzureRmAccount** コマンドレットのパラメーターとしてアカウントの資格情報を含められます。
-    * CSP パートナーがテナントの代理としてサインインする場合は、その顧客をテナントとして指定します。該当するテナント ID またはテナントのプライマリ ドメイン名で指定してください。 たとえば、「**Connect-AzureRmAccount -Tenant "fabrikam.com"**」と入力します。
+    * CSP パートナーがテナントの代理としてサインインする場合は、その顧客をテナントとして指定します。該当するテナント ID またはテナントのプライマリ ドメイン名で指定してください。 例: **Connect-AzureRmAccount -Tenant "fabrikam.com"**
 
 4. 1 つのアカウントが複数のサブスクリプションを持つことができるため、使用するサブスクリプションをアカウントに関連付けます。
 
@@ -326,7 +327,7 @@ $rp[0]
 
 出力は次の例のようになります。
 
-```
+```powershell
 RecoveryPointAdditionalInfo :
 SourceVMStorageType         : NormalStorage
 Name                        : 15260861925810
@@ -350,6 +351,7 @@ BackupManagementType        : AzureVM
 $restorejob = Restore-AzureRmRecoveryServicesBackupItem -RecoveryPoint $rp[0] -StorageAccountName "DestAccount" -StorageAccountResourceGroupName "DestRG"
 $restorejob
 ```
+
 #### <a name="restore-managed-disks"></a>マネージド ディスクの復元
 
 > [!NOTE]
@@ -359,16 +361,15 @@ $restorejob
 
 追加のパラメーター **TargetResourceGroupName** で、マネージド ディスクの復元先とする RG を指定できます。
 
-
 ```powershell
 $restorejob = Restore-AzureRmRecoveryServicesBackupItem -RecoveryPoint $rp[0] -StorageAccountName "DestAccount" -StorageAccountResourceGroupName "DestRG" -TargetResourceGroupName "DestRGforManagedDisks"
 ```
 
 **VMConfig.JSON** ファイルはストレージ アカウントに復元され、マネージド ディスクは指定したターゲット RG に復元されます。
 
-
 出力は次の例のようになります。
-```
+
+```powershell
 WorkloadName     Operation          Status               StartTime                 EndTime            JobID
 ------------     ---------          ------               ---------                 -------          ----------
 V2VM              Restore           InProgress           4/23/2016 5:00:30 PM                        cf4b3ef5-2fac-4c8e-a215-d2eba4124f27
@@ -397,6 +398,27 @@ $details = Get-AzureRmRecoveryServicesBackupJobDetails -Job $restorejob
 > 復元されたディスクから暗号化された VM を作成するには、Azure のロールに **Microsoft.KeyVault/vaults/deploy/action** の実行が許可されている必要があります。 ロールにこのアクセス許可がない場合は、この操作でカスタム ロールを作成します。 詳細については、「[Azure RBAC のカスタム ロール](../role-based-access-control/custom-roles.md)」をご覧ください。
 >
 >
+
+> [!NOTE]
+> ディスクを復元した後、新しい VM の作成に直接使用できるデプロイ テンプレートを取得できます。 暗号化された/暗号化されていないマネージド/アンマネージド VM を作成するための別の PS コマンドレットはこれ以上なくなりました。
+
+結果のジョブの詳細には、クエリを実行してデプロイできるテンプレート URI が示されます。
+
+```powershell
+   $properties = $details.properties
+   $templateBlobURI = $properties["Template Blob Uri"]
+```
+
+[ここ](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy#deploy-a-template-from-an-external-source)で説明しているように、テンプレートをデプロイするだけで新しい VM が作成されます。
+
+```powershell
+New-AzureRmResourceGroupDeployment -Name ExampleDeployment ResourceGroupName ExampleResourceGroup -TemplateUri $templateBlobURI -storageAccountType Standard_GRS
+```
+
+次のセクションでは、"VMConfig" ファイルを使用して VM を作成するために必要な手順を示します。
+
+> [!NOTE]
+> VM を作成するには、上記で詳しく説明したデプロイ テンプレートを使用することを強くお勧めします。 このセクション (ポイント 1 ～ 6) は、まもなく非推奨となる予定です。
 
 1. 復元されたディスクのプロパティに対し、ジョブの詳細を照会します。
 
@@ -476,14 +498,14 @@ $details = Get-AzureRmRecoveryServicesBackupJobDetails -Job $restorejob
    * **管理対象の暗号化されていない VM** - 管理対象の暗号化されていない VM では、復元されたマネージド ディスクをアタッチします。 詳細については、記事「[PowerShell を使用して Windows VM にデータ ディスクを接続する](../virtual-machines/windows/attach-disk-ps.md)」を参照してください。
 
    * **管理対象の暗号化された VM (BEK のみ)** - 管理対象の暗号化された VM (BEK のみを使用して暗号化) では、復元されたマネージド ディスクをアタッチします。 詳細については、記事「[PowerShell を使用して Windows VM にデータ ディスクを接続する](../virtual-machines/windows/attach-disk-ps.md)」を参照してください。
-   
-      データ ディスクの暗号化を手動で有効にするには、次のコマンドを使用します。
+
+     データ ディスクの暗号化を手動で有効にするには、次のコマンドを使用します。
 
        ```powershell
        Set-AzureRmVMDiskEncryptionExtension -ResourceGroupName $RG -VMName $vm -AadClientID $aadClientID -AadClientSecret $aadClientSecret -DiskEncryptionKeyVaultUrl $dekUrl -DiskEncryptionKeyVaultId $keyVaultId -VolumeType Data
        ```
 
-   * **管理対象の暗号化された VM (BEK と KEK)** - 管理対象の暗号化された VM (BEK と KEK を使用して暗号化) では、復元されたマネージド ディスクをアタッチします。 詳細については、記事「[PowerShell を使用して Windows VM にデータ ディスクを接続する](../virtual-machines/windows/attach-disk-ps.md)」を参照してください。 
+   * **管理対象の暗号化された VM (BEK と KEK)** - 管理対象の暗号化された VM (BEK と KEK を使用して暗号化) では、復元されたマネージド ディスクをアタッチします。 詳細については、記事「[PowerShell を使用して Windows VM にデータ ディスクを接続する](../virtual-machines/windows/attach-disk-ps.md)」を参照してください。
 
       データ ディスクの暗号化を手動で有効にするには、次のコマンドを使用します。
 
@@ -520,7 +542,6 @@ Azure VM バックアップからファイルを復元する基本的な手順�
 * 復旧ポイントのディスクのマウント
 * 必要なファイルのコピー
 * ディスクのマウント解除
-
 
 ### <a name="select-the-vm"></a>VM の選択
 
@@ -575,7 +596,7 @@ Get-AzureRmRecoveryServicesBackupRPMountScript -RecoveryPoint $rp[0]
 
 出力は次の例のようになります。
 
-```
+```powershell
 OsType  Password        Filename
 ------  --------        --------
 Windows e3632984e51f496 V2VM_wus2_8287309959960546283_451516692429_cbd6061f7fc543c489f1974d33659fed07a6e0c2e08740.exe

@@ -14,12 +14,12 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 2/23/2018
 ms.author: subramar
-ms.openlocfilehash: 00164789d7f37277127878911c3f368a56ec7710
-ms.sourcegitcommit: a62cbb539c056fe9fcd5108d0b63487bd149d5c3
+ms.openlocfilehash: 3454f9eecf1f06391b21bc7a3dcd89b7f8e78853
+ms.sourcegitcommit: 30d23a9d270e10bb87b6bfc13e789b9de300dc6b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/22/2018
-ms.locfileid: "42616974"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54105357"
 ---
 # <a name="prepare-your-development-environment-on-linux"></a>Linux で開発環境を準備する
 > [!div class="op_single_selector"]
@@ -104,7 +104,14 @@ Service Fabric ランタイムと共通 SDK の手動インストールの場合
     sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
     ```
 
-7. 新しく追加されたリポジトリに基づいてパッケージ リストを更新します。
+7. Azul JDK キーを APT キーリングに追加し、そのリポジトリを設定します。
+
+    ```bash
+    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x219BD9C9
+    sudo apt-add-repository "deb http://repos.azul.com/azure-only/zulu/apt stable main"
+    ```
+
+8. 新しく追加されたリポジトリに基づいてパッケージ リストを更新します。
 
     ```bash
     sudo apt-get update
@@ -172,7 +179,7 @@ SDK インストールに付属する Service Fabric ランタイムには、次
 
  | | DotNetCore | Java | Python | NodeJS | 
 --- | --- | --- | --- |---
-Ubuntu | 2.0.0 | OpenJDK 1.8 | npm から暗黙的に | latest |
+Ubuntu | 2.0.0 | AzulJDK 1.8 | npm から暗黙的に | latest |
 RHEL | - | OpenJDK 1.8 | npm から暗黙的に | latest |
 
 ## <a name="set-up-a-local-cluster"></a>ローカル クラスターをセットアップする
@@ -232,14 +239,14 @@ Service Fabric には、ターミナルから Yeoman テンプレート ジェ�
 
 ## <a name="set-up-java-development"></a>Java 開発をセットアップする
 
-Java を使用して Service Fabric サービスをビルドするには、JDK 1.8 および Gradle をインストールしてビルド タスクを実行します。 次のスニペットで Open JDK 1.8 と Gradle をインストールしてください。 Service Fabric Java ライブラリが Maven から取り込まれます。
+Java を使用して Service Fabric サービスをビルドするには、Gradle をインストールしてビルド タスクを実行します。 次のコマンドを実行して、Gradle をインストールします。 Service Fabric Java ライブラリが Maven から取り込まれます。
 
 
 * Ubuntu
 
     ```bash
-    sudo apt-get install openjdk-8-jdk-headless
-    sudo apt-get install gradle
+    curl -s https://get.sdkman.io | bash
+    sdk install gradle 5.1
     ```
 
 * Red Hat Enterprise Linux 7.4 (Service Fabric プレビュー サポート)
@@ -265,7 +272,7 @@ Eclipse IDE for Java Developers または Eclipse IDE for Java EE Developers 内
 > 
 > Ubuntu では、パッケージ インストーラー (`apt` または `apt-get`) を使用するのではなく、Eclipse サイトから直接インストールすることをお勧めします。 そうすることで、Eclipse の最新バージョンを確実に入手することができます。 Eclipse IDE for Java Developers または Eclipse IDE for Java EE Developers をインストールできます。
 
-1. Eclipse で、Eclipse Neon 以降および Buildship バージョン 2.2.1 以降がインストールされていることを確認します。 **[ヘルプ]** > **[Eclipse について]** > **[インストール詳細]** の順に選択して、インストールされたコンポーネントのバージョンを確認します。 Buildship は、「[Eclipse Buildship: Eclipse Plug-ins for Gradle (Eclipse Buildship: Gradle 用の Eclipse プラグイン)][buildship-update]」の手順に従って更新できます。
+1. Eclipse で、Eclipse Neon 以降および Buildship バージョン 2.2.1 以降がインストールされていることを確認します。 **[ヘルプ]** > **[Eclipse について]** > **[インストール詳細]** の順に選択して、インストールされたコンポーネントのバージョンを確認します。 Buildship は、[Eclipse Buildship:Gradle 用の Eclipse プラグイン][buildship-update]に関するページの手順に従って更新できます。
 
 2. **[Help]\(ヘルプ\)** > **[Install New Software]\(新しいソフトウェアのインストール\)** の順に選択して、Service Fabric プラグインをインストールします。
 

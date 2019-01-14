@@ -1,20 +1,20 @@
 ---
-title: Bulk Executor Java ライブラリを使用して Azure Cosmos DB での一括インポートおよび更新操作を実行する | Microsoft Docs
+title: Bulk Executor Java ライブラリを使用して Azure Cosmos DB での一括インポートおよび更新操作を実行する
 description: Bulk Executor Java ライブラリを使用して Azure Cosmos DB ドキュメントを一括インポートおよび更新します。
-services: cosmos-db
 author: tknandu
-manager: kfile
 ms.service: cosmos-db
+ms.subservice: cosmosdb-sql
 ms.devlang: java
 ms.topic: conceptual
 ms.date: 10/16/2018
 ms.author: ramkris
-ms.openlocfilehash: 44477f77547c9373bd4a3394c80e217d419bc8e0
-ms.sourcegitcommit: 6135cd9a0dae9755c5ec33b8201ba3e0d5f7b5a1
+ms.reviewer: sngun
+ms.openlocfilehash: 8031c8810d9916c3f6e02e1f2474c1ca9cdd528d
+ms.sourcegitcommit: 8330a262abaddaafd4acb04016b68486fba5835b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/31/2018
-ms.locfileid: "50420049"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54038757"
 ---
 # <a name="use-bulk-executor-java-library-to-perform-bulk-operations-on-azure-cosmos-db-data"></a>Bulk Executor Java ライブラリを使用して Azure Cosmos DB で一括操作を実行する
 
@@ -33,7 +33,7 @@ ms.locfileid: "50420049"
 
   - 必ず、JDK のインストール先フォルダーを指すように JAVA_HOME 環境変数を設定してください。
 
-* [Maven](http://maven.apache.org/) バイナリ アーカイブの[ダウンロード](http://maven.apache.org/download.cgi)と[インストール](http://maven.apache.org/install.html)  
+* [Maven](https://maven.apache.org/) バイナリ アーカイブの[ダウンロード](https://maven.apache.org/download.cgi)と[インストール](https://maven.apache.org/install.html)  
   
   - Ubuntu で `apt-get install maven` を実行して Maven をインストールします。
 

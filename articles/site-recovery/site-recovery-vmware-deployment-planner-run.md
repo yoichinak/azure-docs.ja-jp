@@ -5,14 +5,14 @@ author: nsoneji
 manager: garavd
 ms.service: site-recovery
 ms.topic: conceptual
-ms.date: 10/11/2018
-ms.author: nisoneji
-ms.openlocfilehash: b890dce5d94c2177c8fc8cdb5477b92df15c8095
-ms.sourcegitcommit: 6e09760197a91be564ad60ffd3d6f48a241e083b
+ms.date: 12/28/2018
+ms.author: mayg
+ms.openlocfilehash: 5de8bc9acd97016b401bd1c2bcce46f5ab851430
+ms.sourcegitcommit: 9f87a992c77bf8e3927486f8d7d1ca46aa13e849
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50211028"
+ms.lasthandoff: 12/28/2018
+ms.locfileid: "53811564"
 ---
 # <a name="run-the-azure-site-recovery-deployment-planner-for-vmware-disaster-recovery-to-azure"></a>VMware の Azure へのディザスター リカバリーのために Azure Site Recovery Deployment Planner を実行する
 この記事は、VMware から Azure へのレプリケーションを行う運用環境のデプロイに関する Azure Site Recovery Deployment Planner のユーザー ガイドです。
@@ -108,23 +108,23 @@ VM の構成は、プロファイリング処理の開始時に 1 回だけ捕�
 
 プロファイリング コマンドによって、いくつかのファイルがプロファイリング ディレクトリに生成されます。 これらのファイルは一切削除しないでください。削除すると、レポートの生成に影響が生じます。
 
-#### <a name="example-1-profile-vms-for-30-days-and-find-the-throughput-from-on-premises-to-azure"></a>例 1: VM を 30 日間プロファイリングし、オンプレミスから Azure へのレプリケーションのスループットを調査する
+#### <a name="example-1-profile-vms-for-30-days-and-find-the-throughput-from-on-premises-to-azure"></a>例 1:VM を 30 日間プロファイリングし、オンプレミスから Azure へのレプリケーションのスループットを調査する
 ```
 ASRDeploymentPlanner.exe -Operation StartProfiling -Virtualization VMware -Directory “E:\vCenter1_ProfiledData” -Server vCenter1.contoso.com -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt”  -NoOfDaysToProfile  30  -User vCenterUser1 -StorageAccountName  asrspfarm1 -StorageAccountKey Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==
 ```
 
-#### <a name="example-2-profile-vms-for-15-days"></a>例 2: VM を 15 日間プロファイリングする
+#### <a name="example-2-profile-vms-for-15-days"></a>例 2:VM を 15 日間プロファイリングする
 
 ```
 ASRDeploymentPlanner.exe -Operation StartProfiling -Virtualization VMware -Directory “E:\vCenter1_ProfiledData” -Server vCenter1.contoso.com -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt” -NoOfDaysToProfile  15  -User vCenterUser1
 ```
 
-#### <a name="example-3-profile-vms-for-60-minutes-for-a-quick-test-of-the-tool"></a>例 3: ツールの簡単なテストを行うために VM を 60 分間プロファイリングする
+#### <a name="example-3-profile-vms-for-60-minutes-for-a-quick-test-of-the-tool"></a>例 3:ツールの簡単なテストを行うために VM を 60 分間プロファイリングする
 ```
 ASRDeploymentPlanner.exe -Operation StartProfiling -Virtualization VMware -Directory “E:\vCenter1_ProfiledData” -Server vCenter1.contoso.com -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt”  -NoOfMinutesToProfile 60  -User vCenterUser1
 ```
 
-#### <a name="example-4-profile-vms-for-2-hours-for-a-proof-of-concept"></a>例 4: 概念実証のために VM を 2 時間プロファイリングする
+#### <a name="example-4-profile-vms-for-2-hours-for-a-proof-of-concept"></a>例 4:概念実証のために VM を 2 時間プロファイリングする
 ```
 ASRDeploymentPlanner.exe -Operation StartProfiling -Virtualization VMware -Directory “E:\vCenter1_ProfiledData” -Server vCenter1.contoso.com -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt” -NoOfHoursToProfile 2 -User vCenterUser1
 ```
@@ -137,6 +137,9 @@ ASRDeploymentPlanner.exe -Operation StartProfiling -Virtualization VMware -Direc
 
 ## <a name="generate-report"></a>レポートの生成
 Deployment Planner ツールでは、デプロイの推奨情報をすべてまとめたマクロ有効 Microsoft Excel ファイル (XLSM ファイル) がレポートの出力結果として生成されます。 このレポートは、指定されたディレクトリに DeploymentPlannerReport_<unique numeric identifier>.xlsm という名前で格納されます。
+
+>[!NOTE]
+>このレポートでは、Deployment Planner を実行するサーバーでコスト見積もりを生成するために "." として構成された小数点の記号が必要です。 Windows コンピューターで小数点の記号として "," を設定している場合は、コントロール パネルの [日付、時刻、または数値の形式の変更] に移動し、[追加の設定] に移動して小数点の記号を "." に変更します。
 
 プロファイリングが完了したら、レポート生成モードでツールを実行できます。 次の表は、レポート生成モードでツールを実行するための必須のパラメーターと省略可能なパラメーターの一覧です。
 
@@ -160,7 +163,7 @@ Deployment Planner ツールでは、デプロイの推奨情報をすべてま�
 | -EndDate | (省略可) 終了日時を MM-DD-YYYY:HH:MM (24 時間形式) で指定します。 *EndDate* は *StartDate* と一緒に指定する必要があります。 EndDate を指定した場合、StartDate から EndDate までの間に収集されたプロファイリング データを対象にレポートが生成されます。 |
 | -GrowthFactor | (省略可) 増加率 (%)。 既定値は 30% です。 |
 | -UseManagedDisks | (省略可) UseManagedDisks (Yes/No)。 既定値は Yes です。 1 つのストレージ アカウントに配置できる仮想マシンの数は、仮想マシンのフェールオーバー/テスト フェールオーバーが、非管理対象ディスクではなく、マネージド ディスクに対して実行されることを想定して計算されます。 |
-|-SubscriptionId |(省略可) サブスクリプションの GUID。 サブスクリプションやそれに関連付けられているオファーに基づき、ターゲット Azure リージョンと通貨を指定して、最新の料金に関するコスト見積もりレポートを生成するには、このパラメーターを使用します。|
+|-SubscriptionId |(省略可) サブスクリプションの GUID。 このパラメーターは、サブスクリプションに基づいた最新の価格、サブスクリプションに関連付けられたプラン、および**指定された通貨**の特定のターゲット Azure リージョンに関するコスト見積もりレポートを生成する必要がある場合に必要なことに注意してください。|
 |-TargetRegion|(省略可) レプリケーション先となる Azure リージョン。 Azure のコストはリージョンによって異なります。そこで、特定のターゲット Azure リージョンでレポートを生成するために、このパラメーターを使用します。<br>WestUS2 または最近使用したターゲット リージョンが既定値となります。<br>「[サポートされるターゲット リージョン](site-recovery-vmware-deployment-planner-cost-estimation.md#supported-target-regions)」の一覧を参照してください。|
 |-OfferId|(省略可) 指定されたサブスクリプションに関連付けられているオファー。 既定値は MS-AZR-0003P (従量課金制) です。|
 |-Currency|(省略可) 生成されたレポートでコストの表示に使用する通貨。 米ドル ($) または最近使用した通貨が既定値となります。<br>「[サポートされる通貨](site-recovery-vmware-deployment-planner-cost-estimation.md#supported-currencies)」の一覧を参照してください。|
@@ -171,39 +174,41 @@ Deployment Planner ツールでは、デプロイの推奨情報をすべてま�
 <add key="MaxVmsSupported" value="1000"/>
 ```
 
-#### <a name="example-1-generate-a-report-with-default-values-when-the-profiled-data-is-on-the-local-drive"></a>例 1: 既定値でレポートを生成する (プロファイリング データがローカル ドライブにある場合)
+#### <a name="example-1-generate-a-report-with-default-values-when-the-profiled-data-is-on-the-local-drive"></a>例 1:既定値でレポートを生成する (プロファイリング データがローカル ドライブにある場合)
 ```
 ASRDeploymentPlanner.exe -Operation GenerateReport -Virtualization VMware -Server vCenter1.contoso.com -Directory “E:\vCenter1_ProfiledData” -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt”
 ```
 
-#### <a name="example-2-generate-a-report-when-the-profiled-data-is-on-a-remote-server"></a>例 2: レポートを生成する (プロファイリング データがリモート サーバーにある場合)
+#### <a name="example-2-generate-a-report-when-the-profiled-data-is-on-a-remote-server"></a>例 2:レポートを生成する (プロファイリング データがリモート サーバーにある場合)
 ユーザーには、リモート ディレクトリに対する読み取り/書き込みアクセス権が必要です。
 ```
 ASRDeploymentPlanner.exe -Operation GenerateReport -Virtualization VMware -Server vCenter1.contoso.com -Directory “\\PS1-W2K12R2\vCenter1_ProfiledData” -VMListFile “\\PS1-W2K12R2\vCenter1_ProfiledData\ProfileVMList1.txt”
 ```
 
-#### <a name="example-3-generate-a-report-with-a-specific-bandwidth-and-goal-to-complete-ir-within-specified-time"></a>例 3: 特定の帯域幅と初回レプリケーションの目標所要時間を指定してレポートを生成する
+#### <a name="example-3-generate-a-report-with-a-specific-bandwidth-and-goal-to-complete-ir-within-specified-time"></a>例 3:特定の帯域幅と初回レプリケーションの目標所要時間を指定してレポートを生成する
 ```
 ASRDeploymentPlanner.exe -Operation GenerateReport -Virtualization VMware -Server vCenter1.contoso.com -Directory “E:\vCenter1_ProfiledData” -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt” -Bandwidth 100 -GoalToCompleteIR 24
 ```
 
-#### <a name="example-4-generate-a-report-with-a-5-percent-growth-factor-instead-of-the-default-30-percent"></a>例 4: 増加率を既定値の 30% から 5% に変更してレポートを生成する
+#### <a name="example-4-generate-a-report-with-a-5-percent-growth-factor-instead-of-the-default-30-percent"></a>例 4:増加率を既定値の 30% から 5% に変更してレポートを生成する
 ```
 ASRDeploymentPlanner.exe -Operation GenerateReport -Virtualzation VMware -Server vCenter1.contoso.com -Directory “E:\vCenter1_ProfiledData” -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt” -GrowthFactor 5
 ```
 
-#### <a name="example-5-generate-a-report-with-a-subset-of-profiled-data"></a>例 5: 一部のプロファイリング データでレポートを生成する
+#### <a name="example-5-generate-a-report-with-a-subset-of-profiled-data"></a>例 5:一部のプロファイリング データでレポートを生成する
 たとえば、30 日間分のプロファイリング データがあるときに 20 日間のみを対象としてレポートを生成します。
 ```
 ASRDeploymentPlanner.exe -Operation GenerateReport -Virtualization VMware -Server vCenter1.contoso.com -Directory “E:\vCenter1_ProfiledData” -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt” -StartDate  01-10-2017:12:30 -EndDate 01-19-2017:12:30
 ```
 
-#### <a name="example-6-generate-a-report-for-5-minute-rpo"></a>例 6: RPO を 5 分としてレポートを生成する
+#### <a name="example-6-generate-a-report-for-5-minute-rpo"></a>例 6:RPO を 5 分としてレポートを生成する
 ```
 ASRDeploymentPlanner.exe -Operation GenerateReport -Virtualization VMware -Server vCenter1.contoso.com -Directory “E:\vCenter1_ProfiledData” -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt”  -DesiredRPO 5
 ```
 
-#### <a name="example-7-generate-a-report-for-south-india-azure-region-with-indian-rupee-and-specific-offer-id"></a>例 7: インド ルピーと特定のプラン ID でインド南部 Azure リージョンのレポートを生成する
+#### <a name="example-7-generate-a-report-for-south-india-azure-region-with-indian-rupee-and-specific-offer-id"></a>例 7:インド ルピーと特定のプラン ID でインド南部 Azure リージョンのレポートを生成する
+
+サブスクリプション ID は、特定の通貨のコスト レポートを生成するために必要なことに注意してください。
 ```
 ASRDeploymentPlanner.exe -Operation GenerateReport -Virtualization VMware  -Directory “E:\vCenter1_ProfiledData” -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt”  -SubscriptionID 4d19f16b-3e00-4b89-a2ba-8645edf42fe5 -OfferID MS-AZR-0148P -TargetRegion southindia -Currency INR
 ```

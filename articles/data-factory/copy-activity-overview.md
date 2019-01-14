@@ -9,16 +9,15 @@ ms.reviewer: douglasl
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: conceptual
-ms.date: 10/19/2018
+ms.date: 12/07/2018
 ms.author: jingwang
-ms.openlocfilehash: df1fbcb09310985b7ca9d9fd2e7a987fc6e2b2dc
-ms.sourcegitcommit: 668b486f3d07562b614de91451e50296be3c2e1f
+ms.openlocfilehash: 36c94a035c7585d655f4482239de70cd2e1a5cc6
+ms.sourcegitcommit: 25936232821e1e5a88843136044eb71e28911928
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/19/2018
-ms.locfileid: "49457087"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54014133"
 ---
 # <a name="copy-activity-in-azure-data-factory"></a>Azure Data Factory のコピー アクティビティ
 
@@ -55,7 +54,7 @@ Azure Data Factory では、コピー アクティビティを使用して、オ
 
 コピー アクティビティを使用すると、ファイル ベースの 2 つのデータ ストア間で**ファイルをそのままコピー**できます。その場合、データはシリアル化/逆シリアル化なしで効率的にコピーされます。
 
-コピー アクティビティではまた、指定された形式 (**テキスト、JSON、Avro、ORC、および Parquet**) のファイルの読み取りと書き込みもサポートされ、圧縮コーデック **GZip、Deflate、BZip2、および ZipDeflate** がサポートされています。 詳細については、「[サポートされているファイル形式と圧縮形式](supported-file-formats-and-compression-codecs.md)」を参照してください。
+また、コピー アクティビティでは、指定された形式(**テキスト、JSON、Avro、ORC、Parquet**) でのファイルの読み取りと書き込み、および圧縮コーデック **GZip、Deflate、BZip2、および ZipDeflate** がサポートされています。 詳細については、「[サポートされているファイル形式と圧縮形式](supported-file-formats-and-compression-codecs.md)」を参照してください。
 
 たとえば、次のようなコピー アクティビティを実行できます。
 
@@ -130,7 +129,7 @@ Azure Data Factory のコピー アクティビティを使用するには、次
 
 | プロパティ | 説明 | 必須 |
 |:--- |:--- |:--- |
-| type | コピー アクティビティの type プロパティは、**Copy** に設定する必要があります。 | [はい] |
+| type | コピー アクティビティの type プロパティは**Copy** に設定する必要があります | [はい] |
 | inputs | ソース データを指す、前に作成したデータセットを指定します。 コピー アクティビティは、1 つの入力のみをサポートします。 | [はい] |
 | outputs | シンク データを指す、前に作成したデータセットを指定します。 コピー アクティビティは、1 つの出力のみをサポートします。 | [はい] |
 | typeProperties | コピー アクティビティを構成するためのプロパティのグループ。 | [はい] |
@@ -173,6 +172,7 @@ Azure Data Factory の [Author & Monitor]\(作成者と監視\) という UI ま
 | dataRead | ソースから読み取られたデータ サイズ | Int64 値 **(バイト数)** |
 | dataWritten | シンクに書き込まれたデータ サイズ | Int64 値 **(バイト数)** |
 | filesRead | ファイル ストレージからデータをコピーするときに、コピーされるファイルの数。 | Int64 値 (単位なし) |
+| fileScanned | ソース ファイル ストレージからスキャンされているファイルの数。 | Int64 値 (単位なし) |
 | filesWritten | ファイル ストレージにデータをコピーするときに、コピーされるファイルの数。 | Int64 値 (単位なし) |
 | rowsCopied | コピーされた行数 (バイナリ コピーには適用されません)。 | Int64 値 (単位なし) |
 | rowsSkipped | スキップされた互換性のない行の数。 この機能は、"enableSkipIncompatibleRow" を true に設定することによって有効にできます。 | Int64 値 (単位なし) |

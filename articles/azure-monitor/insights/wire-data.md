@@ -13,12 +13,12 @@ ms.tgt_pltfrm: na
 ms.topic: conceptual
 ms.date: 10/03/2018
 ms.author: magoedte
-ms.openlocfilehash: 04566009ba7b71b48cf3dfc7d51cbbdcd596dc0e
-ms.sourcegitcommit: 5b869779fb99d51c1c288bc7122429a3d22a0363
+ms.openlocfilehash: 953f0d2652c328b32d9cc7bac239901075ff6c1b
+ms.sourcegitcommit: 30d23a9d270e10bb87b6bfc13e789b9de300dc6b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/10/2018
-ms.locfileid: "53186540"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54104711"
 ---
 # <a name="wire-data-20-preview-solution-in-log-analytics"></a>Log Analytics の Wire Data 2.0 (プレビュー) ソリューション
 
@@ -33,7 +33,7 @@ Log Analytics エージェントに加えて、ワイヤ データ ソリュー�
 
 既定では、Log Analytics は、Windows および Linux に組み込まれているカウンターと、指定したその他のパフォーマンス カウンターからの CPU、メモリ、ディスク、ネットワーク パフォーマンスのデータをログに記録します。 コンピューターで使用されているサブネットやアプリケーション レベルのプロトコルを始めとするネットワークなどのデータは、エージェントごとにリアルタイムで収集されます。  ワイヤ データは、TCP トランスポート層ではなく、アプリケーション レベルでネットワーク データを調べます。  このソリューションは個別の ACK および SYN を調べません。  ハンドシェイクが完了すると、ライブ接続と見なされ、接続済みとしてマークされます。 その接続は両側が合意している限りはライブ接続のままになり、ソケットが開いて、データを前後に渡すことができます。  いずれかの側が接続を閉じると、切断済みとしてマークされます。  したがって、正常に完了したパケットの帯域幅のみがカウントされ、再送信および失敗したパケットに関するレポートは行われません。
 
-[sFlow](http://www.sflow.org/) などのソフトウェアと [Cisco の NetFlow プロトコル](http://www.cisco.com/c/en/us/products/collateral/ios-nx-os-software/ios-netflow/prod_white_paper0900aecd80406232.html)を使用したことがある場合は、ワイヤ データから表示される統計情報とデータについてよく知っているはずです。
+[sFlow](http://www.sflow.org/) などのソフトウェアと [Cisco の NetFlow プロトコル](https://www.cisco.com/c/en/us/products/collateral/ios-nx-os-software/ios-netflow/prod_white_paper0900aecd80406232.html)を使用したことがある場合は、ワイヤ データから表示される統計情報とデータについてよく知っているはずです。
 
 組み込みのログ検索クエリの種類には、次のようなものがあります。
 
@@ -58,9 +58,9 @@ Log Analytics エージェントに加えて、ワイヤ データ ソリュー�
 
 | **接続先ソース** | **サポートされています** | **説明** |
 | --- | --- | --- |
-| Windows エージェント | [はい] | ワイヤ データは、Windows エージェント コンピューターからのデータを分析して収集します。 <br><br> [Windows の Log Analytics エージェント](../../azure-monitor/platform/agent-windows.md)に加えて、Windows エージェントには Microsoft Dependency Agent が必要です。 オペレーティング システムのバージョンの一覧については、「[サポートされているオペレーティング システム](../../azure-monitor/insights/service-map-configure.md#supported-windows-operating-systems)」を参照してください。 |
-| Linux エージェント | [はい] | ワイヤ データは、Linux エージェント コンピューターからのデータを分析して収集します。<br><br> [Linux の Log Analytics エージェント](../../azure-monitor/learn/quick-collect-linux-computer.md)に加えて、Linux エージェントには Microsoft Dependency Agent が必要です。 オペレーティング システムのバージョンの一覧については、「[サポートされているオペレーティング システム](../../azure-monitor/insights/service-map-configure.md#supported-linux-operating-systems)」を参照してください。 |
-| System Center Operations Manager 管理グループ | [はい] | ワイヤ データは、接続された [System Center Operations Manager 管理グループ](../../azure-monitor/platform/om-agents.md)内の Windows エージェントと Linux エージェントからのデータを分析して収集します。 <br><br> System Center Operations Manager エージェント コンピューターから Log Analytics への直接接続が必要です。 |
+| Windows エージェント | はい | ワイヤ データは、Windows エージェント コンピューターからのデータを分析して収集します。 <br><br> [Windows の Log Analytics エージェント](../../azure-monitor/platform/agent-windows.md)に加えて、Windows エージェントには Microsoft Dependency Agent が必要です。 オペレーティング システムのバージョンの一覧については、「[サポートされているオペレーティング システム](../../azure-monitor/insights/service-map-configure.md#supported-windows-operating-systems)」を参照してください。 |
+| Linux エージェント | はい | ワイヤ データは、Linux エージェント コンピューターからのデータを分析して収集します。<br><br> [Linux の Log Analytics エージェント](../../azure-monitor/learn/quick-collect-linux-computer.md)に加えて、Linux エージェントには Microsoft Dependency Agent が必要です。 オペレーティング システムのバージョンの一覧については、「[サポートされているオペレーティング システム](../../azure-monitor/insights/service-map-configure.md#supported-linux-operating-systems)」を参照してください。 |
+| System Center Operations Manager 管理グループ | はい | ワイヤ データは、接続された [System Center Operations Manager 管理グループ](../../azure-monitor/platform/om-agents.md)内の Windows エージェントと Linux エージェントからのデータを分析して収集します。 <br><br> System Center Operations Manager エージェント コンピューターから Log Analytics への直接接続が必要です。 |
 | Azure ストレージ アカウント | いいえ  | ワイヤ データはエージェント コンピューターからデータを収集するため、Azure Storage から収集するデータはありません。 |
 
 Windows では、データの収集と送信のために System Center Operations Manager と Log Analytics の両方で Microsoft Monitoring Agent (MMA) が使用されます。 状況に応じて、このエージェントは System Center Operations Manager エージェント、Log Analytics エージェント、MMA、またはダイレクト エージェントと呼ばれます。 System Center Operations Manager と Log Analytics では、MMA バージョンが少し異なります。 これらのバージョンはそれぞれ、System Center Operations Manager、Log Analytics、またはその両方にレポートできます。

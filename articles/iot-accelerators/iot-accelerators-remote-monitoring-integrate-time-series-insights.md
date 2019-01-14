@@ -1,5 +1,5 @@
 ---
-title: Azure Time Series Insights とリモート監視の統合 | Microsoft Docs
+title: Time Series Insights とリモート監視の統合 - Azure | Microsoft Docs
 description: このハウツーでは、Time Series Insights がまだ含まれていない既存のリモート監視ソリューションに Time Series Insights を構成する方法を説明します。
 author: aditidugar
 manager: timlt
@@ -8,12 +8,12 @@ ms.date: 09/12/2018
 ms.topic: conceptual
 ms.service: iot-accelerators
 services: iot-accelerators
-ms.openlocfilehash: ba6d79661a2c07ba3eef1f16a117992a858830b5
-ms.sourcegitcommit: 616e63d6258f036a2863acd96b73770e35ff54f8
+ms.openlocfilehash: 655d65ebfbb0141acd829a64414d9ba20dd2c697
+ms.sourcegitcommit: c94cf3840db42f099b4dc858cd0c77c4e3e4c436
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/14/2018
-ms.locfileid: "45605931"
+ms.lasthandoff: 12/19/2018
+ms.locfileid: "53633744"
 ---
 # <a name="integrate-azure-time-series-insights-with-remote-monitoring"></a>Azure Time Series Insights とリモート監視の統合
 
@@ -49,7 +49,7 @@ az iot hub consumer-group create --hub-name contosorm30526 --name timeseriesinsi
 
 次に、追加のリソースとして Time Series Insights をリモート監視ソリューションにデプロイし、IoT ハブに接続します。
 
-1. [Azure Portal](http://portal.azure.com/) にサインインします。
+1. [Azure Portal](https://portal.azure.com/) にサインインします。
 
 1. **[リソースの作成]** > **[モノのインターネット (IoT)]** > **[Time Series Insights]** を選択します。
 
@@ -62,7 +62,7 @@ az iot hub consumer-group create --hub-name contosorm30526 --name timeseriesinsi
     | 環境名 | 次のスクリーン ショットでは、**contorosrmtsi** という名前を使用しています。 この手順を完了したら、独自の一意の名前を選択してください。 |
     | サブスクリプション | ドロップダウンから Azure サブスクリプションを選択します。 |
     | リソース グループ | **既存のものを使用します**。 既存のリモート監視リソース グループの名前を選択します。 |
-    | Location | **[米国東部]** を使用します。 可能な場合は、リモート監視ソリューションと同じリージョンに環境を作成します。 |
+    | 場所 | **[米国東部]** を使用します。 可能な場合は、リモート監視ソリューションと同じリージョンに環境を作成します。 |
     | SKU |**S1** |
     | 容量 | **1** |
 
@@ -164,12 +164,13 @@ IoT Hub に接続する新しいイベント ソースを作成します。 必�
 
 .NET: 
 
-```
+```cmd/sh
 docker pull azureiotpcs/asa-manager-dotnet:1.0.2
 ```
 
 Java:
-```
+
+```cmd/sh
 docker pull azureiotpcs/asa-manager-java:1.0.2
 ```
 
@@ -178,13 +179,14 @@ docker pull azureiotpcs/asa-manager-java:1.0.2
 コマンド プロンプトに次のコマンドを入力して、最新のテレメトリ マイクロサービスをプルします。
 
 .NET:
-```
+
+```cmd/sh
 docker pull azureiotpcs/telemetry-dotnet:1.0.2
 ```
 
 Java:
 
-```
+```cmd/sh
 docker pull azureiotpcs/telemetry-java:1.0.2
 ```
 
@@ -192,7 +194,7 @@ docker pull azureiotpcs/telemetry-java:1.0.2
 
 Time Series Insights エクスプローラーでデータを簡単に表示するため、環境に簡単にリンクできるように UI をカスタマイズすることをお勧めします。 これを行うには、次のコマンドを使用して Web UI への最新の変更をプルします。
 
-```
+```cmd/sh
 docker pull azureiotpcs/pcs-remote-monitoring-webui:1.0.2
 ```
 
@@ -220,7 +222,7 @@ Time Series Insights の統合を完了するには、更新されたマイク�
 
 1. docker compose yaml ファイル内の各マイクロサービスと VM の `env-setup` のスクリプトに次の環境変数を追加します。
 
-    ```
+    ```sh
     PCS_TELEMETRY_STORAGE_TYPE=tsi
     PCS_TSI_FQDN={TSI Data Access FQDN}
     PCS_AAD_TENANT={AAD Tenant Id}
@@ -244,7 +246,7 @@ Time Series Insights の統合を完了するには、更新されたマイク�
 
 1. TSI に次の新しい環境変数を追加するための構成マップを検索します。
 
-    ```
+    ```yaml
     telemetry.storage.type: "tsi"
     telemetry.tsi.fqdn: "{TSI Data Access FQDN}"
     security.auth.serviceprincipal.secret: "{AAD application service principal secret}"
@@ -252,7 +254,7 @@ Time Series Insights の統合を完了するには、更新されたマイク�
 
 4. テレメトリ サービス ポッドのテンプレート yaml ファイルを編集します。
 
-    ```
+    ```yaml
     - name: PCS_AAD_TENANT
         valueFrom:
         configMapKeyRef:
@@ -282,7 +284,7 @@ Time Series Insights の統合を完了するには、更新されたマイク�
 
 5. ASA マネージャー サービス ポッドのテンプレート yaml ファイルを編集します。
 
-    ```
+    ```yaml
     - name: PCS_TELEMETRY_STORAGE_TYPE
         valueFrom:
         configMapKeyRef:
@@ -292,6 +294,6 @@ Time Series Insights の統合を完了するには、更新されたマイク�
 
 ## <a name="next-steps"></a>次の手順
 
-* Time Series Insights エクスプローラーで、データを探索し、アラートを診断する方法については、[根本原因分析の実施](/tutorials)に関するチュートリアルを参照してください。
+* Time Series Insights エクスプローラーで、データを探索し、アラートを診断する方法については、[根本原因分析の実施](iot-accelerators-remote-monitoring-root-cause-analysis.md)に関するチュートリアルを参照してください。
 
 * Time Series Insights エクスプローラーでのデータの探索とクエリ方法については、ドキュメント「[Azure Time Series Insights エクスプローラー](https://docs.microsoft.com/azure/time-series-insights/time-series-insights-explorer)」を参照してください。

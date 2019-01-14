@@ -1,35 +1,39 @@
 ---
-title: Media Encoder Standard の形式とコーデック
+title: Media Encoder Standard の形式とコーデック - Azure
 description: このトピックでは、Media Encoder Standard の形式とコーデックの概要を示します。
 services: media-services
 documentationcenter: ''
 author: juliako
 manager: femila
 editor: ''
-ms.assetid: f334b1ce-2f56-4968-a019-f0a2b0016d9f
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/30/2018
+ms.date: 12/12/2018
 ms.author: juliako;anilmur
-ms.openlocfilehash: 9c6e26b082fb52f7d23bb1a827af30483f7fbd4f
-ms.sourcegitcommit: da3459aca32dcdbf6a63ae9186d2ad2ca2295893
+ms.openlocfilehash: fe1d681fa5f9ab49fec9112398ed03c87c975176
+ms.sourcegitcommit: 85d94b423518ee7ec7f071f4f256f84c64039a9d
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/07/2018
-ms.locfileid: "51255712"
+ms.lasthandoff: 12/14/2018
+ms.locfileid: "53384736"
 ---
 # <a name="media-encoder-standard-formats-and-codecs"></a>Media Encoder Standard の形式とコーデック
+
+> [!div class="op_single_selector" title1="使用している Media Services のバージョンを選択してください:"]
+> * [Version 2](media-services-media-encoder-standard-formats.md)
+> * [Version 3](../latest/media-encoder-standard-formats.md)
+
 このドキュメントでは、Media Encoder Standard で使用できる一般的なインポートおよびエクスポート ファイル形式の一覧を示しています。
 
 ## <a name="input-containerfile-formats"></a>入力コンテナー/ファイル形式
 | ファイル形式 (ファイル拡張子) | サポートされています |
 | --- | --- | --- | --- |
 | (H.264 および AAC コーデックでの) FLV (.flv) |[はい] |
-| MXF    (.mxf) |[はい] |
-| GXF    (.gxf) |[はい] |
+| MXF (.mxf) |[はい] |
+| GXF (.gxf) |[はい] |
 | MPEG2-PS、MPEG2-TS、3GP (.ts、.ps、.3gp、.3gpp、.mpg) |[はい] |
 | Windows Media Video (WMV)/ASF (.wmv、.asf) |[はい] |
 | AVI (非圧縮 8-bit/10-bit) (.avi) |[はい] |
@@ -41,8 +45,8 @@ ms.locfileid: "51255712"
 
 > [!NOTE]
 > 上に記載したのは、ごく一般的なファイル拡張子の一覧です。 Media Encoder Standard は他にもさまざまな拡張子をサポートしています (例: .m2ts、.mpeg2video、.qt)。 ファイルをエンコードしようとしたときに、ファイル形式がサポートされていないことに関するエラー メッセージが表示された場合は、[こちら](https://feedback.azure.com/forums/169396-media-services/category/144411-encoding-and-processing/)からフィードバックをお寄せください。
-> 
-> 
+>
+>
 
 ### <a name="audio-formats-in-input-containers"></a>入力コンテナーのオーディオ形式
 Media Encoder Standard の入力コンテナーは次のオーディオ形式に対応しています。
@@ -52,8 +56,6 @@ Media Encoder Standard の入力コンテナーは次のオーディオ形式に
 or
 
 * オーディオが個別 PCM トラックとして送信されるが、(ステレオまたは 5.1 への) チャネル マッピングをファイル メタデータから推測できる MXF、GXF、QuickTime ファイル
-
-明示的/ユーザー指定のチャネル マッピングが近い将来にサポートされる予定です。
 
 ## <a name="input-video-codecs"></a>入力ビデオ コーデック
 | 入力ビデオ コーデック | サポートされています |
@@ -100,7 +102,7 @@ or
 
 | ファイル形式 | ビデオ コーデック | オーディオ コーデック |
 | --- | --- | --- |
-| MP4  <br/><br/>(マルチビットレートの MP4 コンテナーを含む) |H.264 (High、Main、Baseline Profile) |AAC-LC、HE-AAC v1、HE-AAC v2 |
+| MP4<br/><br/>(マルチビットレートの MP4 コンテナーを含む) |H.264 (High、Main、Baseline Profile) |AAC-LC、HE-AAC v1、HE-AAC v2 |
 | MPEG2-TS |H.264 (High、Main、Baseline Profile) |AAC-LC、HE-AAC v1、HE-AAC v2 |
 
 ## <a name="media-services-learning-paths"></a>Media Services のラーニング パス
@@ -113,4 +115,3 @@ or
 [Azure Media Services を使用してオンデマンド コンテンツをエンコードする](media-services-encode-asset.md)
 
 [メディア エンコーダー スタンダードを使用したエンコード方法](media-services-dotnet-encode-with-media-encoder-standard.md)
-

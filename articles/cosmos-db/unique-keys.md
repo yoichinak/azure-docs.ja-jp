@@ -1,18 +1,18 @@
 ---
-title: Azure Cosmos DB における一意なキー
+title: Azure Cosmos DB で一意なキーを使用する
 description: Azure Cosmos DB データベースで一意なキーを使用する方法について説明します
 author: aliuy
+ms.author: andrl
 ms.service: cosmos-db
-ms.devlang: na
 ms.topic: conceptual
 ms.date: 10/30/2018
-ms.author: andrl
-ms.openlocfilehash: 006d0ef28d82a7648a56b3bf871c5a3afd6a55a6
-ms.sourcegitcommit: 1f9e1c563245f2a6dcc40ff398d20510dd88fd92
+ms.reviewer: sngun
+ms.openlocfilehash: 20e5c96110f07d8eaec218ed167c87a48fd65782
+ms.sourcegitcommit: 8330a262abaddaafd4acb04016b68486fba5835b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/14/2018
-ms.locfileid: "51624422"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54037380"
 ---
 # <a name="unique-keys-in-azure-cosmos-db"></a>Azure Cosmos DB における一意なキー
 

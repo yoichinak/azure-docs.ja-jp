@@ -1,5 +1,5 @@
 ---
-title: Azure App Service 上での認証と承認の高度な使用方法 | Microsoft Docs
+title: 認証と認可の高度な使用方法 - Azure App Service | Microsoft Docs
 description: App Service で認証と承認をカスタマイズし、ユーザーの要求とさまざまなトークンを取得する方法を示します。
 services: app-service
 documentationcenter: ''
@@ -13,36 +13,37 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 11/08/2018
 ms.author: cephalin
-ms.openlocfilehash: e1109ec8cc98c7e5fc72d7f56ade19968b0056cc
-ms.sourcegitcommit: db2cb1c4add355074c384f403c8d9fcd03d12b0c
+ms.custom: seodec18
+ms.openlocfilehash: f3e30309b230ec44ddf39648b943f3f76dc7805d
+ms.sourcegitcommit: 549070d281bb2b5bf282bc7d46f6feab337ef248
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/15/2018
-ms.locfileid: "51685329"
+ms.lasthandoff: 12/21/2018
+ms.locfileid: "53722653"
 ---
 # <a name="advanced-usage-of-authentication-and-authorization-in-azure-app-service"></a>Azure App Service 上での認証と承認の高度な使用方法
 
-この記事では、[App Service 上で組み込みの認証と承認](app-service-authentication-overview.md)をカスタマイズする方法と、アプリケーションから ID を管理する方法について説明します。 
+この記事では、[App Service 上で組み込みの認証と承認](overview-authentication-authorization.md)をカスタマイズする方法と、アプリケーションから ID を管理する方法について説明します。 
 
 すぐに開始するには、以下のチュートリアルのいずれかをご覧ください。
 
 * [チュートリアル: Azure App Service (Windows) でユーザーをエンド ツー エンドで認証および承認する](app-service-web-tutorial-auth-aad.md)
 * [チュートリアル: Linux 用 Azure App Service でユーザーをエンド ツー エンドで認証および承認する](containers/tutorial-auth-aad.md)
-* [Azure Active Directory ログインを使用するようにアプリを構成する方法](app-service-mobile-how-to-configure-active-directory-authentication.md)
-* [Facebook ログインを使用するようにアプリを構成する方法](app-service-mobile-how-to-configure-facebook-authentication.md)
-* [Google ログインを使用するようにアプリを構成する方法](app-service-mobile-how-to-configure-google-authentication.md)
-* [Microsoft アカウント ログインを使用するようにアプリを構成する方法](app-service-mobile-how-to-configure-microsoft-authentication.md)
-* [Twitter ログインを使用するようにアプリを構成する方法](app-service-mobile-how-to-configure-twitter-authentication.md)
+* [Azure Active Directory ログインを使用するようにアプリを構成する方法](configure-authentication-provider-aad.md)
+* [Facebook ログインを使用するようにアプリを構成する方法](configure-authentication-provider-facebook.md)
+* [Google ログインを使用するようにアプリを構成する方法](configure-authentication-provider-google.md)
+* [Microsoft アカウント ログインを使用するようにアプリを構成する方法](configure-authentication-provider-microsoft.md)
+* [Twitter ログインを使用するようにアプリを構成する方法](configure-authentication-provider-twitter.md)
 
 ## <a name="use-multiple-sign-in-providers"></a>複数のサインイン プロバイダーを使用する
 
-ポータル構成では、ユーザーに複数 (Facebook と Twitter の両方など) のサインイン プロバイダーを表示するターンキー手法は提供されません。 ただし、Web アプリに機能を追加することは難しくはありません。 手順の概要は次のとおりです。
+ポータル構成では、ユーザーに複数 (Facebook と Twitter の両方など) のサインイン プロバイダーを表示するターンキー手法は提供されません。 ただし、この機能をアプリに追加することは難しくありません。 手順の概要は次のとおりです。
 
 最初に、Azure Portal の **[認証/承認]** ページで、有効にする各 ID プロバイダーを構成します。
 
 **[要求が認証されない場合に実行するアクション]** で、**[匿名要求を許可する (操作不要)]** を選択します。
 
-サインイン ページ、ナビゲーション バーまたは Web アプリの他の任意の場所で、有効にする各プロバイダーへのサインイン リンクを追加します (`/.auth/login/<provider>`)。 例: 
+サインイン ページ、ナビゲーション バー、またはアプリのその他の任意の場所で、有効にした各プロバイダーへのサインイン リンク (`/.auth/login/<provider>`) を追加します。 例: 
 
 ```HTML
 <a href="/.auth/login/aad">Log in with Azure AD</a>
@@ -62,7 +63,7 @@ ms.locfileid: "51685329"
 
 ## <a name="validate-tokens-from-providers"></a>プロバイダーからのトークンを検証する
 
-クライアント主導のサインインでは、アプリケーションはユーザーをプロバイダーに手動でサインインさせ、検証のために認証トークンを App Service に送信します (「[Authentication flow](app-service-authentication-overview.md#authentication-flow)」をご覧ください)。 この検証自体では、必要なアプリ リソースへのアクセス権が実際には付与されませんが、検証に成功すると、アプリ リソースへのアクセスに使用できるセッション トークンが付与されます。 
+クライアント主導のサインインでは、アプリケーションはユーザーをプロバイダーに手動でサインインさせ、検証のために認証トークンを App Service に送信します (「[Authentication flow](overview-authentication-authorization.md#authentication-flow)」をご覧ください)。 この検証自体では、必要なアプリ リソースへのアクセス権が実際には付与されませんが、検証に成功すると、アプリ リソースへのアクセスに使用できるセッション トークンが付与されます。 
 
 プロバイダーのトークンを検証するには、最初に目的のプロバイダーを使用して App Service のアプリが構成されている必要があります。 実行時に、プロバイダーから認証トークンを取得した後、検証のためにトークンを `/.auth/login/<provider>` にポストします。 例:  
 
@@ -181,19 +182,19 @@ App Service では、特殊なヘッダーを使用して、アプリケーシ�
 
 - **Google**: `access_type=offline` クエリ文字列パラメーターを `/.auth/login/google` API 呼び出しに追加します。 Mobile Apps SDK を使用している場合は、`LogicAsync` オーバーロードの 1 つにパラメーターを追加できます ([Google 更新トークン](https://developers.google.com/identity/protocols/OpenIDConnect#refresh-tokens)に関するページをご覧ください)。
 - **Facebook**: 更新トークンを提供しません。 長期間維持されるトークンの有効期限は 60 日間です ([Facebook のアクセス トークンの有効期限と延長](https://developers.facebook.com/docs/facebook-login/access-tokens/expiration-and-extension)に関するページをご覧ください)。
-- **Twitter**: アクセス トークンに有効期限はありません ([Twitter OAuth の FAQ](https://developer.twitter.com/en/docs/basics/authentication/guides/oauth-faq) に関するページをご覧ください)。
-- **Microsoft アカウント**: [Microsoft アカウント認証設定を構成する](app-service-mobile-how-to-configure-microsoft-authentication.md)場合は、`wl.offline_access` スコープを選択します。
+- **Twitter**: アクセス トークンに有効期限はありません ([Twitter OAuth の FAQ](https://developer.twitter.com/en/docs/basics/authentication/FAQ) に関するページを参照してください)。
+- **Microsoft アカウント**: [Microsoft アカウント認証設定を構成する](configure-authentication-provider-microsoft.md)場合は、`wl.offline_access` スコープを選択します。
 - **Azure Active Directory**: [https://resources.azure.com](https://resources.azure.com) で、次の手順を実行します。
     1. ページの上部にある **[Read/Write]** を選択します。
-    1. 左側のブラウザーで、**subscriptions** > **_\<subscription\_name_** > **resourceGroups** > _**\<resource\_group\_name>**_ > **providers** > **Microsoft.Web** > **sites** > _**\<app\_name>**_ > **config** > **authsettings** に移動します。 
-    1. **[編集]** をクリックします。
-    1. 次のプロパティを変更します。 _\<app\_id>_ を、アクセスするサービスの Azure Active Directory アプリケーション ID に置き換えます。
+    2. 左側のブラウザーで、**subscriptions** > **_\<subscription\_name_** > **resourceGroups** > _**\<resource\_group\_name>**_ > **providers** > **Microsoft.Web** > **sites** > _**\<app\_name>**_ > **config** > **authsettings** に移動します。 
+    3. **[編集]** をクリックします。
+    4. 次のプロパティを変更します。 _\<app\_id>_ を、アクセスするサービスの Azure Active Directory アプリケーション ID に置き換えます。
 
         ```json
         "additionalLoginParams": ["response_type=code id_token", "resource=<app_id>"]
         ```
 
-    1. **[Put]** をクリックします。 
+    5. **[Put]** をクリックします。 
 
 プロバイダーが構成されたら、トークン ストアで[更新トークンを見つけ、そのアクセス トークンの有効期限を確認](#retrieve-tokens-in-app-code)できます。 
 
@@ -242,5 +243,5 @@ Microsoft アカウントと Azure Active Directory の両方に複数のドメ�
 ## <a name="next-steps"></a>次の手順
 
 > [!div class="nextstepaction"]
-> [チュートリアル: エンドツーエンドでのユーザーの認証と承認 (Windows)](app-service-web-tutorial-auth-aad.md)
-> [チュートリアル: エンドツーエンドでのユーザーの認証と承認 (Linux)](containers/tutorial-auth-aad.md)
+> [チュートリアル: ユーザーをエンド ツー エンドで認証および承認する (Windows)](app-service-web-tutorial-auth-aad.md)
+> [チュートリアル: ユーザーをエンド ツー エンドで認証および承認する (Linux)](containers/tutorial-auth-aad.md)

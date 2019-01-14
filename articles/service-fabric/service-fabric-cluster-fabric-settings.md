@@ -12,77 +12,23 @@ ms.devlang: dotnet
 ms.topic: reference
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 10/08/2018
+ms.date: 12/11/2018
 ms.author: aljo
-ms.openlocfilehash: 7a80693090b92db55ad2feed52fdbb2a455e3c39
-ms.sourcegitcommit: 55952b90dc3935a8ea8baeaae9692dbb9bedb47f
+ms.openlocfilehash: fb3e61b2b43194cb550a7c87c6841e91b4025560
+ms.sourcegitcommit: da69285e86d23c471838b5242d4bdca512e73853
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48884495"
+ms.lasthandoff: 01/03/2019
+ms.locfileid: "54002758"
 ---
 # <a name="customize-service-fabric-cluster-settings"></a>Service Fabric クラスターの設定をカスタマイズする
-この記事では、Service Fabric クラスターのさまざまなファブリックの設定をカスタマイズする方法について説明します。 Azure でホストされているクラスターの場合、[Azure portal](https://portal.azure.com) または Azure Resource Manager テンプレートを使って設定をカスタマイズできます。 スタンドアロン クラスターでは、ClusterConfig.json ファイルを更新し、クラスターで構成のアップグレードを実行することにより、設定をカスタマイズします。 
+この記事では、カスタマイズできる Service Fabric クラスターのさまざまなファブリック設定について説明します。 Azure でホストされているクラスターの場合、[Azure portal](https://portal.azure.com) または Azure Resource Manager テンプレートを使って設定をカスタマイズできます。 詳細については、[Azure クラスターの構成のアップグレード](service-fabric-cluster-config-upgrade-azure.md)に関するページを参照してください。 スタンドアロン クラスターでは、*ClusterConfig.json* ファイルを更新し、クラスターで構成のアップグレードを実行することによって設定をカスタマイズします。 詳細については、[スタンドアロン クラスターの構成のアップグレード](service-fabric-cluster-config-upgrade-windows-server.md)に関するページを参照してください。
 
-> [!NOTE]
-> ポータルで利用できるのは一部の設定のみです。 次に示す設定がポータルで利用できない場合は、Azure Resource Manager テンプレートを使用してカスタマイズします。
-> 
-
-## <a name="description-of-the-different-upgrade-policies"></a>各アップグレード ポリシーの説明
+アップグレード ポリシーには、次の 3 種類があります。
 
 - **Dynamic**: 動的構成を変更しても、Service Fabric プロセスまたはサービス ホスト プロセスのプロセス再起動は発生しません。 
 - **Static**: 静的構成を変更すると、変更を反映するために Service Fabric ノードが再起動されます。 ノード上のサービスは再起動されます。
 - **NotAllowed**: これらの設定は変更できません。 これらの設定を変更するには、クラスターを破棄して新しいクラスターを作成する必要があります。 
-
-## <a name="customize-cluster-settings-using-resource-manager-templates"></a>Resource Manager テンプレートを使用してクラスター設定をカスタマイズする
-次の手順はで、Azure Resource Explorer を使って *MaxDiskQuotaInMB* という新しい設定を *[診断]* セクションに追加する方法を示します。
-
-1. https://resources.azure.com に移動します
-2. **[サブスクリプション]** -> **\<ご使用のサブスクリプション>** -> **[resourceGroups]** -> **\<ご使用のリソース グループ>** -> **[プロバイダー]** -> **[Microsoft.ServiceFabric]** -> **[クラスター]** -> **\<ご使用のクラスター名 >** の順に展開して、サブスクリプションに移動します
-3. 右上隅の **[読み取り/書き込み]** を選択します。
-4. **[編集]** を選択して `fabricSettings` JSON 要素を更新し、新しい要素を追加します。
-
-```json
-      {
-        "name": "Diagnostics",
-        "parameters": [
-          {
-            "name": "MaxDiskQuotaInMB",
-            "value": "65536"
-          }
-        ]
-      }
-```
-
-Azure Resource Manager を使用して次の方法のいずれかでクラスターの設定をカスタマイズすることもできます。
-
-- [Azure portal](https://docs.microsoft.com/azure/azure-resource-manager/resource-manager-export-template) を使用し、Resource Manager テンプレートをエクスポートして更新します。
-- [PowerShell](https://docs.microsoft.com/azure/azure-resource-manager/resource-manager-export-template-powershell) を使用し、Resource Manager テンプレートをエクスポートして更新します。
-- [Azure CLI](https://docs.microsoft.com/azure/azure-resource-manager/resource-manager-export-template-cli) を使用し、Resource Manager テンプレートをエクスポートして更新します。
-- 設定を直接変更するには、Azure RM PowerShell の [Set-AzureRmServiceFabricSetting](https://docs.microsoft.com/powershell/module/azurerm.servicefabric/Set-AzureRmServiceFabricSetting) および [Remove-AzureRmServiceFabricSetting](https://docs.microsoft.com/powershell/module/azurerm.servicefabric/Remove-AzureRmServiceFabricSetting) コマンドを使います。
-- 設定を直接変更するには、Azure CLI の [az sf cluster setting](https://docs.microsoft.com/cli/azure/sf/cluster/setting) コマンドを使います。
-
-## <a name="customize-cluster-settings-for-standalone-clusters"></a>スタンドアロン クラスターのクラスター設定をカスタマイズする
-スタンドアロン クラスターは、ClusterConfig.json ファイルを使って構成します。 詳しくは、「[スタンドアロン Windows クラスターの構成設定](./service-fabric-cluster-manifest.md)」をご覧ください。
-
-ClusterConfig.json の [Cluster properties](./service-fabric-cluster-manifest.md#cluster-properties) セクションの `fabricSettings` セクションで、設定を追加、更新、または削除できます。 
-
-たとえば、次の JSON は、`fabricSettings` の *Diagnostics* セクションに新しい設定 *MaxDiskQuotaInMB* を追加します。
-
-```json
-      {
-        "name": "Diagnostics",
-        "parameters": [
-          {
-            "name": "MaxDiskQuotaInMB",
-            "value": "65536"
-          }
-        ]
-      }
-```
-
-ClusterConfig.json ファイルの設定を変更した後は、「[クラスター構成のアップグレード](./service-fabric-cluster-upgrade-windows-server.md#upgrade-the-cluster-configuration)」の説明に従って、クラスターに設定を適用します。 
-
 
 次に、カスタマイズできる Fabric の設定の一覧をセクション別に整理して示します。
 
@@ -95,7 +41,7 @@ ClusterConfig.json ファイルの設定を変更した後は、「[クラスタ
 |DefaultHttpRequestTimeout |時間 (秒単位)、 既定値は 120 です |動的|timespan を秒単位で指定します。  HTTP アプリケーション ゲートウェイで処理される HTTP 要求の既定の要求タイムアウトを指定します。 |
 |ForwardClientCertificate|ブール値、既定値は FALSE|動的|false に設定すると、リバース プロキシはクライアント証明書を要求しません。true に設定すると、リバース プロキシは SSL ハンドシェイク中にクライアント証明書を要求し、base64 でエンコードされた PEM 書式設定文字列を X-Client-Certificate というヘッダーのサービスに転送します。サービスは、証明書データを検査した後、適切な状態コードで要求に失敗する可能性があります。 この状況で、クライアントが証明書を提示しない場合、リバース プロキシは空のヘッダーを転送し、サービスによって処理されます。 リバース プロキシは透明なレイヤーとして機能します。 詳細については、[クライアント証明書の認証の設定](service-fabric-reverseproxy-configure-secure-communication.md#setting-up-client-certificate-authentication-through-the-reverse-proxy)に関する記事を参照してください。 |
 |GatewayAuthCredentialType |string、既定値は "None" |静的| HTTP アプリケーション ゲートウェイ エンドポイントで使用するセキュリティ資格情報の種類を示します。有効な値は "None/X509 です。 |
-|GatewayX509CertificateFindType |string、既定値は "FindByThumbprint" |動的| GatewayX509CertificateStoreName で指定されたストア内での証明書の検索方法を示します。サポートされる値は、FindByThumbprint と FindBySubjectName です。 |
+|GatewayX509CertificateFindType |string、既定値は "FindByThumbprint" |動的| GatewayX509CertificateStoreName で指定されたストア内での証明書の検索方法を示します。サポートされる値:FindByThumbprint、FindBySubjectName。 |
 |GatewayX509CertificateFindValue | string、既定値は "" |動的| HTTP アプリケーション ゲートウェイの証明書の検索に使用する検索フィルター値。 この証明書は HTTPS エンドポイントで構成されます。サービスで必要な場合は、この証明書を使用してアプリケーションの ID を検証することもできます。 FindValue が最初に検索され、これが存在しない場合は、FindValueSecondary が検索されます。 |
 |GatewayX509CertificateFindValueSecondary | string、既定値は "" |動的|HTTP アプリケーション ゲートウェイの証明書の検索に使用する検索フィルター値。 この証明書は HTTPS エンドポイントで構成されます。サービスで必要な場合は、この証明書を使用してアプリケーションの ID を検証することもできます。 FindValue が最初に検索され、これが存在しない場合は、FindValueSecondary が検索されます。|
 |GatewayX509CertificateStoreName |string、既定値は "My" |動的| HTTP アプリケーション ゲートウェイの証明書を格納する X.509 証明書ストアの名前。 |
@@ -105,7 +51,7 @@ ClusterConfig.json ファイルの設定を変更した後は、「[クラスタ
 |NumberOfParallelOperations | uint、既定値は 5000 |静的|HTTP サーバー キューに送信する読み取りの数。 HttpGateway が対応できる同時要求の数を制御します。 |
 |RemoveServiceResponseHeaders|string、既定値は "Date; Server"|静的|サービス応答がクライアントに転送される前に応答から削除される応答ヘッダーの、セミコロン/コンマ区切りのリスト。 空の文字列に設定されている場合は、サービスから返されたすべてのヘッダーをそのまま渡します。 つまり  データとサーバーを上書きしないでください |
 |ResolveServiceBackoffInterval |時間 (秒単位)、既定値は 5 |動的|timespan を秒単位で指定します。  失敗したサービス解決操作を再試行するまでの既定のバックオフ間隔を指定します。 |
-|SecureOnlyMode|ブール値、既定値は FALSE|動的| SecureOnlyMode: true: リバース プロキシの転送先は、セキュリティで保護されたエンドポイントを公開するサービスだけです。 false: リバース プロキシは、セキュリティで保護された/セキュリティで保護されないエンドポイントに要求を転送できます。 詳細については、[リバース プロキシ エンドポイントの選択ロジック](service-fabric-reverseproxy-configure-secure-communication.md#endpoint-selection-logic-when-services-expose-secure-as-well-as-unsecured-endpoints)に関する記事を参照してください。  |
+|SecureOnlyMode|ブール値、既定値は FALSE|動的| SecureOnlyMode: true:リバース プロキシの転送先は、セキュリティで保護されたエンドポイントを公開するサービスだけです。 false:リバース プロキシは、セキュリティで保護された/セキュリティで保護されないエンドポイントに要求を転送できます。 詳細については、[リバース プロキシ エンドポイントの選択ロジック](service-fabric-reverseproxy-configure-secure-communication.md#endpoint-selection-logic-when-services-expose-secure-as-well-as-unsecured-endpoints)に関する記事を参照してください。  |
 |ServiceCertificateThumbprints|string、既定値は ""|動的|リバース プロキシが信頼できるリモート証明書のサムプリントのコンマで区切られた一覧。 詳細については、[リバース プロキシのセキュリティで保護された接続](service-fabric-reverseproxy-configure-secure-communication.md#secure-connection-establishment-between-the-reverse-proxy-and-services)に関する記事を参照してください。 |
 
 ## <a name="applicationgatewayhttpservicecommonnameandissuer"></a>ApplicationGateway/Http/ServiceCommonNameAndIssuer
@@ -193,6 +139,13 @@ ClusterConfig.json ファイルの設定を変更した後は、「[クラスタ
 |PartitionPrefix|string、既定値は "--"|静的|パーティション分割されたサービスの DNS クエリのパーティション プレフィックス文字列値を制御します。 値には次の条件があります。 <ul><li>DNS クエリの一部なので、RFC に準拠している必要があります。</li><li>ドット '.' は DNS サフィックスの動作を妨げるため、使用しないでください。</li><li>長さの上限は 5 文字です。</li><li>空の文字列にすることはできません。</li><li>PartitionPrefix 設定がオーバーライドされている場合は、PartitionSuffix もオーバーライドされる必要があります。その逆も同様です。</li></ul>詳細については、「[Azure Service Fabric の DNS サービス](service-fabric-dnsservice.md)」を参照してください。|
 |PartitionSuffix|string、既定値は ""|静的|パーティション分割されたサービスの DNS クエリのパーティション サフィックス文字列値を制御します。値には次の条件があります。 <ul><li>DNS クエリの一部なので、RFC に準拠している必要があります。</li><li>ドット '.' は DNS サフィックスの動作を妨げるため、使用しないでください。</li><li>長さの上限は 5 文字です。</li><li>PartitionPrefix 設定がオーバーライドされている場合は、PartitionSuffix もオーバーライドされる必要があります。その逆も同様です。</li></ul>詳細については、「[Azure Service Fabric の DNS サービス](service-fabric-dnsservice.md)」を参照してください。 |
 
+## <a name="eventstore"></a>EventStore
+| **パラメーター** | **使用できる値** | **アップグレード ポリシー** | **ガイダンスまたは簡単な説明** |
+| --- | --- | --- | --- |
+|MinReplicaSetSize|int、既定値は 0|静的|EventStore サービスの MinReplicaSetSize |
+|PlacementConstraints|string、既定値は ""|静的|  EventStore サービスの PlacementConstraints |
+|TargetReplicaSetSize|int、既定値は 0|静的| EventStore サービスの TargetReplicaSetSize |
+
 ## <a name="fabricclient"></a>FabricClient
 | **パラメーター** | **使用できる値** | **アップグレード ポリシー** | **ガイダンスまたは簡単な説明** |
 | --- | --- | --- | --- |
@@ -222,22 +175,22 @@ ClusterConfig.json ファイルの設定を変更した後は、「[クラスタ
 ## <a name="fabricnode"></a>FabricNode
 | **パラメーター** | **使用できる値** | **アップグレード ポリシー** | **ガイダンスまたは簡単な説明** |
 | --- | --- | --- | --- |
-|ClientAuthX509FindType |string、既定値は "FindByThumbprint" |動的|ClientAuthX509StoreName で指定されたストア内での証明書の検索方法を示します。サポートされる値は、FindByThumbprint と FindBySubjectName です。 |
+|ClientAuthX509FindType |string、既定値は "FindByThumbprint" |動的|ClientAuthX509StoreName で指定されたストア内での証明書の検索方法を示します。サポートされる値:FindByThumbprint、FindBySubjectName。 |
 |ClientAuthX509FindValue |string、既定値は "" | 動的|既定の管理者ロールの FabricClient の証明書を検索する際に使用する検索フィルター値。 |
 |ClientAuthX509FindValueSecondary |string、既定値は "" |動的|既定の管理者ロールの FabricClient の証明書を検索する際に使用する検索フィルター値。 |
 |ClientAuthX509StoreName |string、既定値は "My" |動的|既定の管理者ロールの FabricClient の証明書を格納する X.509 証明書ストアの名前。 |
-|ClusterX509FindType |string、既定値は "FindByThumbprint" |動的|ClusterX509StoreName で指定されたストア内でのクラスター証明書の検索方法を示します。サポートされる値は "FindByThumbprint" と "FindBySubjectName" です。"FindBySubjectName" を指定すると、一致するものが複数ある場合に、有効期限が最も長いものが使用されます。 |
+|ClusterX509FindType |string、既定値は "FindByThumbprint" |動的|ClusterX509StoreName で指定されたストア内でのクラスター証明書の検索方法を示します。サポートされる値は"FindByThumbprint" と "FindBySubjectName" です。"FindBySubjectName" を指定すると、一致するものが複数ある場合に、有効期限が最も長いものが使用されます。 |
 |ClusterX509FindValue |string、既定値は "" |動的|クラスター証明書の検索に使用する検索フィルター値。 |
 |ClusterX509FindValueSecondary |string、既定値は "" |動的|クラスター証明書の検索に使用する検索フィルター値。 |
 |ClusterX509StoreName |string、既定値は "My" |動的|クラスター内通信をセキュリティで保護するためのクラスター証明書を格納する X.509 証明書ストアの名前。 |
 |EndApplicationPortRange |int、既定値は 0 |静的|ホスティング サブシステムによって管理されるアプリケーション ポートの終了 (この値を含まない)。 Hosting で EndpointFilteringEnabled が true の場合は必須です。 |
-|ServerAuthX509FindType |string、既定値は "FindByThumbprint" |動的|ServerAuthX509StoreName で指定されたストア内でのサーバー証明書の検索方法を示します。サポートされる値は、FindByThumbprint と FindBySubjectName です。 |
+|ServerAuthX509FindType |string、既定値は "FindByThumbprint" |動的|ServerAuthX509StoreName で指定されたストア内でのサーバー証明書の検索方法を示します。サポートされる値:FindByThumbprint、FindBySubjectName。 |
 |ServerAuthX509FindValue |string、既定値は "" |動的|サーバー証明書の検索に使用する検索フィルター値。 |
 |ServerAuthX509FindValueSecondary |string、既定値は "" |動的|サーバー証明書の検索に使用する検索フィルター値。 |
 |ServerAuthX509StoreName |string、既定値は "My" |動的|エントリ サービスのサーバー証明書を格納する X.509 証明書ストアの名前。 |
 |StartApplicationPortRange |int、既定値は 0 |静的|ホスティング サブシステムによって管理されるアプリケーション ポートの開始。 Hosting で EndpointFilteringEnabled が true の場合は必須です。 |
 |StateTraceInterval |秒単位。既定値は 300 |静的|timespan を秒単位で指定します。 FM/FMM で各ノードおよび実行中のノードの状態をトレースする間隔。 |
-|UserRoleClientX509FindType |string、既定値は "FindByThumbprint" |動的|UserRoleClientX509StoreName で指定されたストア内での証明書の検索方法を示します。サポートされる値は、FindByThumbprint と FindBySubjectName です。 |
+|UserRoleClientX509FindType |string、既定値は "FindByThumbprint" |動的|UserRoleClientX509StoreName で指定されたストア内での証明書の検索方法を示します。サポートされる値:FindByThumbprint、FindBySubjectName。 |
 |UserRoleClientX509FindValue |string、既定値は "" |動的|既定のユーザー ロールの FabricClient の証明書を検索する際に使用する検索フィルター値。 |
 |UserRoleClientX509FindValueSecondary |string、既定値は "" |動的|既定のユーザー ロールの FabricClient の証明書を検索する際に使用する検索フィルター値。 |
 |UserRoleClientX509StoreName |string、既定値は "My" |動的|既定のユーザー ロールの FabricClient の証明書を格納する X.509 証明書ストアの名前。 |
@@ -284,7 +237,6 @@ ClusterConfig.json ファイルの設定を変更した後は、「[クラスタ
 ## <a name="federation"></a>フェデレーション
 | **パラメーター** | **使用できる値** | **アップグレード ポリシー** | **ガイダンスまたは簡単な説明** |
 | --- | --- | --- | --- |
-|GlobalTicketLeaseDuration|TimeSpan、既定値は Common::TimeSpan::FromSeconds(300)|静的|timespan を秒単位で指定します。 クラスター内のノードは、有権者とのグローバル リースを維持する必要があります。 有権者は、この期間にグローバル リースを送信してクラスター全体に伝達します。 期限切れになると、リースは失われます。 リースのクォーラムが失われると、ノードはクラスターを破棄します。この期間にノードのクォーラムとの通信を受信できないためです。  この値は、クラスターのサイズに基づいて調整する必要があります。 |
 |LeaseDuration |秒単位。既定値は 30 |動的|ノードとその近隣ノードの間のリース期間。 |
 |LeaseDurationAcrossFaultDomain |秒単位。既定値は 30 |動的|障害ドメイン全体におけるノードとその近隣ノードの間のリース期間。 |
 
@@ -322,6 +274,8 @@ ClusterConfig.json ファイルの設定を変更した後は、「[クラスタ
 |SecondaryAccountType | string、既定値は ""|静的| FileStoreService 共有の ACL の、プリンシパルのセカンダリ AccountType。 |
 |SecondaryAccountUserName | string、既定値は ""| 静的|FileStoreService 共有の ACL の、プリンシパルのセカンダリ アカウントの Username。 |
 |SecondaryAccountUserPassword | SecureString、既定値は空 |静的|FileStoreService 共有の ACL の、プリンシパルのセカンダリ アカウントのパスワード。 |
+|SecondaryFileCopyRetryDelayMilliseconds|uint、既定値は 500|動的|ファイル コピー再試行の遅延 (ミリ秒単位)。|
+|UseChunkContentInTransportMessage|ブール値、既定値は TRUE|動的|v6.4 で導入されたアップロード プロトコルの新しいバージョンを使用するためのフラグ。 このプロトコル バージョンでは、ファイルをイメージ ストアにアップロードするために、Service Fabric トランスポートが使用されます。これは、以前のバージョンで使用されていた SMB プロトコルよりも高いパフォーマンスを提供します。 |
 
 ## <a name="healthmanager"></a>HealthManager
 | **パラメーター** | **使用できる値** | **アップグレード ポリシー** | **ガイダンスまたは簡単な説明** |
@@ -352,15 +306,18 @@ ClusterConfig.json ファイルの設定を変更した後は、「[クラスタ
 |ApplicationUpgradeTimeout| TimeSpan、既定値は Common::TimeSpan::FromSeconds(360)|動的| timespan を秒単位で指定します。 アプリケーション アップグレードのタイムアウト。 タイムアウトが "ActivationTimeout" を下回る場合、デプロイ機能は失敗します。 |
 |ContainerServiceArguments|string、既定値は "-H localhost:2375 -H npipe://"|静的|Service Fabric (SF) が Docker デーモンを管理します (Win10 のような Windows クライアント コンピューターを除く)。 この構成により、ユーザーは Docker デーモンの起動時に渡す必要があるカスタム引数を指定できます。 カスタム引数が指定された場合、Service Fabric は、他の引数を一切 Docker エンジンに渡しませんが、'--pidfile' 引数は例外です。 そのため、ユーザーはカスタム引数の一部として '--pidfile' 引数を指定することはできません。 また、Service Fabric が Docker デーモンと通信できるようにするために、Docker デーモンに既定の名前付きパイプ (Windows の場合) または UNIX ドメイン ソケット (Linux の場合) でリッスンさせるようにカスタム引数で指定する必要があります。|
 |ContainerServiceLogFileMaxSizeInKb|int、既定値は 32768|静的|Docker コンテナーで生成されるログ ファイルの最大ファイル サイズ。  Windows のみ。|
+|ContainerImageDownloadTimeout|int、秒数、既定値は 1,200 (20 分)|動的|イメージのダウンロードがタイムアウトするまでの秒数。|
 |ContainerImagesToSkip|string、イメージ名を縦線で区切ります。既定値は ""|静的|削除していはいけない 1 つまたは複数のコンテナー イメージの名前。  PruneContainerImages パラメーターと共に使用します。|
 |ContainerServiceLogFileNamePrefix|string、既定値は "sfcontainerlogs"|静的|Docker コンテナーで生成されるログ ファイルのファイル名プレフィックス。  Windows のみ。|
 |ContainerServiceLogFileRetentionCount|int、既定値は 10|静的|ログ ファイルを上書きする前に Docker コンテナーによって生成されたログ ファイルの数。  Windows のみ。|
 |CreateFabricRuntimeTimeout|TimeSpan、既定値は Common::TimeSpan::FromSeconds(120)|動的| timespan を秒単位で指定します。 同期 FabricCreateRuntime 呼び出しのタイムアウト値 |
 |DefaultContainerRepositoryAccountName|string、既定値は ""|静的|ApplicationManifest.xml に指定されている資格情報の代わりに使用される既定の資格情報 |
 |DefaultContainerRepositoryPassword|string、既定値は ""|静的|ApplicationManifest.xml に指定されている資格情報の代わりに使用される既定のパスワード資格情報|
+|DefaultContainerRepositoryPasswordType|string、既定値は ""|静的|空の文字列でない場合、値は "Encrypted" または "SecretsStoreRef" です。|
 |DeploymentMaxFailureCount|int、既定値は 20| 動的|ノードへのアプリケーションのデプロイは、DeploymentMaxFailureCount 回、再試行された後に失敗します。| 
 |DeploymentMaxRetryInterval| TimeSpan、既定値は Common::TimeSpan::FromSeconds(3600)|動的| timespan を秒単位で指定します。 デプロイの最大再試行間隔。 連続して失敗するたびに、再試行間隔が Min(DeploymentMaxRetryInterval; Continuous Failure Count * DeploymentRetryBackoffInterval) として計算されます |
 |DeploymentRetryBackoffInterval| TimeSpan、既定値は Common::TimeSpan::FromSeconds(10)|動的|timespan を秒単位で指定します。 デプロイ エラーのバックオフ間隔。 継続的なデプロイ エラーのたびに、システムによってデプロイが最大 MaxDeploymentFailureCount 回、再試行されます。 再試行間隔は、継続的なデプロイ エラーとデプロイ バックオフ間隔の積です。 |
+|DisableContainers|ブール値、既定値は FALSE|静的|コンテナーを無効にするための構成 - 使用されなくなった構成である DisableContainerServiceStartOnContainerActivatorOpen の代わりに使用します |
 |DisableDockerRequestRetry|ブール値、既定値は FALSE |動的| 既定では、SF は、送信される各 http 要求のタイムアウトを "DockerRequestTimeout" として DD (docker デーモン) と通信します。 DD がこの期間内に応答しない場合、SF は、最上位レベルの操作にまだ残り時間があれば要求を再送信します。  hyperv コンテナーと共に使用します。DD がコンテナーを起動または非アクティブ化するのに時間がかかることがあります。 そのような場合、DD 要求が SF パースペクティブからタイムアウトし、SF は操作を再試行します。 これは DD にさらに圧力をかけるように見えることがあります。 この構成により、この再試行が無効になり、DD が応答するまで待機します。 |
 |EnableActivateNoWindow| ブール値、既定値は FALSE|動的| アクティブ化されたプロセスは、コンソールを使用せずに、バックグラウンドで作成されます。 |
 |EnableContainerServiceDebugMode|ブール値、既定値は TRUE|静的|Docker コンテナーのログを有効または無効にします。  Windows のみ。|
@@ -370,6 +327,7 @@ ClusterConfig.json ファイルの設定を変更した後は、「[クラスタ
 |FabricContainerAppsEnabled| ブール値、既定値は FALSE|静的| |
 |FirewallPolicyEnabled|ブール値、既定値は FALSE|静的| ServiceManifest で明示的に指定されているポートを使用して、エンドポイント リソースのファイアウォール ポートを開くことができるようにします |
 |GetCodePackageActivationContextTimeout|TimeSpan、既定値は Common::TimeSpan::FromSeconds(120)|動的|timespan を秒単位で指定します。 CodePackageActivationContext 呼び出しのタイムアウト値。 これはアドホック サービスには適用されません。 |
+|GovernOnlyMainMemoryForProcesses|ブール値、既定値は FALSE|静的|リソース管理の既定の動作では、プロセスが使用する合計メモリ量 (RAM + スワップ) に対して、MemoryInMB で指定された制限を設定します。 制限を超えた場合、プロセスは OutOfMemory 例外を受け取ります。 このパラメーターが true に設定されている場合、制限は、プロセスが使用する RAM メモリの量にのみ適用されます。 この制限を超え、この設定が true である場合は、OS によってメイン メモリがディスクにスワップされます。 |
 |IPProviderEnabled|ブール値、既定値は FALSE|静的|IP アドレスの管理を有効にします。 |
 |IsDefaultContainerRepositoryPasswordEncrypted|ブール値、既定値は FALSE|静的|DefaultContainerRepositoryPassword を暗号化するかどうか。|
 |LinuxExternalExecutablePath|string、既定値は "/usr/bin/" |静的|ノード上の外部の実行可能なコマンドのプライマリ ディレクトリ。|
@@ -392,17 +350,9 @@ ClusterConfig.json ファイルの設定を変更した後は、「[クラスタ
 | --- | --- | --- | --- |
 |ActiveListeners |uint、既定値は 50 |静的| HTTP サーバー キューに送信する読み取りの数。 HttpGateway が対応できる同時要求の数を制御します。 |
 |HttpGatewayHealthReportSendInterval |秒単位。既定値は 30 |静的|timespan を秒単位で指定します。 HTTP ゲートウェイが、累積した正常性レポートを Health Manager に送信する間隔。 |
+|HttpStrictTransportSecurityHeader|string、既定値は ""|動的| HttpGateway によって送信されるすべての応答に含められる HTTP Strict Transport Security ヘッダーの値を指定します。 空の文字列に設定した場合、このヘッダーはゲートウェイ応答に含められません。|
 |IsEnabled|ブール値、既定値は false |静的| HttpGateway を有効または無効にします。 HttpGateway は、既定では無効になっています。 |
 |MaxEntityBodySize |uint、既定値は 4194304 |動的|HTTP 要求の予想される本文の最大サイズを指定します。 既定値は 4 MB です。 本文のサイズがこの値を超えている場合、HttpGateway は要求を失敗させます。 最小読み取りチャンク サイズは 4096 バイトです。 そのため、この値は 4096 以上にする必要があります。 |
-
-## <a name="imagestoreclient"></a>ImageStoreClient
-| **パラメーター** | **使用できる値** | **アップグレード ポリシー** | **ガイダンスまたは簡単な説明** |
-| --- | --- | --- | --- |
-|ClientCopyTimeout | 時間 (秒単位)、既定値は 1800 |動的| timespan を秒単位で指定します。 イメージ ストア サービスに対するトップレベルのコピー要求のタイムアウト値。 |
-|ClientDefaultTimeout | 時間 (秒単位)、既定値は 180 |動的| timespan を秒単位で指定します。 イメージ ストア サービスに対するアップロード/ダウンロード要求以外のすべての要求 (存在確認、削除など) のタイムアウト値。 |
-|ClientDownloadTimeout | 時間 (秒単位)、既定値は 1800 |動的| timespan を秒単位で指定します。 イメージ ストア サービスに対するトップレベルのダウンロード要求のタイムアウト値。 |
-|ClientListTimeout | 時間 (秒単位)、既定値は 600 |動的|timespan を秒単位で指定します。 イメージ ストア サービスに対するトップレベルのリスト要求のタイムアウト値。 |
-|ClientUploadTimeout |時間 (秒単位)、既定値は 1800 |動的|timespan を秒単位で指定します。 イメージ ストア サービスに対するトップレベルのアップロード要求のタイムアウト値。 |
 
 ## <a name="imagestoreservice"></a>ImageStoreService
 | **パラメーター** | **使用できる値** | **アップグレード ポリシー** | **ガイダンスまたは簡単な説明** |
@@ -510,13 +460,13 @@ ClusterConfig.json ファイルの設定を変更した後は、「[クラスタ
 ## <a name="placementandloadbalancing"></a>PlacementAndLoadBalancing
 | **パラメーター** | **使用できる値** | **アップグレード ポリシー** | **ガイダンスまたは簡単な説明** |
 | --- | --- | --- | --- |
-|AffinityConstraintPriority | int、既定値は 0 | 動的|アフィニティの制約の優先順位 (0: ハード、1: ソフト、負の値: 無視) を指定します。 |
-|ApplicationCapacityConstraintPriority | int、既定値は 0 | 動的|容量の制約の優先順位 (0: ハード、1: ソフト、負の値: 無視) を指定します。 |
+|AffinityConstraintPriority | int、既定値は 0 | 動的|アフィニティの制約の優先順位を指定します:0:ハード、1:ソフト、負の値:無視。 |
+|ApplicationCapacityConstraintPriority | int、既定値は 0 | 動的|容量の制約の優先順位を指定します:0:ハード、1:ソフト、負の値:無視。 |
 |AutoDetectAvailableResources|ブール値、既定値は TRUE|静的|この構成は、ノードで使用可能なリソース (CPU およびメモリ) の自動検出をトリガーします。この構成が true に設定されている場合は、実際の容量を読み取り、ユーザーによって不適切なノード容量が指定されているとき、または容量が定義されていないときは、それを修正します。この構成が false の場合は、ユーザーによって不適切なノード容量が指定されているという警告をトレースしますが、修正しません。つまり、ユーザーは、実際のノードの容量よりも大きな値を指定しようとしています。容量が未定義の場合は、無制限の容量と見なされます |
 |BalancingDelayAfterNewNode | 時間 (秒単位)、既定値は 120 |動的|timespan を秒単位で指定します。 新しいノードの追加後、この期間内に均衡化アクティビティを開始しないでください。 |
 |BalancingDelayAfterNodeDown | 時間 (秒単位)、既定値は 120 |動的|timespan を秒単位で指定します。 ノード ダウン イベント後、この期間内に均衡化アクティビティを開始しないでください。 |
-|CapacityConstraintPriority | int、既定値は 0 | 動的|容量の制約の優先順位 (0: ハード、1: ソフト、負の値: 無視) を指定します。 |
-|ConsecutiveDroppedMovementsHealthReportLimit | int、既定値は 20 | 動的|ResourceBalancer が発行した移動が連続して破棄された回数がここで定義した連続回数に達すると、診断が行われ、正常性の警告が出力されます。 負の値: この条件下では警告は出力されません。 |
+|CapacityConstraintPriority | int、既定値は 0 | 動的|容量の制約の優先順位を指定します:0:ハード、1:ソフト、負の値:無視。 |
+|ConsecutiveDroppedMovementsHealthReportLimit | int、既定値は 20 | 動的|ResourceBalancer が発行した移動が連続して破棄された回数がここで定義した連続回数に達すると、診断が行われ、正常性の警告が出力されます。 負の値:この条件下では警告は出力されません。 |
 |ConstraintFixPartialDelayAfterNewNode | 時間 (秒単位)、既定値は 120 |動的| timespan を秒単位で指定します。 新しいノードの追加後、この期間内に FaultDomain および UpgradeDomain の制約違反を修正しないでください。 |
 |ConstraintFixPartialDelayAfterNodeDown | 時間 (秒単位)、既定値は 120 |動的| timespan を秒単位で指定します。 ノード ダウン イベント後、この期間内に FaultDomain および UpgradeDomain の制約違反を修正しないでください。 |
 |ConstraintViolationHealthReportLimit | int、既定値は 50 |動的| 制約に違反しているレプリカが永続的に未修正の状態になった回数がここで定義した回数に達すると、診断が行われ、正常性レポートが出力されます。 |
@@ -525,7 +475,7 @@ ClusterConfig.json ファイルの設定を変更した後は、「[クラスタ
 |DetailedNodeListLimit | int、既定値は 15 |動的| 未配置レプリカ レポートでの切り捨て前に含める、制約ごとのノードの数を定義します。 |
 |DetailedPartitionListLimit | int、既定値は 15 |動的| 診断での切り捨て前に含める、制約の診断エントリごとのパーティションの数を定義します。 |
 |DetailedVerboseHealthReportLimit | int、既定値は 200 | 動的|未配置レプリカが永続的に未配置の状態になった回数がここで定義した回数に達すると、詳細な正常性レポートが出力されます。 |
-|FaultDomainConstraintPriority | int、既定値は 0 |動的| 障害ドメインの制約の優先順位 (0: ハード、1: ソフト、負の値: 無視) を指定します。 |
+|FaultDomainConstraintPriority | int、既定値は 0 |動的| 障害ドメインの制約の優先順位を指定します:0:ハード、1:ソフト、負の値:無視。 |
 |GlobalMovementThrottleCountingInterval | 時間 (秒単位)、既定値は 600 |静的| timespan を秒単位で指定します。 ドメイン レプリカの移動ごとに追跡する、過去の間隔の長さを示します (GlobalMovementThrottleThreshold と共に使用)。 0 に設定すると、グローバルな調整を完全に無視できます。 |
 |GlobalMovementThrottleThreshold | uint、既定値は 1000 |動的| 均衡化フェーズにおいて、GlobalMovementThrottleCountingInterval で示される過去の間隔での移動の最大許容数。 |
 |GlobalMovementThrottleThresholdForBalancing | uint、既定値は 0 | 動的|均衡化フェーズにおいて、GlobalMovementThrottleCountingInterval で示される過去の間隔での移動の最大許容数。 0 は無制限であることを示します。 |
@@ -545,18 +495,19 @@ ClusterConfig.json ファイルの設定を変更した後は、「[クラスタ
 |MoveParentToFixAffinityViolation | ブール値、既定値は false |動的| アフィニティの制約を修正するために親レプリカを移動できるかどうかを指定します。|
 |PartiallyPlaceServices | ブール値、既定値は true |動的| サービス レプリカに適したノードの数が限られている場合に、クラスター内のすべてのサービス レプリカを "全部かゼロか" 方式で配置するかどうかを指定します。|
 |PlaceChildWithoutParent | ブール値、既定値は true | 動的|親レプリカが稼働していない場合に、子サービス レプリカを配置できるかどうかを指定します。 |
-|PlacementConstraintPriority | int、既定値は 0 | 動的|配置の制約の優先順位 (0: ハード、1: ソフト、負の値: 無視) を指定します。 |
+|PlacementConstraintPriority | int、既定値は 0 | 動的|配置の制約の優先順位を指定します:0:ハード、1:ソフト、負の値:無視。 |
 |PlacementConstraintValidationCacheSize | int、既定値は 10000 |動的| 配置制約式の簡易検証とキャッシュに使用するテーブルのサイズを制限します。 |
 |PlacementSearchTimeout | 時間 (秒単位)、既定値は 0.5 |動的| timespan を秒単位で指定します。 サービスを配置するときに、結果を返すまでに最長でこの時間の間、検索します。 |
 |PLBRefreshGap | 時間 (秒単位)、既定値は 1 |動的| timespan を秒単位で指定します。 PLB が状態を再度更新するまでに必要な最小経過時間を定義します。 |
-|PreferredLocationConstraintPriority | int、既定値は 2| 動的|優先される場所の制約の優先順位 (0: ハード、1: ソフト、2: 最適化、負の値: 無視) を指定します。 |
+|PreferredLocationConstraintPriority | int、既定値は 2| 動的|優先される場所の制約の優先順位を指定します:0:ハード、1:ソフト、2:最適化、負の値:Ignore |
+|PreferUpgradedUDs|ブール値、既定値は TRUE|動的|既にアップグレードされている UD への移動を優先するロジックをオンまたはオフにします。|
 |PreventTransientOvercommit | ブール値、既定値は false | 動的|開始された移動によって解放されるリソースを PLB が即座に利用するかどうかを指定します。 既定では、PLB は同じノード上で移動を開始できるので、一時的なオーバーコミットが発生する可能性があります。 このパラメーターを true に設定すると、このようなオーバーコミットを防ぐことができ、オンデマンドのデフラグ (placementWithMove) が無効になります。 |
-|ScaleoutCountConstraintPriority | int、既定値は 0 |動的| スケールアウト数の制約の優先順位 (0: ハード、1: ソフト、負の値: 無視) を指定します。 |
+|ScaleoutCountConstraintPriority | int、既定値は 0 |動的| スケールアウト数の制約の優先順位を指定します:0:ハード、1:ソフト、負の値:無視。 |
 |SwapPrimaryThrottlingAssociatedMetric | string、既定値は ""|静的| この調整に関連付けられたメトリックの名前。 |
 |SwapPrimaryThrottlingEnabled | ブール値、既定値は false|動的| スワップ プライマリ調整を有効にするかどうかを指定します。 |
 |SwapPrimaryThrottlingGlobalMaxValue | int、既定値は 0 |動的| グローバルに使用できるスワップ プライマリ レプリカの最大数。 |
 |TraceCRMReasons |ブール値、既定値は true |動的|CRM が発行した、操作イベント チャネルへの移動の理由をトレースするかどうかを指定します。 |
-|UpgradeDomainConstraintPriority | int、既定値は 1| 動的|アップグレード ドメインの制約の優先順位 (0: ハード、1: ソフト、負の値: 無視) を指定します。 |
+|UpgradeDomainConstraintPriority | int、既定値は 1| 動的|アップグレード ドメインの制約の優先順位を指定します:0:ハード、1:ソフト、負の値:無視。 |
 |UseMoveCostReports | ブール値、既定値は false | 動的|よりバランスの取れた配置を実現するために多数の移動が発生する可能性のある、スコア付け関数のコスト要素を無視するよう LB に指示します。 |
 |UseSeparateSecondaryLoad | ブール値、既定値は true | 動的|別のセカンダリ負荷を使用するかどうかを指定します。 |
 |ValidatePlacementConstraint | ブール値、既定値は true |動的| サービスの ServiceDescription が更新されたときに、サービスの PlacementConstraint 式を検証するかどうかを指定します。 |
@@ -637,11 +588,12 @@ ClusterConfig.json ファイルの設定を変更した後は、「[クラスタ
 |AADTokenEndpointFormat|string、既定値は ""|静的|Azure Government "https://login.microsoftonline.us/{0}" のような既定以外の環境用に指定される AAD トークン エンドポイント。既定値は Azure Commercial。 |
 |AdminClientClaims|string、既定値は ""|動的|管理クライアントから期待される、考えられるすべての要求。ClientClaims と同じ形式です。この一覧は ClientClaims に内部的に追加されるため、同じエントリを ClientClaims に追加する必要はありません。 |
 |AdminClientIdentities|string、既定値は ""|動的|管理者ロールのファブリック クライアントの Windows ID。特権ファブリック操作の承認に使用されます。 これはコンマ区切りリストで、各エントリがドメイン アカウント名またはグループ名です。 便宜上、fabric.exe を実行するアカウントは自動的に管理者ロールを割り当てられます。グループ ServiceFabricAdministrators も同様です。 |
+|AppRunAsAccountGroupX509Folder|string、既定値は /home/sfuser/sfusercerts |静的|AppRunAsAccountGroup X509 証明書と秘密キーがあるフォルダー |
 |CertificateExpirySafetyMargin|TimeSpan、既定値は Common::TimeSpan::FromMinutes(43200)|静的|timespan を秒単位で指定します。 証明書の有効期限の安全マージン。有効期限がこれより近くなると、証明書の正常性レポートの状態が OK から警告に変わります。 既定値は 30 日です。 |
 |CertificateHealthReportingInterval|TimeSpan、既定値は Common::TimeSpan::FromSeconds(3600 * 8)|静的|timespan を秒単位で指定します。 証明書の正常性レポートの間隔を指定します。既定値は 8 時間です。0 に設定すると、証明書の正常性レポートが無効になります |
 |ClientCertThumbprints|string、既定値は ""|動的|クラスターと対話するために、クライアントによって使用される証明書のサムプリント。クラスターはこれを使用して、受診接続を承認します。 コンマ区切りの名前リストです。 |
 |ClientClaimAuthEnabled|ブール値、既定値は FALSE|静的|クライアントで要求ベースの認証が有効になっているかどうかを示します。この設定を true にすると、ClientRoleEnabled が暗黙的に設定されます。 |
-|ClientClaims|string、既定値は ""|動的|ゲートウェイへの接続に対して、クライアントから期待される使用可能なすべての要求。 これは "OR" リスト ClaimsEntry \|\| ClaimsEntry \|\| ClaimsEntry ... で、各 ClaimsEntry は "AND" リスト ClaimType=ClaimValue && ClaimType=ClaimValue && ClaimType=ClaimValue ... です |
+|ClientClaims|string、既定値は ""|動的|ゲートウェイへの接続に対して、クライアントから期待される使用可能なすべての要求。 これは "OR" リストです:ClaimsEntry \|\| ClaimsEntry \|\| ClaimsEntry ...。各 ClaimsEntry は "AND" リストです:ClaimType=ClaimValue && ClaimType=ClaimValue && ClaimType=ClaimValue ...。 |
 |ClientIdentities|string、既定値は ""|動的|FabricClient の Windows ID。Naming Gateway は、これを使用して受診接続を承認します。 これはコンマ区切りリストで、各エントリがドメイン アカウント名またはグループ名です。 便宜上、fabric.exe を実行するアカウントは自動的に許可されます。グループ ServiceFabricAllowedUsers と ServiceFabricAdministrators も同様です。 |
 |ClientRoleEnabled|ブール値、既定値は FALSE|静的|クライアント ロールが有効かどうかを示します。true の場合、クライアントには、クライアント自身の ID に基づいてロールが割り当てられます。 V2 の場合、これを有効にすると、AdminClientCommonNames/AdminClientIdentities にないクライアントが実行できるのは、読み取り専用の操作のみです。 |
 |ClusterCertThumbprints|string、既定値は ""|動的|クラスターへの参加が許可されている証明書のサムプリント。コンマ区切りの名前リスト。 |
@@ -676,7 +628,9 @@ ClusterConfig.json ファイルの設定を変更した後は、「[クラスタ
 |CodePackageControl |string、既定値は "Admin" |動的| コード パッケージを再開するためのセキュリティ構成。 |
 |CreateApplication |string、既定値は "Admin" | 動的|アプリケーションを作成するためのセキュリティ構成。 |
 |CreateComposeDeployment|string、既定値は "Admin"| 動的|compose ファイルで記述されている compose デプロイを作成します |
+|CreateGatewayResource|string、既定値は "Admin"| 動的|ゲートウェイ リソースを作成する |
 |CreateName |string、既定値は "Admin" |動的|名前付け URI を作成するためのセキュリティ構成。 |
+|CreateNetwork|string、既定値は "Admin" |動的|コンテナー ネットワークを作成します |
 |CreateService |string、既定値は "Admin" |動的| サービスを作成するためのセキュリティ構成。 |
 |CreateServiceFromTemplate |string、既定値は "Admin" |動的|テンプレートからサービスを作成するためのセキュリティ構成。 |
 |CreateVolume|string、既定値は "Admin"|動的|ボリュームを作成します |
@@ -685,7 +639,9 @@ ClusterConfig.json ファイルの設定を変更した後は、「[クラスタ
 |削除 |string、既定値は "Admin" |動的| イメージ ストア クライアントの削除操作のセキュリティ構成。 |
 |DeleteApplication |string、既定値は "Admin" |動的| アプリケーションを削除するためのセキュリティ構成。 |
 |DeleteComposeDeployment|string、既定値は "Admin"| 動的|compose デプロイを削除します |
+|DeleteGatewayResource|string、既定値は "Admin"| 動的|ゲートウェイ リソースを削除します |
 |DeleteName |string、既定値は "Admin" |動的|名前付け URI を削除するためのセキュリティ構成。 |
+|DeleteNetwork|string、既定値は "Admin" |動的|コンテナー ネットワークを削除します |
 |DeleteService |string、既定値は "Admin" |動的|サービスを削除するためのセキュリティ構成。 |
 |DeleteVolume|string、既定値は "Admin"|動的|ボリュームを削除します。| 
 |EnumerateProperties |string、既定値は "Admin\|\|User" | 動的|名前付けプロパティを列挙するためのセキュリティ構成。 |
@@ -702,6 +658,7 @@ ClusterConfig.json ファイルの設定を変更した後は、「[クラスタ
 |GetPartitionDataLossProgress | string、既定値は "Admin\|\|User" | 動的|データ損失を発生させる API 呼び出しの進行状況を取得します。 |
 |GetPartitionQuorumLossProgress | string、既定値は "Admin\|\|User" |動的| クォーラム損失を発生させる API 呼び出しの進行状況を取得します。 |
 |GetPartitionRestartProgress | string、既定値は "Admin\|\|User" |動的| パーティションを再起動する API 呼び出しの進行状況を取得します。 |
+|GetSecrets|string、既定値は "Admin"|動的|シークレット値を取得します |
 |GetServiceDescription |string、既定値は "Admin\|\|User" |動的| 長いポーリングのサービス通知と読み取りサービスの説明のセキュリティ構成。 |
 |GetStagingLocation |string、既定値は "Admin" |動的| イメージ ストア クライアントのステージングの場所を取得するためのセキュリティ構成。 |
 |GetStoreLocation |string、既定値は "Admin" |動的| イメージ ストア クライアントのストアの場所を取得するためのセキュリティ構成。 |
@@ -809,7 +766,7 @@ ClusterConfig.json ファイルの設定を変更した後は、「[クラスタ
 ## <a name="tokenvalidationservice"></a>TokenValidationService
 | **パラメーター** | **使用できる値** | **アップグレード ポリシー** | **ガイダンスまたは簡単な説明** |
 | --- | --- | --- | --- |
-|プロバイダー |string、既定値は "DSTS" |静的|有効にするトークン検証プロバイダーのコンマ区切りリスト (有効なプロバイダー: DSTS、AAD)。 現時点では、1 つのプロバイダーだけをいつでも有効にすることができます。 |
+|プロバイダー |string、既定値は "DSTS" |静的|有効にするトークン検証プロバイダーのコンマ区切りリスト (有効なプロバイダー:DSTS、AAD)。 現時点では、1 つのプロバイダーだけをいつでも有効にすることができます。 |
 
 ## <a name="traceetw"></a>Trace/Etw
 | **パラメーター** | **使用できる値** | **アップグレード ポリシー** | **ガイダンスまたは簡単な説明** |
@@ -841,7 +798,9 @@ ClusterConfig.json ファイルの設定を変更した後は、「[クラスタ
 | **パラメーター** | **使用できる値** | **アップグレード ポリシー** | **ガイダンスまたは簡単な説明** |
 | --- | --- | --- | --- |
 |AutoupgradeEnabled | ブール値、既定値は true |静的| 目標状態ファイルに基づく自動ポーリングとアップグレード アクション。 |
-|MinReplicaSetSize |int、既定値は 0 |静的 |UpgradeOrchestrationService の MinReplicaSetSize。
+|AutoupgradeInstallEnabled|ブール値、既定値は FALSE|静的|目標状態ファイルに基づくコード アップグレード アクションの自動ポーリング、プロビジョニング、およびインストール。|
+|GoalStateExpirationReminderInDays|int、既定値は 30|静的|目標状態のアラームを表示し始める残り日数を設定します。|
+|MinReplicaSetSize |int、既定値は 0 |静的 |UpgradeOrchestrationService の MinReplicaSetSize。|
 |PlacementConstraints | string、既定値は "" |静的| UpgradeOrchestrationService の PlacementConstraints。 |
 |QuorumLossWaitDuration | 時間 (秒単位)、既定値は MaxValue |静的| timespan を秒単位で指定します。 UpgradeOrchestrationService の QuorumLossWaitDuration。 |
 |ReplicaRestartWaitDuration | 時間 (秒単位)、既定値は 60 分|静的| timespan を秒単位で指定します。 UpgradeOrchestrationService の ReplicaRestartWaitDuration。 |
@@ -858,6 +817,7 @@ ClusterConfig.json ファイルの設定を変更した後は、「[クラスタ
 |MinReplicaSetSize | int、既定値は 2 |禁止| UpgradeService の MinReplicaSetSize。 |
 |OnlyBaseUpgrade | ブール値、既定値は false |動的|UpgradeService の OnlyBaseUpgrade。 |
 |PlacementConstraints |string、既定値は "" |禁止|アップグレード サービスの PlacementConstraints。 |
+|PollIntervalInSeconds|Timespan、既定値は Common::TimeSpan::FromSeconds(60) |動的|timespan を秒単位で指定します。 ARM 管理操作のための UpgradeService ポーリングの間隔。 |
 |TargetReplicaSetSize | int、既定値は 3 |禁止| UpgradeService の TargetReplicaSetSize。 |
 |TestCabFolder | string、既定値は "" |静的| UpgradeService の TestCabFolder。 |
 |X509FindType | string、既定値は ""|動的| UpgradeService の X509FindType。 |
@@ -867,7 +827,4 @@ ClusterConfig.json ファイルの設定を変更した後は、「[クラスタ
 |X509StoreName | string、既定値は "My"|動的|UpgradeService の X509StoreName。 |
 
 ## <a name="next-steps"></a>次の手順
-クラスター管理の詳細については、次の記事を参照してください。
-
-[Azure クラスターの証明書の追加、ロール オーバー、削除 ](service-fabric-cluster-security-update-certs-azure.md) 
-
+詳細については、[Azure クラスターの構成のアップグレード](service-fabric-cluster-config-upgrade-azure.md)および[スタンドアロン クラスターの構成のアップグレード](service-fabric-cluster-config-upgrade-windows-server.md)に関するページを参照してください。

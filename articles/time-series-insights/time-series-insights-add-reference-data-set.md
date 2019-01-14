@@ -1,5 +1,5 @@
 ---
-title: Azure Time Series Insights 環境に参照データ セットを追加する方法
+title: Azure Time Series Insights 環境に参照データ セットを追加する方法 | Microsoft Docs
 description: この記事では、参照データ セットを追加して、Azure Time Series Insights 環境内のデータを増幅する方法について説明します。
 ms.service: time-series-insights
 services: time-series-insights
@@ -10,12 +10,13 @@ ms.reviewer: jasonh, kfile, anshan
 ms.workload: big-data
 ms.topic: conceptual
 ms.date: 02/15/2018
-ms.openlocfilehash: 45520a556d109158987dd47e33a1efb52a1cd356
-ms.sourcegitcommit: ce526d13cd826b6f3e2d80558ea2e289d034d48f
+ms.custom: seodec18
+ms.openlocfilehash: f0110ea79d05c0da57ac2d2e1f52194bed12152c
+ms.sourcegitcommit: b767a6a118bca386ac6de93ea38f1cc457bb3e4e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/19/2018
-ms.locfileid: "46364739"
+ms.lasthandoff: 12/18/2018
+ms.locfileid: "53555559"
 ---
 # <a name="create-a-reference-data-set-for-your-time-series-insights-environment-using-the-azure-portal"></a>Azure Portal を使用して Time Series Insights 環境の参照データ セットを作成する
 

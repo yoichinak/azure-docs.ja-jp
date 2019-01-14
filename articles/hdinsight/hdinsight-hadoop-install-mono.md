@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.date: 04/10/2018
 ms.author: hrasheed
 ms.custom: hdinsightactive
-ms.openlocfilehash: 9daf0d45c9bb24192750991e7bf84fa3614c970d
-ms.sourcegitcommit: 00dd50f9528ff6a049a3c5f4abb2f691bf0b355a
+ms.openlocfilehash: 4f51de6ded29f93d29dbf80dd68715f621b5cb06
+ms.sourcegitcommit: 85d94b423518ee7ec7f071f4f256f84c64039a9d
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/05/2018
-ms.locfileid: "51011036"
+ms.lasthandoff: 12/14/2018
+ms.locfileid: "53384617"
 ---
 # <a name="install-or-update-mono-on-hdinsight"></a>HDInsight での Mono のインストールまたは更新
 
@@ -26,7 +26,7 @@ Mono は、HDInsight 3.4 以降のバージョンにインストールされま�
 
 このスクリプトは、次のパラメーターを受け取ります。
 
-* __Mono バージョン番号__: インストールする Mono のバージョン。 このバージョンは、こちら ([https://download.mono-project.com/repo/debian/dists/wheezy/snapshots/](https://download.mono-project.com/repo/debian/dists/wheezy/snapshots/)) から入手してください。
+* __Mono バージョン番号__:インストールする Mono のバージョン。 このバージョンは、こちら ([https://download.mono-project.com/repo/debian/dists/wheezy/snapshots/](https://download.mono-project.com/repo/debian/dists/wheezy/snapshots/)) から入手してください。
 
 スクリプトで、次の Mono パッケージをインストールします。
 
@@ -52,7 +52,7 @@ __要件__:
 
 インストールされる Mono のバージョンを指定するには、__Parameters__ フィールドのバージョン番号を使用します。 たとえば、`5.4` と入力して Mono 5.4 をインストールします。
 
-> [!NOTE]
+> [!NOTE]  
 > このスクリプトを使用して HDInsight を構成する場合は、スクリプトを __Persisted__ としてマークします。 この設定によって、HDInsight では、スケーリング操作を使用して追加されたワーカー ノードにスクリプトを適用できるようになります。
 
 ## <a name="next-steps"></a>次の手順
@@ -60,8 +60,8 @@ __要件__:
 ここでは、HDInsight で特定のバージョンの Mono をインストールまたはアップグレードする方法について説明しました。 HDInsight で Mono を利用して .NET アプリケーションを使用する方法の詳細については、次のドキュメントを参照してください。
 
 * [HDInsight で MapReduce をストリーミングするための .NET の使用](hadoop/apache-hadoop-dotnet-csharp-mapreduce-streaming.md)
-* [HDInsight における .NET と Hive および Pig の使用](hadoop/apache-hadoop-hive-pig-udf-dotnet-csharp.md)
-* [Storm を使用した HDInsight での C# ソリューションの開発](storm/apache-storm-develop-csharp-visual-studio-topology.md)
+* [HDInsight における .NET と Apache Hive および Apache Pig の使用](hadoop/apache-hadoop-hive-pig-udf-dotnet-csharp.md)
+* [Apache Storm を使用した HDInsight での C# ソリューションの開発](storm/apache-storm-develop-csharp-visual-studio-topology.md)
 * [Linux ベースの HDInsight への .NET ソリューションの 移行](hdinsight-hadoop-migrate-dotnet-to-linux.md)
 
 スクリプト アクションの使用方法の詳細については、「[スクリプト アクションを使用して Linux ベースの HDInsight クラスターをカスタマイズする](hdinsight-hadoop-customize-cluster-linux.md)」を参照してください。

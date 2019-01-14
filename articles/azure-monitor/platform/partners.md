@@ -8,12 +8,12 @@ ms.topic: conceptual
 ms.date: 11/01/2018
 ms.author: johnkem
 ms.component: ''
-ms.openlocfilehash: 07127e8a15626c7eacad925381f92d0a7c94fc96
-ms.sourcegitcommit: c2e61b62f218830dd9076d9abc1bbcb42180b3a8
+ms.openlocfilehash: 6ed8bae2e1571722f7a9a0030a48e64c4f7fbc60
+ms.sourcegitcommit: 30d23a9d270e10bb87b6bfc13e789b9de300dc6b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/15/2018
-ms.locfileid: "53439629"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54106666"
 ---
 # <a name="azure-monitor-partner-integrations"></a>Azure Monitor パートナーとの統合
 | パートナー |  |  |
@@ -126,7 +126,7 @@ OpsGenie は、Azure によって生成されたアラートのディスパッ�
 [ドキュメントを確認する。][pagerduty-doc]
 
 ## <a name="qradar"></a>QRadar
-Microsoft Azure DSM および Microsoft Azure Event Hub Protocol は、[IBM サポート Web](http://www.ibm.com/support) サイトからダウンロードすることができます。 Azure との統合の詳細については、[こちら][qradar-doc]を参照してください。
+Microsoft Azure DSM および Microsoft Azure Event Hub Protocol は、[IBM サポート Web](https://www.ibm.com/support) サイトからダウンロードすることができます。 Azure との統合の詳細については、[こちら][qradar-doc]を参照してください。
 
 ## <a name="sciencelogic"></a>ScienceLogic
 ScienceLogic は、あらゆるテクノロジーをあらゆる場所で管理する、次世代の IT サービス保証プラットフォームを提供します。 ScienceLogic は、IT リソース、サービス、およびアプリケーションの管理タスクを単純化するために必要なスケール、セキュリティ、自動化、および回復性を提供します。 ScienceLogic プラットフォームでは、Microsoft Azure とのインターフェイスに Azure API を使用しています。 ScienceLogic は、Azure サービスとリソースをリアルタイムで 表示できます。 このため、何かが機能していない場合はすぐにそのことを認識して、迅速に修正できます。 他のクラウド、データ センターのシステムおよびサービスと共に、Azure を管理することもできます。
@@ -166,8 +166,8 @@ Turbonomic は、パフォーマンス、コスト、コンプライアンスを
 ## <a name="next-steps"></a>次の手順
 * [Azure Monitor の詳細情報](../../azure-monitor/overview.md)
 * [REST API を使用してメトリックにアクセスする](rest-api-walkthrough.md)
-* [アクティビティ ログを Microsoft 以外のサービスにストリーミングする](../../monitoring-and-diagnostics/monitoring-stream-activity-logs-event-hubs.md)
-* [診断ログを Microsoft 以外のサービスにストリーミングする](../../monitoring-and-diagnostics/monitoring-stream-diagnostic-logs-to-event-hubs.md)
+* [アクティビティ ログを Microsoft 以外のサービスにストリーミングする](../../azure-monitor/platform/activity-logs-stream-event-hubs.md)
+* [診断ログを Microsoft 以外のサービスにストリーミングする](../../azure-monitor/platform/diagnostic-logs-stream-event-hubs.md)
 
 <!--Partner Anchors-->
 [alertlogic-anchor]: #alertlogic-log-manager "AlertLogic"
@@ -230,8 +230,8 @@ Turbonomic は、パフォーマンス、コスト、コンプライアンスを
 [botmetric-doc]: https://www.botmetric.com/blog/announcing-botmetric-cost-governance-beta-microsoft-azure/ "Botmetric の紹介。"
 [circonus-doc]: https://support.circonus.com/support/solutions/articles/24000013515-azure-integration 
 [cloudhealth-doc]: https://www.cloudhealthtech.com/azure
-[cloudmonix-doc]: http://cloudmonix.com/features/azure-management/ "CloudMonix の概要。"
-[datadog-doc]: http://docs.datadoghq.com/integrations/azure/ "Datadog ドキュメント。"
+[cloudmonix-doc]: https://cloudmonix.com/features/azure-management/ "CloudMonix の概要。"
+[datadog-doc]: https://docs.datadoghq.com/integrations/azure/ "Datadog ドキュメント。"
 [dynatrace-doc]: https://help.dynatrace.com/infrastructure-monitoring/paas/how-do-i-monitor-microsoft-azure-web-apps/ "Dynatrace ドキュメント。"
 [elastic-doc]: https://www.elastic.co/guide/en/logstash/master/azure-module.html "Elastic ドキュメント。"
 [grafana-doc]: ./grafana-plugin.md "Azure Monitor Grafana の統合。"

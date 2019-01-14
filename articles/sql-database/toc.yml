@@ -25,9 +25,9 @@ items:
       href: sql-database-managed-instance-configure-p2s.md
   - name: データを読み込む
     items:
-    - name: 単一データベースへの BACPAC のインポート
+    - name: BACPAC を新しいデータベースにインポートする
       href: sql-database-import.md
-    - name: マネージド インスタンスへのデータベース バックアップの復元
+    - name: データベース バックアップをマネージド インスタンスに復元する
       href: sql-database-managed-instance-get-started-restore.md
   - name: クエリ
     href: sql-database-connect-query.md
@@ -153,7 +153,7 @@ items:
     items:
     - name: 複数のマネージド インスタンスの概要
       href: sql-database-managed-instance-index.yml
-    - name: マネージド インスタンスの概要
+    - name: マネージド インスタンスの機能
       href: sql-database-managed-instance.md
     - name: Management API リファレンス
       href: sql-database-managed-instance-create-manage.md
@@ -291,7 +291,7 @@ items:
       href: sql-database-monitor-tune-overview.md
     - name: パフォーマンスの監視
       items:
-      - name: '[Query Performance Insight]'
+      - name: Query Performance Insight
         href: sql-database-query-performance.md
       - name: Azure SQL Analytics の監視
         href: https://docs.microsoft.com/azure/log-analytics/log-analytics-azure-sql
@@ -680,9 +680,9 @@ items:
       href: sql-database-elastic-jobs-getting-started.md
     - name: エラスティック ジョブのアンインストール (非推奨)
       href: sql-database-elastic-jobs-uninstall.md
-ms.openlocfilehash: a33b66928e4c84f020856af1897b1bc40e351dc7
-ms.sourcegitcommit: e68df5b9c04b11c8f24d616f4e687fe4e773253c
+ms.openlocfilehash: 501f10b734fe3d7fbd576ba2131b84a5b04681d0
+ms.sourcegitcommit: fbf0124ae39fa526fc7e7768952efe32093e3591
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53654123"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54077727"

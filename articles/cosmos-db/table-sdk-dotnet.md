@@ -1,23 +1,21 @@
 ---
-title: Azure Cosmos DB Table API .NET SDK とリソース | Microsoft Docs
+title: Azure Cosmos DB Table API .NET SDK およびリソース
 description: リリース日、提供終了日、各バージョン間で行われた変更など、Azure Cosmos DB Table API に関するすべてについて説明します。
-services: cosmos-db
-author: rnagpal
-manager: kfile
+author: wmengmsft
+ms.author: wmeng
 ms.service: cosmos-db
-ms.component: cosmosdb-table
+ms.subservice: cosmosdb-table
 ms.devlang: dotnet
 ms.topic: reference
 ms.date: 08/17/2018
-ms.author: rnagpal
-ms.openlocfilehash: 6d2ede88e9e218ddbdfed0add48e7df8bfae0b60
-ms.sourcegitcommit: 62759a225d8fe1872b60ab0441d1c7ac809f9102
+ms.openlocfilehash: f2492e3d49f9b7e965c33ed4419f566e81dd62ed
+ms.sourcegitcommit: 8330a262abaddaafd4acb04016b68486fba5835b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/19/2018
-ms.locfileid: "49466462"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54043466"
 ---
-# <a name="azure-cosmos-db-table-net-api-download-and-release-notes"></a>Azure Cosmos DB Table .NET API: ダウンロードおよびリリース ノート
+# <a name="azure-cosmos-db-table-net-api-download-and-release-notes"></a>Azure Cosmos DB Table .NET API:ダウンロードおよびリリース ノート
 > [!div class="op_single_selector"]
 > * [.NET](table-sdk-dotnet.md)
 > * [.NET Standard](table-sdk-dotnet-standard.md)
@@ -29,8 +27,8 @@ ms.locfileid: "49466462"
 |---|---|
 |**SDK のダウンロード**|[NuGet](https://aka.ms/acdbtablenuget)|
 |**API ドキュメント**|[.NET API リファレンス ドキュメント](https://aka.ms/acdbtableapiref)|
-|**クイックスタート**|[Azure Cosmos DB: .NET と Table API を使用したアプリのビルド](create-table-dotnet.md)|
-|**チュートリアル**|[Azure Cosmos DB: .NET での Table API を使用した開発](tutorial-develop-table-dotnet.md)|
+|**クイックスタート**|[Azure Cosmos DB:.NET と Table API を使用したアプリのビルド](create-table-dotnet.md)|
+|**チュートリアル**|[Azure Cosmos DB:.NET での Table API を使用した開発](tutorial-develop-table-dotnet.md)|
 |**現在サポートされているフレームワーク**|[Microsoft .NET Framework 4.5.1](https://www.microsoft.com/en-us/download/details.aspx?id=40779)|
 
 > [!IMPORTANT]

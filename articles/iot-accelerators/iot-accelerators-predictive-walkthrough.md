@@ -8,16 +8,18 @@ services: iot-accelerators
 ms.topic: conceptual
 ms.date: 10/26/2018
 ms.author: dobett
-ms.openlocfilehash: 61a4e3700e88efba1ea9cea876b19e2f7ed4168b
-ms.sourcegitcommit: 0f54b9dbcf82346417ad69cbef266bc7804a5f0e
+ms.openlocfilehash: e9ad55c62ae4b53241d366a85f54851fc193f10b
+ms.sourcegitcommit: c94cf3840db42f099b4dc858cd0c77c4e3e4c436
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/26/2018
-ms.locfileid: "50137072"
+ms.lasthandoff: 12/19/2018
+ms.locfileid: "53631041"
 ---
 # <a name="predictive-maintenance-solution-accelerator-overview"></a>予測メンテナンスのソリューション アクセラレータの概要
 
 予測メンテナンスのソリューション アクセラレータは、障害が発生する可能性があるポイントを予測するビジネス シナリオに対応したエンド ツー エンド ソリューションです。 このソリューション アクセラレータを使用すると、メンテナンスの最適化などのアクティビティを先手を打って実行できます。 このソリューションは、IoT Hub や [Azure Machine Learning][lnk-machine-learning] ワークスペースなど、主要な Azure IoT ソリューション アクセラレータ サービスを組み合わせたものです。 このワークスペースには、公開されているサンプル データ セットに基づいて航空機エンジンの残存耐用年数 (RUL) を予測するモデルが含まれています。 このソリューションでは、固有のビジネス要件を満たすソリューションを計画および実装するための開始地点として使用できる、IoT ビジネス シナリオが完全に実装されています。
+
+予測メンテナンスのソリューション アクセラレータの[コードは GitHub で入手できます](https://github.com/Azure/azure-iot-predictive-maintenance)。
 
 ## <a name="logical-architecture"></a>論理アーキテクチャ
 
@@ -60,7 +62,7 @@ IoT Hub は、デバイスのコマンドの受信確認を渡します。
 
 ## <a name="azure-stream-analytics-job"></a>Azure Stream Analytics ジョブ
 
-**ジョブ: テレメトリ**は、次の 2 つのステートメントを使用して、デバイスのテレメトリの受信ストリームに対して動作します。
+**ジョブ:テレメトリ**は、次の 2 つのステートメントを使用して、デバイスのテレメトリの受信ストリームに対して動作します。
 
 * 1 つ目では、デバイスからのすべてのテレメトリを選択し、このデータを Blob Storage に送信します。 ここから、Web アプリで視覚化されます。
 * 2 つ目では、2 分間のスライディング ウィンドウに渡る平均センサー値を計算し、このデータを Event Hub を介して**イベント プロセッサ**に送信します。
@@ -90,9 +92,9 @@ IoT ソリューション アクセラレータの他の機能についても学
 [img-machine-learning]: media/iot-accelerators-predictive-walkthrough/machine-learning.png
 
 [lnk-remote-monitoring]: quickstart-predictive-maintenance-deploy.md
-[lnk-cortana-analytics]: http://gallery.cortanaintelligence.com/Collection/Predictive-Maintenance-Template-3
+[lnk-cortana-analytics]: https://gallery.cortanaintelligence.com/Collection/Predictive-Maintenance-Template-3
 [lnk-azureiotsuite]: https://www.azureiotsolutions.com/
 [lnk-faq]: iot-accelerators-faq.md
 [lnk-security-groundup]:/azure/iot-fundamentals/iot-security-ground-up
 [lnk-machine-learning]: https://azure.microsoft.com/services/machine-learning/
-[lnk_regression_model]: http://gallery.cortanaanalytics.com/Collection/Predictive-Maintenance-Template-3
+[lnk_regression_model]: https://gallery.cortanaanalytics.com/Collection/Predictive-Maintenance-Template-3

@@ -12,18 +12,21 @@ ms.author: xiwu
 ms.reviewer: douglasl
 manager: craigg
 ms.date: 04/01/2018
-ms.openlocfilehash: 0a130613d6d2086fda55ca015b1c0ca77c909e3d
-ms.sourcegitcommit: db2cb1c4add355074c384f403c8d9fcd03d12b0c
+ms.openlocfilehash: b7d6b59ab03985c19ffa08a0a8266d449892046f
+ms.sourcegitcommit: 549070d281bb2b5bf282bc7d46f6feab337ef248
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/15/2018
-ms.locfileid: "51684615"
+ms.lasthandoff: 12/21/2018
+ms.locfileid: "53717825"
 ---
 # <a name="monitor-sql-data-sync-with-log-analytics"></a>Log Analytics による SQL データ同期の監視 
 
 SQL データ同期アクティビティ ログをチェックし、エラーおよび警告を検出するには、以前に Azure Portal で SQL データ同期を手動でチェックするか、PowerShell または REST API を使用している必要があります。 データ同期の監視エクスペリエンスを向上させるカスタム ソリューションを構成するには、この記事の手順に従ってください。 このソリューションは、シナリオに合わせてカスタマイズできます。
 
 SQL データ同期の概要については、[Azure SQL データ同期を使用した複数のクラウドおよびオンプレミス データベース間でのデータの同期](sql-database-sync-data.md)に関する記事を参照してください。
+
+> [!IMPORTANT]
+> 現在のところ、Azure SQL データ同期では、Azure SQL Database Managed Instance はサポート**されていません**。
 
 ## <a name="monitoring-dashboard-for-all-your-sync-groups"></a>すべての同期グループのためのダッシュボードの監視 
 
@@ -97,7 +100,7 @@ Runbook の作成の詳細については、「[初めての PowerShell Runbook]
 
     2.  同期グループの情報。
 
-    3.  Log Analytics 情報。 これらの情報は、[Azure Portal] | [設定] | [接続されたソース] で見つけます。 Log Analytics へのデータ送信の詳細については、「[HTTP データ コレクター API を使用した Log Analytics へのデータの送信 (プレビュー)](../log-analytics/log-analytics-data-collector-api.md)」を参照してください。
+    3.  Log Analytics 情報。 これらの情報は、[Azure Portal] | [設定] | [接続されたソース] で見つけます。 Log Analytics へのデータ送信の詳細については、「[HTTP データ コレクター API を使用した Log Analytics へのデータの送信 (プレビュー)](../azure-monitor/platform/data-collector-api.md)」を参照してください。
 
 11. [テスト] ペインで Runbook を実行します。 それが成功したことを確認します。
 
@@ -198,7 +201,7 @@ SQL データ同期の詳細については、以下を参照してください�
 
 -   概要 - [Azure SQL データ同期を使用して複数のクラウドおよびオンプレミス データベース間でデータを同期する](sql-database-sync-data.md)
 -   データ同期の設定
-    - ポータル内 - [チュートリアル: Azure SQL Database とオンプレミスの SQL Server の間でデータを同期するように SQL データ同期を設定する](sql-database-get-started-sql-data-sync.md)
+    - ポータル - [チュートリアル:Azure SQL Database とオンプレミスの SQL Server の間でデータを同期するように SQL データ同期を設定する](sql-database-get-started-sql-data-sync.md)
     - PowerShell の場合
         -  [PowerShell を使用した複数の Azure SQL データベース間の同期](scripts/sql-database-sync-data-between-sql-databases.md)
         -  [PowerShell を使用した Azure SQL Database と SQL Server オンプレミス データベース間の同期](scripts/sql-database-sync-data-between-azure-onprem.md)

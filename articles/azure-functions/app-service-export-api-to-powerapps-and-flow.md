@@ -11,21 +11,21 @@ ms.topic: conceptual
 ms.date: 12/15/2017
 ms.author: glenga
 ms.reviewer: sunayv
-ms.openlocfilehash: ceb0b1ce0d04c15a5b949519caad65d2c33b40ed
-ms.sourcegitcommit: af60bd400e18fd4cf4965f90094e2411a22e1e77
+ms.openlocfilehash: 53aa40c047b2b5201cd74c0409d56e97d2880eb0
+ms.sourcegitcommit: 4eeeb520acf8b2419bcc73d8fcc81a075b81663a
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/07/2018
-ms.locfileid: "44092452"
+ms.lasthandoff: 12/19/2018
+ms.locfileid: "53602853"
 ---
 # <a name="exporting-an-azure-hosted-api-to-powerapps-and-microsoft-flow"></a>Azure でホストされる API を PowerApps と Microsoft Flow にエクスポートする
 
 [PowerApps](https://powerapps.microsoft.com/guided-learning/learning-introducing-powerapps/) は、ユーザーのデータに接続して異なるプラットフォーム間で動作するカスタム ビジネス アプリを作成して使うためのサービスです。 [Microsoft Flow](https://flow.microsoft.com/guided-learning/learning-introducing-flow/) は、ユーザーが好むアプリとサービスの間でワークフローとビジネス プロセスを簡単に自動化できるようにします。 PowerApps と Microsoft Flow のどちらにも、Office 365、Dynamics 365、Salesforce などのデータ ソースへのさまざまな組み込みコネクタが付属しています。 状況によっては、アプリとフローのビルダーから、組織でビルドされたデータソースと API に接続したい場合もあります。
 
-同様に、組織内での API の利用範囲を広げるには、アプリとフローのビルダーで API を使用できるようにする必要があります。 このトピックでは、[Azure Functions](../azure-functions/functions-overview.md) または [Azure App Service](../app-service/app-service-web-overview.md) を使って構築した API をエクスポートする方法を示します。 エクスポートされた API は、PowerApps や Microsoft Flow で組み込みのコネクタのように使用される*カスタム コネクタ*になります。
+同様に、組織内での API の利用範囲を広げるには、アプリとフローのビルダーで API を使用できるようにする必要があります。 このトピックでは、[Azure Functions](../azure-functions/functions-overview.md) または [Azure App Service](../app-service/overview.md) を使って構築した API をエクスポートする方法を示します。 エクスポートされた API は、PowerApps や Microsoft Flow で組み込みのコネクタのように使用される*カスタム コネクタ*になります。
 
 ## <a name="create-and-export-an-api-definition"></a>API 定義を作成してエクスポートする
-API をエクスポートする前に、OpenAPI 定義 (以前は [Swagger](http://swagger.io/) ファイルと呼ばれていたもの) を使用して API を記述する必要があります 。 この定義には、API で使用できる操作の情報と、API の要求データと応答データを構造化する方法に関する情報が含まれています。 PowerApps と Microsoft Flow では、任意の OpenAPI 2.0 定義に対応するカスタム コネクタを作成できます。 Azure Functions と Azure App Service には、OpenAPI 定義を作成、ホスト、管理するためのサポートが組み込まれています。 詳細については、[Azure App Service での CORS を使用した RESTful API のホスト](../app-service/app-service-web-tutorial-rest-api.md)に関する記事をご覧ください。
+API をエクスポートする前に、OpenAPI 定義 (以前は [Swagger](https://swagger.io/) ファイルと呼ばれていたもの) を使用して API を記述する必要があります 。 この定義には、API で使用できる操作の情報と、API の要求データと応答データを構造化する方法に関する情報が含まれています。 PowerApps と Microsoft Flow では、任意の OpenAPI 2.0 定義に対応するカスタム コネクタを作成できます。 Azure Functions と Azure App Service には、OpenAPI 定義を作成、ホスト、管理するためのサポートが組み込まれています。 詳細については、[Azure App Service での CORS を使用した RESTful API のホスト](../app-service/app-service-web-tutorial-rest-api.md)に関する記事をご覧ください。
 
 > [!NOTE]
 > OpenAPI 定義を使用せずに、PowerApps と Microsoft Flow の UI でカスタム コネクタをビルドすることもできます。 詳細については、「[PowerApps でのカスタム コネクタの登録と使用](https://powerapps.microsoft.com/tutorials/register-custom-api/)」および「[Microsoft Flow でカスタム コネクタを登録して使用する](https://flow.microsoft.com/documentation/register-custom-api/)」をご覧ください。
@@ -132,7 +132,7 @@ PowerApps と Microsoft Flow に API 定義をインポートするには、次�
 <a name="auth"></a>
 ## <a name="specify-authentication-type"></a>認証の種類を指定します
 
-PowerApps および Microsoft Flow では、カスタム コネクタへの認証を提供する ID プロバイダーのコレクションをサポートしています。 API に認証が必要な場合は、以下の例のように、OpenAPI ドキュメントで _セキュリティ定義_ としてキャプチャされるようにします。
+PowerApps および Microsoft Flow では、カスタム コネクタへの認証を提供する ID プロバイダーのコレクションをサポートしています。 API に認証が必要な場合は、以下の例のように、OpenAPI ドキュメントで_セキュリティ定義_としてキャプチャされるようにします。
 
 ```json
 "securityDefinitions": {
@@ -154,7 +154,7 @@ API キーを使用すると、コネクタのユーザーが接続を作成す�
 ### <a name="azure-active-directory-azure-ad"></a>Azure Active Directory (Azure AD)
 Azure AD を使用する場合、API 自体に対して、または、カスタム コネクタに対しての、2 つの Azure AD アプリケーション登録の方法があります。
 
-- API の登録を構成するには、[App Service の認証と承認の構成](../app-service/app-service-mobile-how-to-configure-active-directory-authentication.md)機能を使用してください。
+- API の登録を構成するには、[App Service の認証と承認の構成](../app-service/configure-authentication-provider-aad.md)機能を使用してください。
 
 - コネクタの登録を構成するには、[Azure AD アプリケーションを追加する](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#adding-an-application)ための手順に従います。 登録には、API および `https://msmanaged-na.consent.azure-apim.net/redirect` の応答 URL への委任アクセス許可が含まれている必要があります。 
 

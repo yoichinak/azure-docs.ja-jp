@@ -1,5 +1,5 @@
 ---
-title: 負荷分散に Traffic Manager を使用する Azure App Service Web アプリのカスタム ドメイン名を構成します。
+title: Traffic Manager を使用するアプリの DNS 名を構成する - Azure App Service
 description: 負荷分散のための Traffic Manager を含む Azure App Service Web アプリのカスタム ドメイン名の使用
 services: app-service\web
 documentationcenter: ''
@@ -14,19 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2016
 ms.author: cephalin
-ms.openlocfilehash: b140ccba2b45dbfb1e4413c9fbeb12e9fec6bc8a
-ms.sourcegitcommit: da3459aca32dcdbf6a63ae9186d2ad2ca2295893
+ms.custom: seodec18
+ms.openlocfilehash: 5431372abb9a1157b322a8af4a07ba5fa15d8e8e
+ms.sourcegitcommit: 549070d281bb2b5bf282bc7d46f6feab337ef248
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/07/2018
-ms.locfileid: "51227180"
+ms.lasthandoff: 12/21/2018
+ms.locfileid: "53720462"
 ---
 # <a name="configuring-a-custom-domain-name-for-a-web-app-in-azure-app-service-using-traffic-manager"></a>Traffic Manager を使用して Azure App Service Web アプリのカスタム ドメイン名を構成する
 [!INCLUDE [web-selector](../../includes/websites-custom-domain-selector.md)]
 
 [!INCLUDE [intro](../../includes/custom-dns-web-site-intro-traffic-manager.md)]
 
-この記事では、負荷分散のために [Traffic Manager](../traffic-manager/traffic-manager-overview.md) と統合されている [App Service](app-service-web-overview.md) アプリでカスタム ドメイン名を使用する一般的な手順を示します。
+この記事では、負荷分散のために [Traffic Manager](../traffic-manager/traffic-manager-overview.md) と統合されている [App Service](overview.md) アプリでカスタム ドメイン名を使用する一般的な手順を示します。
 
 [!INCLUDE [tmwebsitefooter](../../includes/custom-dns-web-site-traffic-manager-notes.md)]
 
@@ -46,7 +47,7 @@ ms.locfileid: "51227180"
 
 ## <a name="add-a-dns-record-for-your-custom-domain"></a>カスタム ドメインの DNS レコードの追加
 > [!NOTE]
-> Azure App Service Web Apps からドメインを購入した場合は、次の手順をスキップして、「 [Web Apps 用のドメインの購入](custom-dns-web-site-buydomains-web-app.md) 」の記事の最後の手順をご覧ください。
+> Azure App Service Web Apps からドメインを購入した場合は、次の手順をスキップして、「 [Web Apps 用のドメインの購入](manage-custom-dns-buy-domain.md) 」の記事の最後の手順をご覧ください。
 > 
 > 
 
@@ -70,8 +71,6 @@ ms.locfileid: "51227180"
 
 ## <a name="next-steps"></a>次の手順
 詳細については、 [Node.js デベロッパー センター](https://azure.microsoft.com/develop/nodejs/)を参照してください。
-
-[!INCLUDE [app-service-web-try-app-service](../../includes/app-service-web-try-app-service.md)]
 
 <!-- URL List -->
 

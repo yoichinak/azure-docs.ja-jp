@@ -1,5 +1,5 @@
 ---
-title: 'チュートリアル: Computer Vision API Java'
+title: チュートリアル:イメージの操作を実行する - Java
 titlesuffix: Azure Cognitive Services
 description: Microsoft Cognitive Services の Computer Vision API を使用する基本的な Java Swing アプリを探索します。 OCR を実行し、サムネイルを作成して、イメージ内の視覚的な特徴を操作します。
 services: cognitive-services
@@ -9,15 +9,16 @@ ms.service: cognitive-services
 ms.component: computer-vision
 ms.topic: tutorial
 ms.author: kefre
+ms.custom: seodec18
 ms.date: 09/21/2017
-ms.openlocfilehash: 36a8a49ee49636d186ca217ae223b1eebf9bb54b
-ms.sourcegitcommit: 1aacea6bf8e31128c6d489fa6e614856cf89af19
+ms.openlocfilehash: ef1180a8e8c833648e3b61705abf354cb4dfaed3
+ms.sourcegitcommit: 818d3e89821d101406c3fe68e0e6efa8907072e7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/16/2018
-ms.locfileid: "49340258"
+ms.lasthandoff: 01/09/2019
+ms.locfileid: "54117488"
 ---
-# <a name="tutorial-computer-vision-api-java"></a>チュートリアル: Computer Vision API Java
+# <a name="tutorial-computer-vision-api-java"></a>チュートリアル:Computer Vision API Java
 
 このチュートリアルでは、Azure Cognitive Services の Computer Vision REST API の機能について説明します。
 
@@ -777,7 +778,7 @@ Computer Vision の手書き認識機能は、手書きのテキストのイメ�
             
             // Check for success.
             if (textResponse.getStatusLine().getStatusCode() != 202) {
-                // An error occured. Return the JSON error message.
+                // An error occurred. Return the JSON error message.
                 HttpEntity entity = textResponse.getEntity();
                 String jsonString = EntityUtils.toString(entity);
                 return new JSONObject(jsonString);

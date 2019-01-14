@@ -10,12 +10,12 @@ ms.service: azure-functions; cosmos-db
 ms.topic: reference
 ms.date: 11/21/2017
 ms.custom: seodec18
-ms.openlocfilehash: 2a501129720447462d1e6e961597b51fa683dc1e
-ms.sourcegitcommit: 78ec955e8cdbfa01b0fa9bdd99659b3f64932bba
+ms.openlocfilehash: 19a6ebaeb0c643c82277656ebade576c79ed0211
+ms.sourcegitcommit: da69285e86d23c471838b5242d4bdca512e73853
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/10/2018
-ms.locfileid: "53136207"
+ms.lasthandoff: 01/03/2019
+ms.locfileid: "54001959"
 ---
 # <a name="azure-cosmos-db-bindings-for-azure-functions-1x"></a>Azure Functions 1.x の Azure Cosmos DB バインド
 
@@ -26,14 +26,14 @@ ms.locfileid: "53136207"
 この記事では、Azure Functions で [Azure Cosmos DB](../cosmos-db/serverless-computing-database.md) のバインドを操作する方法について説明します。 Azure Functions は、Azure Cosmos DB のトリガー、入力、出力のバインドをサポートしています。
 
 > [!NOTE]
-> この記事は、Azure Functions 1.x を対象としています。  Functions 2.x でこれらのバインドを使用する方法については、[Azure Functions 2.x の Azure Cosmos DB のバインド](functions-bindings-cosmosdb-v2.md)に関するページを参照してください。
+> この記事は、Azure Functions 1.x を対象としています。 Functions 2.x でこれらのバインドを使用する方法については、[Azure Functions 2.x の Azure Cosmos DB のバインド](functions-bindings-cosmosdb-v2.md)に関するページを参照してください。
 >
 >このバインドの元の名称は DocumentDB でした。 Functions バージョン 1.x では、トリガーのみが Cosmos DB に名称が変更され、入力バインド、出力バインド、および NuGet パッケージは DocumentDB のままでした。
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 > [!NOTE]
-> Azure Cosmos DB のバインドは、SQL API で使用する場合にのみサポートされます。 他のすべての Azure Cosmos DB API については、[MongoDB API](../cosmos-db/mongodb-introduction.md)](../cosmos-db/mongodb-introduction.md)、[Cassandra API](../cosmos-db/cassandra-introduction.md)、[Gremlin API](../cosmos-db/graph-introduction.md)、[Table API](../cosmos-db/table-introduction.md) など、API 用の静的クライアントを使用して関数からデータベースにアクセスする必要があります。
+> Azure Cosmos DB のバインドは、SQL API で使用する場合にのみサポートされます。 他のすべての Azure Cosmos DB API シリーズについては、[Azure Cosmos DB for MongoDB API](../cosmos-db/mongodb-introduction.md)](../cosmos-db/mongodb-introduction.md)、[Cassandra API](../cosmos-db/cassandra-introduction.md)、[Gremlin API](../cosmos-db/graph-introduction.md)、[Table API](../cosmos-db/table-introduction.md) などの API 用の静的クライアントを使用して、関数からデータベースにアクセスする必要があります。
 
 ## <a name="packages---functions-1x"></a>パッケージ - Functions 1.x
 
@@ -75,7 +75,7 @@ namespace CosmosDBSamplesV1
             collectionName: "Items",
             ConnectionStringSetting = "CosmosDBConnection",
             LeaseCollectionName = "leases",
-            CreateLeaseCollectionIfNotExists = true)]IReadOnlyList<Document> documents, 
+            CreateLeaseCollectionIfNotExists = true)]IReadOnlyList<Document> documents,
             TraceWriter log)
         {
             if (documents != null && documents.Count > 0)
@@ -110,8 +110,8 @@ namespace CosmosDBSamplesV1
 ```
 
 C# スクリプト コードを次に示します。
- 
-```cs 
+
+```cs
     #r "Microsoft.Azure.Documents.Client"
     
     using System;
@@ -121,8 +121,8 @@ C# スクリプト コードを次に示します。
 
     public static void Run(IReadOnlyList<Document> documents, TraceWriter log)
     {
-      log.Info("Documents modified " + documents.Count);
-      log.Info("First document Id " + documents[0].Id);
+        log.Info("Documents modified " + documents.Count);
+        log.Info("First document Id " + documents[0].Id);
     }
 ```
 
@@ -151,9 +151,9 @@ JavaScript コードを次に示します。
 
 ```javascript
     module.exports = function (context, documents) {
-      context.log('First document Id modified : ', documents[0].id);
+        context.log('First document Id modified : ', documents[0].id);
 
-      context.done();
+        context.done();
     }
 ```
 
@@ -184,7 +184,7 @@ JavaScript コードを次に示します。
 |---------|---------|----------------------|
 |**type** || `cosmosDBTrigger` に設定する必要があります。 |
 |**direction** || `in` に設定する必要があります。 このパラメーターは、Azure Portal でトリガーを作成するときに自動で設定されます。 |
-|**name** || 変更されるドキュメントの一覧を表す、関数コードで使用する変数の名前。 | 
+|**name** || 変更されるドキュメントの一覧を表す、関数コードで使用する変数の名前。 |
 |**connectionStringSetting**|**ConnectionStringSetting** | 監視されている Azure Cosmos DB アカウントに接続するために使用される接続文字列を含めたアプリ設定の名前。 |
 |**databaseName**|**DatabaseName**  | 監視されているコレクションを使用する Azure Cosmos DB データベースの名前。 |
 |**collectionName** |**CollectionName** | 監視されているコレクションの名前。 |
@@ -192,14 +192,15 @@ JavaScript コードを次に示します。
 |**leaseDatabaseName** |**LeaseDatabaseName** | (省略可能) リースの保存のために使用するコレクションを保持しているデータベースの名前。 この値を設定しない場合、`databaseName` の設定の値が使用されます。 このパラメーターは、ポータルでバインドが作成されるときに自動で設定されます。 |
 |**leaseCollectionName** | **LeaseCollectionName** | (省略可能) リースの保存のために使用するコレクションの名前。 この値を設定しない場合、`leases` という値が使用されます。 |
 |**createLeaseCollectionIfNotExists** | **CreateLeaseCollectionIfNotExists** | (省略可能) `true` を設定すると、リース コレクションが存在していない場合に自動でリース コレクションを作成します。 既定値は `false` です。 |
-|**leasesCollectionThroughput**| **leasesCollectionThroughput**| (省略可能) リース コレクションの作成に割り当てる要求ユニットの量を定義します。 この設定は、`createLeaseCollectionIfNotExists` が `true` に設定されている場合のみ使用できます。 このパラメーターは、ポータルでバインドが作成されるときに自動で設定されます。
+|**leasesCollectionThroughput**| **leasesCollectionThroughput**| (省略可能) リース コレクションの作成に割り当てる要求ユニットの量を定義します。 この設定は、`createLeaseCollectionIfNotExists` が `true` に設定されている場合のみ使用できます。 このパラメーターは、ポータルを使用してバインドを作成するときに自動的に設定されます。
 |**leaseCollectionPrefix**| **LeaseCollectionPrefix**| (省略可能) 設定すると、この関数のリース コレクション内に作成されたリースにプレフィックスが追加され、2 つの独立した Azure Functions が、異なるプレフィックスを使用することで同じリース コレクションを効率的に共有できます。
 |**feedPollDelay**| **FeedPollDelay**| (省略可能) 設定すると、現在の変更がすべて排除された後、パーティションでフィードの新しい変更をポーリングするまでの遅延時間がミリ秒単位で定義されます。 既定値は 5,000 (5 秒) です。
 |**leaseAcquireInterval**| **LeaseAcquireInterval**| (省略可能) 設定すると、パーティションが既知のホスト インスタンス間で均等に分散されているかどうかを計算するタスクを開始する間隔がミリ秒単位で定義されます。 既定値は 13,000 (13 秒) です。
 |**leaseExpirationInterval**| **LeaseExpirationInterval**| (省略可能) 設定すると、パーティションを表すリースでリースを取得する間隔がミリ秒単位で定義されます。 この間隔内にリースが更新されない場合、リースは期限切れとなり、パーティションの所有権は別のインスタンスに移動します。 既定値は 60,000 (60 秒) です。
 |**leaseRenewInterval**| **LeaseRenewInterval**| (省略可能) 設定すると、インスタンスが現在保持しているパーティションのすべてのリースの更新間隔がミリ秒単位で定義されます。 既定値は 17,000 (17 秒) です。
-|**checkpointFrequency**| **CheckpointFrequency**| (省略可能) 設定すると、リース チェックポイントの間隔がミリ秒単位で定義されます。 既定値は、常に成功した関数呼び出しの後になります。
+|**checkpointFrequency**| **CheckpointFrequency**| (省略可能) 設定すると、リース チェックポイントの間隔がミリ秒単位で定義されます。 既定値は、常に各関数呼び出しの後です。
 |**maxItemsPerInvocation**| **MaxItemsPerInvocation**| (省略可能) 設定すると、関数呼び出しごとに受信するアイテムの最大量がカスタマイズされます。
+|**startFromBeginning**| **StartFromBeginning**| (省略可能) 設定すると、現在の時刻ではなく、コレクションの履歴の最初から変更の読み取りを開始するように、トリガーが指示されます。 これは、初めてトリガーが起動される場合にのみ機能します。その後の実行では、チェックポイントが既に格納されているためです。 既にリースが作成されているときにこれを `true` に設定しても効果はありません。
 
 [!INCLUDE [app settings to local.settings.json](../../includes/functions-app-settings-local.md)]
 
@@ -281,7 +282,7 @@ namespace CosmosDBSamplesV1
             [DocumentDB(
                 databaseName: "ToDoItems",
                 collectionName: "Items",
-                ConnectionStringSetting = "CosmosDBConnection", 
+                ConnectionStringSetting = "CosmosDBConnection",
                 Id = "{ToDoItemId}")]ToDoItem toDoItem,
             TraceWriter log)
         {
@@ -323,7 +324,7 @@ namespace CosmosDBSamplesV1
             [DocumentDB(
                 databaseName: "ToDoItems",
                 collectionName: "Items",
-                ConnectionStringSetting = "CosmosDBConnection", 
+                ConnectionStringSetting = "CosmosDBConnection",
                 Id = "{Query.id}")] ToDoItem toDoItem,
             TraceWriter log)
         {
@@ -362,12 +363,12 @@ namespace CosmosDBSamplesV1
         [FunctionName("DocByIdFromRouteData")]
         public static HttpResponseMessage Run(
             [HttpTrigger(
-                AuthorizationLevel.Anonymous, "get", "post", 
+                AuthorizationLevel.Anonymous, "get", "post",
                 Route = "todoitems/{id}")]HttpRequestMessage req,
             [DocumentDB(
                 databaseName: "ToDoItems",
                 collectionName: "Items",
-                ConnectionStringSetting = "CosmosDBConnection", 
+                ConnectionStringSetting = "CosmosDBConnection",
                 Id = "{id}")] ToDoItem toDoItem,
             TraceWriter log)
         {
@@ -407,12 +408,12 @@ namespace CosmosDBSamplesV1
     {
         [FunctionName("DocByIdFromRouteDataUsingSqlQuery")]
         public static HttpResponseMessage Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", 
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post",
                 Route = "todoitems2/{id}")]HttpRequestMessage req,
             [DocumentDB(
                 databaseName: "ToDoItems",
                 collectionName: "Items",
-                ConnectionStringSetting = "CosmosDBConnection", 
+                ConnectionStringSetting = "CosmosDBConnection",
                 SqlQuery = "select * from ToDoItems r where r.id = {id}")] IEnumerable<ToDoItem> toDoItems,
             TraceWriter log)
         {
@@ -452,7 +453,7 @@ namespace CosmosDBSamplesV1
             [DocumentDB(
                 databaseName: "ToDoItems",
                 collectionName: "Items",
-                ConnectionStringSetting = "CosmosDBConnection", 
+                ConnectionStringSetting = "CosmosDBConnection",
                 SqlQuery = "SELECT top 2 * FROM c order by c._ts desc")]
                 IEnumerable<ToDoItem> toDoItems,
             TraceWriter log)
@@ -571,7 +572,7 @@ namespace CosmosDBSamplesV1
     "collectionName": "MyCollection",
     "id" : "{queueTrigger}",
     "partitionKey": "{partition key value}",
-    "connection": "MyAccount_COSMOSDB",     
+    "connection": "MyAccount_COSMOSDB",
     "direction": "in"
 }
 ```
@@ -582,10 +583,10 @@ C# スクリプト コードを次に示します。
 ```cs
     using System;
 
-    // Change input document contents using Azure Cosmos DB input binding 
+    // Change input document contents using Azure Cosmos DB input binding
     public static void Run(string myQueueItem, dynamic inputDocument)
-    {   
-      inputDocument.text = "This has changed.";
+    {
+        inputDocument.text = "This has changed.";
     }
 ```
 
@@ -595,7 +596,7 @@ C# スクリプト コードを次に示します。
 
 次の例は、*function.json* ファイルの Azure Cosmos DB 入力バインドと、そのバインドが使用される [C# スクリプト関数](functions-reference-csharp.md)を示しています。 この関数は、SQL クエリで指定されている複数のドキュメントを、キュー トリガーを使用してクエリ パラメーターをカスタマイズすることで取得します。
 
-キュー トリガーがパラメーター `departmentId` を提供します。 `{ "departmentId" : "Finance" }` のキュー メッセージは、金融部門のすべてのレコードを返します。 
+キュー トリガーがパラメーター `departmentId` を提供します。 `{ "departmentId" : "Finance" }` のキュー メッセージは、金融部門のすべてのレコードを返します。
 
 *function.json* ファイルのバインディング データを次に示します。
 
@@ -617,11 +618,11 @@ C# スクリプト コードを次に示します。
 
 ```csharp
     public static void Run(QueuePayload myQueueItem, IEnumerable<dynamic> documents)
-    {   
+    {
         foreach (var doc in documents)
         {
             // operate on each document
-        }    
+        }
     }
 
     public class QueuePayload
@@ -681,7 +682,7 @@ public static HttpResponseMessage Run(HttpRequestMessage req, ToDoItem toDoItem,
 
     if (toDoItem == null)
     {
-         log.Info($"ToDo item not found");
+        log.Info($"ToDo item not found");
     }
     else
     {
@@ -743,7 +744,7 @@ public static HttpResponseMessage Run(HttpRequestMessage req, ToDoItem toDoItem,
 
     if (toDoItem == null)
     {
-         log.Info($"ToDo item not found");
+        log.Info($"ToDo item not found");
     }
     else
     {
@@ -915,7 +916,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, Docume
     "collectionName": "MyCollection",
     "id" : "{queueTrigger_payload_property}",
     "partitionKey": "{queueTrigger_payload_property}",
-    "connection": "MyAccount_COSMOSDB",     
+    "connection": "MyAccount_COSMOSDB",
     "direction": "in"
 },
 {
@@ -935,7 +936,7 @@ JavaScript コードを次に示します。
 
 ```javascript
     // Change input document contents using Azure Cosmos DB input binding, using context.bindings.inputDocumentOut
-    module.exports = function (context) {   
+    module.exports = function (context) {
     context.bindings.inputDocumentOut = context.bindings.inputDocumentIn;
     context.bindings.inputDocumentOut.text = "This was updated!";
     context.done();
@@ -1067,7 +1068,7 @@ module.exports = function (context, req, toDoItem) {
 
 次の例は、*function.json* ファイルの Azure Cosmos DB 入力バインドと、そのバインドが使用される [JavaScript 関数](functions-reference-node.md)を示しています。 この関数は、SQL クエリで指定されている複数のドキュメントを、キュー トリガーを使用してクエリ パラメーターをカスタマイズすることで取得します。
 
-キュー トリガーがパラメーター `departmentId` を提供します。 `{ "departmentId" : "Finance" }` のキュー メッセージは、金融部門のすべてのレコードを返します。 
+キュー トリガーがパラメーター `departmentId` を提供します。 `{ "departmentId" : "Finance" }` のキュー メッセージは、金融部門のすべてのレコードを返します。
 
 *function.json* ファイルのバインディング データを次に示します。
 
@@ -1088,12 +1089,12 @@ module.exports = function (context, req, toDoItem) {
 JavaScript コードを次に示します。
 
 ```javascript
-    module.exports = function (context, input) {    
+    module.exports = function (context, input) {
         var documents = context.bindings.documents;
         for (var i = 0; i < documents.length; i++) {
             var document = documents[i];
             // operate on each document
-        }       
+        }
         context.done();
     };
 ```
@@ -1115,7 +1116,7 @@ JavaScript コードを次に示します。
     "databaseName": "MyDatabase",
     "collectionName": "MyCollection",
     "id" : "{queueTrigger}",
-    "connection": "MyAccount_COSMOSDB",     
+    "connection": "MyAccount_COSMOSDB",
     "direction": "in"
 }
 ```
@@ -1152,7 +1153,7 @@ F# コードを次に示します。
 
 [C# クラス ライブラリ](functions-dotnet-class-library.md)では、[DocumentDB](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/v2.x/src/WebJobs.Extensions.DocumentDB/DocumentDBAttribute.cs) 属性を使用します。
 
-この属性のコンストラクターにはデータベース名とコレクションを指定します。 これらの設定や構成できる他のプロパティについて詳しくは、[この後の構成に関するセクション](#input---configuration)をご覧ください。 
+この属性のコンストラクターにはデータベース名とコレクションを指定します。 これらの設定や構成できる他のプロパティについて詳しくは、[この後の構成に関するセクション](#input---configuration)をご覧ください。
 
 ## <a name="input---configuration"></a>入力 - 構成
 
@@ -1174,13 +1175,13 @@ F# コードを次に示します。
 
 ## <a name="input---usage"></a>入力 - 使用方法
 
-C# および F# 関数では、関数が正常に終了したときに、名前付き入力パラメーターを介した入力ドキュメントへの変更がすべて自動的に保持されます。 
+C# および F# 関数では、関数が正常に終了したときに、名前付き入力パラメーターを介した入力ドキュメントへの変更がすべて自動的に保持されます。
 
 JavaScript 関数の場合、関数の終了時に更新が自動的に行われることはありません。 代わりに、`context.bindings.<documentName>In` と `context.bindings.<documentName>Out` を使用して、更新を行います。 [JavaScript の例](#input---javascript-examples)を参照してください。
 
 ## <a name="output"></a>出力
 
-Azure Cosmos DB 出力バインドを使用すると、SQL API を使って Azure Cosmos DB データベースに新しいドキュメントを記述できます。 
+Azure Cosmos DB 出力バインドを使用すると、SQL API を使って Azure Cosmos DB データベースに新しいドキュメントを記述できます。
 
 ## <a name="output---examples"></a>出力 - 例
 
@@ -1328,7 +1329,7 @@ namespace CosmosDBSamplesV1
     "databaseName": "MyDatabase",
     "collectionName": "MyCollection",
     "createIfNotExists": true,
-    "connection": "MyAccount_COSMOSDB",     
+    "connection": "MyAccount_COSMOSDB",
     "direction": "out"
 }
 ```
@@ -1345,16 +1346,16 @@ C# スクリプト コードを次に示します。
 
     public static void Run(string myQueueItem, out object employeeDocument, TraceWriter log)
     {
-      log.Info($"C# Queue trigger function processed: {myQueueItem}");
+        log.Info($"C# Queue trigger function processed: {myQueueItem}");
 
-      dynamic employee = JObject.Parse(myQueueItem);
+        dynamic employee = JObject.Parse(myQueueItem);
 
-      employeeDocument = new {
-        id = employee.name + "-" + employee.employeeId,
-        name = employee.name,
-        employeeId = employee.employeeId,
-        address = employee.address
-      };
+        employeeDocument = new {
+            id = employee.name + "-" + employee.employeeId,
+            name = employee.name,
+            employeeId = employee.employeeId,
+            address = employee.address
+        };
     }
 ```
 
@@ -1451,7 +1452,7 @@ public static async Task Run(ToDoItem[] toDoItemsIn, IAsyncCollector<ToDoItem> t
     "databaseName": "MyDatabase",
     "collectionName": "MyCollection",
     "createIfNotExists": true,
-    "connection": "MyAccount_COSMOSDB",     
+    "connection": "MyAccount_COSMOSDB",
     "direction": "out"
 }
 ```
@@ -1463,7 +1464,7 @@ JavaScript コードを次に示します。
 ```javascript
     module.exports = function (context) {
 
-      context.bindings.employeeDocument = JSON.stringify({ 
+      context.bindings.employeeDocument = JSON.stringify({
         id: context.bindings.myQueueItem.name + "-" + context.bindings.myQueueItem.employeeId,
         name: context.bindings.myQueueItem.name,
         employeeId: context.bindings.myQueueItem.employeeId,
@@ -1508,7 +1509,7 @@ JavaScript コードを次に示します。
     "databaseName": "MyDatabase",
     "collectionName": "MyCollection",
     "createIfNotExists": true,
-    "connection": "MyAccount_COSMOSDB",     
+    "connection": "MyAccount_COSMOSDB",
     "direction": "out"
 }
 ```
@@ -1561,7 +1562,7 @@ F# コードを次に示します。
 この属性のコンストラクターにはデータベース名とコレクションを指定します。 これらの設定や構成できる他のプロパティについて詳しくは、「[出力 - 構成](#output---configuration)」をご覧ください。 メソッド シグネチャでの `DocumentDB` 属性の例を次に示します。
 
 ```csharp
-    [FunctionName("QueueToDocDB")]        
+    [FunctionName("QueueToDocDB")]
     public static void Run(
         [QueueTrigger("myqueue-items", Connection = "AzureWebJobsStorage")] string myQueueItem,
         [DocumentDB("ToDoList", "Items", Id = "id", ConnectionStringSetting = "myCosmosDB")] out dynamic document)
@@ -1592,10 +1593,10 @@ F# コードを次に示します。
 
 ## <a name="output---usage"></a>出力 - 使用方法
 
-既定では、関数の出力パラメーターに書き込むと、ドキュメントがデータベースに作成されます。 このドキュメントには、自動的に生成された GUID がドキュメント ID として割り当てられます。 出力ドキュメントのドキュメント ID を指定するには、出力パラメーターに渡された JSON オブジェクトで `id` プロパティを指定します。 
+既定では、関数の出力パラメーターに書き込むと、ドキュメントがデータベースに作成されます。 このドキュメントには、自動的に生成された GUID がドキュメント ID として割り当てられます。 出力ドキュメントのドキュメント ID を指定するには、出力パラメーターに渡された JSON オブジェクトで `id` プロパティを指定します。
 
-> [!Note]  
-> 既存のドキュメントの ID を指定した場合、既存のドキュメントは新しい出力ドキュメントによって上書きされます。 
+> [!Note]
+> 既存のドキュメントの ID を指定した場合、既存のドキュメントは新しい出力ドキュメントによって上書きされます。
 
 ## <a name="exceptions-and-return-codes"></a>例外とリターン コード
 
