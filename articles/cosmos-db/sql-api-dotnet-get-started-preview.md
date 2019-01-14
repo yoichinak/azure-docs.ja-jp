@@ -323,15 +323,18 @@ Azure Cosmos DB SQL API を実際に使ってみるチュートリアルへよ�
 
 お疲れさまでした。 これで、Azure Cosmos DB コンテナーが作成されました。  
 
-## <a id="CreateDoc"></a>手順 6: 項目をコンテナーに追加する
-項目は、 **CosmosItems** クラスの [**CreateItemAsync**](https://docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmositems) 関数を使って作成することができます。SQL API を使うとき、項目は、ユーザー定義の（任意の） JSON コンテンツであるドキュメントに変換されます。Azure Cosmos DB コンテナーに項目を挿入してみましょう。
+## <a id="CreateDoc"></a>手順 6: コンテナーに項目を追加する
 
-まず、このサンプルの Azure Cosmos DB に格納されるオブジェクトとなる **Family** クラスを作成する必要があります。**Family** の中で使われる **Parent**、**Child**、**Pet**、**Address** サブクラスも作成します。ドキュメントには、JSON で **id** としてシリアル化される **Id** プロパティが必要であることに注意してください。
-1. **Ctrl+Shift+A** キーを押して **新しい項目の追加** ダイアログを開きます。新しいクラス **Family.cs** をプロジェクトに追加します。
+項目は、 **CosmosItems** クラスの [**CreateItemAsync**](https://docs.microsoft.com/dotnet/api/microsoft.azure.cosmos.cosmositems) 関数を使用して作成できます。SQL API を使用すると、項目はドキュメントとして投影されます。これは、ユーザー定義の (任意の) JSON コンテンツです。 これで、Azure Cosmos DB コンテナーに項目を挿入できます。
 
-    ![Screen shot of adding a new Family.cs class into the project](./media/sql-api-get-started/dotnet-tutorial-visual-studio-add-family-class.png)
+まず、この例の Azure Cosmos DB に格納するオブジェクトの **Family** クラスを作成する必要があります。 さらに、**Family** 内で使用するサブクラスとして、**Parent**、**Child**、**Pet**、**Address** を作成します。ドキュメントには、JSON で **id** としてシリアル化される **Id** プロパティが必要であることに注意してください。
 
-1. **Family**、**Parent**、**Child**、**Pet**、および **Address** クラスをコピーして、**Family.cs** に貼り付けます。
+1.  **Ctrl + Shift + A** キーを押して **[新しい項目の追加]** ダイアログを開きます。新しいクラス **Family.cs** をプロジェクトに追加します。
+
+    ![プロジェクトに新しい Family.cs クラスを追加する画面のスクリーン ショット](./media/sql-api-get-started/dotnet-tutorial-visual-studio-add-family-class.png)
+
+1.  **Family**、**Parent**、**Child**、**Pet**、および **Address** クラスをコピーして、**Family.cs** に貼り付けます。
+
     ```csharp
     using Newtonsoft.Json;
 
@@ -602,9 +605,11 @@ Azure Cosmos DB では、各コレクションに格納された JSON ドキュ�
 お疲れさまでした。 これで、Azure Cosmos DB 項目が置換されました。
 
 ## <a id="DeleteDocument"></a>手順 9: 項目を削除する
+
 ここでは、 Azure Cosmos DB 内の項目を削除します。
 
 1. **DeleteFamilyItem** メソッドをコピーして、**ReplaceFamilyItem** メソッドの下に貼り付けます。
+
     ```csharp
     /*
     Delete an item in the container
