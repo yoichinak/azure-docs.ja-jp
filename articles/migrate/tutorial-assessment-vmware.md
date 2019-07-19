@@ -7,12 +7,12 @@ ms.topic: tutorial
 ms.date: 06/10/2019
 ms.author: raynew
 ms.custom: mvc
-ms.openlocfilehash: ac5bed1f21640a40fe32bedac8b28d0a9fda0ffd
-ms.sourcegitcommit: 41ca82b5f95d2e07b0c7f9025b912daf0ab21909
+ms.openlocfilehash: c16c7fdfdf3efe5518e2452871fdeace0a4a8526
+ms.sourcegitcommit: 47ce9ac1eb1561810b8e4242c45127f7b4a4aa1a
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/13/2019
-ms.locfileid: "67074455"
+ms.lasthandoff: 07/11/2019
+ms.locfileid: "67807962"
 ---
 # <a name="discover-and-assess-on-premises-vmware-vms-for-migration-to-azure"></a>Azure に移行するためにオンプレミスの VMware VM を検出して評価する
 
