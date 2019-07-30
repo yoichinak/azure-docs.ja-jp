@@ -556,6 +556,8 @@
           href: how-to-create-schedule-trigger.md
         - name: タンブリング ウィンドウ トリガーの作成
           href: how-to-create-tumbling-window-trigger.md
+        - name: タンブリング ウィンドウ トリガーの依存関係の作成
+          href: tumbling-window-trigger-dependency.md
     - name: テンプレート
       items:
         - name: テンプレートの概要
@@ -564,12 +566,12 @@
           href: solution-template-copy-files-multiple-containers.md
         - name: LastModifiedDate を基準に新しいファイルをコピーする
           href: solution-template-copy-new-files-lastmodifieddate.md
+        - name: データベースからの一括コピー
+          href: solution-template-bulk-copy-with-control-table.md
+        - name: データベースからの差分コピー
+          href: solution-template-delta-copy-with-control-table.md
         - name: ファイルの移動
           href: solution-template-move-files.md
-        - name: 制御テーブルを使用した一括コピー
-          href: solution-template-bulk-copy-with-control-table.md
-        - name: 制御テーブルを使用した差分コピー
-          href: solution-template-delta-copy-with-control-table.md
         - name: Databricks を使用したデータ変換
           href: solution-template-databricks-notebook.md
     - name: トラブルシューティング ガイド

@@ -81,6 +81,8 @@
       href: sample-v2-code.md
     - name: 概念
       items:
+        - name: 認証の基本
+          href: authentication-scenarios.md
         - name: 認証フローとアプリ シナリオ
           href: authentication-flows-app-scenarios.md
         - name: アプリケーションのシナリオ
@@ -191,6 +193,18 @@
                   href: scenario-mobile-overview.md
                 - name: アプリの登録
                   href: scenario-mobile-app-registration.md
+                - name: コード構成
+                  href: scenario-mobile-app-configuration.md
+                - name: モバイル プラットフォーム固有の構成
+                  items:
+                    - name: Xamarin Android
+                      href: msal-net-xamarin-android-considerations.md
+                    - name: Android のシステム ブラウザー
+                      href: msal-net-system-browser-android-considerations.md
+                    - name: Xamarin iOS
+                      href: msal-net-xamarin-ios-considerations.md
+                    - name: ユニバーサル Windows プラットフォーム
+                      href: msal-net-uwp-considerations.md
                 - name: アプリのトークンの取得
                   href: scenario-mobile-acquire-token.md
                 - name: Web API の呼び出し
@@ -253,14 +267,6 @@
                   items:
                     - name: Web ブラウザー
                       href: msal-net-web-browsers.md
-                    - name: Xamarin Android
-                      href: msal-net-xamarin-android-considerations.md
-                    - name: Android のシステム ブラウザー
-                      href: msal-net-system-browser-android-considerations.md
-                    - name: Xamarin iOS
-                      href: msal-net-xamarin-ios-considerations.md
-                    - name: ユニバーサル Windows プラットフォーム
-                      href: msal-net-uwp-considerations.md
                 - name: MSAL.js
                   items:
                     - name: IE の使用に関する考慮事項
@@ -271,8 +277,6 @@
                       href: msal-js-known-issues-safari-browser.md
         - name: 認証プロトコル
           items:
-            - name: 認証の基本
-              href: authentication-scenarios.md
             - name: アプリケーションの種類と OAuth2.0
               href: v2-app-types.md
             - name: OAuth 2.0 と OpenID Connect プロトコル
@@ -408,7 +412,7 @@
         - name: 重大な変更
           href: reference-breaking-changes.md
 - name: v1.0
-  expanded: true
+  expanded: false
   items:
     - name: 概要
       href: v1-overview.md

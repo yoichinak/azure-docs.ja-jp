@@ -1,19 +1,18 @@
 ---
 title: Azure への SQL Server データベースのバックアップ | Microsoft Docs
 description: このチュートリアルでは、SQL Server を Azure に バックアップする方法について説明します。
-services: backup
 author: dcurwin
 manager: ''
 ms.service: backup
 ms.topic: tutorial
 ms.date: 06/18/2019
 ms.author: dacurwin
-ms.openlocfilehash: 5fbbd2cf999ab8ba3183879bd9b417353aa5edd0
-ms.sourcegitcommit: b7a44709a0f82974578126f25abee27399f0887f
+ms.openlocfilehash: 31549ddbc0fbe237b9cca1b2b7a4893bc98abaf9
+ms.sourcegitcommit: c72ddb56b5657b2adeb3c4608c3d4c56e3421f2c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/18/2019
-ms.locfileid: "67203494"
+ms.lasthandoff: 07/24/2019
+ms.locfileid: "68467099"
 ---
 # <a name="back-up-sql-server-databases-in-azure-vms"></a>Azure VM での SQL Server データベースのバックアップ
 
@@ -143,19 +142,19 @@ VM 上で稼働しているデータベースを検出します。
 
     ![Always On 可用性グループで自動保護を有効にする](./media/backup-azure-sql-database/enable-auto-protection.png)
 
-5.  **[バックアップ ポリシーの選択]** でポリシーを選択し、 **[OK]** をクリックします。
+5. **[バックアップ ポリシーの選択]** でポリシーを選択し、 **[OK]** をクリックします。
 
-   - 既定のポリシーを選択します: HourlyLogBackup
+   - 既定のポリシーを選択します:HourlyLogBackup
    - SQL 用に以前に作成された既存のバックアップ ポリシーを選択する。
    - RPO とリテンション期間の範囲に基づいて新しいポリシーを定義する。
 
      ![[バックアップ ポリシー] を選択する](./media/backup-azure-sql-database/select-backup-policy.png)
 
-6.  **[バックアップ] メニュー**で、 **[バックアップの有効化]** を選択します。
+6. **[バックアップ]** メニューで、 **[バックアップの有効化]** を選択します。
 
     ![選択したバックアップ ポリシーを有効にする](./media/backup-azure-sql-database/enable-backup-button.png)
 
-7. ポータルの  **[通知]**   領域で構成の進行状況を追跡します。
+7. ポータルの **[通知]** 領域で構成の進行状況を追跡します。
 
     ![[通知] 領域](./media/backup-azure-sql-database/notifications-area.png)
 
@@ -245,5 +244,5 @@ VM 上で稼働しているデータベースを検出します。
 
 > [!div class="nextstepaction"]
 > [Azure VM 上の SQL Server データベースを復元する](./restore-sql-database-azure-vm.md)
- 
+ 
 
