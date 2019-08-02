@@ -1,6 +1,6 @@
 ---
 title: 動的ディクショナリ - Translator Text API
-titlesuffix: Azure Cognitive Services
+titleSuffix: Azure Cognitive Services
 description: Translator Text API の動的ディクショナリ機能を使用する方法。
 services: cognitive-services
 author: swmachan
@@ -10,12 +10,12 @@ ms.subservice: translator-text
 ms.topic: conceptual
 ms.date: 06/04/2019
 ms.author: swmachan
-ms.openlocfilehash: 2ef1e474dd5d36f1967501ea7bdedc4736954a2b
-ms.sourcegitcommit: f56b267b11f23ac8f6284bb662b38c7a8336e99b
+ms.openlocfilehash: f586702350b38c6d546767f64a8e2f6115b59817
+ms.sourcegitcommit: fe6b91c5f287078e4b4c7356e0fa597e78361abe
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/28/2019
-ms.locfileid: "67436025"
+ms.lasthandoff: 07/29/2019
+ms.locfileid: "68595293"
 ---
 # <a name="how-to-use-a-dynamic-dictionary"></a>動的ディクショナリを使用する方法
 
@@ -24,6 +24,11 @@ ms.locfileid: "67436025"
 **構文:**
 
 <mstrans:dictionary translation=”translation of phrase”>phrase</mstrans:dictionary>
+
+**要件:**
+
+* `From` と `To` の言語は異なっている必要があります。 
+* 自動検出機能を使用する代わりに、API translation 要求に `From` パラメーターを含める必要があります。 
 
 **例: en-de:**
 

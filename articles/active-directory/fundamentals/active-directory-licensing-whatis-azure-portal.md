@@ -3,23 +3,23 @@ title: グループベースのライセンスとは - Azure Active Directory | 
 description: Azure Active Directory のグループベースのライセンスについて、使用方法やベスト プラクティスなどを説明します。
 services: active-directory
 keywords: Azure AD のライセンス
-author: eross-msft
+author: msaburnley
 manager: daveba
 ms.service: active-directory
 ms.subservice: fundamentals
 ms.topic: conceptual
 ms.workload: identity
 ms.date: 10/29/2018
-ms.author: lizross
+ms.author: ajburnle
 ms.reviewer: krbain
 ms.custom: it-pro, seodec18
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: be7094db14f53af939ded2313823bf2749e59a46
-ms.sourcegitcommit: 41ca82b5f95d2e07b0c7f9025b912daf0ab21909
+ms.openlocfilehash: a89443062f7d5cc697e83cc4039d0f3a47ad3077
+ms.sourcegitcommit: 7c4de3e22b8e9d71c579f31cbfcea9f22d43721a
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/13/2019
-ms.locfileid: "60248297"
+ms.lasthandoff: 07/26/2019
+ms.locfileid: "68561839"
 ---
 # <a name="what-is-group-based-licensing-in-azure-active-directory"></a>Azure Active Directory のグループベースのライセンスとは
 
@@ -32,9 +32,9 @@ ms.locfileid: "60248297"
 ## <a name="licensing-requirements"></a>ライセンスの要件
 グループベースのライセンスを使用するには、次のいずれかのライセンスが必要です。
 
-- Azure AD Basic の有料または試用版のサブスクリプション
+- Azure AD Basic 以上の有料または試用版のサブスクリプション
 
-- Office 365 Enterprise E3 または Office 365 A3 以上の有料または試用版のエディション
+- Office 365 Enterprise E3 または Office 365 A3 または Office 365 GCC G3 以上の有料または試用版のエディション
 
 ### <a name="required-number-of-licenses"></a>必要なライセンスの数
 ライセンスが割り当てられるすべてのグループについて、個々のメンバーに対するライセンスも必要です。 グループの各メンバーにライセンスを割り当てる必要はありませんが、すべてのメンバーが含まれる十分な数のライセンスが少なくとも必要です。 たとえば、テナントのライセンス グループの一部として 1,000 人の個別メンバーがいる場合、ライセンス契約を満たすには、少なくとも 1,000 ライセンスが必要です。

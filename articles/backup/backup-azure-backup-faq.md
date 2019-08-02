@@ -1,19 +1,18 @@
 ---
 title: Azure Backup の FAQ
 description: '一般的な質問への回答:Recovery Services コンテナーを含む Azure Backup の機能、バックアップの対象、しくみ、暗号化、制限。 '
-services: backup
 author: dcurwin
 manager: carmonm
 ms.service: backup
 ms.topic: conceptual
 ms.date: 07/07/2019
 ms.author: dacurwin
-ms.openlocfilehash: a8b0e8b6c7c9e42764b1f3b2af9ed408f4501cc1
-ms.sourcegitcommit: dda9fc615db84e6849963b20e1dce74c9fe51821
+ms.openlocfilehash: c60b2bfae0d974d454c03b7eba655cbdacab5943
+ms.sourcegitcommit: c72ddb56b5657b2adeb3c4608c3d4c56e3421f2c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/08/2019
-ms.locfileid: "67622390"
+ms.lasthandoff: 07/24/2019
+ms.locfileid: "68466686"
 ---
 # <a name="azure-backup---frequently-asked-questions"></a>Azure Backup - よく寄せられる質問
 この記事では、Azure Backup サービスについてよく寄せられる質問への回答を示します。
@@ -154,7 +153,7 @@ Azure Backup のストレージ アーキテクチャを使用すると、高速
 - 詳細については、[バックアップと保有期間](./backup-overview.md#backup-and-retention)を参照してください。
 
 
-### <a name="how-many-times-can-i-recovery-data-thats-backed-up-to-azure"></a>Azure にバックアップされたデータを回復できる回数に制限はありますか。
+### <a name="how-many-times-can-i-recover-data-thats-backed-up-to-azure"></a>Azure にバックアップされたデータを回復できる回数に制限はありますか。
 Azure Backup からの回復の数に制限はありません。
 
 ### <a name="when-restoring-data-do-i-pay-for-the-egress-traffic-from-azure"></a>データを復元している間に発生する Azure からのエグレス トラフィックには料金が発生するのでしょうか。

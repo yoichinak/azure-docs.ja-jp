@@ -3,7 +3,7 @@ title: Azure で API Management と Service Fabric を統合する | Microsoft D
 description: Azure API Management をすぐに使い始め、Service Fabric のバックエンド サービスにトラフィックをルーティングする方法について説明します。
 services: service-fabric
 documentationcenter: .net
-author: aljo-microsoft
+author: athinanthny
 manager: chackdan
 editor: ''
 ms.assetid: ''
@@ -12,15 +12,15 @@ ms.devlang: dotNet
 ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 9/26/2018
-ms.author: aljo
+ms.date: 07/10/2019
+ms.author: atsenthi
 ms.custom: mvc
-ms.openlocfilehash: fc2c23d93a1800232b81c5eb2f861e8b71c3e437
-ms.sourcegitcommit: ef06b169f96297396fc24d97ac4223cabcf9ac33
+ms.openlocfilehash: 470eacee5c71742678497edf48169e14a4073829
+ms.sourcegitcommit: fe6b91c5f287078e4b4c7356e0fa597e78361abe
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/31/2019
-ms.locfileid: "66428056"
+ms.lasthandoff: 07/29/2019
+ms.locfileid: "68598831"
 ---
 # <a name="integrate-api-management-with-service-fabric-in-azure"></a>Azure で API Management と Service Fabric を統合する
 
@@ -77,7 +77,7 @@ Visual Studio を管理者として起動し、ASP.NET Core サービスを作�
  1. Visual Studio で、[ファイル] の [新しいプロジェクト] を選択します。
  2. [クラウド] の下にある Service Fabric アプリケーション テンプレートを選択し、 **"ApiApplication"** という名前を付けます。
  3. ステートレス ASP.NET Core サービス テンプレートを選択し、プロジェクトに **"WebApiService"** という名前を付けます。
- 4. Web API ASP.NET Core 2.0 プロジェクト テンプレートを選択します。
+ 4. Web API ASP.NET Core 2.1 プロジェクト テンプレートを選択します。
  5. プロジェクトが作成されたら、`PackageRoot\ServiceManifest.xml` を開いて、エンドポイント リソースの構成から `Port` 属性を削除します。
 
     ```xml

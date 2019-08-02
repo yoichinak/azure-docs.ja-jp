@@ -9,14 +9,13 @@ ms.topic: conceptual
 ms.reviewer: jmartens, garye
 ms.author: jordane
 author: jpe316
-ms.date: 12/04/2018
-ms.custom: seodec18
-ms.openlocfilehash: 1e403ac0d2fbe9572a44fb3cde9d25e4df9b3db4
-ms.sourcegitcommit: d4dfbc34a1f03488e1b7bc5e711a11b72c717ada
+ms.date: 07/12/2019
+ms.openlocfilehash: 689ee003e0923a65d3ca3f2d13c1a2d05c299dbd
+ms.sourcegitcommit: 4b647be06d677151eb9db7dccc2bd7a8379e5871
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/13/2019
-ms.locfileid: "60818499"
+ms.lasthandoff: 07/19/2019
+ms.locfileid: "68358711"
 ---
 # <a name="run-batch-predictions-on-large-data-sets-with-azure-machine-learning-service"></a>Azure Machine Learning service で大規模なデータ セットのバッチ予測を実行する
 
@@ -27,7 +26,7 @@ ms.locfileid: "60818499"
 >[!TIP]
 > お使いのシステムで低待機時間の処理が必要な場合 (1 つのドキュメントまたは小さいドキュメント セットをすばやく処理する場合) に、バッチ予測ではなく[リアルタイム スコアリング](how-to-consume-web-service.md)を使用します。
 
-以下の手順では、[機械学習パイプライン](concept-ml-pipelines.md)を作成して、事前トレーニング済みのコンピューター ビジョン モデル ([Inception-V3](https://arxiv.org/abs/1512.00567)) を登録した後、 その事前トレーニング済みモデルを使用して、Azure Blob Storage アカウントで使用可能なイメージに対するバッチ スコアリングを行います。 スコアリングに使用されるこれらのイメージは、[ImageNet](http://image-net.org/) データセットからのラベル付けされていないイメージです。
+以下の手順では、[機械学習パイプライン](concept-ml-pipelines.md)を作成して、事前トレーニング済みのコンピューター ビジョン モデル ([Inception-V3](https://arxiv.org/abs/1512.00567)) を登録します。 次に、その事前トレーニング済みモデルを使用して、Azure Blob Storage アカウントで使用可能なイメージに対するバッチ スコアリングを行います。 スコアリングに使用されるこれらのイメージは、[ImageNet](http://image-net.org/) データセットからのラベル付けされていないイメージです。
 
 ## <a name="prerequisites"></a>前提条件
 
@@ -38,12 +37,13 @@ ms.locfileid: "60818499"
 - すべてのパイプライン リソースを保持する Azure Machine Learning ワークスペースを作成します。 次のコードを使用できます。他のオプションについては、「[ワークスペース構成ファイルを作成する](how-to-configure-environment.md#workspace)」をご覧ください。
 
   ```python
-  ws = Workspace.create(
-     name = '<workspace-name>',
-     subscription_id = '<subscription-id>',
-     resource_group = '<resource-group>',
-     location = '<workspace_region>',
-     exist_ok = True)
+  from azureml.core import Workspace
+  ws = Workspace.create(name = '<workspace-name>',
+                        subscription_id = '<subscription-id>',
+                        resource_group = '<resource-group>',
+                        location = '<workspace_region>',
+                        exist_ok = True
+                        )
   ```
 
 ## <a name="set-up-machine-learning-resources"></a>機械学習リソースをセットアップする
@@ -62,16 +62,17 @@ ms.locfileid: "60818499"
 ImageNet 評価セットからのイメージを保持している *pipelinedata* アカウントの *sampledata* という名前のパブリック BLOB コンテナーを使用します。 このパブリック コンテナーのデータストアの名前は *images_datastore* です。 このデータストアを自分のワークスペースに登録します。
 
 ```python
-# Public blob container details
+from azureml.core import Datastore
+
 account_name = "pipelinedata"
-datastore_name="images_datastore"
-container_name="sampledata"
- 
+datastore_name = "images_datastore"
+container_name = "sampledata"
+
 batchscore_blob = Datastore.register_azure_blob_container(ws,
-                      datastore_name=datastore_name,
-                      container_name= container_name,
-                      account_name=account_name,
-                      overwrite=True)
+                                                          datastore_name=datastore_name,
+                                                          container_name=container_name,
+                                                          account_name=account_name,
+                                                          overwrite=True)
 ```
 
 次に、出力に既定のデータストアを使用するように設定します。
@@ -89,23 +90,25 @@ def_data_store = ws.get_default_datastore()
 パイプライン内のデータ ソースは [DataReference](https://docs.microsoft.com/python/api/azureml-core/azureml.data.data_reference.datareference) オブジェクトによって表されます。  `DataReference`  オブジェクトでは、データストアに存在するデータまたはデータストアからアクセス可能なデータが指し示されています。 入力イメージに使用されるディレクトリ、事前トレーニング済みモデルが格納されているディレクトリ、ラベル用のディレクトリ、出力ディレクトリのそれぞれに対して、`DataReference`  オブジェクトが必要です。
 
 ```python
-input_images = DataReference(datastore=batchscore_blob, 
+from azureml.data.data_reference import DataReference
+
+input_images = DataReference(datastore=batchscore_blob,
                              data_reference_name="input_images",
                              path_on_datastore="batchscoring/images",
                              mode="download")
-                           
-model_dir = DataReference(datastore=batchscore_blob, 
+
+model_dir = DataReference(datastore=batchscore_blob,
                           data_reference_name="input_model",
                           path_on_datastore="batchscoring/models",
-                          mode="download")                          
-                         
-label_dir = DataReference(datastore=batchscore_blob, 
+                          mode="download")
+
+label_dir = DataReference(datastore=batchscore_blob,
                           data_reference_name="input_labels",
                           path_on_datastore="batchscoring/labels",
-                          mode="download")                          
-                         
-output_dir = PipelineData(name="scores", 
-                          datastore=def_data_store, 
+                          mode="download")
+
+output_dir = PipelineData(name="scores",
+                          datastore=def_data_store,
                           output_path_on_compute="batchscoring/results")
 ```
 
@@ -114,6 +117,9 @@ output_dir = PipelineData(name="scores",
 Azure Machine Learning での "*コンピューティング*" (または "*コンピューティング先*") とは、機械学習パイプラインで計算ステップを実行するマシンまたはクラスターのことです。 たとえば、`Azure Machine Learning compute` を作成できます。
 
 ```python
+from azureml.core.compute import AmlCompute
+from azureml.core.compute import ComputeTarget
+
 compute_name = "gpucluster"
 compute_min_nodes = 0
 compute_max_nodes = 4
@@ -126,20 +132,20 @@ if compute_name in ws.compute_targets:
 else:
     print('Creating a new compute target...')
     provisioning_config = AmlCompute.provisioning_configuration(
-                     vm_size = vm_size, # NC6 is GPU-enabled
-                     vm_priority = 'lowpriority', # optional
-                     min_nodes = compute_min_nodes, 
-                     max_nodes = compute_max_nodes)
+        vm_size=vm_size,  # NC6 is GPU-enabled
+        vm_priority='lowpriority',  # optional
+        min_nodes=compute_min_nodes,
+        max_nodes=compute_max_nodes)
 
     # create the cluster
-    compute_target = ComputeTarget.create(ws, 
-                        compute_name, 
-                        provisioning_config)
-    
+    compute_target = ComputeTarget.create(ws,
+                                          compute_name,
+                                          provisioning_config)
+
     compute_target.wait_for_completion(
-                     show_output=True, 
-                     min_node_count=None, 
-                     timeout_in_minutes=20)
+        show_output=True,
+        min_node_count=None,
+        timeout_in_minutes=20)
 ```
 
 ## <a name="prepare-the-model"></a>モデルを準備する
@@ -159,7 +165,7 @@ model_dir = 'models'
 if not os.path.isdir(model_dir):
     os.mkdir(model_dir)
 
-url="http://download.tensorflow.org/models/inception_v3_2016_08_28.tar.gz"
+url = "http://download.tensorflow.org/models/inception_v3_2016_08_28.tar.gz"
 response = urllib.request.urlretrieve(url, "model.tar.gz")
 tar = tarfile.open("model.tar.gz", "r:gz")
 tar.extractall(model_dir)
@@ -173,13 +179,13 @@ tar.extractall(model_dir)
 import shutil
 from azureml.core.model import Model
 
-# register downloaded model 
+# register downloaded model
 model = Model.register(
-        model_path = "models/inception_v3.ckpt",
-        model_name = "inception", # This is the name of the registered model
-        tags = {'pretrained': "inception"},
-        description = "Imagenet trained tensorflow inception",
-        workspace = ws)
+    model_path="models/inception_v3.ckpt",
+    model_name="inception",  # This is the name of the registered model
+    tags={'pretrained': "inception"},
+    description="Imagenet trained tensorflow inception",
+    workspace=ws)
 ```
 
 ## <a name="write-your-scoring-script"></a>スコアリング スクリプトを記述する
@@ -205,7 +211,7 @@ def get_class_label_dict(label_file):
 
 class DataIterator:
   # Definition of the DataIterator here
-  
+
 def main(_):
     # Refer to batch-scoring Notebook for implementation.
     label_file_name = os.path.join(args.label_dir, "labels.txt")
@@ -232,14 +238,12 @@ def main(_):
         saver = tf.train.Saver()
         saver.restore(sess, model_path)
         out_filename = os.path.join(args.output_dir, "result-labels.txt")
-            
+
         # copy the file to artifacts
         shutil.copy(out_filename, "./outputs/")
 ```
 
 ## <a name="build-and-run-the-batch-scoring-pipeline"></a>バッチ スコアリング パイプラインを構築して実行する
-
-パイプラインの構築に必要なものがすべて揃ったので、それらをまとめます。
 
 ### <a name="prepare-the-run-environment"></a>実行環境を準備する
 
@@ -247,8 +251,11 @@ def main(_):
 
 ```python
 from azureml.core.runconfig import DEFAULT_GPU_IMAGE
+from azureml.core.runconfig import RunConfiguration
+from azureml.core.conda_dependencies import CondaDependencies
 
-cd = CondaDependencies.create(pip_packages=["tensorflow-gpu==1.10.0", "azureml-defaults"])
+cd = CondaDependencies.create(
+    pip_packages=["tensorflow-gpu==1.10.0", "azureml-defaults"])
 
 # Runconfig
 amlcompute_run_config = RunConfiguration(conda_dependencies=cd)
@@ -263,9 +270,10 @@ amlcompute_run_config.environment.spark.precache_packages = False
 既定の値の  [PipelineParameter](https://docs.microsoft.com/python/api/azureml-pipeline-core/azureml.pipeline.core.graph.pipelineparameter?view=azure-ml-py)  オブジェクトを使用して、パイプライン パラメーターを作成します。
 
 ```python
+from azureml.pipeline.core.graph import PipelineParameter
 batch_size_param = PipelineParameter(
-                    name="param_batch_size", 
-                    default_value=20)
+    name="param_batch_size",
+    default_value=20)
 ```
 
 ### <a name="create-the-pipeline-step"></a>パイプラインのステップを作成する
@@ -273,15 +281,16 @@ batch_size_param = PipelineParameter(
 スクリプト、環境構成、およびパラメーターを使用して、パイプラインのステップを作成します。 スクリプトの実行の対象として既にワークスペースに関連付けたコンピューティング ターゲットを指定します。 [PythonScriptStep](https://docs.microsoft.com/python/api/azureml-pipeline-steps/azureml.pipeline.steps.python_script_step.pythonscriptstep?view=azure-ml-py) を使用してパイプラインのステップを作成します。
 
 ```python
+from azureml.pipeline.steps import PythonScriptStep
 inception_model_name = "inception_v3.ckpt"
 
 batch_score_step = PythonScriptStep(
     name="batch_scoring",
     script_name="batch_score.py",
-    arguments=["--dataset_path", input_images, 
+    arguments=["--dataset_path", input_images,
                "--model_name", "inception",
-               "--label_dir", label_dir, 
-               "--output_dir", output_dir, 
+               "--label_dir", label_dir,
+               "--output_dir", output_dir,
                "--batch_size", batch_size_param],
     compute_target=compute_target,
     inputs=[input_images, label_dir],
@@ -295,9 +304,13 @@ batch_score_step = PythonScriptStep(
 パイプラインを実行し、生成された出力を調べます。 出力には、各入力イメージに対応するスコアが含まれます。
 
 ```python
+import pandas as pd
+from azureml.pipeline.core import Pipeline
+
 # Run the pipeline
 pipeline = Pipeline(workspace=ws, steps=[batch_score_step])
-pipeline_run = Experiment(ws, 'batch_scoring').submit(pipeline, pipeline_params={"param_batch_size": 20})
+pipeline_run = Experiment(ws, 'batch_scoring').submit(
+    pipeline, pipeline_params={"param_batch_size": 20})
 
 # Wait for the run to finish (this might take several minutes)
 pipeline_run.wait_for_completion(show_output=True)
@@ -306,7 +319,6 @@ pipeline_run.wait_for_completion(show_output=True)
 step_run = list(pipeline_run.get_children())[0]
 step_run.download_file("./outputs/result-labels.txt")
 
-import pandas as pd
 df = pd.read_csv("result-labels.txt", delimiter=":", header=None)
 df.columns = ["Filename", "Prediction"]
 df.head()
@@ -318,8 +330,8 @@ df.head()
 
 ```python
 published_pipeline = pipeline_run.publish_pipeline(
-    name="Inception_v3_scoring", 
-    description="Batch scoring using Inception v3 model", 
+    name="Inception_v3_scoring",
+    description="Batch scoring using Inception v3 model",
     version="1.0")
 ```
 
@@ -328,17 +340,17 @@ published_pipeline = pipeline_run.publish_pipeline(
 パイプラインを実行するには、「[AzureCliAuthentication class (AzureCliAuthentication クラス)](https://docs.microsoft.com/python/api/azureml-core/azureml.core.authentication.azurecliauthentication?view=azure-ml-py)」で説明されているように、Azure Active Directory 認証ヘッダー トークンが必要です。
 
 ```python
+from azureml.pipeline.core.run import PipelineRun
 from azureml.pipeline.core import PublishedPipeline
 
 rest_endpoint = published_pipeline.endpoint
 # specify batch size when running the pipeline
-response = requests.post(rest_endpoint, 
-        headers=aad_token, 
-        json={"ExperimentName": "batch_scoring",
-               "ParameterAssignments": {"param_batch_size": 50}})
+response = requests.post(rest_endpoint,
+                         headers=aad_token,
+                         json={"ExperimentName": "batch_scoring",
+                               "ParameterAssignments": {"param_batch_size": 50}})
 
 # Monitor the run
-from azureml.pipeline.core.run import PipelineRun
 published_pipeline_run = PipelineRun(ws.experiments["batch_scoring"], run_id)
 
 RunDetails(published_pipeline_run).show()
@@ -346,7 +358,7 @@ RunDetails(published_pipeline_run).show()
 
 ## <a name="next-steps"></a>次の手順
 
-このエンド ツー エンドの動作を確認するには、[GitHub](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines) にあるバッチ スコアリング ノートブックを試してください。 
+このエンド ツー エンドの動作を確認するには、[GitHub](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines) にあるバッチ スコアリング ノートブックを試してください。
 
 [!INCLUDE [aml-clone-in-azure-notebook](../../../includes/aml-clone-for-examples.md)]
 

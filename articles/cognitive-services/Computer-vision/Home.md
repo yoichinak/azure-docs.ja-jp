@@ -1,6 +1,6 @@
 ---
 title: Computer Vision API とは - Computer Vision
-titlesuffix: Azure Cognitive Services
+titleSuffix: Azure Cognitive Services
 description: Computer Vision サービスを使用すると、開発者は、イメージを処理して情報を返すための高度なアルゴリズムにアクセスできます。
 services: cognitive-services
 author: PatrickFarley
@@ -11,12 +11,12 @@ ms.topic: overview
 ms.date: 07/03/2019
 ms.author: pafarley
 ms.custom: seodec18
-ms.openlocfilehash: f92d8ce8e95962558b3bdb7b4a4d8fe70c725f46
-ms.sourcegitcommit: f10ae7078e477531af5b61a7fe64ab0e389830e8
+ms.openlocfilehash: 4f823b62237e8018f092d7a94fb479f7fbdd38da
+ms.sourcegitcommit: 7c4de3e22b8e9d71c579f31cbfcea9f22d43721a
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/05/2019
-ms.locfileid: "67604494"
+ms.lasthandoff: 07/26/2019
+ms.locfileid: "68565772"
 ---
 # <a name="what-is-computer-vision"></a>Computer Vision とは
 
@@ -65,7 +65,7 @@ Computer Vision では、次の要件に合ったイメージを分析できま�
 - イメージが、JPEG、PNG、GIF、または BMP で提示されている
 - イメージのファイル サイズが 4 メガバイト (MB) 未満である
 - イメージのディメンションが 50 x 50 ピクセルよりも大きい値である
-  - OCR 用に、画像の寸法が 50 x 50 から 4,200 x 4,200 ピクセルの間である
+  - Read API の場合、画像の寸法は、50 x 50 から 10,000 x 10,000 ピクセルの間である必要があります。
 
 ## <a name="data-privacy-and-security"></a>データのプライバシーとセキュリティ
 

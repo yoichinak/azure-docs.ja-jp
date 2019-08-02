@@ -1,19 +1,18 @@
 ---
 title: Azure Files のパフォーマンスのトラブルシューティング ガイド
 description: Azure ファイル共のパフォーマンスに関する既知の問題と、関連する回避策。
-services: storage
 author: gunjanj
 ms.service: storage
-ms.topic: article
+ms.topic: conceptual
 ms.date: 04/25/2019
 ms.author: gunjanj
 ms.subservice: files
-ms.openlocfilehash: 8c35501f3afbeed519fb5304229f25be1cbd5f9b
-ms.sourcegitcommit: f56b267b11f23ac8f6284bb662b38c7a8336e99b
+ms.openlocfilehash: 6b28d004ceacda3cec13e96ceae84d5d1ff1a2e5
+ms.sourcegitcommit: 800f961318021ce920ecd423ff427e69cbe43a54
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/28/2019
-ms.locfileid: "67445670"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "68699169"
 ---
 # <a name="troubleshoot-azure-files-performance-issues"></a>Azure Files のパフォーマンスに関する問題のトラブルシューティング
 
@@ -108,7 +107,7 @@ Premium 共有の既定のクォータは 100 GiB であり、これは 100 ベ�
 ### <a name="workaround"></a>対処法
 
 - 可能であれば、同じディレクトリで短時間に過剰に開く/閉じる操作を行うことを避けます。
-- Linux VM では、マウント オプションとして **actimeo=<sec>** を指定することで、ディレクトリ エントリ キャッシュのタイムアウトを増やします。 既定では 1 秒になっているので、3 や 5 のような大きな値が役立つことがあります。
+- Linux VM では、マウント オプションとして **actimeo=\<sec>** を指定することで、ディレクトリ エントリ キャッシュのタイムアウトを増やします。 既定では 1 秒になっているので、3 や 5 のような大きな値が役立つことがあります。
 - Linux VM の場合、カーネルを 4.20 以上にアップグレードします。
 
 ## <a name="low-iops-on-centosrhel"></a>CentOS/RHEL での低 IOPS

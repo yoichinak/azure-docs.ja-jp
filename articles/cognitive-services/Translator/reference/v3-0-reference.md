@@ -1,6 +1,6 @@
 ---
 title: Translator Text API V3.0 リファレンス
-titlesuffix: Azure Cognitive Services
+titleSuffix: Azure Cognitive Services
 description: Translator Text API V3.0 のリファレンス ドキュメント。
 services: cognitive-services
 author: swmachan
@@ -10,12 +10,12 @@ ms.subservice: translator-text
 ms.topic: reference
 ms.date: 03/29/2018
 ms.author: swmachan
-ms.openlocfilehash: 9b8f3894062c34e743a39f28b5f079a67a285c84
-ms.sourcegitcommit: a7ea412ca4411fc28431cbe7d2cc399900267585
+ms.openlocfilehash: ad619ad965cf4b7d94b781818c658152f71250a7
+ms.sourcegitcommit: fe6b91c5f287078e4b4c7356e0fa597e78361abe
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/25/2019
-ms.locfileid: "67357677"
+ms.lasthandoff: 07/29/2019
+ms.locfileid: "68595008"
 ---
 # <a name="translator-text-api-v30"></a>Translator Text API v3.0
 
@@ -31,10 +31,10 @@ Translator Text API のバージョン 3 には、最新の JSON ベースの We
 
 ## <a name="base-urls"></a>ベース URL
 
-Microsoft Translator のサービスは、複数のデータセンター拠点から提供されます。 現在、それらの拠点は、6 つの [Azure 地域](https://azure.microsoft.com/global-infrastructure/regions)に存在します。
+Microsoft Translator のサービスは、複数のデータセンター拠点から提供されます。 現在、それらの拠点は、10 の [Azure 地域](https://azure.microsoft.com/global-infrastructure/regions)に存在します。
 
-* **アメリカ合衆国:** 米国西部 2 および米国中西部 
-* **アジア太平洋:** 東南アジアおよび韓国南部
+* **アメリカ合衆国:** 米国東部、米国中南部、米国中西部、および米国西部 2 
+* **アジア太平洋:** 韓国南部、東日本、東南アジア、オーストラリア東部
 * **ヨーロッパ:** 北ヨーロッパおよび西ヨーロッパ
 
 Microsoft Translator Text API への要求は、ほとんどの場合、その要求の送信元に最も近いデータセンターによって処理されます。 データセンターに障害が発生している場合は、その Azure 地域以外に要求がルーティングされます。

@@ -3,17 +3,17 @@ title: Azure Portal の Azure Container Registry リポジトリ
 description: Azure Portal で Azure Container Registry リポジトリを表示する方法
 services: container-registry
 author: cristy
-manager: jeconnoc
+manager: gwallace
 ms.service: container-registry
 ms.topic: article
 ms.date: 01/05/2018
-ms.author: cristyg
-ms.openlocfilehash: 685c978ff206e75d770918f2528a826ad522b706
-ms.sourcegitcommit: d4dfbc34a1f03488e1b7bc5e711a11b72c717ada
+ms.author: jeconnoc
+ms.openlocfilehash: 22f84efee2b3996734e8e38c73d30ba891b745d9
+ms.sourcegitcommit: f5075cffb60128360a9e2e0a538a29652b409af9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/13/2019
-ms.locfileid: "64710191"
+ms.lasthandoff: 07/18/2019
+ms.locfileid: "68310581"
 ---
 # <a name="view-container-registry-repositories-in-the-azure-portal"></a>Azure Portal でコンテナー レジストリ リポジトリを表示する
 
@@ -39,7 +39,7 @@ docker push myregistry.azurecr.io/samples/nginx
 
 リポジトリを表示するには:
 
-1. [Azure Portal][portal] にサインインします
+1. [Azure ポータル][portal]
 1. Nginx イメージをプッシュした **Azure Container Registry** を選択します
 1. **[リポジトリ]** を選択し、レジストリ内のイメージを含むリポジトリの一覧を表示します
 1. リポジトリを選択し、リポジトリ内のイメージ タグを表示します

@@ -1,19 +1,18 @@
 ---
 title: Azure Files のデプロイの計画 | Microsoft Docs
 description: Azure Files のデプロイを計画するときの考慮事項について説明します。
-services: storage
 author: roygara
 ms.service: storage
-ms.topic: article
+ms.topic: conceptual
 ms.date: 04/25/2019
 ms.author: rogarana
 ms.subservice: files
-ms.openlocfilehash: d720f60bff1aa4510ac26ac092c42eb98871c851
-ms.sourcegitcommit: 5bdd50e769a4d50ccb89e135cfd38b788ade594d
+ms.openlocfilehash: 1845107998bfefde4c604744c3c09f5356010f7b
+ms.sourcegitcommit: 800f961318021ce920ecd423ff427e69cbe43a54
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/03/2019
-ms.locfileid: "67540337"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "68699703"
 ---
 # <a name="planning-for-an-azure-files-deployment"></a>Azure Files のデプロイの計画
 
@@ -98,7 +97,7 @@ Premium ファイル共有を作成する方法については、[Azure Premium 
 > [!IMPORTANT]
 > Premium ファイル共有は LRS でのみ使用できますが、ストレージ アカウントを提供するほとんどのリージョンで使用できます。 ご自分のリージョンで現在 Premium ファイル共有を使用できるかどうかを見つけるには、Azure の [[リージョン別の利用可能な製品]](https://azure.microsoft.com/global-infrastructure/services/?products=storage) ページを参照してください。
 
-### <a name="provisioned-shares"></a>プロビジョニングされた共有
+#### <a name="provisioned-shares"></a>プロビジョニングされた共有
 
 Premium ファイル共有は、固定 GiB/IOPS/スループット比に基づいてプロビジョニングされます。 プロビジョニングされた GiB ごとに、共有は、1 IOPS と 0.1 MiB/秒のスループットから、共有ごとの最大限度まで発行されます。 最小許容プロビジョニングは 100 GiB で、最小の IOPS/スループットになります。
 
@@ -135,7 +134,7 @@ Premium ファイル共有は、固定 GiB/IOPS/スループット比に基づ�
 > [!NOTE]
 > ファイル共有のパフォーマンスは、他の多くの要因の中でも特にマシン ネットワークの制限、使用可能なネットワーク帯域幅、IO サイズ、並列処理の影響を受けます。 最大のパフォーマンス スケールを達成するには、負荷を複数の VM に分散します。 一般的なパフォーマンスの問題と回避策については、[トラブルシューティング ガイド](storage-troubleshooting-files-performance.md)に関するページを参照してください。
 
-### <a name="bursting"></a>バースト
+#### <a name="bursting"></a>バースト
 
 Premium ファイル共有は、最大 3 倍の IOPS をバーストできます。 バーストは自動化され、クレジット システムに基づいて動作します。 バーストはベスト エフォートで動作し、バースト限度は保証されるものではなく、ファイル共有は限度*まで*バーストすることができます。
 
@@ -197,8 +196,10 @@ GRS が有効なストレージ アカウントでは、すべてのデータが
 
 ### <a name="restrictions"></a>制限
 
+- Azure プレビューの[使用条件](https://azure.microsoft.com/support/legal/preview-supplemental-terms/)は、Azure ファイル同期デプロイでの使用を含む、プレビュー期間内の大規模なファイル共有に適用されます。
 - 新しい汎用ストレージ アカウントを作成する必要があります (既存のストレージ アカウントを拡張することはできません)。
-- LRS から GRS へのアカウント変換は、大きいファイル共有のプレビューへのサブスクリプションが承認された後に作成された新しいストレージ アカウントでは実行できません。
+- LRS/ZRS から GRS へのアカウント変換は、大きいファイル共有のプレビューへのサブスクリプションが承認された後に作成された新しいストレージ アカウントでは実行できません。
+
 
 ### <a name="regional-availability"></a>リージョン別の提供状況
 
@@ -206,14 +207,25 @@ Standard ファイル共有は、すべてのリージョンで 5 TiB まで利�
 
 |リージョン  |サポートされる冗長性  |既存のストレージ アカウントをサポートする  |
 |---------|---------|---------|
+|オーストラリア東部     |LRS|いいえ         |
 |東南アジア     |LRS|いいえ         |
-|西ヨーロッパ     |LRS|いいえ         |
+|西ヨーロッパ     |LRS、ZRS|いいえ         |
 |米国西部 2     |LRS、ZRS|いいえ         |
 
+この[アンケート](https://aka.ms/azurefilesatscalesurvey)にご記入ください。新しいリージョンと機能に優先順位を付けるために役立ちます。
 
 ### <a name="steps-to-onboard"></a>オンボードの手順
 
-大きなファイル共有プレビューにサブスクリプションを登録するには、次の PowerShell コマンドを実行します。
+大きなファイル共有プレビューにサブスクリプションを登録するには、Azure PowerShell を使用する必要があります。 [Azure Cloud Shell](https://shell.azure.com/) を使用するか、[Azure PowerShell モジュールをローカルに](https://docs.microsoft.com/powershell/azure/install-Az-ps?view=azps-2.4.0)インストールすることで、次の PowerShell コマンドを実行できます。
+
+まず、プレビューで登録するサブスクリプションが選択されていることを確認します。
+
+```powershell
+$context = Get-AzSubscription -SubscriptionId ...
+Set-AzContext $context
+```
+
+次に、次のコマンドを利用してプレビューに登録します。
 
 ```powershell
 Register-AzProviderFeature -FeatureName AllowLargeFileShares -ProviderNamespace Microsoft.Storage
@@ -227,7 +239,7 @@ Register-AzResourceProvider -ProviderNamespace Microsoft.Storage
 Get-AzProviderFeature -FeatureName AllowLargeFileShares -ProviderNamespace Microsoft.Storage
 ```
 
-状態が "登録済み" に更新されるまで最大 15 分かかりますが、それでもこの機能を使用できるはずです。
+状態が "**登録済み**" に更新されるまでに最大 15 分かかる場合があります。 状態が "**登録済み**" になったら、機能を利用できるようになるはずです。
 
 ### <a name="use-larger-file-shares"></a>大きなファイル共有を使用する
 

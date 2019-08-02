@@ -1,18 +1,19 @@
 ---
 title: Azure Backup でファイルとフォルダーのバックアップが遅い場合のトラブルシューティング
 description: Azure Backup のパフォーマンスに関する問題の原因を診断するのに役立つトラブルシューティングの指針を示します。
-author: saurabhsensharma
-manager: saurabhsensharma
+ms.reviewer: saurse
+author: dcurwin
+manager: carmonm
 ms.service: backup
 ms.topic: troubleshooting
 ms.date: 07/05/2019
-ms.author: saurse
-ms.openlocfilehash: 3a39d39412c8b64d1851ea0fc9511d116f3b232a
-ms.sourcegitcommit: c72ddb56b5657b2adeb3c4608c3d4c56e3421f2c
+ms.author: dacurwin
+ms.openlocfilehash: 16a8eb4eea4e5e1e3bb49049c49d73adb99eef55
+ms.sourcegitcommit: d585cdda2afcf729ed943cfd170b0b361e615fae
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/24/2019
-ms.locfileid: "68465342"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "68688628"
 ---
 # <a name="troubleshoot-slow-backup-of-files-and-folders-in-azure-backup"></a>Azure Backup でファイルとフォルダーのバックアップが遅い場合のトラブルシューティング
 この記事では、ファイルとフォルダーのバックアップに関して、Azure Backup の使用中にパフォーマンスが低下している原因を診断するためのトラブルシューティングの指針を紹介します。 Azure Backup エージェントを使用してファイルをバックアップするとき、予想以上にバックアップ処理に時間がかかる場合があります。 次のいずれかまたは複数の事柄が、この遅延の原因として考えられます。
@@ -45,7 +46,7 @@ Windows には、これらのボトルネックを検出するための、 [パ�
 | Memory--Pool Non Paged Bytes |• プールの 60% 未満を消費 = 正常<br>• プールの 61 ～ 80% を消費 = 警告または監視</br>• プールの 80% 超を消費 = 重大または基準不適合 |
 | Memory--Pool Paged Bytes |• プールの 60% 未満を消費 = 正常</br>• プールの 61 ～ 80% を消費 = 警告または監視</br>• プールの 80% 超を消費 = 重大または基準不適合 |
 | Memory--Available Megabytes |• 空きメモリ 50% 以上 = 正常</br>• 空きメモリ 25% = 監視</br>• 空きメモリ 10% = 警告</br>• 空きメモリ 100 MB または 5% 未満 = 重大または基準不適合 |
-| Processor--\%Processor Time (all instances) |• 60% 未満を消費 = 正常</br>• 61 ～ 90% を消費 = 監視または注意</br>• 91 ～ 100% を消費 = 重大 |
+| Processor--\%Processor Time (全インスタンス) |• 60% 未満を消費 = 正常</br>• 61 ～ 90% を消費 = 監視または注意</br>• 91 ～ 100% を消費 = 重大 |
 
 > [!NOTE]
 > インフラストラクチャが原因であることがわかった場合は、パフォーマンス向上のために定期的にディスクを最適化することをお勧めします。
