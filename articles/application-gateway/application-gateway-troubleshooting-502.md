@@ -15,7 +15,7 @@ ms.lasthandoff: 05/05/2020
 ms.locfileid: "82801741"
 ---
 # <a name="troubleshooting-bad-gateway-errors-in-application-gateway"></a>Application Gateway での無効なゲートウェイによるエラーのトラブルシューティング
-<p class="alert is-flex is-primary"><span class="has-padding-left-medium has-padding-top-extra-small"><a class="button is-primary" href="https://azurevirtualsupportagent.services.microsoft.com?content=66c070b6-1c47-4c7f-b928-317a8c8b452f" target='_blank'>開始</a></span><span class="has-padding-small">仮想エージェントを利用して <b> 自動化診断を実行し、問題を短時間で解決します。</b></span><span class="has-padding-small"><a href="https://privacy.microsoft.com/privacystatement" target='_blank'><div align="right"><sub>プライバシーに関する声明</sub></div></a></span></p>
+
 Azure Application Gateway の使用時に表示される無効なゲートウェイ (502) エラーをトラブルシューティングする方法について説明します。
 
 [!INCLUDE [updated-for-az](../../includes/updated-for-az.md)]
