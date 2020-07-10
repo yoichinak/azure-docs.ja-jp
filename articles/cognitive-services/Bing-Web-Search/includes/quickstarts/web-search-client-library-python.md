@@ -167,7 +167,7 @@ python -m pip install azure-cognitiveservices-search-websearch
 
 1. `SUBSCRIPTION_KEY` を有効なサブスクリプション キーに置き換えます。
 
-1. `YOUR_ENDPOINT` をポータルの実際のエンドポイント url に置き換え、エンドポイントから "bing/v7.0" の部分を削除してください。
+1. `YOUR_ENDPOINT` をポータルの実際のエンドポイント url に置き換え、エンドポイントから "bing/v7.0" の部分を削除します。
 
 1. プログラムを実行します。 (例: `python your_program.py`)。
 
